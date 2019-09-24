@@ -1,0 +1,5 @@
+mutation SaveSalary($input: SalaryInput!) {
+  saveSalary(input: $input) {
+    id
+  }
+}

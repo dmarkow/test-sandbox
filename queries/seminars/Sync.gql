@@ -1,0 +1,5 @@
+mutation SeminarSync($id: ID!) {
+  seminarSync(id: $id) {
+    id
+  }
+}

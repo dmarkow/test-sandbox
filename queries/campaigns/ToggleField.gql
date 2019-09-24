@@ -1,0 +1,10 @@
+mutation ToggleCampaignContactField(
+  $id: ID!
+  $field: String!
+  $value: Boolean!
+) {
+  toggleCampaignContactField(id: $id, field: $field, value: $value) {
+    id
+    fields
+  }
+}

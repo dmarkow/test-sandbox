@@ -1,0 +1,20 @@
+#import "../contacts/PhysicalAddressFragment"
+#import "../notes/ShowFragment"
+
+query Community($id: ID!) {
+  community(id: $id) {
+    id
+    name
+    description
+    city
+    state
+    complete
+    physicalAddresses {
+      ...PhysicalAddressFragment
+    }
+    notes {
+      id
+      ...NoteShowFragment
+    }
+  }
+}

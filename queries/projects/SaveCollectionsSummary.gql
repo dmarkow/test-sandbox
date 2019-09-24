@@ -1,0 +1,6 @@
+mutation SaveCollectionsSummary($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    arSummary
+  }
+}

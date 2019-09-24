@@ -1,0 +1,13 @@
+#import "../Elements/ListFragment"
+
+mutation AddReportSectionElements($reportSectionId: ID!, $elementIds: [ID]!) {
+  addReportSectionElements(
+    reportSectionId: $reportSectionId
+    elementIds: $elementIds
+  ) {
+    id
+    element {
+      ...ElementListFragment
+    }
+  }
+}

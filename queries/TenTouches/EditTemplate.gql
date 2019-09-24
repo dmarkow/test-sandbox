@@ -1,0 +1,16 @@
+#import "./TenTouchTaskFragment"
+
+query EditTenTouchTemplate($id: ID!) {
+  tenTouchTemplate(id: $id) {
+    ...EditTenTouchTemplateFields
+  }
+}
+
+fragment EditTenTouchTemplateFields on TenTouchTemplate {
+  id
+  name
+  notes
+  tenTouchTasks {
+    ...TenTouchTaskFragment
+  }
+}

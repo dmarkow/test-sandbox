@@ -1,0 +1,29 @@
+query ProjectInvoiceLines($number: String!) {
+  project(number: $number) {
+    id
+    invoicelines {
+      id
+      description
+      itemDate
+      billedPosition
+      noCharge
+      nonBillable
+      hours
+      rate
+      lineTotal
+      deliverable {
+        id
+        description
+        milestoneparent {
+          id
+          title
+        }
+      }
+      user {
+        id
+        login
+        fullname
+      }
+    }
+  }
+}

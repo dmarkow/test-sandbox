@@ -1,0 +1,6 @@
+mutation SubmitInvoice($id: ID!, $mode: String!) {
+  submitInvoice(id: $id, mode: $mode) {
+    id
+    status
+  }
+}

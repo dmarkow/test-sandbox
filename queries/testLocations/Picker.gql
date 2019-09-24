@@ -1,0 +1,7 @@
+#import "./ShowFragment"
+
+query TestLocations($projectId: ID) {
+  testLocations(projectId: $projectId) {
+    ...ShowTestLocationFragment
+  }
+}

@@ -1,0 +1,7 @@
+mutation SaveTenTouchTemplate($input: TenTouchTemplateInput!) {
+  saveTenTouchTemplate(input: $input) {
+    id
+    name
+    notes
+  }
+}

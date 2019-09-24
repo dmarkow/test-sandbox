@@ -1,0 +1,29 @@
+#import "./DocumentRowFragment"
+#import "../Piles/Fields"
+
+query ProjectDocuments($projectNumber: String, $parentId: ID, $filter: String, $hasParent: Boolean = false) {
+  documents(projectNumber: $projectNumber, parentId: $parentId, filter: $filter) {
+    ...DocumentRowFragment
+  }
+
+  project(number: $projectNumber) {
+    id
+    piles {
+      ...PileFields
+    }
+  }
+
+  parent: document(id: $parentId) @include(if: $hasParent) {
+    id
+    section
+    mode
+    author
+    ancestors {
+      id
+      path
+      section
+      mode
+      author
+    }
+  }
+}

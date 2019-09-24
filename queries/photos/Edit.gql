@@ -1,0 +1,7 @@
+#import "./EditFragment"
+
+query EditPhoto($id: ID!) {
+  photo(id: $id) {
+    ...EditPhotoFragment
+  }
+}

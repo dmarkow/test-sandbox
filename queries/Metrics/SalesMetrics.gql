@@ -1,0 +1,11 @@
+query SalesMetrics($user: String, $date: Date!, $period: String) {
+  salesMetrics(user: $user, date: $date, period: $period) {
+    name
+    category
+    points
+    totalOnly
+    score
+    count
+    date
+  }
+}

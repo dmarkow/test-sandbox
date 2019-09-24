@@ -1,0 +1,14 @@
+query TimesheetStatus {
+  timesheetStatus {
+    month
+    results {
+      user {
+        id
+        login
+        fullname
+      }
+      count
+      weeklyStatus
+    }
+  }
+}

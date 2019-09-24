@@ -1,0 +1,17 @@
+query CampaignTimesheets($id: ID!) {
+  campaign(id: $id) {
+    id
+    name
+    timesheets {
+      id
+      itemDate
+      hours
+      billedPosition
+      description
+      user {
+        id
+        fullname
+      }
+    }
+  }
+}

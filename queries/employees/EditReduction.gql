@@ -1,0 +1,9 @@
+query EditReduction($id: ID!) {
+  billableGoalReduction(id: $id) {
+    id
+    itemDate
+    amount
+    description
+    project { id }
+  }
+}

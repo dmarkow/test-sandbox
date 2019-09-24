@@ -1,0 +1,7 @@
+query BillingPositions {
+  billingPositions {
+    id
+    description
+    active
+  }
+}

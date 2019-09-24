@@ -1,0 +1,43 @@
+query Timelines($number: String!) {
+  project(number: $number) {
+    id
+    number
+    shareL1Timeline
+    shareL2Timeline
+    l1Timeline
+    timelines {
+      ...TimelineFields
+    }
+  }
+}
+
+
+fragment TimelineFields on Timeline {
+  id
+  itemDate
+  title
+  description
+  keyEvent
+  customFields
+  players {
+    id
+    displayName
+  }
+  elements {
+    id
+    displayName
+  }
+  document {
+    id
+    publicDescription
+    displayName
+    attachedFiles {
+      id
+      primaryFile
+      attachmentUrl
+      attachment {
+        fileName
+      }
+    }
+  }
+}

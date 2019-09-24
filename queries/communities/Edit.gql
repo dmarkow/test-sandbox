@@ -1,0 +1,10 @@
+query EditCommunity($id: ID!) {
+  community(id: $id) {
+    id
+    name
+    description
+    complete
+    city
+    state
+  }
+}

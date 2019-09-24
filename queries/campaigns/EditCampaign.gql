@@ -1,0 +1,20 @@
+query EditCampaign($id: ID!) {
+  campaign(id: $id) {
+    id
+    status
+    closeActivities
+    closeDate
+    description
+    fields
+    percentCompleted
+    includeIndustry
+    includeUnsubscribed
+    includeAttendance
+    includeSegments
+    name
+    script
+    targetDate
+    userId
+    company { id name }
+  }
+}

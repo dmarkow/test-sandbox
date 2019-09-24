@@ -1,0 +1,33 @@
+fragment TrainingAssignmentFragment on TrainingAssignment {
+  id
+  position
+  training {
+    id
+    url
+    name
+    bodyJson
+    trainingRequirements { id }
+    trainings {
+      id
+      name
+      url
+      position
+      bodyJson
+      trainingRequirements { id }
+      trainingCompletions {
+        id
+        userId
+        status
+        trainingRequirementId
+        createdAt
+      }
+    }
+    trainingCompletions {
+      id
+      userId
+      status
+      trainingRequirementId
+      createdAt
+    }
+  }
+}

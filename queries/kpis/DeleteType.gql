@@ -1,0 +1,5 @@
+mutation DeleteKpiType($id: ID!) {
+  deleteKpiType(id: $id) {
+    id
+  }
+}

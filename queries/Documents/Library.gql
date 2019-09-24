@@ -1,0 +1,10 @@
+#import "./DocumentRowFragment"
+
+query LibrarySearch($query: String, $category: ID, $element: ID, $filter: String) {
+  librarySearch(query: $query, category: $category, element: $element, filter: $filter) {
+    label
+    results {
+      ...DocumentRowFragment
+    }
+  }
+}

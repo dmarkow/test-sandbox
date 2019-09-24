@@ -1,0 +1,8 @@
+#import "./ObjectiveFragment"
+
+mutation UpdatePlanObjective($id: ID!, $input: PlanInput!) {
+  updatePlan(id: $id, input: $input) {
+    id
+    ...ObjectiveFragment
+  }
+}

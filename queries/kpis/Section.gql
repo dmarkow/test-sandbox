@@ -1,0 +1,11 @@
+query KpiSection($id: ID!) {
+  kpiSection(id: $id) {
+    id
+    name
+    category
+    who
+    description
+    rank
+    pageBreak
+  }
+}

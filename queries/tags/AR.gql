@@ -1,0 +1,8 @@
+#import "./TagFields"
+
+query ARTags($scope: String) {
+  tags(scope: $scope) {
+    ...TagFields
+    projectCount
+  }
+}

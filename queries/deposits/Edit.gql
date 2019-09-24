@@ -1,0 +1,10 @@
+query Deposit($id: ID!) {
+  deposit(id :$id) {
+    id
+    date
+    status
+    account
+    ach
+    amount
+  }
+}

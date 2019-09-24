@@ -1,0 +1,5 @@
+mutation CreateSurveys($projectId: ID!, $membershipIds: [ID]!) {
+  createSurveys(projectId: $projectId, membershipIds: $membershipIds) {
+    id
+  }
+}

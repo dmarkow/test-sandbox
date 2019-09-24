@@ -1,0 +1,10 @@
+query EditCustomFields($number: String!) {
+  project(number: $number) {
+    id
+    addressFields
+    locationFields
+    elementFields
+    issueFields
+    timelineFields
+  }
+}

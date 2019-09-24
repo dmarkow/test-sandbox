@@ -1,0 +1,8 @@
+query EditDeliverableMenuItem($id: ID!) {
+  deliverableMenuItem(id: $id) {
+    id
+    sku {
+      id
+    }
+  }
+}

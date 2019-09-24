@@ -1,0 +1,10 @@
+#import "../checklists/ChecklistFragment"
+
+query EmployeeChecklists($id: ID!) {
+  employee(id: $id) {
+    id
+    checklists {
+      ...ChecklistFragment
+    }
+  }
+}

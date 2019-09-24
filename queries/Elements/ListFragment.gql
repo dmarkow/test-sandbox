@@ -1,0 +1,13 @@
+fragment ElementListFragment on Element {
+  id
+  number
+  name
+  description
+  priority
+  analysisStatus
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  customFields
+}

@@ -1,0 +1,8 @@
+#import "./ImageReferenceFragment"
+
+mutation MoveImageReference($input: ImageReferenceInput!) {
+  moveImageReference(input: $input) {
+    id
+    rank
+  }
+}

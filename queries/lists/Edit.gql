@@ -1,0 +1,12 @@
+query EditList($id: ID!) {
+  list(id: $id) {
+    ...EditListFragment
+  }
+}
+
+fragment EditListFragment on List {
+  id
+  name
+  sortBy
+  fields
+}

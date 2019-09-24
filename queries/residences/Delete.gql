@@ -1,0 +1,5 @@
+mutation DeleteResidence($id: ID!) {
+  deleteResidence(id: $id) {
+    id
+  }
+}

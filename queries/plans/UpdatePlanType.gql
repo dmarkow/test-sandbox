@@ -1,0 +1,8 @@
+#import "./MethodFragment"
+
+mutation UpdatePlanPlanType($id: ID!, $input: PlanInput!) {
+  updatePlan(id: $id, input: $input) {
+    id
+    ...MethodFragment
+  }
+}

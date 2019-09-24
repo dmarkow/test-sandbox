@@ -1,0 +1,6 @@
+query PlanTypesPicker {
+  planTypes {
+    id
+    name
+  }
+}

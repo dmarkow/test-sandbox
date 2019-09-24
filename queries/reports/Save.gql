@@ -1,0 +1,7 @@
+#import "./EditReportFragment"
+
+mutation SaveReport($input: ReportInput!) {
+  saveReport(input: $input) {
+    ...EditReportFragment
+  }
+}

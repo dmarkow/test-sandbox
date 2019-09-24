@@ -1,0 +1,10 @@
+query Trainings {
+  trainings {
+    id
+    name
+    trainings {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,32 @@
+#import "./ReportSectionFragment"
+
+fragment EditReportFragment on Report {
+  id
+  status
+  agreement { id }
+  updatedAt
+  headerTitle
+  title
+  publishedOn
+  includePageNumbers
+  autoGenerateToc
+  staticRecipient
+  reportType
+  omitCover
+  membershipId
+  includeToc
+  customToc
+  intro
+  note
+  includeNote
+  noteInFooter
+  userId
+  retainer
+  clientName
+  feeSchedule
+  internalDescription
+  reportSections {
+    ...ReportSectionFragment
+
+  }
+}

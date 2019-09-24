@@ -1,0 +1,8 @@
+mutation UpdateInvoiceModes($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    viewByDeliverable
+    invoiceType
+    invoiceTotal
+  }
+}

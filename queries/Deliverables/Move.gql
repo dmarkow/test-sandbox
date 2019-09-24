@@ -1,0 +1,6 @@
+mutation MoveDeliverable($id: ID!, $direction: String!) {
+  moveDeliverable(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

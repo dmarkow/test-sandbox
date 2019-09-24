@@ -1,0 +1,26 @@
+mutation SaveEmployee($input: EmployeeInput!) {
+  saveEmployee(input: $input) {
+    id
+    firstName
+    displayAs
+    lastName
+    startDate
+    manager {
+      id
+      fullname
+    }
+    office { id location }
+    billableGoals {
+      id
+      effectiveDate
+    }
+    salaries {
+      id
+      effectiveDate
+    }
+    milestones {
+      id
+      itemDate
+    }
+  }
+}

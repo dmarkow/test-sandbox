@@ -1,0 +1,21 @@
+fragment IssueFragment on Issue {
+  id
+  number
+  alternateNumber
+  description
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  header
+  issue { id }
+  elements {
+    id
+    number
+    name
+  }
+  analysisStatus
+  customFields
+  sourceDocument { id  }
+  priority
+}

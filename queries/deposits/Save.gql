@@ -1,0 +1,7 @@
+#import "./DepositFields"
+
+mutation SaveDeposit($input: DepositInput!) {
+  saveDeposit(input: $input) {
+    ...DepositFields
+  }
+}

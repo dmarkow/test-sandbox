@@ -1,0 +1,20 @@
+query PlayersPicker($projectId: ID) {
+  playerGroups(projectId: $projectId) {
+    name
+    position
+    id
+  }
+  players(projectId: $projectId) {
+    id
+    role
+    company
+    name
+    pfcsPhotoCount
+    otherPhotoCount
+    pfcsKeyPhotoCount
+    otherKeyPhotoCount
+    playerGroup {
+      id
+    }
+  }
+}

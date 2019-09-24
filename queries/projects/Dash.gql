@@ -1,0 +1,22 @@
+#import "./TeamFields"
+#import "./MembershipsFragment"
+#import "./ReportCardsFragment"
+#import "./ChecklistsFragment"
+#import "./ProjectFormFragment"
+#import "../kanbanCards/KanbanCardsFragment"
+#import "./SalesProjectionsFragment"
+#import "../plans/PlanSummaryFragment"
+
+query ProjectDash($number: String!) {
+  project(number: $number) {
+    id
+    ...ProjectFormFragment
+    ...TeamFields
+    ...MembershipsFragment
+    ...ReportCardsFragment
+    ...SalesProjectionsFragment
+    ...PlanSummaryFragment
+    ...KanbanCardsFragment
+    ...ChecklistsFragment
+  }
+}

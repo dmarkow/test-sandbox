@@ -1,0 +1,7 @@
+#import "./ShowCampaignFragment"
+
+query ShowCampaign($id: ID!) {
+  campaign(id: $id) {
+    ...ShowCampaignFragment
+  }
+}

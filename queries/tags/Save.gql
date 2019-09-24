@@ -1,0 +1,7 @@
+#import "./TagFields"
+
+mutation SaveTag($input: TagInput!) {
+  saveTag(input: $input) {
+    ...TagFields
+  }
+}

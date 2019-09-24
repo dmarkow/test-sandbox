@@ -1,0 +1,6 @@
+mutation UpdateMilestoneParent($id: ID!, $input: MilestoneparentInput!) {
+  updateMilestoneparent(id: $id, input: $input) {
+    id
+    title
+  }
+}

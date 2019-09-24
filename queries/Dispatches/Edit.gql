@@ -1,0 +1,7 @@
+#import "./DispatchFragment.gql"
+
+query EditDispatch($id: ID!) {
+  dispatch(id: $id) {
+    ...DispatchFragment
+  }
+}

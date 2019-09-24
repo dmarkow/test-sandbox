@@ -1,0 +1,14 @@
+query SalesFunnel {
+  dynamicMetrics(types:["All Prospects", "Active Opportunities by Stage", "Recent Projects"]) {
+    sum
+    count
+    name
+    extraInt
+    date
+  }
+  salesStages {
+    id
+    probability
+    description
+  }
+}

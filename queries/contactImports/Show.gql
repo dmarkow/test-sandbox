@@ -1,0 +1,12 @@
+query ContactImport($id: ID!) {
+  contactImport(id: $id) {
+    id
+    name
+    importedContacts {
+      id
+      action
+    }
+    attachmentUrl
+    campaign { id name }
+  }
+}

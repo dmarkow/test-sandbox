@@ -1,0 +1,19 @@
+mutation SaveChecklistItem($input: ChecklistItemInput!) {
+  saveChecklistItem(input: $input) {
+    id
+    complete
+    title
+    position
+    section
+    user {
+      id
+      login
+    }
+    checklist {
+      id
+      itemsCompleted
+      completedAt
+      complete
+    }
+  }
+}

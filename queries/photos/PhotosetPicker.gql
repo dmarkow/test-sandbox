@@ -1,0 +1,15 @@
+query Photosets($projectId: ID) {
+  photosets(projectId: $projectId) {
+    id
+    inspectionDate
+    day
+    party
+    pfcs
+    description
+    user {
+      id
+      login
+    }
+    keyPhotoCount
+  }
+}

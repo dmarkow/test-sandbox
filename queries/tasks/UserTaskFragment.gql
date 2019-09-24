@@ -1,0 +1,8 @@
+fragment UserTaskFragment on Task {
+  id
+  user {
+    id
+    pastDueTaskCount
+    todayTaskCount
+  }
+}

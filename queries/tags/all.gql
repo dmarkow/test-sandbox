@@ -1,0 +1,7 @@
+#import "./TagFields"
+
+query Tags($scope: String) {
+  tags(scope: $scope) {
+    ...TagFields
+  }
+}

@@ -1,0 +1,8 @@
+mutation UpdateFixedFeeInvoice($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    displayLines
+    description
+    invoiceTotal
+  }
+}

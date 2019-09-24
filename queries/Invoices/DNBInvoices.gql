@@ -1,0 +1,6 @@
+mutation DNBInvoices($ids: [ID]!) {
+  dnbInvoices(ids: $ids) {
+    id
+    status
+  }
+}

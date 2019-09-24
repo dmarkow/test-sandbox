@@ -1,0 +1,8 @@
+fragment PlanStatusFields on PlanStatus {
+  id
+  status
+  date
+  notes
+  amount
+  attachment
+}

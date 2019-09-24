@@ -1,0 +1,54 @@
+query BilledHours($month: String!, $userId: ID!) {
+  user(id: $userId) {
+    id
+    employee {
+      id
+      monthlyPayments {
+        id
+        date
+        amount
+        category
+        updatedAt
+      }
+      salaries {
+        ...BilledHoursSalaryFields
+      }
+    }
+  }
+  invoicelines(userId: $userId, month: $month) {
+    ...BilledHoursInvoicelineFields
+  }
+}
+fragment BilledHoursSalaryFields on Salary {
+  id
+  effectiveDate
+  hourlyRates
+}
+
+fragment BilledHoursInvoicelineFields on Invoiceline {
+  id
+  itemDate
+  noCharge
+  billedPosition
+  description
+  nonBillable
+  testimony
+  hours
+  allowPayment
+  deliverable {
+    id
+    description
+  }
+  invoice {
+    id
+    status
+    invoiceDate
+    project {
+      id
+      number
+      name
+      rate
+      projectType
+    }
+  }
+}

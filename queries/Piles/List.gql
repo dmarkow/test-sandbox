@@ -1,0 +1,10 @@
+#import "./Fields"
+
+query Piles($projectNumber: String!) {
+  project(number: $projectNumber) {
+    id
+    piles {
+      ...PileFields
+    }
+  }
+}

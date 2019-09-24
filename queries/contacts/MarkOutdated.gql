@@ -1,0 +1,6 @@
+mutation MarkContactOutdated($id: ID!, $userId: ID!) {
+  markContactOutdated(id: $id, userId: $userId) {
+    id
+
+  }
+}

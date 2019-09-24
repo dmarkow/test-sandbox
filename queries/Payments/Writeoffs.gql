@@ -1,0 +1,13 @@
+query Writeoffs($month: String!) {
+  creditMemos(month: $month) {
+    id
+    itemDate
+    description
+    amount
+    project {
+      id
+      number
+      name
+    }
+  }
+}

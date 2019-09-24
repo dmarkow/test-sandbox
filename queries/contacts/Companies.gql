@@ -1,0 +1,6 @@
+query Companies($search: String) {
+  companies(search: $search) {
+    id
+    name
+  }
+}

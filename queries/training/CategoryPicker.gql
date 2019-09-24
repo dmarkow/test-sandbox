@@ -1,0 +1,6 @@
+query TrainingCategories {
+  trainingCategories {
+    id
+    name
+  }
+}

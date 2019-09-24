@@ -1,0 +1,14 @@
+#import "./LocationRowFragment"
+#import "../Addresses/AddressFragment"
+
+query Locations($id: ID!) {
+  project(id: $id) {
+    id
+    locations {
+      ...LocationRowFragment
+    }
+    addresses {
+      ...AddressFragment
+    }
+  }
+}

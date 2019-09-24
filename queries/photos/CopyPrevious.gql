@@ -1,0 +1,7 @@
+#import "./EditFragment"
+
+mutation CopyPreviousPhoto($id: ID!, $sourceId: ID!) {
+  copyPreviousPhoto(id: $id, sourceId: $sourceId) {
+    ...EditPhotoFragment
+  }
+}

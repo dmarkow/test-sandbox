@@ -1,0 +1,39 @@
+#import "./AttachedFileFragment.gql"
+
+fragment DocumentRowFieldsFragment on Document {
+  id
+  header
+  hidden
+  mode
+  section
+  suffix
+  key
+  path
+  pdfSecurity
+  description
+  library
+  recipient
+  attachedFiles {
+    ...AttachedFileFragment
+  }
+  project { id number name }
+  date
+  endDate
+  author
+  receivedDate
+  pages
+  pageReference
+  batesStamp
+  printed
+  analysis
+  analysisJson
+  summary
+  source
+  document { id section hidden }
+  sourceFile {
+    id
+    attachedFiles {
+      ...AttachedFileFragment
+    }
+  }
+}

@@ -1,0 +1,30 @@
+#import "../tasks/TaskFragment"
+
+fragment NoteShowFragment on Note {
+  id
+  itemDate
+  updatedAt
+  description
+  contactType
+  itemType
+  key
+  source
+  hidden
+  notifiedUsers { id login fullname }
+  user { id login fullname }
+  attachmentUrl
+  attachmentThumbUrl
+  notifyPm
+  attachment {
+    fileName
+  }
+  contact { id }
+  feature { id }
+  employee { id }
+  project { id salesStageId }
+  projectId
+  topic { id }
+  tasks {
+    ...TaskFragment
+  }
+}

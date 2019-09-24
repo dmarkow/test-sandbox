@@ -1,0 +1,8 @@
+query RecentPayments($startDate: String!, $endDate: String!) {
+  payments(startDate: $startDate, endDate: $endDate, filter: "Payments") {
+    id
+    amount
+    depositDate
+    retainer { id }
+  }
+}

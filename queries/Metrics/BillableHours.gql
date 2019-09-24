@@ -1,0 +1,14 @@
+query BillableHoursCount($quarter: String!, $filter: String, $user: String) {
+  dynamicMetrics(type: "Billable Hours", quarter: $quarter, user: $user, filter: $filter) {
+    date
+    sum
+  }
+  goals: dynamicMetrics(type: "Billable Hours: Goal", quarter: $quarter, user: $user) {
+    date
+    sum
+  }
+  targets: dynamicMetrics(type: "Billable Hours: Target", quarter: $quarter, user: $user) {
+    date
+    sum
+  }
+}

@@ -1,0 +1,6 @@
+query EditPlanSection($id: ID!) {
+  planSection(id: $id) {
+    id
+    name
+  }
+}

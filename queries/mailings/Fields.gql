@@ -1,0 +1,8 @@
+fragment MailingFields on Mailing {
+  id
+  subject
+  sender
+  sentAt
+  contactsMailingsCount
+  attachmentUrl
+}

@@ -1,0 +1,7 @@
+#import "./TimesheetParts"
+
+mutation UpdateTimesheet($id: ID!, $input: TimesheetInput) {
+  updateTimesheet(id: $id, input: $input) {
+    ...TimesheetParts
+  }
+}

@@ -1,0 +1,6 @@
+mutation MoveMilestoneParent($id: ID!, $position: Int!) {
+  moveMilestoneparent(id: $id, position: $position) {
+    id
+    rank
+  }
+}

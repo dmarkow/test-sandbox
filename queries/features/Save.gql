@@ -1,0 +1,7 @@
+#import "./ShowFeatureFragment"
+
+mutation SaveFeature($input: FeatureInput!) {
+  saveFeature(input: $input) {
+    ...ShowFeatureFragment
+  }
+}

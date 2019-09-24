@@ -1,0 +1,16 @@
+query TenTouchesMetric($quarter: String!) {
+  months: dynamicMetrics(type: "Months", quarter: $quarter) {
+    date
+  }
+  started: dynamicMetrics(type: "Ten Touches: Started", quarter: $quarter) {
+    date
+    count
+  }
+  completed: dynamicMetrics(
+    type: "Ten Touches: Completed"
+    quarter: $quarter
+  ) {
+    date
+    count
+  }
+}

@@ -1,0 +1,10 @@
+query GetEmployee($userLogin: String!) {
+  employee(userLogin: $userLogin) {
+    id
+    salaries {
+      id
+      effectiveDate
+      hourlyRates
+    }
+  }
+}

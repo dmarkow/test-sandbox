@@ -1,0 +1,10 @@
+fragment UnbilledDeliverableFragment on Deliverable {
+  id
+  description
+  priority
+  rank
+  milestoneparent {
+    id
+    title
+  }
+}

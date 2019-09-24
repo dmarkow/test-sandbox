@@ -1,0 +1,14 @@
+query ReportPeerReviews($id: ID) {
+  report(id: $id) {
+    id
+    peerReviews {
+      id
+      user {
+        fullname
+      }
+      feedback
+      itemDate
+      attachment
+    }
+  }
+}

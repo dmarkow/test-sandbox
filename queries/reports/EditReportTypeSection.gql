@@ -1,0 +1,11 @@
+query ReportTypeSection($id: ID!) {
+  reportTypeSection(id: $id) {
+    id
+    sectionType
+    showHeading
+    template
+    title
+    prefill
+    includeAnalysisList
+  }
+}

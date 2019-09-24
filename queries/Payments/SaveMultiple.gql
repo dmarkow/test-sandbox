@@ -1,0 +1,11 @@
+mutation SaveMultiplePayments($input: PaymentInput!) {
+  savePayment(input: $input) {
+    id
+    description
+    amount
+    checkDate
+    payor
+    claimNumber
+    checkNumber
+  }
+}

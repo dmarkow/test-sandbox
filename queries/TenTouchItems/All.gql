@@ -1,0 +1,26 @@
+#import "../Documents/AttachedFileFragment"
+#import "./TemplateFields"
+
+query TenTouchItems($includeId: ID, $active: Boolean) {
+  tenTouchTemplates {
+    ...TenTouchTemplateFields
+  }
+  tenTouchItems(includeId: $includeId, active: $active) {
+    ...TenTouchItemFields
+  }
+}
+
+fragment TenTouchItemFields on TenTouchItem {
+  id
+  name
+  touchTypes
+  category
+  emailSubject
+  emailBody
+  active
+  document {
+    id
+    displayName
+    attachedFiles { ...AttachedFileFragment }
+  }
+}

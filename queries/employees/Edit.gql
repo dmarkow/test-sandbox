@@ -1,0 +1,21 @@
+query EditEmployee($id: ID!) {
+  employee(id: $id) {
+    id
+    firstName
+    lastName
+    future
+    schedule
+    description
+    startDate
+    endDate
+    office { id }
+    manager { id }
+    billingPosition { id }
+    user { id }
+    department
+    standardHours
+    employmentStatus
+    employeeType
+    schedule
+  }
+}

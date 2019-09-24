@@ -1,0 +1,10 @@
+mutation CreateAttachment($input: AttachmentInput) {
+  createAttachment(input: $input) {
+    id
+    prepend
+    attachment {
+      fileName
+    }
+    attachmentUrl
+  }
+}

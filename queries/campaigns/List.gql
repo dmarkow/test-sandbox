@@ -1,0 +1,19 @@
+query Campaigns {
+  campaigns {
+    ...CampaignFields
+  }
+}
+
+fragment CampaignFields on Campaign {
+  id
+  name
+  status
+  campaignsContactsCount
+  createdAt
+  closeDate
+  targetDate
+  user {
+    id
+    login
+  }
+}

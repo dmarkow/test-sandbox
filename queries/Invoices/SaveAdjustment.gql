@@ -1,0 +1,26 @@
+mutation SaveInvoiceAdjustment($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    isAdjustment
+    status
+    attachmentUrl
+    invoiceDate
+    invoiceTotal
+    paymentTotal
+    emailedAt
+    mailedAt
+    appliedPayments {
+      id
+      amount
+      payment {
+        id
+        description
+        amount
+        checkDate
+        payor
+        claimNumber
+        checkNumber
+      }
+    }
+  }
+}

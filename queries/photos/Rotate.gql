@@ -1,0 +1,8 @@
+mutation RotatePhoto($id: ID!) {
+  rotatePhoto(id: $id) {
+    id
+    smallImage
+    fullImage
+    updatedAt
+  }
+}

@@ -1,0 +1,11 @@
+#import "../notes/ShowFragment"
+
+query CampaignNotes($id: ID!) {
+  campaign(id: $id) {
+    id
+    name
+    notes {
+      ...NoteShowFragment
+    }
+  }
+}

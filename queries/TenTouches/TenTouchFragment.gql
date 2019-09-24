@@ -1,0 +1,26 @@
+#import "./TenTouchTaskFragment"
+
+fragment TenTouchFragment on TenTouch {
+  id
+  createdAt
+  completed
+  completedOn
+  status
+  title
+  campaignField
+  campaign {
+    id
+    name
+  }
+  tenTouchTasks {
+    ...TenTouchTaskFragment
+  }
+  contact {
+    id
+    displayAs
+    company {
+      id
+      name
+    }
+  }
+}

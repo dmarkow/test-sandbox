@@ -1,0 +1,13 @@
+query Users {
+  users(filter: "ALL") {
+    id
+    login
+    fullname
+    userType
+    email
+    employmentStatus
+    isManager
+    isSalaryManager
+    token
+  }
+}

@@ -1,0 +1,11 @@
+#import "./DepositFields"
+
+query Deposits($month: String!, $startDate: String!, $endDate: String!) {
+  deposits(month: $month) {
+    ...DepositFields
+  }
+  payments(startDate: $startDate, endDate: $endDate, filter: "Applied Retainers") {
+    id
+    amount
+  }
+}

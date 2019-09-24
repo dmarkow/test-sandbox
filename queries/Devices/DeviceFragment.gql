@@ -1,0 +1,39 @@
+#import "../notes/ShowFragment"
+
+fragment DeviceFragment on Device {
+  id
+  category
+  location
+  office
+  model
+  os
+  ip
+  storage
+  cpuRank
+  cpu
+  ramType
+  ramSize
+  motherboard
+  graphics
+  videoPorts
+  originalInstallDate
+  vnc
+  goToMeeting
+  msOffice
+  acrobat
+  faststone
+  chrome
+  pfcsAccount
+  lastUpdated
+  productKey
+  printer
+  equipmentId
+  user {
+    id
+    login
+  }
+  notes {
+    id
+    ...NoteShowFragment
+  }
+}

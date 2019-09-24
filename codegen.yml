@@ -1,6 +1,6 @@
 overwrite: true
 schema: schema.graphql
-documents: document.graphql
+documents: queries/**/*.gql
 generates:
   types.ts:
     plugins:

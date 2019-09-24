@@ -1,0 +1,10 @@
+query NewOpportunitiesMetric($quarter: String!) {
+  dynamicMetrics(type: "New Opportunities", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "New Opportunities", period: "Quarter") {
+    id
+    value
+  }
+}

@@ -1,0 +1,14 @@
+#import "./LocationRowFragment"
+#import "../Addresses/AddressFragment"
+
+mutation CreateStandardLocations($projectId: ID!) {
+  createStandardLocations(projectId: $projectId) {
+    id
+    locations {
+      ...LocationRowFragment
+    }
+    addresses {
+      ...AddressFragment
+    }
+  }
+}

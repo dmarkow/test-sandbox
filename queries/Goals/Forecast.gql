@@ -1,0 +1,27 @@
+query EmployeeForecasts($year: Int!) {
+  employees(activeYear: $year) {
+    ...EmployeeForecastsEmployeeFields
+  }
+}
+
+fragment EmployeeForecastsEmployeeFields on Employee {
+  id
+  displayAs
+  sortAs
+  department
+  future
+  firstName
+  lastName
+  description
+  startDate
+  lastName
+  user { id login }
+  forecasts(year: $year) {
+    date
+    goal
+    cost
+    rate
+    gp
+    sales
+  }
+}

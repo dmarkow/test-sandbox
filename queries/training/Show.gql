@@ -1,0 +1,7 @@
+#import "./ShowTrainingFragment"
+
+query ShowTraining($id: ID!) {
+  training(id: $id) {
+    ...ShowTrainingFragment
+  }
+}

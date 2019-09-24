@@ -1,0 +1,59 @@
+query EmployeeMonthlyGoals($month: String!, $startDate: String!, $endDate: String!) {
+  employees(activeDuring: $month) {
+    id
+    displayAs
+    department
+    firstName
+    lastName
+    billableHours(start: $startDate, end: $endDate) {
+      sum
+      name
+      date
+    }
+    billableHoursNoOpportunities: billableHours(start: $startDate, end: $endDate, filter: "no_opportunities") {
+      sum
+      name
+      date
+    }
+    yesterdayBillableHours: billableHours(start: $endDate, end: $endDate) {
+      sum
+      name
+      date
+    }
+    revisedBillableGoal(month: $month)
+    revisedBillableTarget(start: $startDate, end: $endDate)
+    dayTarget: revisedBillableTarget(
+      start: $startDate
+      end: $endDate
+      day: true
+    )
+    originalBillableTarget(start: $startDate, end: $endDate)
+    originalBillableGoal(month: $month) {
+      id
+      value
+      name
+    }
+    billableGoals {
+      id
+      effectiveDate
+      fixed
+      percentage
+      goal
+    }
+    workingHours(month: $month)
+    billableGoalReductions {
+      id
+      itemDate
+      amount
+    }
+    user {
+      id
+      login
+      fullname
+      timesheets(filter: "PTO", month: $month) {
+        id
+        hours
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+query FullMetrics($campaignId: ID!) {
+  metrics(campaignId: $campaignId, category: null) {
+    ...FullMetricsFields
+  }
+  campaign(id: $campaignId) {
+    id
+    name
+  }
+}
+
+fragment FullMetricsFields on Metric {
+  id
+  captureDate
+  campaignData {
+    information { description value }
+    activity { description value }
+    outcome { description value }
+  }
+}

@@ -1,0 +1,6 @@
+mutation SortAttachment($id: ID!, $direction: String!) {
+  sortAttachment(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

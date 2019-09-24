@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+query EditTestLocation($id: ID!) {
+  testLocation(id: $id) {
+    ...TestLocationFormFragment
+  }
+}

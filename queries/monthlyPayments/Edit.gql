@@ -1,0 +1,10 @@
+query MonthlyPayment($id: ID!) {
+  monthlyPayment(id: $id) {
+    id
+    date
+    amount
+    category
+    paidOn
+    updatedAt
+  }
+}

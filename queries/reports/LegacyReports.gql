@@ -1,0 +1,10 @@
+query legacyReports {
+ legacyReports {
+  id
+  intro
+  reportSections {
+    id
+    bodyJson
+  }
+}
+}

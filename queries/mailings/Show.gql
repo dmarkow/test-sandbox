@@ -1,0 +1,42 @@
+#import "../checklists/ChecklistFragment"
+
+query Mailing($id: ID!) {
+  mailing(id: $id) {
+    ...ShowMailingFields
+
+  }
+}
+
+
+fragment ShowMailingFields on Mailing {
+  id
+  subject
+  body
+  company
+  status
+  replyTo
+  sender
+  sentAt
+  contactsMailingsCount
+  attachmentUrl
+  attachment {
+    fileName
+  }
+  campaignField
+  excludeCampaignField
+  campaign {
+    id
+    name
+  }
+  taggings {
+    id
+    scope
+    tag {
+      id
+      category
+    }
+  }
+  checklists {
+    ...ChecklistFragment
+  }
+}

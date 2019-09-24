@@ -1,0 +1,5 @@
+mutation DeleteGoal($id: ID!) {
+  deleteBillableGoal(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,7 @@
+#import "./UserFragment"
+
+query EditUser($id: ID!) {
+  user(id: $id) {
+    ...UserFragment
+  }
+}

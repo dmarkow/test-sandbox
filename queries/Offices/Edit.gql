@@ -1,0 +1,7 @@
+#import "./OfficeFragment"
+
+ query Office($id: ID!) {
+  office(id: $id) {
+    ...OfficeFragment
+  }
+}

@@ -1,0 +1,12 @@
+mutation SaveReportTypeSection($input: ReportTypeSectionInput!) {
+  saveReportTypeSection(input: $input) {
+    id
+    showHeading
+    sectionType
+    rank
+    template
+    title
+    prefill
+    includeAnalysisList
+  }
+}

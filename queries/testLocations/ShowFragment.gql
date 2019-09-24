@@ -1,0 +1,33 @@
+fragment ShowTestLocationFragment on TestLocation {
+  id
+  description
+  testedBy
+  testedAt
+  number
+  attended
+  alternateNumber
+  analysis
+  swi
+  damage
+  pfcsPhotoCount
+  pfcsKeyPhotoCount
+  otherPhotoCount
+  otherKeyPhotoCount
+  updatedAt
+  elements {
+    id
+    displayName
+  }
+  addresses {
+    id
+    displayName
+  }
+  locations {
+    id
+    displayName
+  }
+  issues {
+    id
+    displayName
+  }
+}

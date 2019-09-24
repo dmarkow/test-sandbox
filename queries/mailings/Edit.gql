@@ -1,0 +1,21 @@
+query EditMailing($id: ID!) {
+  mailing(id: $id) {
+    id
+    body
+    bypassFilters
+    campaignField
+    clientFilter
+    company
+    excludeCampaignField
+    contactType
+    replyTo
+    sender
+    status
+    subject
+    suppressUnsubscribeLink
+    updateCampaignField
+    user { id }
+    campaign { id }
+    taggings { id }
+  }
+}

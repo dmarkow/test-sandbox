@@ -1,0 +1,9 @@
+query ContactImports {
+  contactImports {
+    id
+    name
+    importedAt
+    countMatched
+    countAdded
+  }
+}

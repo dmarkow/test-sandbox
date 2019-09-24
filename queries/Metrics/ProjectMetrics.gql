@@ -1,0 +1,18 @@
+query ProjectMetrics($quarter: String!, $user: String) {
+  audits: dynamicMetrics(type: "Audits", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  myAudits: dynamicMetrics(type: "My Audits", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  ppms: dynamicMetrics(type: "PPMs", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  activeProjects: dynamicMetrics(type: "Active Projects", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+}

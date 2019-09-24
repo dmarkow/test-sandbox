@@ -1,0 +1,13 @@
+fragment ImageReferenceFragment on ImageReference {
+  id
+  rank
+  infoImage {
+    id
+    category
+    description
+    attachmentUrl
+    attachment {
+      fileName
+    }
+  }
+}

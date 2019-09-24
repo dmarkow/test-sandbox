@@ -1,0 +1,26 @@
+query PayPeriod($id: ID!) {
+  payPeriod(id: $id) {
+    id
+    checkDate
+    endDate
+    processed
+    startDate
+    payPeriodLines {
+      ...PayPeriodLineFields
+    }
+  }
+}
+
+fragment PayPeriodLineFields on PayPeriodLine {
+  employee {
+    id
+    firstName
+    lastName
+  }
+  salary { id hourlyRate }
+  pay
+  milestones
+  incentive
+  regularHours
+  otHours
+}

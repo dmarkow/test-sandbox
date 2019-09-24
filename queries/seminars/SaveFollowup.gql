@@ -1,0 +1,6 @@
+mutation SaveSeminarFollowup($input: SeminarInput!) {
+  saveSeminar(input: $input) {
+    id
+    bodyFollowup
+  }
+}

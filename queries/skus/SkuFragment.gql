@@ -1,0 +1,12 @@
+#import "./SampleFragment"
+
+fragment SkuFragment on Sku {
+  id
+  name
+  description
+  category
+  trainingUrl
+  samples {
+    ...SampleFragment
+  }
+}

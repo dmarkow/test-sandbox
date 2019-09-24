@@ -1,0 +1,10 @@
+fragment LocationFragment on Location {
+  id
+  name
+  nestedName
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  location { id }
+}

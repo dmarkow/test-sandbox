@@ -1,0 +1,6 @@
+query EditProjectL1Timeline($id: ID!) {
+  project(id: $id) {
+    id
+    l1Timeline
+  }
+}

@@ -1,0 +1,5 @@
+mutation DeleteTimesheet($id: ID) {
+  deleteTimesheet(id: $id) {
+    id
+  }
+}

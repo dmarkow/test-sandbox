@@ -1,0 +1,37 @@
+#import "./TrainingPlanFragment"
+
+query StaffTraining {
+  employees(status: "Active", future: false) {
+    id
+    displayAs
+    department
+    user {
+      ...StaffTrainingUserFields
+    }
+  }
+}
+
+fragment StaffTrainingUserFields on User {
+  id
+  login
+  trainingPlans {
+    ...StaffTrainingPlanFields
+  }
+  trainingCompletions {
+    id
+    status
+    training { id }
+    trainingRequirement { id }
+  }
+}
+
+fragment StaffTrainingPlanFields on TrainingPlan {
+  id
+  status
+  name
+  createdAt
+  trainingAssignments {
+    id
+    training { id }
+  }
+}

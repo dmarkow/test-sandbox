@@ -1,0 +1,15 @@
+query Retainers {
+  retainers {
+    id
+    depositDate
+    amount
+    payments { id amount }
+    project {
+      id
+      number
+      name
+      status
+      totalDue
+    }
+  }
+}

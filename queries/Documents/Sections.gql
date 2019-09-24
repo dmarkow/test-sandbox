@@ -1,0 +1,8 @@
+query ProjectDocumentSections($projectNumber: String, $employeeId: ID) {
+  documents(projectNumber: $projectNumber, employeeId: $employeeId, filter: "headers") {
+    id
+    section
+    author
+    document { id }
+  }
+}

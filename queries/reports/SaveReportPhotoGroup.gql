@@ -1,0 +1,56 @@
+mutation SaveReportPhotoGroup($input: ReportPhotoGroupInput!) {
+  saveReportPhotoGroup(input: $input) {
+    id
+    rank
+    photoset {
+      id
+      party
+      inspectionDate
+      pfcs
+      day
+      keyPhotoCount
+      user { id login }
+    }
+    address {
+      id
+      name
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    location {
+      id
+      name
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    element {
+      id
+      number
+      name
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    issue {
+      id
+      number
+      description
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    player {
+      id
+      company
+      name
+      role
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    testLocation {
+      id
+      number
+      description
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+  }
+}

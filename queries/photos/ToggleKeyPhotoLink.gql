@@ -1,0 +1,6 @@
+mutation ToggleKeyPhoto($input: PhotoLinkInput!) {
+  savePhotoLink(input: $input) {
+    id
+    key
+  }
+}

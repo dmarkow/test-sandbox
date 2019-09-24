@@ -1,0 +1,7 @@
+#import "./KanbanCardsFragment"
+
+query KanbanCards($projectNumber: String) {
+  project(number: $projectNumber) {
+    ...KanbanCardsFragment
+  }
+}

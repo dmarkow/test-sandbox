@@ -1,0 +1,7 @@
+#import "./SeminarFragment"
+
+query EditSeminar($id: ID!) {
+  seminar(id: $id) {
+    ...SeminarFragment
+  }
+}

@@ -1,0 +1,7 @@
+#import "./ShowFragment"
+
+mutation SaveContact($input: ContactInput!) {
+  saveContact(input: $input) {
+    ...ContactShowFragment
+  }
+}

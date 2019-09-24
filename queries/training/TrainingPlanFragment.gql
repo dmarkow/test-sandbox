@@ -1,0 +1,14 @@
+#import "./TrainingAssignmentFragment"
+
+fragment TrainingPlanFragment on TrainingPlan {
+  id
+  status
+  user {
+    id
+    login
+  }
+  name
+  trainingAssignments {
+    ...TrainingAssignmentFragment
+  }
+}

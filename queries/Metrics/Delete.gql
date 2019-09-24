@@ -1,0 +1,5 @@
+mutation DeleteMetric($id: ID!) {
+  deleteMetric(id: $id) {
+    id
+  }
+}

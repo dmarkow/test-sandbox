@@ -1,0 +1,8 @@
+fragment OfficeFragment on Office {
+  id
+  location
+  openedOn
+  closedOn
+  physical
+  address
+}

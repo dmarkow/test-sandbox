@@ -1,0 +1,13 @@
+query CreditMemo($id: ID!) {
+  creditMemo(id: $id) {
+    id
+    description
+    amount
+    itemDate
+    appliedPayments {
+      id
+      amount
+      invoice { id }
+    }
+  }
+}

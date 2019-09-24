@@ -1,0 +1,28 @@
+query EmployeeSalaries($id: ID!) {
+  employee(id: $id) {
+    id
+    salaries {
+      id
+      effectiveDate
+      hourlyRates
+      hourlyRate
+      annualBase
+      annualIncentive
+      hourlyRates
+      ptoPlan {
+        id
+        name
+      }
+    }
+    milestones {
+      id
+      description
+      itemDate
+      amount
+      datePaid
+      completed
+      approved
+      payPeriod { id checkDate }
+    }
+  }
+}

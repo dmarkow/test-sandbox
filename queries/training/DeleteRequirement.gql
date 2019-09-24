@@ -1,0 +1,5 @@
+mutation DeleteTrainingRequirement($id: ID!) {
+  deleteTrainingRequirement(id: $id) {
+    id
+  }
+}

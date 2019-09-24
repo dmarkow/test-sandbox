@@ -1,0 +1,6 @@
+mutation SaveProjectInspectionSummary($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    inspectionSummary
+  }
+}

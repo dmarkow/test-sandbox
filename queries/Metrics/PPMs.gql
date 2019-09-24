@@ -1,0 +1,10 @@
+query PPMCount($quarter: String!, $user: String) {
+  ppms: dynamicMetrics(type: "PPMs", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  activeProjects: dynamicMetrics(type: "Active Projects", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+}

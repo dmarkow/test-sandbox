@@ -1,0 +1,11 @@
+mutation SaveKpiSection($input: KpiSectionInput!) {
+  saveKpiSection(input: $input) {
+    id
+    name
+    description
+    who
+    category
+    rank
+    pageBreak
+  }
+}

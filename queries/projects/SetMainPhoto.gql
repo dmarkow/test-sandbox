@@ -1,0 +1,7 @@
+mutation SetMainPhoto($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    mainPhotoType
+    mainPhotoId
+  }
+}

@@ -1,0 +1,17 @@
+query ProjectMemberships($id: ID!) {
+  project(id: $id) {
+    id
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        company {
+          id
+          name
+        }
+        displayAs
+      }
+    }
+  }
+}

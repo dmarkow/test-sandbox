@@ -1,0 +1,12 @@
+query EditCalendar($id: ID!) {
+  calendar(id: $id) {
+    id
+    itemDate
+    endDate
+    description
+    user { id }
+    project { id }
+    allDay
+    cancelled
+  }
+}

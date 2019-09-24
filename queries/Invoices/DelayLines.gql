@@ -1,0 +1,6 @@
+mutation DelayEntries($invoiceId: ID!, $invoicelineIds: [ID]!) {
+  delayInvoicelines(invoiceId: $invoiceId, invoicelineIds: $invoicelineIds) {
+    id
+    invoiceTotal
+  }
+}

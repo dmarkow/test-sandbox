@@ -1,0 +1,10 @@
+#import "../Documents/AttachedFileFragment"
+#import "../TenTouches/TenTouchTaskFragment"
+#import "./TemplateFields"
+
+query TenTouchTemplates {
+  tenTouchTemplates {
+    ...TenTouchTemplateFields
+  }
+}
+

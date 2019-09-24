@@ -1,0 +1,5 @@
+mutation SaveBillableGoal($input: BillableGoalInput!) {
+  saveBillableGoal(input: $input) {
+    id
+  }
+}

@@ -1,0 +1,30 @@
+#import "../BPALinkFragment"
+
+fragment IssueFormFragment on Issue {
+  id
+  number
+  alternateNumber
+  description
+  header
+  status
+  issue { id }
+  sourceDocument { id }
+  analysisStatus
+  priority
+  basicAnalysis
+  iiaccIssue
+  iiaccInvestigation
+  iiaccAnalysis
+  iiaccConclusion
+  iiaccCosts
+  specificationsGeneral
+  specificationsMaterials
+  specificationsExecution
+  specificationsQualityAssurance
+  customFields
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+  next { id }
+  prev { id }
+}

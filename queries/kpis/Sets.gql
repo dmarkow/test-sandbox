@@ -1,0 +1,30 @@
+query KpiSets {
+  kpiSets {
+    ...KpiSetsFields
+  }
+}
+
+
+fragment KpiSetsFields on KpiSet {
+  id
+  name
+  globalSet
+  kpiSections {
+    id
+    rank
+    name
+    who
+    description
+    kpiTypes {
+      id
+      rank
+      title
+      valueType
+      editable
+      description
+      hideWhenEmpty
+      aggregation
+      mode
+    }
+  }
+}

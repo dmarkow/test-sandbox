@@ -1,0 +1,3 @@
+query RequestDownload($mode: String!, $filter: ContactSearchFilter!) {
+  downloadContacts(mode: $mode, filter: $filter)
+}

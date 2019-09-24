@@ -1,0 +1,7 @@
+mutation MoveKpiSection($id: ID!, $direction: String!) {
+  moveKpiSection(id: $id, direction: $direction) {
+    id
+    name
+    rank
+  }
+}

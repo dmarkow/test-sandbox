@@ -1,0 +1,20 @@
+query NoCharges($month: String!, $billedDuringMonth: Boolean!) {
+  invoicelines(filter: "no-charges", month: $month, billedDuringMonth: $billedDuringMonth) {
+    id
+    project {
+      id
+      number
+      name
+    }
+    user {
+      id
+      login
+    }
+    hours
+    lineTotal
+    noCharge
+    nonBillable
+    itemDate
+    description
+  }
+}

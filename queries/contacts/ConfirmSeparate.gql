@@ -1,0 +1,5 @@
+mutation ConfirmSeparateContacts($contactId: ID!, $otherId: ID!) {
+  confirmSeparateContacts(contactId: $contactId, otherId: $otherId) {
+    id
+  }
+}

@@ -1,0 +1,7 @@
+#import "./InterviewFragment"
+
+query InterviewTemplates {
+  interviews(template: true) {
+    ...InterviewFragment
+  }
+}

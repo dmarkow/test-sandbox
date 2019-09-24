@@ -1,0 +1,16 @@
+mutation SaveKpiType($input: KpiTypeInput!) {
+  saveKpiType(input: $input) {
+    id
+    mode
+    title
+    valueType
+    shouldNotExceedGoal
+    editable
+    description
+    startYear
+    endYear
+    hideWhenEmpty
+    rank
+    aggregation
+  }
+}

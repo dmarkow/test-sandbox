@@ -1,0 +1,11 @@
+query Calendars($startTime: Int!, $endTime: Int!, $user: String, $office: String, $project: String, $projectUser: String) {
+  calendars(startTime: $startTime, endTime: $endTime, user: $user, office: $office, project: $project, projectUser: $projectUser) {
+    id
+    user { id login }
+    project { id number }
+    description
+    itemDate
+    endDate
+    allDay
+  }
+}

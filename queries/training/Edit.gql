@@ -1,0 +1,52 @@
+#import "../Documents/DocumentRowFragment"
+#import "./RequirementFields"
+#import "./TrainingCompletionFragment"
+
+query EditTraining($id: ID!) {
+  training(id: $id) {
+    ...EditTrainingFields
+  }
+}
+
+fragment EditTrainingFields on Training {
+  id
+  name
+  producedOn
+  expectedDate
+  bodyJson
+  parentId
+  url
+  priority
+  status
+  trainingCategories {
+    id
+  }
+  trainingRequirements {
+    ...TrainingRequirementFields
+  }
+  trainingCompletions {
+    ...TrainingCompletionFragment
+  }
+  attachments {
+    id
+    rank
+    url
+    projectId
+    note
+    project {
+      id
+      number
+      name
+    }
+    document {
+      ...DocumentRowFragment
+    }
+    attachmentUrl
+    attachment {
+      fileName
+    }
+  }
+  trainings {
+    id
+  }
+}

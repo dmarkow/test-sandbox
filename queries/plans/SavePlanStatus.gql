@@ -1,0 +1,10 @@
+mutation SavePlanStatus($input: PlanStatusInput!) {
+  savePlanStatus(input: $input) {
+    id
+    status
+    date
+    notes
+    amount
+    attachment
+  }
+}

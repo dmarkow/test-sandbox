@@ -1,0 +1,36 @@
+#import "../Deliverables/DeliverableFragment"
+#import "./MethodFragment"
+#import "./ObjectiveFragment"
+
+query CompareProjectPlan($number: String!) {
+  project(number: $number) {
+    id
+    plan {
+      id
+      milestoneparents {
+        id
+        title
+        rank
+      }
+      uncategorizedInvoiced
+      uncategorizedPending
+      uncategorizedNc
+      expensesInvoiced
+      expensesPending
+      deliverables {
+        ...CompareProjectPlanDeliverableFields
+      }
+    }
+  }
+}
+
+
+fragment CompareProjectPlanDeliverableFields on Deliverable {
+  ...DeliverableFragment
+  totalInvoiced
+  totalPending
+  totalNc
+  milestoneparent {
+    id
+  }
+}

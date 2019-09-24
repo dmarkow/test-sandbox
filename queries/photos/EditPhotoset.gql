@@ -1,0 +1,16 @@
+#import "../Dispatches/DispatchFragment"
+
+query EditPhotoset($id: ID!) {
+  photoset(id: $id) {
+    id
+    user { id login fullname }
+    pfcs
+    party
+    description
+    day
+    inspectionDate
+    complete
+    source
+    dispatch { id }
+  }
+}

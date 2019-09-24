@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+mutation SaveLocation($input: LocationInput!) {
+  saveLocation(input: $input) {
+    ...LocationFormFragment
+  }
+}

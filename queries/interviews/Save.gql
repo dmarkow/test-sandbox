@@ -1,0 +1,7 @@
+#import "./InterviewFragment"
+
+mutation SaveInterview($input: InterviewInput!) {
+  saveInterview(input: $input) {
+    ...InterviewFragment
+  }
+}

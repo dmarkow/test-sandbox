@@ -1,0 +1,16 @@
+query SalesMilestones($quarter: String!) {
+  metrics(quarter: $quarter, category: "Marketing & Sales Milestone") {
+    ...SalesMilestonesMetricFields
+  }
+}
+
+fragment SalesMilestonesMetricFields on Metric {
+  id
+  captureDate
+  rank
+  category
+  data {
+    value
+    description
+  }
+}

@@ -1,0 +1,8 @@
+mutation LoginAccessUser($login: String!, $password: String!) {
+  loginAccessUser(login: $login, password: $password) {
+    token
+    accessUser {
+      id
+    }
+  }
+}

@@ -1,0 +1,23 @@
+
+fragment ReportSectionFragment on ReportSection {
+  id
+  bodyJson
+  showHeading
+  newPage
+  sectionType
+  photoSort
+  includeAddressesOnPhotos
+  includeAnalysisList
+  issueSort
+  analysisPhotos
+  analysisSource
+  analysisFields
+  rank
+  title
+  includeAttachmentList
+  customAttachmentList
+  skipEmptyFields
+  autoGenerateAttachmentList
+  addresses { id }
+  locations { id }
+}

@@ -1,0 +1,24 @@
+#import "../projects/TeamFields"
+
+query ReportInvoiceStatus {
+  invoices(filter: "recent_and_pending") {
+    ...ReportInvoiceStatusFields
+  }
+}
+
+fragment ReportInvoiceStatusFields on Invoice {
+  id
+  invoiceTotal
+  status
+  invoiceDate
+  nonBillableTotal
+  noChargeTotal
+  project {
+    id
+    number
+    name
+    projectType
+    prioritizeInvoices
+    ...TeamFields
+  }
+}

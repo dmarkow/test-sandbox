@@ -1,0 +1,8 @@
+#import "./ShowFeatureFragment"
+
+query Feature($id: ID!) {
+  feature(id: $id) {
+    id
+    ...ShowFeatureFragment
+  }
+}

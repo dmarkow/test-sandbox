@@ -1,0 +1,5 @@
+mutation SaveCreditMemo($input: CreditMemoInput!) {
+  saveCreditMemo(input: $input) {
+    id
+  }
+}

@@ -1,0 +1,8 @@
+#import "./CardFragment"
+
+fragment KanbanCardsFeatureFragment on Feature {
+  id
+  kanbanCards {
+    ...CardFragment
+  }
+}

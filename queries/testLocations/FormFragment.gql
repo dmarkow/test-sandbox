@@ -1,0 +1,19 @@
+#import "../BPALinkFragment"
+
+fragment TestLocationFormFragment on TestLocation {
+  id
+  description
+  testedBy
+  testedAt
+  number
+  attended
+  alternateNumber
+  analysis
+  swi
+  damage
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+  next { id }
+  prev { id }
+}

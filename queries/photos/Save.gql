@@ -1,0 +1,7 @@
+#import "./EditFragment"
+
+mutation SavePhoto($input: PhotoInput!) {
+  savePhoto(input: $input) {
+    ...EditPhotoFragment
+  }
+}

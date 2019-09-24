@@ -1,0 +1,13 @@
+query ConversionRates {
+  conversionRates {
+    stage
+    to10
+    to30
+    to50
+    to70
+    to90
+    to0
+    to100
+    count
+  }
+}

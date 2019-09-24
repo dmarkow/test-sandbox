@@ -1,0 +1,14 @@
+fragment ReportCardsFragment on Project {
+  id
+  reportCards {
+    id
+    score
+    itemDate
+    reportCardType {
+      id
+      name
+    }
+    possibleScore
+    user { id login }
+  }
+}

@@ -1,0 +1,10 @@
+mutation SaveCustomFields($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    addressFields
+    locationFields
+    elementFields
+    issueFields
+    timelineFields
+  }
+}

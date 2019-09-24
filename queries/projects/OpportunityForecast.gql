@@ -1,0 +1,66 @@
+#import "./TeamFields"
+
+query OpportunityForecast($startDate: Date!) {
+  projects(filter: "Late Stage Forecast", date: $startDate) {
+    id
+    number
+    name
+    guesstimate
+    startDate
+    opportunityOwner {
+      id login fullname
+    }
+    tasks {
+      id
+      completed
+      itemDate
+    }
+  }
+  opportunities: projects(filter: "Opportunities") {
+    id
+    number
+    name
+    trade
+    projectType
+    totalDue
+    status
+    secured
+    represent
+    guesstimate
+    opportunityStartDate
+    opportunityCloseDate
+    startDate
+    salesStage {
+      id
+      probability
+      description
+    }
+    opportunityOwner {
+      id login fullname
+    }
+    salesProjections {
+      id
+      createdAt
+      updatedAt
+      salesStage {
+        id
+      }
+    }
+    tasks {
+      id
+      completed
+      itemDate
+    }
+    ...TeamFields
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+        company { id name }
+      }
+    }
+    notes { id itemDate }
+  }
+}

@@ -1,0 +1,20 @@
+query PlanType($id: ID!) {
+  planType(id: $id) {
+    id
+    name
+    planSections {
+      id
+      name
+      position
+      deliverableMenuItems {
+        id
+        sku {
+          id
+          name
+          description
+        }
+        position
+      }
+    }
+  }
+}

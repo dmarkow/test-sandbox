@@ -1,0 +1,6 @@
+mutation MoveReportSection($id: ID!, $direction: String!) {
+  moveReportSection(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

@@ -1,0 +1,6 @@
+fragment PileFields on Pile {
+  id
+  name
+  date
+  status
+}

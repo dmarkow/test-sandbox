@@ -1,0 +1,5 @@
+mutation DeleteTestLocation($id: ID!) {
+  deleteTestLocation(id: $id) {
+    id
+  }
+}

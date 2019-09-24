@@ -1,0 +1,6 @@
+query CampaignPicker($filter: String, $includeId: ID) {
+  campaigns(filter: $filter, includeId: $includeId) {
+    id
+    name
+  }
+}

@@ -1,0 +1,7 @@
+#import "./DocumentRowFragment"
+
+mutation BatchUpdateDocuments($ids: [ID!]!, $input: DocumentInput!) {
+  batchUpdateDocuments(ids: $ids, input: $input) {
+    ...DocumentRowFragment
+  }
+}

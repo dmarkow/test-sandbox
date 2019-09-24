@@ -1,0 +1,17 @@
+mutation CreateMetric($input: MetricInput) {
+  createMetric(input: $input) {
+    id
+    captureDate
+    category
+    rank
+    data {
+      value
+      description
+    }
+    campaign {
+      id
+      name
+      percentCompleted
+    }
+  }
+}

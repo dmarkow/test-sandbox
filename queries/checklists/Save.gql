@@ -1,0 +1,6 @@
+mutation SaveChecklist($input: ChecklistInput!) {
+  saveChecklist(input: $input) {
+    id
+    category
+  }
+}

@@ -1,0 +1,6 @@
+mutation SavePhotoset($input: PhotosetInput!) {
+  savePhotoset(input: $input) {
+    id
+    summary
+  }
+}

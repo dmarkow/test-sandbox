@@ -1,0 +1,20 @@
+query Deliverables($projectId: ID) {
+  project(id: $projectId) {
+    id
+    number
+    plan {
+      id
+      milestoneparents {
+        id
+        title
+        rank
+        deliverables {
+          id
+          description
+          completed
+          rank
+        }
+      }
+    }
+  }
+}

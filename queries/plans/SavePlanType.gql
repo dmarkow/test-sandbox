@@ -1,0 +1,6 @@
+mutation SavePlanType($input: PlanTypeInput!) {
+  savePlanType(input: $input) {
+    id
+    name
+  }
+}

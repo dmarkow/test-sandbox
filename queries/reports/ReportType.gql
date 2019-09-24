@@ -1,0 +1,17 @@
+query ReportType($id: ID!) {
+  reportType(id: $id) {
+    id
+    name
+    rank
+    overhead
+    reportTypeSections {
+      id
+      showHeading
+      sectionType
+      rank
+      template
+      title
+      prefill
+    }
+  }
+}

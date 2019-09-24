@@ -1,0 +1,7 @@
+query UsersPicker {
+  users {
+    id
+    login
+    fullname
+  }
+}

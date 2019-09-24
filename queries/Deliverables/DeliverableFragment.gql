@@ -1,0 +1,23 @@
+#import "./CostFragment"
+#import "../kanbanCards/CardFragment"
+
+fragment DeliverableFragment on Deliverable {
+  id
+  priority
+  completed
+  rank
+  description
+  dueDate
+  project {
+    id
+  }
+  costs {
+    ...CostFragment
+  }
+  kanbanCards {
+    ...CardFragment
+  }
+  milestoneparent {
+    id
+  }
+}

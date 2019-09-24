@@ -1,0 +1,37 @@
+#import "../Documents/AttachedFileFragment"
+
+fragment TenTouchTaskFragment on TenTouchTask {
+  id
+  number
+  completed
+  user { id login signature }
+  itemDate
+  days
+  notes
+  touchType
+  subject
+  body
+  overrideEmail
+  manualEmail
+  tenTouchItem {
+    id
+    category
+    name
+    emailBody
+    emailSubject
+    active
+    document {
+      id
+      displayName
+      attachedFiles { ...AttachedFileFragment }
+    }
+  }
+  tenTouch {
+    id
+    contact {
+      id
+      displayAs
+      greetAs
+    }
+  }
+}

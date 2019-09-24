@@ -1,0 +1,8 @@
+#import "./TeamFields"
+
+mutation UpdateTeam($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    ...TeamFields
+  }
+}

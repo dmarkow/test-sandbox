@@ -1,0 +1,10 @@
+#import "./ReportSectionIssueFields"
+
+mutation AddReportSectionIssues($reportSectionId: ID!, $issueIds: [ID]!) {
+  addReportSectionIssues(
+    reportSectionId: $reportSectionId
+    issueIds: $issueIds
+  ) {
+    ...ReportSectionIssueFields
+  }
+}

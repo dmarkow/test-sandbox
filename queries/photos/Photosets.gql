@@ -1,0 +1,43 @@
+#import "../Dispatches/DispatchFragment"
+
+query ProjectPhotosets($number: String!) {
+  project(number: $number) {
+    id
+    number
+    inspectionSummary
+    photosets {
+      id
+      user { id login fullname }
+      pfcs
+      party
+      description
+      day
+      inspectionDate
+      complete
+      summary
+      photosCount
+      reports { id legacy status reportType }
+      legacyReports { id legacy status reportType }
+      nextPhotoToAnnotate { id imageNumber }
+      dispatch { ...DispatchFragment }
+    }
+    dispatches {
+      ...DispatchFragment
+    }
+    reports {
+      id
+      legacy
+      status
+      reportType
+      user { id fullname }
+      reportPhotoGroups {
+        id
+        photoset { id }
+      }
+      reportSources {
+        id
+        photoset { id }
+      }
+    }
+  }
+}

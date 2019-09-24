@@ -1,0 +1,7 @@
+query EditorTemplates($projectId: ID, $scope: String!) {
+  editorTemplates(projectId: $projectId, scope: $scope) {
+    id
+    name
+    content
+  }
+}

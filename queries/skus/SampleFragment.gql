@@ -1,0 +1,10 @@
+fragment SampleFragment on SkuSample {
+  id
+  attachment {
+    fileName
+  }
+  attachmentUrl
+  project { id number name }
+  url
+  description
+}

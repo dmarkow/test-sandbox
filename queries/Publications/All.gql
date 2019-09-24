@@ -1,0 +1,12 @@
+query AccessPublications {
+  accessPublications {
+    ...AccessPublicationFields
+  }
+}
+
+fragment AccessPublicationFields on AccessPublication {
+  id
+  title
+  path
+  description
+}

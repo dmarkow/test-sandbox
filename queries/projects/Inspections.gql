@@ -1,0 +1,32 @@
+query Inspections($user: String!, $filter: String!) {
+  photosets(user: $user, filter: $filter) {
+    id
+    inspectionDate
+    pfcs
+    complete
+    summary
+    party
+    photosCount
+    user {
+      id fullname
+    }
+    project {
+      id
+      number
+      name
+      status
+      pm { id login }
+      pc { id login }
+    }
+    dispatch {
+      id
+      checklists {
+        id
+        itemsCompleted
+        itemCount
+        complete
+        category
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+#import "../Documents/AttachedFileFragment"
+query ReportDocuments($reportSectionId: ID!) {
+  reportSection(id: $reportSectionId) {
+    id
+    reportDocuments {
+      id
+      rank
+      document {
+        id
+        mode
+        key
+        header
+        receivedDate
+        pages
+        author
+        description
+        section
+        date
+        publicDescription
+        attachedFiles {
+          ...AttachedFileFragment
+        }
+        referenceDocument {
+          id
+          mode
+          key
+          header
+          receivedDate
+          pages
+          author
+          description
+          section
+          date
+          publicDescription
+          attachedFiles {
+            ...AttachedFileFragment
+          }
+        }
+      }
+    }
+  }
+}

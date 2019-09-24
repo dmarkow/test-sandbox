@@ -1,0 +1,7 @@
+#import "./Fragment"
+
+query EditTopic($id: ID!) {
+  topic(id: $id) {
+    ...TopicFragment
+  }
+}

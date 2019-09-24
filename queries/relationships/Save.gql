@@ -1,0 +1,10 @@
+mutation SaveRelationship($input: RelationshipInput!) {
+  saveRelationship(input: $input) {
+    id
+    key
+    strategicTargetRole
+    active
+    notes
+    endDate
+  }
+}

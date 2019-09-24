@@ -1,0 +1,22 @@
+query ProjectUsers($includeProject: Boolean!, $includeIds: [ID], $id: ID!) {
+  users(includeIds: $includeIds) {
+    id
+    login
+    fullname
+  }
+  project(id: $id) @include(if: $includeProject) {
+    id
+    pc { id login fullname }
+    pm { id login fullname }
+    technicalLead { id login fullname }
+    projectUsers {
+      id
+      role
+      user {
+        id
+        login
+        fullname
+      }
+    }
+  }
+}

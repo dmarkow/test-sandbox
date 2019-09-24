@@ -1,0 +1,36 @@
+#import "./ResidenceFragment"
+
+query ContactSearch($filter: ContactSearchFilter!, $paginate: Boolean) {
+  contactSearch(filter: $filter, paginate: $paginate) {
+    contacts {
+      ...ContactSearchContactFields
+
+    }
+  }
+}
+
+fragment ContactSearchContactFields on Contact {
+  id
+  sortAs
+  displayAs
+  mode
+  name
+  isActive
+  strategicTargetCategories
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  avatarThumbUrl
+  email
+  workPhone
+  directPhone
+  mobile
+  residences {
+    ...ResidenceFragment
+  }
+}

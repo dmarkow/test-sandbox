@@ -1,0 +1,38 @@
+#import "../tags/TagFields"
+
+query Receivables($filter: ReceivablesFilter, $includeAging: Boolean!) {
+  receivables(filter: $filter) {
+    title
+    projects {
+      id
+      number
+      name
+      totalDue
+      totalInvoices
+      totalPayments
+      totalRefunds
+      tasks {
+        id
+        category
+        completed
+      }
+      invoices {
+        id
+        status
+        sentAt
+        invoiceDate
+        invoiceTotal
+        paymentTotal
+      }
+      tags { ...TagFields }
+      aging @include(if: $includeAging) {
+        agingA
+        agingB
+        agingC
+        agingD
+        agingE
+        agingF
+      }
+    }
+  }
+}

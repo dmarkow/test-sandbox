@@ -1,0 +1,35 @@
+fragment ReportSectionIssueFields on ReportSectionIssue {
+  id
+  issue {
+    id
+    number
+    alternateNumber
+    description
+    issue {
+      id
+    }
+    elements {
+      id
+      number
+      name
+    }
+    issues {
+      id
+      number
+      alternateNumber
+      description
+      issues {
+        id
+        number
+        alternateNumber
+        description
+        issues {
+          id
+          number
+          alternateNumber
+          description
+        }
+      }
+    }
+  }
+}

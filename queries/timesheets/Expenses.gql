@@ -1,0 +1,37 @@
+query Expenses($month: String!) {
+  employees(activeDuring: $month, future: false) {
+    id
+    displayAs
+    user {
+      id
+      login
+      fullname
+      timesheets(paymentType: "EMPLOYEE", filterMonth: $month, filter: "Pending Expenses") {
+        id
+        expenseStatus
+        description
+        itemDate
+        total
+        attachmentUrl
+        project { id number name }
+      }
+    }
+    monthlyPayments(month: $month) {
+      id
+      date
+      category
+      amount
+      createdAt
+      paidOn
+      timesheets {
+        id
+        expenseStatus
+        description
+        itemDate
+        total
+        attachmentUrl
+        project { id number name }
+      }
+    }
+  }
+}

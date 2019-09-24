@@ -1,0 +1,39 @@
+query CurrentUser {
+  currentUser {
+    id
+    login
+    fullname
+    signature
+    email
+    roles
+    allowArChanges
+    isManager
+    isTimeAdministrator
+    isAdministrator
+    isSalaryManager
+    showPrimaryContactsOnly
+    showManagement
+    isIgk
+    userType
+    pastDueTaskCount
+    todayTaskCount
+    canApprovePayroll
+    goToWebinarAccessToken
+    goToWebinarExpiresAt
+    timesheetsScrollToBottom
+    timesheetsHideLockedWeeks
+    invoiceReviewCount
+    pendingTimesheets
+    employee {
+      id
+      billingPosition {
+        id
+        description
+      }
+      office {
+        id
+        location
+      }
+    }
+  }
+}

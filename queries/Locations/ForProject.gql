@@ -1,0 +1,10 @@
+#import "./LocationFragment"
+
+query ProjectLocations($projectId: ID) {
+  project(id: $projectId) {
+    id
+    locations {
+      ...LocationFragment
+    }
+  }
+}

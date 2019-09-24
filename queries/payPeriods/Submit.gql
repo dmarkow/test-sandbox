@@ -1,0 +1,19 @@
+mutation SubmitPayPeriod {
+  submitPayPeriod {
+    id
+    processed
+    payPeriodLines {
+      employee {
+        id
+        firstName
+        lastName
+      }
+      salary { id hourlyRate }
+      pay
+      milestones
+      incentive
+      regularHours
+      otHours
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation DeleteReportCardQuestion($id: ID!) {
+  deleteReportCardQuestion(id: $id) {
+    id
+  }
+}

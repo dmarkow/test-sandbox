@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+query Address($id: ID!) {
+  address(id: $id) {
+    ...AddressFormFragment
+  }
+}

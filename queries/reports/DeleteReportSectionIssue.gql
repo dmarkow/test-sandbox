@@ -1,0 +1,5 @@
+mutation DeleteReportSectionIssue($id: ID!) {
+  deleteReportSectionIssue(id: $id) {
+    id
+  }
+}

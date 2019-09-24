@@ -1,0 +1,10 @@
+fragment CostFragment on DeliverableCost {
+  id
+  hours
+  amount
+  description
+  billingPosition {
+    id
+    initials
+  }
+}

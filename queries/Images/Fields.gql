@@ -1,0 +1,10 @@
+fragment InfoImageFields on InfoImage {
+  id
+  position
+  category
+  description
+  attachment {
+    fileName
+  }
+  attachmentUrl
+}

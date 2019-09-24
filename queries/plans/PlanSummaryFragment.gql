@@ -1,0 +1,27 @@
+fragment PlanSummaryFragment on Project {
+  id
+  number
+  totalDue
+  planUpdatedOn
+  plan {
+    id
+    billedTotal
+    amount
+    pendingTotal
+    milestoneparents {
+      id
+      rank
+      title
+      deliverables {
+        id
+        completed
+        tsTotal
+        ilTotal
+        budget
+      }
+    }
+    deliverables {
+      id
+    }
+  }
+}

@@ -1,0 +1,69 @@
+#import "../Issues/IssueFragment"
+#import "../plans/PlanSummaryFragment"
+
+query BasicAnalysis($number: String!) {
+  project(number: $number) {
+    ...BasicAnalysisProjectFields
+  }
+}
+
+fragment BasicAnalysisProjectFields on Project {
+  id
+  number
+  name
+  oneMinuteSummary
+  technicalSummary
+  issueSort
+  l1Timeline
+  inspectionSummary
+  ...PlanSummaryFragment
+  photosets {
+    id
+    pfcs
+    photosCount
+    summary
+    inspectionDate
+  }
+  timelines {
+    id
+    itemDate
+    title
+    description
+    keyEvent
+  }
+  infoImages {
+    id
+    category
+    description
+    position
+    attachmentUrl
+  }
+  playerGroups {
+    id
+    name
+    position
+  }
+  players {
+    id
+    role
+    company
+    name
+    key
+    playerGroup {
+      id
+    }
+  }
+  issues {
+    ...IssueFragment
+  }
+  documents {
+    id
+    key
+    mode
+    section
+    description
+    author
+    date
+    receivedDate
+  }
+}

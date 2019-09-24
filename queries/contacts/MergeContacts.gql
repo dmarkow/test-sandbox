@@ -1,0 +1,17 @@
+#import "./ResidenceFragment"
+
+mutation MergeContacts($id: ID!, $mergeId: ID!, $residenceIds: [ID!], $fieldsToCopy: [String!], $fieldsToMerge: [String!], $userId: ID!) {
+  mergeContacts(id: $id, mergeId: $mergeId, residenceIds: $residenceIds, fieldsToCopy: $fieldsToCopy, fieldsToMerge: $fieldsToMerge, userId: $userId) {
+    ...MergeContactsContactFields
+  }
+}
+
+fragment MergeContactsContactFields on Contact {
+  id
+  sortAs
+  email
+  workPhone
+  company { id name }
+  createdAt
+  residences { ...ResidenceFragment }
+}

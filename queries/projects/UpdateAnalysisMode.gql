@@ -1,0 +1,8 @@
+mutation UpdateAnalysisMode($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    elementAnalysisMode
+    issueAnalysisMode
+    locationAnalysisMode
+  }
+}

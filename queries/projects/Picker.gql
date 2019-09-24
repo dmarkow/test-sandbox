@@ -1,0 +1,13 @@
+query OpenProjects($filter: String, $includeId: ID) {
+  projects(filter: $filter, includeId: $includeId) {
+    id
+    number
+    name
+    projectType
+    projectUsers {
+      id
+      userId
+      role
+    }
+  }
+}

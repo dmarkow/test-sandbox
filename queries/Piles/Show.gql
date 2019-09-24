@@ -1,0 +1,29 @@
+#import "../Documents/AttachedFileFragment"
+query ShowPile($id: ID!) {
+  pile(id: $id) {
+    ...ShowPileFields
+
+  }
+}
+
+fragment ShowPileFields on Pile {
+  id
+  name
+  date
+  status
+  sourceFiles {
+    ...ShowPileSourceFileFields
+
+  }
+}
+
+fragment ShowPileSourceFileFields on SourceFile {
+  id
+  name
+  path
+  status
+  document { id }
+  attachedFiles {
+    ...AttachedFileFragment
+  }
+}

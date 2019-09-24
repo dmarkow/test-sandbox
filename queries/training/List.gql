@@ -1,0 +1,38 @@
+fragment TrainingListFragment on Training {
+  id
+  parentId
+  name
+  url
+  bodyJson
+  updatedAt
+  position
+  priority
+  status
+  trainingCategories {
+    id
+    name
+  }
+  trainingRequirements {
+    id
+  }
+  trainingAssignments {
+    id
+    trainingPlan {
+      id
+      user { id }
+    }
+  }
+}
+
+query TrainingList($filter: String) {
+  trainingCategories {
+    id
+    name
+  }
+  trainings(filter: $filter) {
+    ...TrainingListFragment
+    trainings {
+      ...TrainingListFragment
+    }
+  }
+}

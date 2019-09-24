@@ -1,0 +1,11 @@
+#import "./TaskFragment"
+#import "../TenTouches/TenTouchTaskFragment"
+
+query Tasks($parentType: String!, $parentId: ID!, $scope: String, $category: String, $type: String, $includeTenTouches: Boolean!) {
+  tasks(parentType: $parentType, parentId: $parentId, scope: $scope, category: $category, type: $type) {
+    ...TaskFragment
+  }
+  tenTouchTasks(parentType: $parentType, parentId: $parentId, scope: $scope, category: $category, type: $type) @include(if: $includeTenTouches) {
+    ...TenTouchTaskFragment
+  }
+}

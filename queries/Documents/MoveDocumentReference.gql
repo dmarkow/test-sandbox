@@ -1,0 +1,6 @@
+mutation MoveDocumentReference($id: ID!, $direction: String!) {
+  moveDocumentReference(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

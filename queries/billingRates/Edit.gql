@@ -1,0 +1,8 @@
+query BillingRate($id: ID!) {
+  billingRate(id: $id) {
+    id
+    rate
+    billingPosition { id }
+    feeSchedule { id }
+  }
+}

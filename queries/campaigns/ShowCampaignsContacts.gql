@@ -1,0 +1,10 @@
+#import "./CampaignsContactRowFragment"
+
+query ShowCampaignContacts($id: ID!) {
+  campaign(id: $id) {
+    id
+    campaignsContacts {
+      ...CampaignsContactRowFragment
+    }
+  }
+}

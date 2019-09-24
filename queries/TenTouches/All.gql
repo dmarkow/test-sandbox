@@ -1,0 +1,17 @@
+query TenTouches($tenTouchBatchId: ID) {
+  tenTouches(tenTouchBatchId: $tenTouchBatchId) {
+    id
+    createdAt
+    status
+    completedOn
+    tenTouchTasks { id completed }
+    contact {
+      id
+      displayAs
+      company {
+        id
+        name
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+query EditPhotosetSummary($id: ID!) {
+  photoset(id: $id) {
+    id
+    summary
+  }
+}

@@ -1,0 +1,12 @@
+query EditListItem($id: ID!) {
+  listItem(id: $id) {
+    ...EditListItemFields
+  }
+}
+
+fragment EditListItemFields on ListItem {
+  id
+  name
+  fields
+  item { id }
+}

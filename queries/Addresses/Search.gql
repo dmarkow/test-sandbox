@@ -1,0 +1,12 @@
+#import "./AddressFragment"
+
+query AddressSearch($search: String) {
+  addresses(search: $search) {
+    ...AddressFragment
+    project {
+      id
+      number
+      name
+    }
+  }
+}

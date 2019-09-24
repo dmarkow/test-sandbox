@@ -1,0 +1,5 @@
+mutation DeleteMembership($id: ID!) {
+  deleteMembership(id: $id) {
+    id
+  }
+}

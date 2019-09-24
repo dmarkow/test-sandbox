@@ -1,0 +1,10 @@
+query TenTouchBatch($id: ID!) {
+  tenTouchBatch(id: $id) {
+    id
+    campaignField
+    campaign {
+      id
+      name
+    }
+  }
+}

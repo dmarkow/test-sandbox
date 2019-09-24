@@ -1,0 +1,6 @@
+mutation SendMailing($id: ID!) {
+  sendMailing(id: $id) {
+    id
+    status
+  }
+}

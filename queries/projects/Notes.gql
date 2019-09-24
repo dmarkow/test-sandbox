@@ -1,0 +1,19 @@
+#import "../notes/ShowFragment"
+
+query ProjectNotes($number: String!) {
+  project(number: $number) {
+    id
+    name
+    number
+    salesStageId
+    notes {
+      ...NoteShowFragment
+    }
+    interviews {
+      id
+      date
+      meetingType
+      description
+    }
+  }
+}

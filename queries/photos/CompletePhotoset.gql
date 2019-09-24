@@ -1,0 +1,6 @@
+mutation CompletePhotoset($id: ID!) {
+  completePhotoset(id: $id) {
+    id
+    complete
+  }
+}

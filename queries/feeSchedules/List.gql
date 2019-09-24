@@ -1,0 +1,8 @@
+query FeeSchedules {
+  feeSchedules {
+    id
+    name
+    effectiveDate
+    attachmentUrl
+  }
+}

@@ -1,0 +1,20 @@
+#import "./Fragment"
+#import "../notes/ShowFragment"
+#import "../Attachments/AttachmentFragment"
+
+query Topic($id: ID!) {
+  topic(id: $id) {
+    ...ShowTopicFields
+  }
+}
+
+fragment ShowTopicFields on Topic {
+  ...TopicFragment
+  createdAt
+  notes {
+    ...NoteShowFragment
+  }
+  attachments {
+    ...AttachmentFragment
+  }
+}

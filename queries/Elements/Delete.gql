@@ -1,0 +1,5 @@
+mutation DeleteElement($id: ID!) {
+  deleteElement(id: $id) {
+    id
+  }
+}

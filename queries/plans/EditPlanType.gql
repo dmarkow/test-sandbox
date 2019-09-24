@@ -1,0 +1,6 @@
+query EditPlanType($id: ID!) {
+  planType(id: $id) {
+    id
+    name
+  }
+}

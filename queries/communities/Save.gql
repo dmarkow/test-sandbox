@@ -1,0 +1,10 @@
+mutation SaveCommunity($input: CommunityInput!) {
+  saveCommunity(input: $input) {
+    id
+    name
+    city
+    state
+    description
+    complete
+  }
+}

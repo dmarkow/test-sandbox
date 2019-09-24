@@ -1,0 +1,9 @@
+mutation SaveReportCardQuestion($input: ReportCardQuestionInput!) {
+  saveReportCardQuestion(input: $input) {
+    id
+    title
+    description
+    maxScore
+    rank
+  }
+}

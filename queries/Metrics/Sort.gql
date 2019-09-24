@@ -1,0 +1,6 @@
+mutation SortMetric($id: ID!, $direction: String!) {
+  sortMetric(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

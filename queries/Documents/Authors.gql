@@ -1,0 +1,3 @@
+query ProjectDocumentAuthors($projectNumber: String!) {
+  documentParties(projectNumber: $projectNumber)
+}

@@ -1,0 +1,7 @@
+#import "./DeviceFragment"
+
+mutation DeleteDevice($id: ID!) {
+  deleteDevice(id: $id) {
+    id
+  }
+}

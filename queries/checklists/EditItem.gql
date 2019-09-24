@@ -1,0 +1,11 @@
+query ChecklistItem($id: ID!) {
+  checklistItem(id: $id) {
+    id
+    section
+    who
+    when
+    notes
+    title
+    checklist { id }
+  }
+}

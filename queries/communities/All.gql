@@ -1,0 +1,8 @@
+query Communities {
+  communities {
+    id
+    name
+    city
+    state
+  }
+}

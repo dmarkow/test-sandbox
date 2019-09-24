@@ -1,0 +1,8 @@
+#import "./CardFragment"
+
+fragment KanbanCardsFragment on Project {
+  id
+  kanbanCards {
+    ...CardFragment
+  }
+}

@@ -1,0 +1,7 @@
+mutation SaveKpiSet($input: KpiSetInput!) {
+  saveKpiSet(input: $input) {
+    id
+    name
+    globalSet
+  }
+}

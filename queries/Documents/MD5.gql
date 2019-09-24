@@ -1,0 +1,6 @@
+query DocumentMD5($md5: String!, $projectId: ID, $employeeId: ID) {
+  documents(md5: $md5, projectId: $projectId, employeeId: $employeeId) {
+    id
+    description
+  }
+}

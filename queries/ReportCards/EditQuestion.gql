@@ -1,0 +1,8 @@
+query EditReportCardQuestion($id: ID!) {
+  reportCardQuestion(id: $id) {
+    id
+    title
+    description
+    maxScore
+  }
+}

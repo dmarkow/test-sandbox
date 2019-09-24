@@ -1,0 +1,15 @@
+fragment PhysicalAddressFragment on PhysicalAddress {
+  id
+  premise
+  number
+  street
+  unit
+  unitType
+  city
+  state
+  zip
+  country
+  latitude
+  longitude
+  community { id name }
+}

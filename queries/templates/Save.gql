@@ -1,0 +1,11 @@
+mutation SaveTemplate($input: TemplateInput!) {
+  saveTemplate(input: $input) {
+    id
+    name
+    content
+    contentType
+    category
+    scope
+    plainContent
+  }
+}

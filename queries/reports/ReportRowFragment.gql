@@ -1,0 +1,15 @@
+fragment ReportRowFragment on Report {
+  id
+  legacy
+  reportType
+  title
+  headerTitle
+  status
+  publishedOn
+  internalDescription
+  updatedAt
+  user {
+    id
+    fullname
+  }
+}

@@ -1,0 +1,24 @@
+#import "../notes/ShowFragment"
+#import "../checklists/ChecklistFragment"
+
+query Employee($id: ID!) {
+  employee(id: $id) {
+    id
+    firstName
+    displayAs
+    lastName
+    startDate
+    user { id login }
+    manager {
+      id
+      fullname
+    }
+    office { id location }
+    notes {
+      ...NoteShowFragment
+    }
+    checklists {
+      ...ChecklistFragment
+    }
+  }
+}

@@ -1,0 +1,134 @@
+#import "../contacts/ResidenceFragment"
+
+query EditInvoice($id: ID!) {
+  invoice(id: $id) {
+    ...EditInvoiceFields
+  }
+}
+
+fragment EditInvoiceAttachmentFields on Attachment {
+  id
+  prepend
+  attachment {
+    fileName
+  }
+  attachmentUrl
+}
+
+fragment EditInvoiceInvoiceLineFields on Invoiceline {
+  id
+  itemDate
+  hours
+  rate
+  lineTotal
+  isExpense
+  testimony
+  noCharge
+  nonBillable
+  billedPosition
+  description
+  category
+  user {
+    id
+    login
+    fullname
+    email
+  }
+  deliverable {
+    id
+    description
+  }
+  project {
+    id
+  }
+  invoice {
+    id
+  }
+}
+
+fragment EditInvoiceInvoicedDeliverableFields on InvoicedDeliverable {
+  id
+  description
+  fixedFee
+  deliverable {
+    id
+    description
+    rank
+    milestoneparent {
+      id
+      title
+      rank
+    }
+  }
+}
+
+fragment EditInvoiceFields on Invoice {
+  id
+  invoiceDate
+  invoiceTotal
+  invoiceType
+  viewByDeliverable
+  memo
+  displayLines
+  description
+  status
+  attachments {
+    ...EditInvoiceAttachmentFields
+  }
+  invoicedDeliverables {
+    ...EditInvoiceInvoicedDeliverableFields
+  }
+  invoicelines {
+    ...EditInvoiceInvoiceLineFields
+  }
+  project {
+    id
+    rate
+    number
+    name
+    invoiceNote
+    salesStage {
+      id
+    }
+    status
+    projectType
+    billingSummary
+    pm {
+      id
+      login
+    }
+    pc {
+      id
+      login
+    }
+    projectUsers {
+      id
+      role
+      user {
+        id
+        fullname
+      }
+    }
+    memberships {
+      id
+      invoicing
+      contact {
+        id
+        displayAs
+        company {
+          id
+          name
+        }
+        workPhone
+        directPhone
+        extension
+        mobile
+        email
+        clientAccess
+        residences {
+          ...ResidenceFragment
+        }
+      }
+    }
+  }
+}

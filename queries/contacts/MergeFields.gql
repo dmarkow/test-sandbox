@@ -1,0 +1,37 @@
+#import "./ResidenceFragment"
+
+query MergeFields($ids: [ID!]!) {
+  contacts(ids: $ids) {
+    ...MergeFieldsContactFields
+
+  }
+}
+
+fragment MergeFieldsContactFields on Contact {
+  id
+  mode
+  name
+  firstName
+  lastName
+  suffix
+  goesBy
+  marketingStatus
+  jobTitle
+  company { id name }
+  avatarThumbUrl
+  workPhone
+  extension
+  directPhone
+  mobile
+  email
+  additionalEmails
+  webPage
+  linkedIn
+  body
+  createdAt
+  projects { id }
+  campaigns { id }
+  notes { id }
+  residences { ...ResidenceFragment }
+  contacts { id }
+}

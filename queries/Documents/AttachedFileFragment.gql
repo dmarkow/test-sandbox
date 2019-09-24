@@ -1,0 +1,10 @@
+fragment AttachedFileFragment on AttachedFile {
+  id
+  primaryFile
+  attachmentUrl
+  md5
+  attachmentThumbUrl
+  attachment {
+    fileName
+  }
+}

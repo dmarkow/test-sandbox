@@ -1,0 +1,7 @@
+#import "../Documents/DocumentFragment"
+
+mutation DeleteMessage($id: ID!) {
+  deleteMessage(id: $id) {
+    id
+  }
+}

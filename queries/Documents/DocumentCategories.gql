@@ -1,0 +1,11 @@
+query DocumentCategories {
+  documentCategories {
+    id
+    name
+    documentCategoryId
+    documentCategories {
+      id
+      name
+    }
+  }
+}

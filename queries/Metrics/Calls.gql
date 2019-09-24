@@ -1,0 +1,10 @@
+query CallsMetric($quarter: String!) {
+  dynamicMetrics(type: "calls", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "Calls", period: "Quarter") {
+    id
+    value
+  }
+}

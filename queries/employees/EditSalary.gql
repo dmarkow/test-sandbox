@@ -1,0 +1,14 @@
+query EditSalary($id: ID!) {
+  salary(id: $id) {
+    id
+    effectiveDate
+    hourlyRates
+    hourlyRate
+    annualBase
+    hourlyRates
+    annualIncentive
+    retroactiveDate
+    performancePaySummary
+    ptoPlan { id }
+  }
+}

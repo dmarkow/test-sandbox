@@ -1,0 +1,11 @@
+mutation CreatePeerReview($input: PeerReviewInput) {
+  createPeerReview(input: $input) {
+    id
+    feedback
+    itemDate
+    attachment
+    user {
+      fullname
+    }
+  }
+}

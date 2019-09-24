@@ -1,0 +1,7 @@
+#import "./ReportRowFragment"
+
+mutation CopyReport($id: ID!) {
+  copyReport(id: $id) {
+    ...ReportRowFragment
+  }
+}

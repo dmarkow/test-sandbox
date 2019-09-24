@@ -1,0 +1,20 @@
+#import "../tags/TagFields"
+#import "./ResidenceFragment"
+
+query StrategicTargetCompanies($filter: ContactSearchFilter!, $paginate: Boolean) {
+  contactSearch(filter: $filter, paginate: $paginate) {
+    contacts {
+      id
+      name
+      isActive
+      strategicTargetCategories
+      company {
+        id
+        name
+      }
+      tags {
+        ...TagFields
+      }
+    }
+  }
+}

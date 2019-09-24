@@ -1,0 +1,7 @@
+#import "./EditReportFragment"
+
+query EditReport($id: ID!) {
+  report(id: $id) {
+    ...EditReportFragment
+  }
+}

@@ -1,0 +1,7 @@
+#import "./TimesheetParts"
+
+mutation SaveTimesheet($input: TimesheetInput) {
+  saveTimesheet(input: $input) {
+    ...TimesheetParts
+  }
+}

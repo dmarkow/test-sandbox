@@ -1,0 +1,6 @@
+query EditSeminarFollowup($id: ID!) {
+  seminar(id: $id) {
+    id
+    bodyFollowup
+  }
+}

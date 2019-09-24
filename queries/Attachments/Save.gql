@@ -1,0 +1,23 @@
+#import "../Documents/DocumentRowFragment"
+
+mutation SaveAttachment($input: AttachmentInput!) {
+  saveAttachment(input: $input) {
+    id
+    url
+    rank
+    projectId
+    note
+    project {
+      id
+      number
+      name
+    }
+    document {
+      ...DocumentRowFragment
+    }
+    attachmentUrl
+    attachment {
+      fileName
+    }
+  }
+}

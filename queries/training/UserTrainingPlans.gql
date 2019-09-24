@@ -1,0 +1,7 @@
+#import "./TrainingPlanFragment"
+
+query UserTrainingPlans($login: String!) {
+  trainingPlans(login: $login) {
+    ...TrainingPlanFragment
+  }
+}

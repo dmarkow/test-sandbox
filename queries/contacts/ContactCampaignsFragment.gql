@@ -1,0 +1,17 @@
+fragment ContactCampaignsFragment on Contact {
+  id
+  campaigns {
+    ...ContactCampaignFields
+  }
+  campaignsAsCompany {
+    id
+    name
+    status
+  }
+}
+
+fragment ContactCampaignFields on Campaign {
+  id
+  name
+  status
+}

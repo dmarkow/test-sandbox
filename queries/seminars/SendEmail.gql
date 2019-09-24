@@ -1,0 +1,6 @@
+mutation SendSeminar($id: ID!) {
+  sendSeminar(id: $id) {
+    id
+    followupStatus
+  }
+}

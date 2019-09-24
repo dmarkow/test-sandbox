@@ -1,0 +1,11 @@
+query MilestoneParents($planId: ID!) {
+  milestoneparents(planId: $planId) {
+    ...MilestoneParentsFields
+  }
+}
+
+fragment MilestoneParentsFields on Milestoneparent {
+  id
+  title
+  rank
+}

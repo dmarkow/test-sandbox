@@ -1,0 +1,7 @@
+#import "./TrainingAssignmentFragment"
+
+mutation SaveTrainingAssignment($input: TrainingAssignmentInput!) {
+  saveTrainingAssignment(input: $input) {
+    ...TrainingAssignmentFragment
+  }
+}

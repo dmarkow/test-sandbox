@@ -1,0 +1,11 @@
+query Seminars($contactId: ID) {
+  seminars(contactId: $contactId) {
+    id
+    title
+    eventType
+    videoUrl
+    eventDate
+    registrantCount
+    attendeeCount
+  }
+}

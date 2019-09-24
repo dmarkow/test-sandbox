@@ -1,0 +1,27 @@
+#import "../tags/TagFields"
+
+query SurveyData($projectId: ID!) {
+  project(id: $projectId) {
+    id
+    memberships {
+      id
+      primaryContact
+      role
+      notes
+      contact {
+        id
+        tags {
+          ...TagFields
+        }
+        displayAs
+        email
+      }
+      survey {
+        id
+        completed
+        hashKey
+        createdAt
+      }
+    }
+  }
+}

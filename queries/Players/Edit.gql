@@ -1,0 +1,8 @@
+#import "./FormFragment"
+
+query Player($id: ID!) {
+  player(id: $id) {
+    ...PlayerFormFragment
+
+  }
+}

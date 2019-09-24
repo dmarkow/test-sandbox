@@ -1,0 +1,104 @@
+#import "../tags/TagFields"
+#import "./TeamFields"
+#import "./MembershipsFragment"
+#import "../notes/ShowFragment"
+#import "./ReportCardsFragment"
+
+query InvoiceDash($number: String!) {
+  project(number: $number) {
+    ...InvoiceDashProjectFields
+  }
+}
+
+fragment InvoiceDashProjectFields on Project {
+  id
+  number
+  billingSummary
+  arSummary
+  name
+  represent
+  trade
+  status
+  projectType
+  oneMinuteSummary
+  ...TeamFields
+  ...MembershipsFragment
+  ...ReportCardsFragment
+  taggings {
+    id
+    createdAt
+    tag {
+      ...TagFields
+    }
+  }
+  invoices {
+    id
+    isAdjustment
+    status
+    attachmentUrl
+    invoiceDate
+    invoiceTotal
+    paymentTotal
+    emailedAt
+    mailedAt
+    appliedPayments {
+      id
+      amount
+      creditMemo {
+        id
+        description
+        itemDate
+      }
+      payment {
+        id
+        description
+        amount
+        checkDate
+        payor
+        claimNumber
+        checkNumber
+        attachmentUrl
+        retainer {
+          id
+          checkDate
+          checkNumber
+          referenceNumber
+          payor
+        }
+      }
+      refund {
+        id
+        itemDate
+        payer
+        paymentMethod
+      }
+    }
+  }
+  refunds {
+    id
+    amount
+    payer
+    itemDate
+    appliedPayments {
+      id
+      amount
+    }
+  }
+  timesheets(status: "Unlocked") {
+    id
+  }
+  notes(itemType: "AR") {
+    ...NoteShowFragment
+  }
+  retainers {
+    id
+    amount
+    checkDate
+    checkNumber
+    payor
+    payments {
+      id
+      amount
+    }
+  }
+}

@@ -1,0 +1,7 @@
+#import "./TimesheetEditFragment"
+
+query Timesheet($id: ID) {
+  timesheet(id: $id) {
+    ...TimesheetEditFragment
+  }
+}

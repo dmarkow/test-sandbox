@@ -1,0 +1,5 @@
+mutation SaveContactImport($input: ContactImportInput!) {
+  saveContactImport(input: $input) {
+    id
+  }
+}

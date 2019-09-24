@@ -1,0 +1,30 @@
+fragment CampaignsContactRowFragment on CampaignsContact {
+  id
+  fields
+  currentClient
+  pastClient
+  newOpportunity
+  existingOpportunity
+  eventAttendee
+  contact {
+    id
+    email
+    company {
+      id
+      name
+      company {
+        id
+        name
+      }
+    }
+    sortAs
+    lastName
+    greetAs
+    marketingStatus
+    tags(sections:["Area", "Products", "Segment", "Industry", "Filters"]) {
+      id
+      category
+      section
+    }
+  }
+}

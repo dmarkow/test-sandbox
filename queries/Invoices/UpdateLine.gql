@@ -1,0 +1,52 @@
+mutation UpdateInvoiceline($id: ID!, $input: InvoicelineInput!) {
+  updateInvoiceline(id: $id, input: $input) {
+    id
+    description
+    itemDate
+    hours
+    noCharge
+    billedPosition
+    testimony
+    nonBillable
+    category
+    rate
+    lineTotal
+    user {
+      id
+      fullname
+      login
+      email
+    }
+    deliverable {
+      id
+      description
+      priority
+      rank
+      milestoneparent {
+        id
+        title
+      }
+    }
+    project {
+      id
+    }
+    invoice {
+      id
+      invoiceTotal
+      invoicedDeliverables {
+        id
+        description
+        fixedFee
+        deliverable {
+          id
+          description
+          rank
+          milestoneparent {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+}

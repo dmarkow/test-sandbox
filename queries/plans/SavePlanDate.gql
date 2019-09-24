@@ -1,0 +1,6 @@
+mutation SavePlanDate($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    planUpdatedOn
+  }
+}

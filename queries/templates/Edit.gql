@@ -1,0 +1,11 @@
+  query Template($id: ID!) {
+    template(id: $id) {
+      id
+      name
+      content
+      contentType
+      category
+      scope
+      plainContent
+    }
+  }

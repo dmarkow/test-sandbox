@@ -1,0 +1,12 @@
+query Guesstimates($date: Date!) {
+  projects(date: $date, filter: "Closed In") {
+    id
+    number
+    name
+    trade
+    represent
+    mdDate
+    guesstimate
+    totalInvoices
+  }
+}

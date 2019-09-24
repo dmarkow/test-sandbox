@@ -1,0 +1,5 @@
+mutation SaveTopic($input: TopicInput!) {
+  saveTopic(input: $input) {
+    id
+  }
+}

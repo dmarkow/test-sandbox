@@ -1,0 +1,17 @@
+#import "./PhysicalAddressFragment"
+
+fragment ResidenceFragment on Residence {
+  id
+  primary
+  category
+  endDate
+  physicalAddress {
+    ...PhysicalAddressFragment
+  }
+  residence {
+    id
+    physicalAddress {
+      ...PhysicalAddressFragment
+    }
+  }
+}

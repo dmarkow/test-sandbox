@@ -1,0 +1,9 @@
+#import "./UserFragment"
+
+query BasicUser($login: String!) {
+  user(login: $login) {
+    id
+    login
+    fullname
+  }
+}

@@ -1,0 +1,27 @@
+fragment CardFragment on KanbanCard {
+  id
+  column
+  title
+  notes
+  dueDate
+  dateCompleted
+  hours
+  blocked
+  blockedReason
+  rank
+  leadTime
+  cycleTime
+  deliverable { id description }
+  project {
+    id number name projectType
+    pc { id login color }
+    pm { id login color }
+  }
+  feature {
+    id
+    title
+  }
+  user { id login }
+  tasks { id description completed itemDate hours user { id } }
+  events { time column }
+}

@@ -1,0 +1,3 @@
+mutation ChargeCard($token: String!, $amountCents: Int!, $projectNumber: String!) {
+  chargeCard(token: $token, amountCents: $amountCents, projectNumber: $projectNumber)
+}

@@ -1,0 +1,6 @@
+mutation SeminarImport($id: ID!, $token: String!) {
+  seminarImport(id: $id, token: $token) {
+    matchCount
+    unmatched
+  }
+}

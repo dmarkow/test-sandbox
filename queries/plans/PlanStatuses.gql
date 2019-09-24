@@ -1,0 +1,17 @@
+#import "./PlanStatusFields"
+
+query PlanStatuses($number: String!) {
+  project(number: $number) {
+    id
+    plan {
+      id
+      costs {
+        id
+        amount
+      }
+      planStatuses {
+        ...PlanStatusFields
+      }
+    }
+  }
+}

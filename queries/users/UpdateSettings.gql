@@ -1,0 +1,12 @@
+mutation UpdateUser($input: UserInput!) {
+  saveUser(input: $input) {
+    id
+    timesheetsHideLockedWeeks
+    timesheetsScrollToBottom
+    taskCompletionNotification
+    projectListStartDate
+    projectListTotalDue
+    showPrimaryContactsOnly
+    signature
+  }
+}

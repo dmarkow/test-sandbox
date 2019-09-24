@@ -1,0 +1,12 @@
+mutation SaveReportType($input: ReportTypeInput!) {
+  saveReportType(input: $input) {
+    id
+    name
+    rank
+    overhead
+    omitCover
+    includeNote
+    includeToc
+    intro
+  }
+}

@@ -1,0 +1,8 @@
+mutation ApproveMilestone($id: ID!, $managerId: ID!) {
+  approveMilestone(id: $id, managerId: $managerId) {
+    id
+    completed
+    approved
+    payPeriod { id checkDate }
+  }
+}

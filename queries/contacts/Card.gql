@@ -1,0 +1,7 @@
+#import "./ContactCardFragment"
+
+query ContactCard($id: ID!) {
+  contact(id: $id) {
+    ...ContactCardFragment
+  }
+}

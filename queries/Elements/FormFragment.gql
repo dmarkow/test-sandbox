@@ -1,0 +1,27 @@
+#import "../BPALinkFragment"
+
+fragment ElementFormFragment on Element {
+  id
+  number
+  name
+  template
+  description
+  analysisStatus
+  priority
+  basicAnalysis
+  iiaccIssue
+  iiaccInvestigation
+  iiaccAnalysis
+  iiaccConclusion
+  iiaccCosts
+  specificationsGeneral
+  specificationsMaterials
+  specificationsExecution
+  specificationsQualityAssurance
+  customFields
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+  next { id }
+  prev { id }
+}

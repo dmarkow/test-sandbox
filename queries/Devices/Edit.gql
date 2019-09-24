@@ -1,0 +1,7 @@
+#import "./DeviceFragment"
+
+query Device($id: ID!) {
+  device(id: $id) {
+    ...DeviceFragment
+  }
+}

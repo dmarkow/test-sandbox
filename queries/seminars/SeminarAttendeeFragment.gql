@@ -1,0 +1,16 @@
+fragment SeminarAttendeeFragment on SeminarAttendee {
+  id
+  registered
+  attended
+  key
+  contact {
+    id
+    displayAs
+    sortAs
+    company {
+      id
+      name
+    }
+    email
+  }
+}

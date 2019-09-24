@@ -1,0 +1,5 @@
+mutation DeleteAffiliationType($id: ID!) {
+  deleteAffiliationType(id: $id) {
+    id
+  }
+}

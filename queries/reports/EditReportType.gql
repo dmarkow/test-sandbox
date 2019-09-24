@@ -1,0 +1,16 @@
+query EditReportType($id: ID!) {
+  reportType(id: $id) {
+    id
+    name
+    overhead
+    omitCover
+    includeNote
+    includeToc
+    intro
+    headerTitle
+    regarding
+    feeSchedule
+    agreement { id }
+    sku { id }
+  }
+}

@@ -1,0 +1,24 @@
+#import "./TeamFields"
+
+query RecentlyBilledProjects($user: String!) {
+  projects(filter: "active", user: $user) {
+    id
+    number
+    name
+    trade
+    projectType
+    totalDue
+    status
+    represent
+    ...TeamFields
+    recentHours
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+      }
+    }
+  }
+}

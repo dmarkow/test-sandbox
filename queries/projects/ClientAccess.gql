@@ -1,0 +1,21 @@
+query ClientAccessProject($number: String!) {
+  project(number: $number) {
+    id
+    number
+    name
+    represent
+    trade
+    address
+    shareOneMinuteSummary
+    oneMinuteSummary
+    addresses {
+      id
+      name
+      pfcsPhotoCount
+      otherPhotoCount
+      address {
+        id
+      }
+    }
+  }
+}

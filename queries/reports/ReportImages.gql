@@ -1,0 +1,10 @@
+#import "../Images/ImageReferenceFragment"
+
+query ReportImages($id: ID!) {
+  reportSection(id: $id) {
+    id
+    imageReferences {
+      ...ImageReferenceFragment
+    }
+  }
+}

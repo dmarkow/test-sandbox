@@ -1,0 +1,59 @@
+#import "../tags/TagFields"
+#import "./ResidenceFragment"
+
+query FullContactSearch($filter: ContactSearchFilter!) {
+  contactSearch(filter: $filter) {
+    ...FullContactSearchFields
+  }
+  tags {
+  ...TagFields
+  }
+}
+
+fragment FullContactSearchFields on ContactResults {
+  totalCount
+  filteredContactCount
+  filteredCompanyCount
+  filteredContactCompaniesCount
+  clientCount
+  pastClientCount
+  currentClientCount
+  excludingClientsCount
+  prospectCount
+  whaleCount
+  filteredProspectCount
+  filteredWhaleCount
+  emailCount
+  clientAccessCount
+  title
+  contacts {
+    ...FullContactSearchContactFields
+  }
+}
+
+fragment FullContactSearchContactFields on Contact {
+  id
+  isActive
+  lastContactedOn
+  sortAs
+  displayAs
+  email
+  extension
+  mobile
+  workPhone
+  marketingStatus
+  mode
+  avatarThumbUrl
+  lastContactedBy { id fullname }
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  residences {
+    ...ResidenceFragment
+  }
+}

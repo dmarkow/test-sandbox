@@ -1,0 +1,6 @@
+mutation UpdateInvoiceMemo($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    memo
+  }
+}

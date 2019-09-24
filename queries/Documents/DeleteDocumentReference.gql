@@ -1,0 +1,5 @@
+mutation DeleteDocumentReference($id: ID!) {
+  deleteDocumentReference(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,8 @@
+mutation SaveReportCardType($input: ReportCardTypeInput!) {
+  saveReportCardType(input: $input) {
+    id
+    name
+    category
+    active
+  }
+}

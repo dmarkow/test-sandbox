@@ -1,0 +1,22 @@
+query Payment($id: ID!) {
+  payment(id: $id) {
+    id
+    description
+    amount
+    checkDate
+    depositDate
+    payor
+    claimNumber
+    checkNumber
+    lossDate
+    adjuster
+    deposit { id }
+    claimant
+    policyNumber
+    appliedPayments {
+      id
+      amount
+      invoice { id }
+    }
+  }
+}

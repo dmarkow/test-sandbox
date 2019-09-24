@@ -1,0 +1,16 @@
+query Photoset($id: ID!, $project: String!) {
+  photoset(id: $id, project: $project) {
+    ...PhotosetFields
+  }
+}
+
+fragment PhotosetFields on Photoset {
+  id
+  photosCount
+  user { id login fullname }
+  pfcs
+  party
+  description
+  day
+  inspectionDate
+}

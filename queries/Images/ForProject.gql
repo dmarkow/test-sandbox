@@ -1,0 +1,12 @@
+#import "./Fields"
+
+query InfoImages($number: String!) {
+  project(number: $number) {
+    id
+    mainPhotoType
+    mainPhotoId
+    infoImages {
+      ...InfoImageFields
+    }
+  }
+}

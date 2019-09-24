@@ -1,0 +1,7 @@
+#import "./DeliverableFragment"
+
+mutation CreateDeliverable($input: DeliverableInput!) {
+  createDeliverable(input: $input) {
+    ...DeliverableFragment
+  }
+}

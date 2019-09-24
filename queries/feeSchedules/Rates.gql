@@ -1,0 +1,13 @@
+query FeeSchedule($id: ID!) {
+  feeSchedule(id: $id) {
+    id
+    name
+    effectiveDate
+    billingRates {
+      id
+      rate
+      billingPosition { id }
+    }
+  }
+  billingPositions { id description }
+}

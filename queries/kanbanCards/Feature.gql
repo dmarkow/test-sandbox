@@ -1,0 +1,7 @@
+#import "./KanbanCardsFeatureFragment"
+
+query FeatureKanbanCards($id: ID!) {
+  feature(id: $id) {
+    ...KanbanCardsFeatureFragment
+  }
+}

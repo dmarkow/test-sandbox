@@ -1,0 +1,9 @@
+#import "../memberships/Fragment"
+
+fragment MembershipsFragment on Project {
+  id
+  memberships {
+    id
+    ...MembershipFragment
+  }
+}

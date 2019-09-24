@@ -1,0 +1,5 @@
+mutation DeleteAttachedFile($id: ID!) {
+  deleteAttachedFile(id: $id) {
+    id
+  }
+}

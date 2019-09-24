@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+mutation SaveIssue($input: IssueInput!) {
+  saveIssue(input: $input) {
+    ...IssueFormFragment
+  }
+}

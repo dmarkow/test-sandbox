@@ -1,0 +1,10 @@
+#import "./Fragment"
+
+query ProjectTopics($id: ID!) {
+  project(id: $id) {
+    id
+    topics {
+      ...TopicFragment
+    }
+  }
+}

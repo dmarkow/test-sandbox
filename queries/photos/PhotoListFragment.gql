@@ -1,0 +1,50 @@
+fragment PhotoListFragment on Photo {
+  id
+  keyPhoto
+  fieldNote
+  revisedAnnotation
+  imageNumber
+  smallImage
+  thumbImage
+  fullImage
+  photoset {
+    id
+    pfcs
+    party
+    day
+    inspectionDate
+    user {
+      id
+      login
+    }
+  }
+  photoLinks {
+    id
+    key
+    address {
+      id
+      displayName
+    }
+    location {
+      id
+      displayName
+    }
+    element {
+      id
+      displayName
+    }
+    issue {
+      id
+      number
+      description
+    }
+    player {
+      id
+      displayName
+    }
+    testLocation {
+      id
+      displayName
+    }
+  }
+}

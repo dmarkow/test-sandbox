@@ -1,0 +1,10 @@
+#import "../Documents/AttachedFileFragment"
+mutation SaveSourceFile($input: SourceFileInput!) {
+  saveSourceFile(input: $input) {
+    id
+    status
+    attachedFiles {
+      ...AttachedFileFragment
+    }
+  }
+}

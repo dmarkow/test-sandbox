@@ -1,0 +1,3 @@
+mutation BatchTag($input: BatchTagInput!) {
+  batchTag(input: $input)
+}

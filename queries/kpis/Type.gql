@@ -1,0 +1,16 @@
+query KpiType($id: ID!) {
+  kpiType(id: $id) {
+    id
+    mode
+    title
+    valueType
+    shouldNotExceedGoal
+    editable
+    startYear
+    endYear
+    description
+    hideWhenEmpty
+    aggregation
+    rank
+  }
+}

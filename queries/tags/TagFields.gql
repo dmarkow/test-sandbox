@@ -1,0 +1,7 @@
+fragment TagFields on Tag {
+  id
+  scope
+  category
+  section
+  subsection
+}

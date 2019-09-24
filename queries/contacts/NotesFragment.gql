@@ -1,0 +1,8 @@
+#import "../notes/ShowFragment"
+
+fragment ContactNotesFragment on Contact {
+  id
+  notes {
+    ...NoteShowFragment
+  }
+}

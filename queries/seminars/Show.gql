@@ -1,0 +1,31 @@
+#import "../checklists/ChecklistFragment"
+#import "./SeminarAttendeeFragment"
+#import "./SeminarFragment"
+
+query Seminar($id: ID!) {
+  seminar(id: $id) {
+    ...SeminarFields
+  }
+}
+
+
+fragment SeminarFields on Seminar {
+  ...SeminarFragment
+  campaign {
+    id
+    name
+  }
+  checklists {
+    ...ChecklistFragment
+  }
+  seminarAttendees {
+    ...SeminarAttendeeFragment
+  }
+  seminarAttachments {
+    id
+    description
+    role
+    attachmentUrl
+    attachment { fileName }
+  }
+}

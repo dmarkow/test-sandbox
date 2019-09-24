@@ -1,0 +1,24 @@
+#import "../notes/ShowFragment"
+
+fragment ShowFeatureFragment on Feature {
+    id
+    title
+    user { id fullname }
+    feature { id title category }
+    features { id title category status }
+    featureType
+    status
+    scale
+    priority
+    hours
+    description
+    category
+    closeNote
+    attachment { fileName }
+    attachmentUrl
+    createdAt
+    completedOn
+    notes {
+      ...NoteShowFragment
+    }
+}

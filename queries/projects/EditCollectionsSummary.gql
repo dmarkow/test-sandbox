@@ -1,0 +1,6 @@
+query EditCollectionsSummary($number: String!) {
+  project(number: $number) {
+    id
+    arSummary
+  }
+}

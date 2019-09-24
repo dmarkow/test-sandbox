@@ -1,0 +1,6 @@
+mutation UpdateInvoiceDate($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    invoiceDate
+  }
+}

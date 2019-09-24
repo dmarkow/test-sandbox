@@ -1,0 +1,10 @@
+#import "./AddressFragment"
+
+query Addresses($projectId: ID) {
+  project(id: $projectId) {
+    id
+    addresses {
+      ...AddressFragment
+    }
+  }
+}

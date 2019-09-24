@@ -1,0 +1,10 @@
+query ConflictProjects($query: String!) {
+  projects(conflictQuery: $query) {
+    id
+    number
+    name
+    represent
+    address
+    salesStageId
+  }
+}

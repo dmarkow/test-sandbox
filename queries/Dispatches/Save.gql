@@ -1,0 +1,7 @@
+#import "./DispatchFragment"
+
+mutation SaveDispatch($input: DispatchInput!) {
+  saveDispatch(input: $input) {
+    ...DispatchFragment
+  }
+}

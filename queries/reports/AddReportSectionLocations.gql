@@ -1,0 +1,13 @@
+#import "../Locations/LocationRowFragment"
+
+mutation AddReportSectionLocations($reportSectionId: ID!, $locationIds: [ID]!) {
+  addReportSectionLocations(
+    reportSectionId: $reportSectionId
+    locationIds: $locationIds
+  ) {
+    id
+    location {
+      ...LocationRowFragment
+    }
+  }
+}

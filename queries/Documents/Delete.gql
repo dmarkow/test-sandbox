@@ -1,0 +1,7 @@
+#import "./DocumentRowFragment"
+
+mutation DeleteDocument($id: ID!, $markAsKnown: Boolean) {
+  deleteDocument(id: $id, markAsKnown: $markAsKnown) {
+    id
+  }
+}

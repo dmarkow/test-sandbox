@@ -1,0 +1,30 @@
+query InvoiceToMail {
+  invoices(filter: "to_mail") {
+    ...InvoiceToMailFragment
+  }
+}
+
+fragment InvoiceToMailFragment on Invoice {
+  id
+  sentAt
+  invoiceDate
+  emailedAt
+  mailedAt
+  project {
+    id
+    number
+    name
+    memberships {
+      id
+      invoicing
+      contact {
+        id
+        displayAs
+        company {
+          id
+          name
+        }
+      }
+    }
+  }
+}

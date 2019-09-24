@@ -1,0 +1,63 @@
+query ClosedProjects($month: String!) {
+  closedProjects(month: $month) {
+    ...ClosedProjectFields
+  }
+}
+
+fragment ClosedProjectFields on Project {
+  id
+  number
+  name
+  mdDate
+  mdHoldNotes
+  guesstimate
+  closedOn
+  totalInvoices
+  memberships {
+    id
+    primaryContact
+    contact {
+      id
+      displayAs
+    }
+    survey {
+      id
+      completed
+    }
+  }
+  closedBy {
+    id
+    login
+  }
+  office {
+    id
+    location
+  }
+  plan {
+    id
+    costs {
+      id
+      amount
+    }
+  }
+  pm {
+    id
+    login
+  }
+  pc {
+    id
+    login
+  }
+  technicalLead {
+    id
+    login
+  }
+  projectUsers {
+    id
+    role
+    user {
+      id
+      login
+    }
+  }
+}

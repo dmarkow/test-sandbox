@@ -1,0 +1,26 @@
+query EmployeeMonthlyPayments($month: String!) {
+  employees(activeDuring: $month, future: false) {
+    id
+    displayAs
+    department
+    employeeType
+    user {
+      id
+      login
+      timesheets(paymentType: "EMPLOYEE", filterMonth: $month, filter: "Pending Expenses") {
+        id
+      }
+      invoicelines(filters: ["No Expenses", "Billed", "Shipped"], invoiceMonth: $month) {
+        id
+      }
+    }
+    monthlyPayments(month: $month) {
+      id
+      category
+      amount
+      date
+      paidOn
+      updatedAt
+    }
+  }
+}

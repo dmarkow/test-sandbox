@@ -1,0 +1,8 @@
+fragment TopicFragment on Topic {
+  id
+  category
+  user { id fullname }
+  status
+  description
+  title
+}

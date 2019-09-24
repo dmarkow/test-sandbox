@@ -1,0 +1,11 @@
+#import "./DeliverableFragment"
+
+mutation SortDeliverable($id: ID!, $position: Int!, $milestoneparentId: ID!) {
+  sortDeliverable(
+    id: $id
+    position: $position
+    milestoneparentId: $milestoneparentId
+  ) {
+    ...DeliverableFragment
+  }
+}

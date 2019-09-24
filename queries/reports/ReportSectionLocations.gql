@@ -1,0 +1,10 @@
+#import "../Locations/LocationRowFragment"
+
+query ReportSectionLocations($reportSectionId: ID!) {
+  reportSectionLocations(reportSectionId: $reportSectionId) {
+    id
+    location {
+      ...LocationRowFragment
+    }
+  }
+}

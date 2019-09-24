@@ -1,0 +1,5 @@
+mutation SendMailingTestEmail($id: ID!, $email: String!) {
+  sendMailingTestEmail(id: $id, email: $email) {
+    id
+  }
+}

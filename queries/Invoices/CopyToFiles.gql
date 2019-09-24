@@ -1,0 +1,5 @@
+mutation CopyToFiles($projectId: ID!) {
+  copyInvoicesToFiles(projectId: $projectId) {
+    id
+  }
+}

@@ -1,0 +1,12 @@
+mutation UpdateMetric($id: ID, $input: MetricInput) {
+  updateMetric(id: $id, input: $input) {
+    id
+    captureDate
+    rank
+    category
+    data {
+      value
+      description
+    }
+  }
+}

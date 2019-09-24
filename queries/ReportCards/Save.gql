@@ -1,0 +1,13 @@
+mutation SaveReportCard($input: ReportCardInput!) {
+  saveReportCard(input: $input) {
+    id
+    score
+    itemDate
+    reportCardType {
+      id
+      name
+    }
+    possibleScore
+    user { id login }
+  }
+}

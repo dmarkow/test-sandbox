@@ -1,0 +1,7 @@
+#import "./DocumentRowFieldsFragment"
+fragment DocumentRowFragment on Document {
+  ...DocumentRowFieldsFragment
+  referenceDocument {
+    ...DocumentRowFieldsFragment
+  }
+}

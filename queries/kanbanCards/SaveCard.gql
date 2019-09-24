@@ -1,0 +1,7 @@
+#import "./CardFragment"
+
+mutation SaveKanbanCard($input: KanbanCardInput!) {
+  saveKanbanCard(input: $input) {
+    ...CardFragment
+  }
+}

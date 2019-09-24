@@ -1,0 +1,10 @@
+#import "../TenTouches/TenTouchTaskFragment"
+
+fragment TenTouchTemplateFields on TenTouchTemplate {
+  id
+  name
+  notes
+  tenTouchTasks {
+    ...TenTouchTaskFragment
+  }
+}

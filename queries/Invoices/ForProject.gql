@@ -1,0 +1,61 @@
+query ProjectInvoices($number: String!) {
+  project(number: $number) {
+    id
+    number
+    totalInvoices
+    totalPayments
+    totalDue
+    invoices {
+      id
+      status
+      attachmentUrl
+      invoiceDate
+      invoiceTotal
+      paymentTotal
+      appliedPayments {
+        id
+        amount
+        payment {
+          id
+          amount
+          payor
+          checkNumber
+          claimNumber
+          checkDate
+          retainer { id checkDate }
+        }
+        creditMemo {
+          id
+          itemDate
+          amount
+        }
+        refund {
+          id
+          payer
+          amount
+          itemDate
+        }
+      }
+    }
+    payments {
+      id
+      checkDate
+      amount
+    }
+    retainers {
+      id
+      checkDate
+      amount
+      payments {
+        id
+        amount
+      }
+    }
+    refunds {
+      id
+      payer
+      amount
+      itemDate
+    }
+  }
+}

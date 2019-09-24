@@ -1,0 +1,7 @@
+#import "./DepositFields"
+
+query RecentDeposits {
+  deposits(limit: 10) {
+    ...DepositFields
+  }
+}

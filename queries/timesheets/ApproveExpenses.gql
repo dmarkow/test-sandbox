@@ -1,0 +1,20 @@
+mutation ApproveExpenses($ids: [ID!]!, $employeeId: ID!, $month: String!) {
+  approveExpenses(ids: $ids, employeeId: $employeeId, month: $month) {
+    id
+    date
+    category
+    amount
+    createdAt
+    paidOn
+    employee { id }
+    timesheets {
+      id
+      expenseStatus
+      description
+      itemDate
+      total
+      attachmentUrl
+      project { id number name }
+    }
+  }
+}

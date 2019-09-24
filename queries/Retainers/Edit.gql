@@ -1,0 +1,12 @@
+query Retainer($id: ID!) {
+  retainer(id: $id) {
+    id
+    amount
+    checkDate
+    deposit { id }
+    checkNumber
+    payor
+    referenceNumber
+    synced
+  }
+}

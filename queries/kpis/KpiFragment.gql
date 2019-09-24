@@ -1,0 +1,24 @@
+fragment KpiFragment on Kpi {
+  id
+  date
+  value
+  notApplicable
+  kpiType {
+    id
+    title
+    mode
+    description
+    hideWhenEmpty
+    editable
+    shouldNotExceedGoal
+    startYear
+    endYear
+    section
+    title
+    valueType
+    aggregation
+    kpiSection {
+      id
+    }
+  }
+}

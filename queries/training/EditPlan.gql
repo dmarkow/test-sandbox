@@ -1,0 +1,8 @@
+query EditTrainingPlan($id: ID!) {
+  trainingPlan(id: $id) {
+    id
+    name
+    status
+    userId
+  }
+}

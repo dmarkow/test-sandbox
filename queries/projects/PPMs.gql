@@ -1,0 +1,15 @@
+#import "./TeamFields"
+
+query PPMs {
+  projects(filter: "Active") {
+    id
+    number
+    name
+    interviews {
+      id
+      meetingType
+      date
+    }
+    ...TeamFields
+  }
+}

@@ -1,0 +1,5 @@
+mutation DeleteKanbanCard($id: ID!) {
+  deleteKanbanCard(id: $id) {
+    id
+  }
+}

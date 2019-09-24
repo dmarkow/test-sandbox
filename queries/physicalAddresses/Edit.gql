@@ -1,0 +1,8 @@
+query EditPhysicalAddress($id: ID!) {
+  physicalAddress(id: $id) {
+    id
+    unit
+    unitType
+    community { id  }
+  }
+}

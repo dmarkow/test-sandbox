@@ -1,0 +1,7 @@
+#import "./TeamFields"
+
+query EditProjectTeam($id: ID!) {
+  project(id: $id) {
+    ...TeamFields
+  }
+}

@@ -1,0 +1,7 @@
+#import "./ShowCampaignFragment"
+
+mutation SaveCampaign($input: CampaignInput!) {
+  saveCampaign(input: $input) {
+    ...ShowCampaignFragment
+  }
+}

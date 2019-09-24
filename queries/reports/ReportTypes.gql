@@ -1,0 +1,18 @@
+query ReportTypes {
+  reportTypes {
+    id
+    name
+    rank
+    overhead
+    sku { id name }
+    reportTypeSections {
+      id
+      showHeading
+      sectionType
+      rank
+      template
+      title
+      prefill
+    }
+  }
+}

@@ -1,0 +1,48 @@
+query ClientAccessPhotos(
+  $projectId: ID!
+  $photosetId: ID
+  $addressId: ID
+  $locationId: ID
+  $elementId: ID
+  $issueId: ID
+  $playerId: ID
+  $keyPhotos: Boolean
+) {
+  photos(
+    projectId: $projectId
+    photosetId: $photosetId
+    addressId: $addressId
+    locationId: $locationId
+    elementId: $elementId
+    issueId: $issueId
+    playerId: $playerId
+    keyPhotos: $keyPhotos
+  ) {
+    id
+    fieldNote
+    smallImage
+    fullImage
+    imageNumber
+    photoset {
+      id
+      party
+      description
+      user {
+        id
+        login
+      }
+      day
+      pfcs
+      inspectionDate
+      startDate
+    }
+    addresses {
+      id
+      name
+    }
+    locations {
+      id
+      name
+    }
+  }
+}

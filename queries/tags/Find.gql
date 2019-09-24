@@ -1,0 +1,7 @@
+#import "./TagFields"
+
+query Tag($id: ID!) {
+  tag(id: $id) {
+    ...TagFields
+  }
+}

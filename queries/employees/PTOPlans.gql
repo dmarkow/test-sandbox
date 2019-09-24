@@ -1,0 +1,9 @@
+query PTOPlans {
+  ptoPlans {
+    id
+    name
+    tierOne
+    tierTwo
+    tierThree
+  }
+}

@@ -1,0 +1,19 @@
+query ContactAddresses($filter: String) {
+  physicalAddresses(filter: $filter) {
+    id
+    premise
+    number
+    street
+    city
+    unit
+    unitType
+    state
+    zip
+    country
+    legacyStreet
+    legacyCity
+    legacyState
+    legacyZip
+    googleFormatted
+  }
+}

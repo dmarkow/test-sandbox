@@ -1,0 +1,12 @@
+query AffiliationTypes {
+  affiliationTypes {
+    ...AffiliationTypeFields
+  }
+}
+
+fragment AffiliationTypeFields on AffiliationType {
+  id
+  url
+  name
+  valueType
+}

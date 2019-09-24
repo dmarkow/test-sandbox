@@ -1,0 +1,11 @@
+query Templates {
+  templates {
+    id
+    name
+    content
+    scope
+    category
+    plainContent
+    contentType
+  }
+}

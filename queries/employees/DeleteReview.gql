@@ -1,0 +1,5 @@
+mutation DeleteReview($id: ID!) {
+  deleteEmployeeReview(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,8 @@
+#import "./SkuFragment"
+
+query ShowSKU($id: ID!) {
+  sku(id: $id) {
+    ...SkuFragment
+
+  }
+}

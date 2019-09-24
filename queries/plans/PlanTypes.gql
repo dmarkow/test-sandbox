@@ -1,0 +1,20 @@
+query PlanTypes {
+  planTypes {
+    id
+    name
+    planSections {
+      id
+      position
+      name
+      deliverableMenuItems {
+        id
+        position
+        sku {
+          id
+          name
+          description
+        }
+      }
+    }
+  }
+}

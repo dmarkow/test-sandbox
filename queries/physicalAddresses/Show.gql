@@ -1,0 +1,36 @@
+#import "../notes/ShowFragment"
+
+query PhysicalAddress($id: ID!) {
+  physicalAddress(id: $id) {
+    id
+    premise
+    street
+    number
+    unit
+    unitType
+    city
+    state
+    zip
+    county
+    country
+    latitude
+    longitude
+    northeastLatitude
+    northeastLongitude
+    southwestLatitude
+    southwestLongitude
+    residences {
+      id
+      contact {
+        id
+        displayAs
+        company { id name }
+      }
+    }
+    community { id name }
+    notes {
+      id
+      ...NoteShowFragment
+    }
+  }
+}

@@ -1,0 +1,9 @@
+mutation SetGoal($input: GoalInput) {
+  setGoal(input: $input) {
+    id
+    name
+    date
+    period
+    value
+  }
+}

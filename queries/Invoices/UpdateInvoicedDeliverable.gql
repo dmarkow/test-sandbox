@@ -1,0 +1,14 @@
+mutation UpdateInvoicedDeliverable(
+  $id: ID!
+  $input: InvoicedDeliverableInput!
+) {
+  updateInvoicedDeliverable(id: $id, input: $input) {
+    id
+    fixedFee
+    description
+    invoice {
+      id
+      invoiceTotal
+    }
+  }
+}

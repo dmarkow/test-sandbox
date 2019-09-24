@@ -1,0 +1,6 @@
+mutation SortInfoImage($input: InfoImageInput!) {
+  sortInfoImage(input: $input) {
+    id
+    position
+  }
+}

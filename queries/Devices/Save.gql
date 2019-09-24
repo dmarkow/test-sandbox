@@ -1,0 +1,7 @@
+#import "./DeviceFragment"
+
+mutation UpdateDevice($input: DeviceInput!) {
+  saveDevice(input: $input) {
+    ...DeviceFragment
+  }
+}

@@ -1,0 +1,9 @@
+fragment AttachmentFragment on Attachment {
+  id
+  attachmentThumbUrl
+  attachmentUrl
+  attachment {
+    fileName
+    updatedAt
+  }
+}

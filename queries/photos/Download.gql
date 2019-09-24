@@ -1,0 +1,3 @@
+mutation DownloadPhotos($input: DownloadPhotosInput!) {
+  downloadPhotos(input: $input)
+}

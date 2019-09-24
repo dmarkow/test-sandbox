@@ -1,0 +1,16 @@
+  query ChecklistTemplates {
+    checklists(template: true) {
+      id
+      category
+      roles
+      checklistItems {
+        id
+        when
+        who
+        notes
+        title
+        section
+        position
+      }
+    }
+  }

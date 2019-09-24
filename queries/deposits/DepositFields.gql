@@ -1,0 +1,40 @@
+fragment DepositFields on Deposit {
+  id
+  date
+  status
+  synced
+  account
+  ach
+  amount
+  payments {
+    id
+    amount
+    checkDate
+    depositDate
+    checkNumber
+    payor
+    project {
+      id
+      number
+      name
+      totalDue
+      status
+    }
+    retainer { id }
+  }
+  retainers {
+    id
+    amount
+    checkDate
+    depositDate
+    payor
+    checkNumber
+    project {
+      id
+      number
+      name
+      totalDue
+      status
+    }
+  }
+}

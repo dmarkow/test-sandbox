@@ -1,0 +1,9 @@
+#import "./UserTaskFragment"
+
+mutation CompleteTask($input: TaskInput!) {
+  saveTask(input: $input) {
+    id
+    completed
+    ...UserTaskFragment
+  }
+}

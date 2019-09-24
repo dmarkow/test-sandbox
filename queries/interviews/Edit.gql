@@ -1,0 +1,18 @@
+#import "../Documents/DocumentReferenceFragment.gql"
+
+query EditInterview($id: ID!) {
+  interview(id: $id) {
+    id
+    date
+    attendees
+    description
+    body
+    bodyJson
+    legacy
+    meetingType
+    template
+    documentReferences {
+      ...DocumentReferenceFragment
+    }
+  }
+}

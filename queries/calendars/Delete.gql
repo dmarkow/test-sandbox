@@ -1,0 +1,5 @@
+mutation DeleteCalendar($id: ID!) {
+  deleteCalendar(id: $id) {
+    id
+  }
+}

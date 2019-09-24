@@ -1,0 +1,11 @@
+query EditMilestone($id: ID!) {
+  milestone(id: $id) {
+    id
+    description
+    itemDate
+    amount
+    datePaid
+    completed
+    approved
+  }
+}

@@ -1,0 +1,13 @@
+query ReportDNBInvoices {
+  invoices(filter: "dnb") {
+    id
+    invoiceTotal
+    invoiceDate
+    project {
+      id
+      number
+      name
+      salesStageId
+    }
+  }
+}

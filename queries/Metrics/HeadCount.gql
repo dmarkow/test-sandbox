@@ -1,0 +1,18 @@
+query HeadCount($quarter: String!) {
+  employeeCount: dynamicMetrics(
+    type: "Head Count: Employees"
+    quarter: $quarter
+  ) {
+    date
+    count
+    notes
+  }
+  contractorCount: dynamicMetrics(
+    type: "Head Count: Contractors"
+    quarter: $quarter
+  ) {
+    date
+    count
+    notes
+  }
+}

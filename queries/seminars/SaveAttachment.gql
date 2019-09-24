@@ -1,0 +1,9 @@
+mutation SaveSeminarAttachment($input: SeminarAttachmentInput!) {
+  saveSeminarAttachment(input: $input) {
+    id
+    description
+    role
+    attachmentUrl
+    attachment { fileName }
+  }
+}

@@ -1,0 +1,6 @@
+mutation UpdateInvoiceLine($id: ID!, $input: InvoicelineInput!) {
+  updateInvoiceline(id: $id, input: $input) {
+    id
+    allowPayment
+  }
+}

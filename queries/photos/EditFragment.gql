@@ -1,0 +1,43 @@
+fragment EditPhotoFragment on Photo {
+  project {
+    id
+    number
+    mainPhotoType
+    mainPhotoId
+  }
+  photoset {
+    id
+    pfcs
+    party
+    photosCount
+    user {
+      id
+      login
+    }
+    day
+  }
+  id
+  imageNumber
+  smallImage
+  fieldNote
+  revisedAnnotation
+  keyPhoto
+  keyPhotoDescription
+  photoLinks {
+    id
+    addressId
+    locationId
+    elementId
+    issueId
+    playerId
+    testLocationId
+    key
+  }
+  previousPhoto {
+    id
+  }
+  nextPhoto {
+    id
+  }
+  updatedAt
+}

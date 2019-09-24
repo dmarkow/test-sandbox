@@ -1,0 +1,69 @@
+#import "./UnbilledDeliverableFragment"
+
+query UnbilledTime($number: String!) {
+  timesheets(number: $number, filter: "unbilled") {
+    id
+    description
+    itemDate
+    hours
+    noCharge
+    rate
+    isExpense
+    billedPosition
+    total
+    user {
+      id
+      email
+      login
+    }
+    deliverable {
+      ...UnbilledDeliverableFragment
+    }
+  }
+  invoicelines(number: $number, filter: "unbilled") {
+    id
+    description
+    itemDate
+    hours
+    noCharge
+    nonBillable
+    rate
+    isExpense
+    billedPosition
+    lineTotal
+    user {
+      id
+      email
+      login
+    }
+    invoice {
+      id
+      project {
+        id
+        number
+      }
+    }
+    project {
+      id
+    }
+    deliverable {
+      ...UnbilledDeliverableFragment
+    }
+  }
+  project(number: $number) {
+    id
+    number
+    projectType
+    plan {
+      id
+      deliverables {
+        id
+        description
+        milestoneparent {
+          id
+          title
+        }
+      }
+    }
+  }
+}

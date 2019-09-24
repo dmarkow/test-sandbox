@@ -1,0 +1,10 @@
+query AnnualMetrics($types: [String]!, $start: String!, $end: String!) {
+  dynamicMetrics(types: $types, start: $start, end: $end) {
+    date
+    count
+    format
+    sum
+    name
+    currentOnly
+  }
+}

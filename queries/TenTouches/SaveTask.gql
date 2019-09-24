@@ -1,0 +1,7 @@
+#import "./TenTouchTaskFragment"
+
+mutation SaveTenTouchTask($input: TenTouchTaskInput!) {
+  saveTenTouchTask(input: $input) {
+    ...TenTouchTaskFragment
+  }
+}

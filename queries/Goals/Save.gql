@@ -1,0 +1,6 @@
+mutation SaveGoal($input: GoalInput!) {
+  saveGoal(input: $input) {
+    id
+    value
+  }
+}

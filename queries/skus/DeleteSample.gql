@@ -1,0 +1,5 @@
+mutation DeleteSample($id: ID!) {
+  deleteSkuSample(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,6 @@
+mutation SaveList($input: ListInput!) {
+  saveList(input: $input) {
+    id
+    name
+  }
+}

@@ -1,0 +1,15 @@
+#import "../BPALinkFragment"
+
+fragment AddressFormFragment on Address {
+  id
+  analysis
+  analysisJson
+  customFields
+  name
+  address { id }
+  next { id }
+  prev { id }
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+}

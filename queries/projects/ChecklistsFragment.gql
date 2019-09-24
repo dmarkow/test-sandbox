@@ -1,0 +1,8 @@
+#import "../checklists/ChecklistFragment"
+
+fragment ChecklistsFragment on Project {
+  id
+  checklists {
+    ...ChecklistFragment
+  }
+}

@@ -1,0 +1,6 @@
+query Company($id: ID!) {
+  contact(id: $id) {
+    id
+    name
+  }
+}

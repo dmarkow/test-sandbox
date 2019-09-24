@@ -1,0 +1,7 @@
+#import "./RequirementFields"
+
+mutation SaveTrainingRequirement($input: TrainingRequirementInput!) {
+  saveTrainingRequirement(input: $input) {
+    ...TrainingRequirementFields
+  }
+}

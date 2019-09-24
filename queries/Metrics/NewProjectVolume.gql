@@ -1,0 +1,7 @@
+query NewProjectVolume($start: String!, $end: String!) {
+  dynamicMetrics(type: "new_projects", start: $start, end: $end) {
+    date
+    count
+    sum
+  }
+}

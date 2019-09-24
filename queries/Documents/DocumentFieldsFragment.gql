@@ -1,0 +1,52 @@
+#import "./AttachedFileFragment"
+fragment DocumentFieldsFragment on Document {
+  id
+  description
+  hidden
+  path
+  mode
+  section
+  suffix
+  author
+  recipient
+  md5
+  pdfSecurity
+  url
+  library
+  migrated
+  attachmentId
+  analysis
+  analysisJson
+  analysisUser {
+    id
+  }
+  analysisDate
+  analysisTitle
+  header
+  key
+  attachedFiles {
+    ...AttachedFileFragment
+  }
+  date
+  endDate
+  receivedDate
+  pages
+  pageReference
+  batesStamp
+  printed
+  summary
+  source
+  updatedAt
+  documentCategories { id }
+  elements { id }
+  document { id section }
+  sourceFile {
+    id
+    name
+    pile { id name }
+    attachedFiles {
+      ...AttachedFileFragment
+    }
+  }
+  project { id number name }
+}

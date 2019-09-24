@@ -1,0 +1,28 @@
+query ProjectCards {
+  projects(filter: "Active") {
+    ...ProjectCardsProjectFields
+  }
+}
+
+fragment ProjectCardsProjectFields on Project {
+  id
+  number
+  name
+  pm {
+    id
+    login
+  }
+  pc {
+    id
+    login
+  }
+  technicalLead {
+    id
+    login
+  }
+  kanbanCards {
+    id
+    dueDate
+    column
+  }
+}

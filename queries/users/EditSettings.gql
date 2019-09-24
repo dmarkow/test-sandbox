@@ -1,0 +1,13 @@
+query UserSettings($login: String!) {
+  user(login: $login) {
+    id
+    login
+    timesheetsHideLockedWeeks
+    timesheetsScrollToBottom
+    taskCompletionNotification
+    projectListStartDate
+    projectListTotalDue
+    showPrimaryContactsOnly
+    signature
+  }
+}

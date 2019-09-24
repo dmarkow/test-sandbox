@@ -1,0 +1,5 @@
+mutation SaveKpi($input: KpiInput!) {
+  saveKpi(input: $input) {
+    id
+  }
+}

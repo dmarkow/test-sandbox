@@ -1,0 +1,21 @@
+query Surveys($completed: Boolean) {
+  surveys(completed: $completed) {
+    id
+    completed
+    updatedAt
+    averageRating
+    hashKey
+    project {
+      id
+      number
+      name
+    }
+    membership {
+      id
+      contact {
+        id
+        displayAs
+      }
+    }
+  }
+}

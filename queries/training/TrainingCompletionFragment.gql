@@ -1,0 +1,16 @@
+fragment TrainingCompletionFragment on TrainingCompletion {
+  id
+  userId
+  trainingRequirementId
+  createdAt
+  answer
+  answers
+  status
+  correct
+  attachment {
+    fileName
+  }
+  attachmentUrl
+  project { id number name }
+  user { id fullname employmentStatus }
+}

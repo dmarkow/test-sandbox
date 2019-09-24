@@ -1,0 +1,18 @@
+query FeaturesList {
+  features {
+    id
+    status
+    priority
+    category
+    featureType
+    scale
+    hours
+    completedOn
+    title
+    createdAt
+    user {
+      id
+      login
+    }
+  }
+}

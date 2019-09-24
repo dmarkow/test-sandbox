@@ -1,0 +1,10 @@
+#import "./SampleFragment"
+
+query EditSKUSample($id: ID!) {
+  skuSample(id: $id) {
+    id
+    project { id }
+    url
+    description
+  }
+}

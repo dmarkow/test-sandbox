@@ -1,0 +1,153 @@
+#import "../tags/TagFields"
+#import "./ContactCardFragment"
+#import "./CompanyContactFragment"
+#import "./ContactCampaignsFragment"
+#import "./NotesFragment"
+#import "./ShowFragment"
+#import "../TenTouches/TenTouchFragment"
+#import "../Attachments/AttachmentFragment"
+
+query ShowContact($id: ID!) {
+  contact(id: $id) {
+    ...ShowContactFields
+  }
+}
+
+fragment ShowContactFields on Contact {
+  ...ContactShowFragment
+  contacts {
+    ...CompanyContactFragment
+  }
+  formerContacts {
+    ...CompanyContactFragment
+  }
+  relationshipsAsParent {
+    id
+    role
+    strategicTargetRole
+    key
+    endDate
+    active
+    contact {
+      id
+      sortAs
+      jobTitle
+      isActive
+      email
+      company {
+        id
+        name
+        company {
+          id
+          name
+        }
+      }
+    }
+  }
+  importedContacts {
+    id
+    action
+    contactImport {
+      id
+      name
+      importedAt
+    }
+  }
+  ...ContactCardFragment
+  ...ContactCampaignsFragment
+  coworkers {
+    id
+    displayAs
+  }
+  tenTouches {
+    ...TenTouchFragment
+  }
+  referralProjects {
+    ...ShowContactProjectFields
+  }
+  projects {
+    ...ShowContactProjectFields
+
+  }
+  strategicTargetProjects {
+    id
+    number
+    name
+    status
+    trade
+    represent
+    salesStage {
+      id
+      probability
+      description
+    }
+    guesstimate
+    opportunityOwner {
+      id
+      fullname
+    }
+  }
+  officeProjects {
+    ...ShowContactProjectFields
+  }
+  surveys {
+    id
+    completed
+    updatedAt
+    project { id number name }
+    surveyQuestions {
+      id
+      answer
+      numeric
+    }
+  }
+  seminarAttendees {
+    id
+    attended
+    seminar {
+      id
+      title
+      eventDate
+    }
+  }
+  taggings {
+    id
+    createdAt
+    tag {
+      ...TagFields
+    }
+  }
+  affiliations {
+    id
+    value
+    affiliationType {
+      id
+      valueType
+      url
+      name
+    }
+  }
+  ...ContactNotesFragment
+  attachments {
+    ...AttachmentFragment
+  }
+}
+
+fragment ShowContactProjectFields on Project {
+  id
+  number
+  name
+  status
+  trade
+  represent
+  salesStage {
+    id
+    probability
+    description
+  }
+  guesstimate
+  opportunityOwner {
+    id
+    fullname
+  }
+}

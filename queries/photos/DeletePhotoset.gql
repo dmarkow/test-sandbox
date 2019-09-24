@@ -1,0 +1,5 @@
+mutation DeletePhotoset($id: ID!) {
+  deletePhotoset(id: $id) {
+    id
+  }
+}

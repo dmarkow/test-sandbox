@@ -1,0 +1,11 @@
+#import "./InterviewFragment"
+
+query Interviews($number: String!) {
+  project(number: $number) {
+    id
+    projectType
+    interviews {
+      ...InterviewFragment
+    }
+  }
+}

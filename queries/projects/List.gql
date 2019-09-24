@@ -1,0 +1,27 @@
+#import "./TeamFields"
+
+query ProjectList($filter: String!, $user: String, $search: String) {
+  projects(filter: $filter, user: $user, search: $search) {
+    id
+    number
+    name
+    trade
+    projectType
+    totalDue
+    status
+    secured
+    represent
+    salesStage {
+      id
+    }
+    ...TeamFields
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+      }
+    }
+  }
+}

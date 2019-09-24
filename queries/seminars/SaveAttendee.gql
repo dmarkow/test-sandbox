@@ -1,0 +1,7 @@
+#import "./SeminarAttendeeFragment"
+
+mutation SaveSeminarAttendee($input: SeminarAttendeeInput!) {
+  saveSeminarAttendee(input: $input) {
+    ...SeminarAttendeeFragment
+  }
+}

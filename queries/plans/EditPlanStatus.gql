@@ -1,0 +1,9 @@
+query EditPlanStatus($id: ID!) {
+  planStatus(id: $id) {
+    id
+    status
+    date
+    notes
+    amount
+  }
+}

@@ -1,0 +1,15 @@
+fragment InterviewFragment on Interview {
+  id
+  date
+  attendees
+  description
+  template
+  body
+  bodyJson
+  legacy
+  meetingType
+  tasks {
+    id
+    completed
+  }
+}

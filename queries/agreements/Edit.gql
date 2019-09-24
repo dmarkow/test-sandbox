@@ -1,0 +1,7 @@
+query EditAgreement($id: ID!) {
+  agreement(id: $id) {
+    id
+    content
+    title
+  }
+}

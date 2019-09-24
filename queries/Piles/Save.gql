@@ -1,0 +1,7 @@
+mutation SavePile($input: PileInput!) {
+  savePile(input: $input) {
+    id
+    name
+    date
+  }
+}

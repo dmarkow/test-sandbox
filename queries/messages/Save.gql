@@ -1,0 +1,7 @@
+#import "./Fields"
+
+mutation SaveMessage($input: MessageInput!) {
+  saveMessage(input: $input) {
+    ...MessageFields
+  }
+}

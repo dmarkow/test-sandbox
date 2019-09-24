@@ -1,0 +1,19 @@
+fragment SeminarFragment on Seminar {
+  id
+  title
+  subject
+  eventType
+  eventDate
+  eventTime
+  eventLocation
+  videoUrl
+  fromName
+  fromEmail
+  followupStatus
+  followupSentAt
+  bodyConfirmation
+  bodyReminder
+  bodyFollowup
+  goToWebinarKey
+  campaignId
+}

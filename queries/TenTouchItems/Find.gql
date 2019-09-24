@@ -1,0 +1,16 @@
+#import "../Documents/DocumentRowFragment"
+
+query TenTouchItem($id: ID!) {
+  tenTouchItem(id: $id) {
+    id
+    category
+    touchTypes
+    name
+    emailSubject
+    active
+    emailBody
+    document {
+      ...DocumentRowFragment
+    }
+  }
+}

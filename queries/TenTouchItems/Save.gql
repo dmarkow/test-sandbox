@@ -1,0 +1,5 @@
+mutation SaveTenTouchItem($input: TenTouchItemInput!) {
+  saveTenTouchItem(input: $input) {
+    id
+  }
+}

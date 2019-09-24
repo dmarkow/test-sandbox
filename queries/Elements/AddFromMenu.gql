@@ -1,0 +1,7 @@
+#import "./ListFragment"
+
+mutation AddElementsFromMenu($projectId: ID!, $elementIds: [ID]!) {
+  addElementsFromMenu(projectId: $projectId, elementIds: $elementIds) {
+    ...ElementListFragment
+  }
+}

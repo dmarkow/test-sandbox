@@ -1,0 +1,11 @@
+#import "./TagFields"
+
+mutation CreateTagging($input: TaggingInput!) {
+  createTagging(input: $input) {
+    id
+    createdAt
+    tag {
+      ...TagFields
+    }
+  }
+}

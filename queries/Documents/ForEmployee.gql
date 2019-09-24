@@ -1,0 +1,11 @@
+#import "./DocumentRowFragment"
+
+query EmployeeDocuments($id: ID!) {
+  employee(id: $id) {
+    id
+    documents {
+      ...DocumentRowFragment
+    }
+  }
+}
+

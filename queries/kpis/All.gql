@@ -1,0 +1,15 @@
+#import "./KpiFragment"
+#import "./KpiSetFragment"
+
+query Kpis($globalSet: String, $login: String, $global: Boolean!) {
+  user(login: $login) @skip(if: $global) {
+    id
+    fullname
+  }
+  kpiSet(login: $login, globalSet: $globalSet) {
+    ...KpiSetFragment
+  }
+  kpis(login: $login, globalSet: $globalSet) {
+    ...KpiFragment
+  }
+}

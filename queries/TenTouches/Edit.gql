@@ -1,0 +1,7 @@
+#import "./TenTouchFragment"
+
+query EditTenTouch($id: ID!) {
+  tenTouch(id: $id) {
+    ...TenTouchFragment
+  }
+}

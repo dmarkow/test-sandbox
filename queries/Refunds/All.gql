@@ -1,0 +1,10 @@
+query Refunds {
+  refunds {
+    id
+    amount
+    payer
+    itemDate
+    project { id number name }
+    appliedPayments { id amount }
+  }
+}

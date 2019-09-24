@@ -1,0 +1,12 @@
+fragment BpaLinkFragment on BpaLink {
+  id
+  addressId
+  locationId
+  elementId
+  issueId
+  playerId
+  testLocationId
+  infoImageId
+  documentId
+  description
+}

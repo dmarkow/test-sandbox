@@ -1,0 +1,9 @@
+#import "./ProjectFormFragment"
+#import "./SalesProjectionsFragment"
+
+mutation SaveProject($input: ProjectInput!) {
+  saveProject(input: $input) {
+    ...ProjectFormFragment
+    ...SalesProjectionsFragment
+  }
+}

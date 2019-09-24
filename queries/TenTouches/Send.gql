@@ -1,0 +1,7 @@
+#import "./TenTouchTaskFragment"
+
+mutation SendTenTouchTask($id: ID!) {
+  sendTenTouchTask(id: $id) {
+    ...TenTouchTaskFragment
+  }
+}

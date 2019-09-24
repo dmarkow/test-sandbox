@@ -1,0 +1,33 @@
+mutation SplitInvoiceline($id: ID!) {
+  splitInvoiceline(id: $id) {
+    id
+    itemDate
+    hours
+    rate
+    lineTotal
+    isExpense
+    testimony
+    noCharge
+    nonBillable
+    billedPosition
+    description
+    category
+    user {
+      id
+      login
+      fullname
+      email
+    }
+    deliverable {
+      id
+      description
+    }
+    project {
+      id
+    }
+    invoice {
+      id
+      invoiceTotal
+    }
+  }
+}

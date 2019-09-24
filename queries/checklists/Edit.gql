@@ -1,0 +1,7 @@
+query EditChecklist($id: ID!) {
+  checklist(id: $id) {
+    id
+    category
+    roles
+  }
+}

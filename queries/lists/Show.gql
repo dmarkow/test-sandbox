@@ -1,0 +1,23 @@
+query ShowList($id: ID!) {
+  list(id: $id) {
+    ...ShowListFields
+  }
+}
+
+fragment ShowListFields on List {
+  id
+  name
+  sortBy
+  fields
+  items {
+    ...ShowListItemFields
+  }
+}
+
+fragment ShowListItemFields on ListItem {
+  id
+  name
+  rank
+  fields
+  item { id }
+}

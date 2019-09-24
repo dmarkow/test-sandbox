@@ -1,0 +1,40 @@
+#import "../Deliverables/DeliverableFragment"
+#import "./MethodFragment"
+#import "./ObjectiveFragment"
+
+query ProjectPlan($number: String!) {
+  project(number: $number) {
+    id
+    number
+    name
+    billingSummary
+    plan {
+      ...ProjectPlanFields
+
+    }
+  }
+}
+
+fragment ProjectPlanFields on Plan {
+  id
+  ...ObjectiveFragment
+  ...MethodFragment
+  milestoneparents {
+    ...MilestoneparentFields
+
+  }
+  deliverables {
+    ...DeliverableFragment
+  }
+}
+
+fragment MilestoneparentFields on Milestoneparent {
+  id
+  title
+  rank
+  deliverables {
+    ...DeliverableFragment
+    ilTotal
+    tsTotal
+  }
+}

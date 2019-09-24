@@ -1,0 +1,40 @@
+fragment TimesheetEditFragment on Timesheet {
+  id
+  billedPosition
+  itemDate
+  hours
+  description
+  category
+  noCharge
+  attachment
+  isExpense
+  paymentType
+  dueDate
+  deliverableId
+  projectId
+  campaignId
+  userId
+  suggestion
+  rate
+  status
+  testimony
+  mentor {
+    id
+    login
+  }
+  user {
+    id
+    login
+  }
+  project {
+    id
+    number
+    name
+    projectType
+    projectUsers {
+      id
+      userId
+      role
+    }
+  }
+}

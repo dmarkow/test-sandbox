@@ -1,0 +1,14 @@
+query EditReportCard($id: ID!) {
+  reportCard(id: $id) {
+    id
+    itemDate
+    scores
+    comments
+    commentUserIds
+    reportCardType {
+      id
+      name
+    }
+    user { id login }
+  }
+}

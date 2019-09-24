@@ -1,0 +1,9 @@
+#import "./DocumentRowFragment"
+
+query GlobalDocuments($filter: String!) {
+  documents(global: true, filter: $filter) {
+    id
+    analysis
+    analysisJson
+  }
+}

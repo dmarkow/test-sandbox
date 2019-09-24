@@ -1,0 +1,53 @@
+query PhotoViewer($projectId: ID!, $parentType: String!, $parentId: ID!) {
+  photos(
+    projectId: $projectId
+    parentType: $parentType
+    parentId: $parentId
+  ) {
+    id
+    imageNumber
+    smallImage
+    finalAnnotation
+    keyPhotoDescription
+    date
+    photoset {
+      id
+      inspectionDate
+      pfcs
+      user {
+        id
+        login
+      }
+      day
+      party
+    }
+    photoLinks {
+      id
+      key
+      issue {
+        id
+        displayName
+      }
+      address {
+        id
+        displayName
+      }
+      location {
+        id
+        displayName
+      }
+      element {
+        id
+        displayName
+      }
+      player {
+        id
+        displayName
+      }
+      testLocation {
+        id
+        displayName
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+mutation SaveProjectIssueSort($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    issueSort
+  }
+}

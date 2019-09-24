@@ -1,0 +1,6 @@
+mutation MovePlayerGroup($id: ID!, $direction: String!) {
+  movePlayerGroup(id: $id, direction: $direction) {
+    id
+    position
+  }
+}

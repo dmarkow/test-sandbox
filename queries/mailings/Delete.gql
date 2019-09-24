@@ -1,0 +1,5 @@
+mutation DeleteMailing($id: ID!) {
+  deleteMailing(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,19 @@
+query ThumbnailPreview($parentType: String!, $parentId: ID!) {
+  photos(parentType: $parentType, parentId: $parentId, keyForParent: true) {
+    id
+    imageNumber
+    thumbImage
+    addresses { id }
+    locations { id }
+    photoset {
+      id
+      day
+      pfcs
+      party
+      user {
+        id
+        login
+      }
+    }
+  }
+}

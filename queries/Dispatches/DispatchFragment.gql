@@ -1,0 +1,38 @@
+#import "../Documents/DocumentReferenceFragment.gql"
+#import "../Images/ImageReferenceFragment.gql"
+#import "../checklists/ChecklistFragment.gql"
+
+fragment DispatchFragment on Dispatch {
+  id
+  date
+  time
+  category
+  location
+  legacy
+  startingAddress
+  photoNumber
+  meetings
+  materials
+  description
+  oneMinuteSummary
+  expert {
+    id
+    fullname
+  }
+  photoset { id }
+  documentReferences {
+    ...DocumentReferenceFragment
+  }
+  imageReferences {
+    ...ImageReferenceFragment
+  }
+  checklists {
+    ...ChecklistFragment
+  }
+  hideOms
+  hideLocations
+  hideElements
+  hideIssues
+  hideImages
+  hideMaps
+}

@@ -1,0 +1,20 @@
+mutation SaveReportDocuments($reportSectionId: ID!, $ids: [ID!]!) {
+  saveReportDocuments(reportSectionId: $reportSectionId, ids: $ids) {
+    id
+    rank
+    document {
+      id
+      header
+      receivedDate
+      pages
+      author
+      description
+      section
+      date
+      publicDescription
+      attachment {
+        fileName
+      }
+    }
+  }
+}

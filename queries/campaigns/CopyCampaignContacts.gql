@@ -1,0 +1,8 @@
+#import "./ShowCampaignFragment"
+
+mutation CopyCampaignContacts($id: ID!, $sourceId: ID!) {
+  copyCampaignContacts(id: $id, sourceId: $sourceId) {
+    addedCount
+    totalCount
+  }
+}

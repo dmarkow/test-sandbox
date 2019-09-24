@@ -1,0 +1,53 @@
+query ClientAccessPhotoFilters($number: String!) {
+  project(number: $number) {
+    id
+    issueSort
+    addresses {
+      id
+      name
+      addressId
+    }
+    locations {
+      id
+      name
+      locationId
+    }
+    elements {
+      id
+      number
+      name
+    }
+    players {
+      id
+      displayName
+    }
+    issues {
+      id
+      number
+      description
+      issueId
+      elements {
+        id
+        number
+        name
+      }
+    }
+    photosets {
+      id
+      inspectionDate
+      endDate
+      startDate
+      pfcs
+      party
+      description
+      photosCount
+      complete
+      day
+      user {
+        id
+        login
+        fullname
+      }
+    }
+  }
+}

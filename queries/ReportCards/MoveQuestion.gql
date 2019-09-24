@@ -1,0 +1,6 @@
+mutation MoveReportCardQuestion($id: ID!, $direction: String!) {
+  moveReportCardQuestion(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

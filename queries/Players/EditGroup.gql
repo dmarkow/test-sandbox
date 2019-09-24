@@ -1,0 +1,6 @@
+query PlayerGroup($id: ID!) {
+  playerGroup(id: $id) {
+    id
+    name
+  }
+}

@@ -1,0 +1,5 @@
+mutation DeleteSeminarAttendee($id: ID!) {
+  deleteSeminarAttendee(id: $id) {
+    id
+  }
+}

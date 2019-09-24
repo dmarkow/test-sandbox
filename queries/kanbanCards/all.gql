@@ -1,0 +1,7 @@
+#import "./CardFragment"
+
+query AllKanbanCards($user: String) {
+  kanbanCards(user: $user) {
+    ...CardFragment
+  }
+}

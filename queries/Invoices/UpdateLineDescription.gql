@@ -1,0 +1,6 @@
+mutation UpdateInvoicelineDescription($id: ID!, $input: InvoicelineInput!) {
+  updateInvoiceline(id: $id, input: $input) {
+    id
+    description
+  }
+}

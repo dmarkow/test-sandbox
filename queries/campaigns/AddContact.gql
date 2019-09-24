@@ -1,0 +1,7 @@
+#import "./CampaignsContactRowFragment"
+
+mutation AddCampaignsContact($campaignId: ID!, $contactId: ID!) {
+  addCampaignsContact(campaignId: $campaignId, contactId: $contactId) {
+    ...CampaignsContactRowFragment
+  }
+}

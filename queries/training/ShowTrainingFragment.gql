@@ -1,0 +1,55 @@
+#import "./TrainingCompletionFragment"
+#import "./RequirementFields"
+#import "../Documents/DocumentRowFragment"
+
+fragment ShowTrainingFragment on Training {
+  id
+  name
+  bodyJson
+  producedOn
+  updatedAt
+  url
+  priority
+  status
+  training {
+    id
+    name
+    url
+    bodyJson
+    trainings {
+      id
+      name
+      url
+      bodyJson
+    }
+  }
+  trainings {
+    id
+    url
+    bodyJson
+    name
+    position
+  }
+  attachments {
+    id
+    project { id number name }
+    document {
+      ...DocumentRowFragment
+    }
+    attachmentUrl
+    attachment { fileName }
+    note
+    url
+    rank
+  }
+  trainingCompletions {
+    ...TrainingCompletionFragment
+  }
+  trainingCategories {
+    id
+    name
+  }
+  trainingRequirements {
+    ...TrainingRequirementFields
+  }
+}

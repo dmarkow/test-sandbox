@@ -1,0 +1,34 @@
+#import "./TeamFields"
+#import "./MembershipsFragment"
+#import "../notes/ShowFragment"
+
+query PaymentSupport($number: String!) {
+  project(number: $number) {
+    id
+    number
+    invoices {
+      id
+      isAdjustment
+      status
+      invoiceDate
+      invoiceTotal
+      paymentTotal
+      appliedPayments {
+        id
+        amount
+        payment {
+          id
+          payor
+          claimNumber
+        }
+      }
+    }
+  }
+  paymentAutocomplete(number: $number) {
+    payor
+    claimNumber
+    adjuster
+    policyNumber
+    claimant
+  }
+}

@@ -1,0 +1,11 @@
+#import "./ShowFragment"
+
+query ProjectTestLocations($number: String!) {
+  project(number: $number) {
+    id
+    number
+    testLocations {
+      ...ShowTestLocationFragment
+    }
+  }
+}

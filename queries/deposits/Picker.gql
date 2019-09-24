@@ -1,0 +1,7 @@
+#import "./DepositFields"
+
+query DepositPicker($includeId: ID) {
+  deposits(includeId: $includeId, status: "Pending") {
+    ...DepositFields
+  }
+}

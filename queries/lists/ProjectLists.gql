@@ -1,0 +1,9 @@
+query ProjectLists($number: String!) {
+  project(number: $number) {
+    id
+    lists {
+      id
+      name
+    }
+  }
+}

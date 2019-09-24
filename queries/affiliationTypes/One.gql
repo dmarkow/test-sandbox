@@ -1,0 +1,8 @@
+query AffiliationType($id: ID!) {
+  affiliationType(id: $id) {
+    id
+    url
+    name
+    valueType
+  }
+}

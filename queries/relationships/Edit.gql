@@ -1,0 +1,10 @@
+query EditRelationship($id: ID!) {
+  relationship(id: $id) {
+    id
+    strategicTargetRole
+    role
+    notes
+    key
+    active
+  }
+}

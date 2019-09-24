@@ -1,0 +1,10 @@
+#import "./ReportRowFragment"
+
+query ProjectReports($number: String!) {
+  project(number: $number) {
+    id
+    reports {
+      ...ReportRowFragment
+    }
+  }
+}

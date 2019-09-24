@@ -1,0 +1,7 @@
+query DispatchProjectInfo($number: String!) {
+  project(number: $number) {
+    id
+    oneMinuteSummary
+    address
+  }
+}

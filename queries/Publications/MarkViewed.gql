@@ -1,0 +1,5 @@
+mutation MarkViewed($id: ID!) {
+  viewAccessPublication(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,12 @@
+#import "./DocumentFragment"
+
+query EditDocument($id: ID!) {
+  document(id: $id) {
+    ...DocumentFragment
+    project {
+      id
+      number
+      name
+    }
+  }
+}

@@ -1,0 +1,20 @@
+query EmployeeGoals($id: ID!) {
+  employee(id: $id) {
+    id
+    billableGoals {
+      id
+      effectiveDate
+      goal
+      percentage
+      fixed
+    }
+    billableGoalReductions {
+      id
+      itemDate
+      amount
+      project { id number name }
+      manager { id fullname }
+      description
+    }
+  }
+}

@@ -1,0 +1,14 @@
+query EditRefund($id: ID!) {
+  refund(id: $id) {
+    id
+    amount
+    paymentMethod
+    payer
+    itemDate
+    appliedPayments {
+      id
+      amount
+      invoice { id }
+    }
+  }
+}

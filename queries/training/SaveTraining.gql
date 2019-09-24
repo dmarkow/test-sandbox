@@ -1,0 +1,7 @@
+#import "./ShowTrainingFragment"
+
+mutation SaveTraining($input: TrainingInput!) {
+  saveTraining(input: $input) {
+    ...ShowTrainingFragment
+  }
+}

@@ -1,0 +1,7 @@
+#import "./Fragment"
+
+mutation SaveMembership($input: MembershipInput!) {
+  saveMembership(input: $input) {
+    ...MembershipFragment
+  }
+}

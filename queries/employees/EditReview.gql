@@ -1,0 +1,8 @@
+query EditReview($id: ID!) {
+  employeeReview(id: $id) {
+    id
+    reviewer { id }
+    completed
+    reviewDate
+  }
+}

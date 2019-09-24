@@ -1,0 +1,5 @@
+mutation SaveBillableGoalReduction($input: BillableGoalReductionInput!) {
+  saveBillableGoalReduction(input: $input) {
+    id
+  }
+}

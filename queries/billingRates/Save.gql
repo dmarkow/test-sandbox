@@ -1,0 +1,6 @@
+mutation SaveBillingRate($input: BillingRateInput!) {
+  saveBillingRate(input: $input) {
+    id
+    rate
+  }
+}

@@ -1,0 +1,10 @@
+mutation NoChargeInvoicelines($ids: [ID]!) {
+  noChargeInvoicelines(ids: $ids) {
+    id
+    noCharge
+    invoice {
+      id
+      invoiceTotal
+    }
+  }
+}

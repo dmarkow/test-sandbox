@@ -1,0 +1,11 @@
+#import "./PhotoListFragment"
+
+query PhotoSearch($filters: PhotoSearchFilters!) {
+  photoSearch(filters: $filters) {
+    count
+    filteredCount
+    photos {
+      ...PhotoListFragment
+    }
+  }
+}

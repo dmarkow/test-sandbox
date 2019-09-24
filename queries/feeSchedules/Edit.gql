@@ -1,0 +1,7 @@
+query EditFeeSchedule($id: ID!) {
+  feeSchedule(id: $id) {
+    id
+    name
+    effectiveDate
+  }
+}

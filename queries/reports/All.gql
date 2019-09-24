@@ -1,0 +1,39 @@
+#import "./ReportRowFragment"
+#import "../projects/TeamFields"
+
+query Reports($user: String, $billable: Boolean, $status: String, $projectStatus: String, $global: Boolean!) {
+  reports(author: $user, billable: $billable, status: $status, projectStatus: $projectStatus) {
+    id
+    status
+    reportType
+    title
+    updatedAt
+    publishedOn
+    user { id fullname }
+    project {
+      id
+      number
+      name
+      ...TeamFields
+    }
+  }
+  pumReports: reports(projectUser: $user, notAuthor: $user, billable: $billable, status: $status, projectStatus: $projectStatus) {
+    id
+    status
+    reportType
+    title
+    updatedAt
+    publishedOn
+    user { id fullname }
+    project {
+      id
+      number
+      name
+      ...TeamFields
+    }
+  }
+  user(login: $user) @skip(if: $global) {
+    id
+    fullname
+  }
+}

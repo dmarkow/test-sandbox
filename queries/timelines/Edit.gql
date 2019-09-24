@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+query Timeline($id: ID!) {
+  timeline(id: $id) {
+    ...TimelineFormFragment
+  }
+}

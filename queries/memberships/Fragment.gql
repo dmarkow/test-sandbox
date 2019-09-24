@@ -1,0 +1,38 @@
+#import "../contacts/ResidenceFragment"
+
+fragment MembershipFragment on Membership {
+  id
+  role
+  invoicing
+  invoicePercentage
+  primaryContact
+  namesOnInvoices
+  fileNumber
+  invoiceRecipient
+  notes
+  blockClientAccess
+  contact {
+    id
+    displayAs
+    company {
+      id
+      name
+      company {
+        id
+        name
+      }
+    }
+    workPhone
+    directPhone
+    mobile
+    extension
+    email
+    avatarUrl
+    avatarThumbUrl
+    clientAccess
+    residences {
+      ...ResidenceFragment
+    }
+  }
+  project { id }
+}

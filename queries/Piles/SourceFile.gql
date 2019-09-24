@@ -1,0 +1,20 @@
+#import "../Documents/AttachedFileFragment"
+query SourceFile($id: ID!) {
+  sourceFile(id: $id) {
+    id
+    name
+    path
+    status
+    attachedFiles {
+      ...AttachedFileFragment
+    }
+    pile {
+      id
+      name
+    }
+    project {
+      id
+      number
+    }
+  }
+}

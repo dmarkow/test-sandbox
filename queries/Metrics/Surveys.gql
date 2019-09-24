@@ -1,0 +1,7 @@
+query SurveysCount($quarter: String!) {
+  dynamicMetrics(type: "Survey Scores", quarter: $quarter) {
+    date
+    count
+    sum
+  }
+}

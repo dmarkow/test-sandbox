@@ -1,0 +1,7 @@
+#import "./IssueFragment"
+
+query IssuesPicker($projectId: ID) {
+  issues(projectId: $projectId) {
+    ...IssueFragment
+  }
+}

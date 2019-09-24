@@ -1,0 +1,7 @@
+#import "./ListFragment"
+
+query Elements($projectId: ID, $template: Boolean = false) {
+  elements(projectId: $projectId, template: $template) {
+    ...ElementListFragment
+  }
+}

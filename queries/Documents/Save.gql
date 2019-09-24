@@ -1,0 +1,7 @@
+#import "./DocumentFragment"
+
+mutation SaveDocument($input: DocumentInput!) {
+  saveDocument(input: $input) {
+    ...DocumentFragment
+  }
+}

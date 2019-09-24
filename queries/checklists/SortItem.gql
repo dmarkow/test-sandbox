@@ -1,0 +1,11 @@
+mutation SortChecklistItem($id: ID!, $direction: String!) {
+  sortChecklistItem(id: $id, direction: $direction) {
+    id
+    when
+    who
+    notes
+    title
+    section
+    position
+  }
+}

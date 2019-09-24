@@ -1,0 +1,10 @@
+mutation SaveMonthlyPayment($input: MonthlyPaymentInput!) {
+  saveMonthlyPayment(input: $input) {
+    id
+    date
+    amount
+    category
+    paidOn
+    updatedAt
+  }
+}

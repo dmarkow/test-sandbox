@@ -1,0 +1,5 @@
+mutation SaveFeeSchedule($input: FeeScheduleInput!) {
+  saveFeeSchedule(input: $input) {
+    id
+  }
+}

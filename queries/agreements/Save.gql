@@ -1,0 +1,7 @@
+mutation SaveAgreement($input: AgreementInput!) {
+  saveAgreement(input: $input) {
+    id
+    content
+    title
+  }
+}

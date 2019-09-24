@@ -1,0 +1,7 @@
+#import "./DocumentRowFragment"
+
+mutation CopyDocumentFromLibrary($projectId: ID!, $documentId: ID!) {
+  copyDocumentFromLibrary(projectId: $projectId, documentId: $documentId) {
+    ...DocumentRowFragment
+  }
+}

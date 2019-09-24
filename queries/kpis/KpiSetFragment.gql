@@ -1,0 +1,30 @@
+fragment KpiSetFragment on KpiSet {
+  id
+  name
+  globalSet
+  kpiSections {
+    id
+    rank
+    name
+    category
+    who
+    description
+    kpiTypes {
+      id
+      title
+      rank
+      description
+      hideWhenEmpty
+      mode
+      editable
+      shouldNotExceedGoal
+      startYear
+      endYear
+      aggregation
+      section
+      title
+      valueType
+      staffTypes
+    }
+  }
+}

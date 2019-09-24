@@ -1,0 +1,8 @@
+fragment TrainingRequirementFields on TrainingRequirement {
+  id
+  description
+  deliverables
+  mode
+  options
+  rank
+}

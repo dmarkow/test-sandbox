@@ -1,0 +1,22 @@
+#import "./TeamFields"
+
+query First10Things($user: String!, $allUsers: Boolean!) {
+  projects(user: $user, filter: "active", billable: true, projectsOnly: true) {
+    id
+    number
+    name
+    status
+    ...TeamFields
+    checklists {
+      id
+      category
+      complete
+      itemsCompleted
+      itemCount
+    }
+  }
+  user(login: $user) @skip(if: $allUsers) {
+    id
+    fullname
+  }
+}

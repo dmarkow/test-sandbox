@@ -1,0 +1,8 @@
+query OverheadHours($login: String!, $year: String!) {
+  timesheets(login: $login, year: $year, expenses: false) {
+    id
+    itemDate
+    hours
+    project { id projectType number name }
+  }
+}

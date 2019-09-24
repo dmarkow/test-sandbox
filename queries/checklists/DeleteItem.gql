@@ -1,0 +1,5 @@
+mutation DeleteChecklistItem($id: ID!) {
+  deleteChecklistItem(id: $id) {
+    id
+  }
+}

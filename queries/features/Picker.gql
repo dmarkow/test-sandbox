@@ -1,0 +1,7 @@
+query FeaturePicker {
+  features {
+    id
+    category
+    title
+  }
+}

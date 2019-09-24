@@ -1,0 +1,5 @@
+mutation DeleteDeliverable($id: ID!) {
+  deleteDeliverable(id: $id) {
+    id
+  }
+}

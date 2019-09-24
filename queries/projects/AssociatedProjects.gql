@@ -1,0 +1,10 @@
+query AssociatedProjects($id: ID!) {
+  project(id: $id) {
+    id
+    childOpportunities {
+      id
+      number
+      name
+    }
+  }
+}

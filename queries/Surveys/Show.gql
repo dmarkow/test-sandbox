@@ -1,0 +1,29 @@
+query Survey($id: ID!) {
+  survey(id: $id) {
+    id
+    updatedAt
+    averageRating
+    surveyQuestions {
+      id
+      numeric
+      answer
+      question
+    }
+    project {
+      id
+      number
+      name
+    }
+    membership {
+      id
+      contact {
+        id
+        displayAs
+        company {
+          id
+          displayAs
+        }
+      }
+    }
+  }
+}

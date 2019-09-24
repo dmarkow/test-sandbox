@@ -1,0 +1,7 @@
+#import "./SampleFragment"
+
+mutation SaveSKUSample($input: SkuSampleInput!) {
+  saveSkuSample(input: $input) {
+    ...SampleFragment
+  }
+}

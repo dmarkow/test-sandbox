@@ -1,0 +1,8 @@
+query ReportCardType($id: ID!) {
+  reportCardType(id: $id) {
+    id
+    name
+    category
+    active
+  }
+}

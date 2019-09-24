@@ -1,0 +1,43 @@
+fragment ShowCampaignFragment on Campaign {
+  id
+  name
+  fields
+  status
+  closeActivities
+  script
+  description
+  targetDate
+  closeDate
+  includeIndustry
+  includeUnsubscribed
+  includeAttendance
+  includeSegments
+  mailings {
+    id
+    campaignField
+    excludeCampaignField
+    contactsMailingsCount
+    sentAt
+    subject
+    sender
+  }
+  projects {
+    id
+    number
+    name
+    salesStageId
+    guesstimate
+  }
+  tenTouchBatches {
+    id
+    campaignField
+    createdAt
+    tenTouches {
+      id
+    }
+  }
+  company {
+    id
+    name
+  }
+}

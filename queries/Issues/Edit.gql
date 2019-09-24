@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+query Issue($id: ID!) {
+  issue(id: $id) {
+    ...IssueFormFragment
+  }
+}

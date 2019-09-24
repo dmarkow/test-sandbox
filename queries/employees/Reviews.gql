@@ -1,0 +1,11 @@
+query EmployeeReviews($id: ID!) {
+  employee(id: $id) {
+    id
+    employeeReviews {
+      id
+      reviewDate
+      reviewer { id fullname }
+      completed
+    }
+  }
+}

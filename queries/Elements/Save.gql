@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+mutation SaveElement($input: ElementInput!) {
+  saveElement(input: $input) {
+    ...ElementFormFragment
+  }
+}

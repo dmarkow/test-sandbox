@@ -1,0 +1,44 @@
+query PUM($user: String!) {
+  projects(filter: "active_hold", user: $user, projectsOnly: true) {
+    id
+    number
+    name
+    status
+    planUpdatedOn
+    totalDue
+    technicalSummaryUpdatedAt
+    salesStage {
+      id
+    }
+    pc {
+      id
+      login
+      fullname
+    }
+    pm {
+      id
+      login
+      fullname
+    }
+    technicalLead {
+      id
+      login
+      fullname
+    }
+    projectUsers {
+      id
+      role
+      user {
+        id
+        login
+        fullname
+      }
+    }
+    plan {
+      id
+      amount
+      pendingTotal
+      billedTotal
+    }
+  }
+}

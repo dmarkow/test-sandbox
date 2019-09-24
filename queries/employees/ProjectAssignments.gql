@@ -1,0 +1,29 @@
+query ProjectAssignments($filter: String!) {
+  employees(status: "Active") {
+    ...ProjectAssignmentsEmployeeFields
+  }
+  projects(filter: $filter, projectsOnly: true) {
+    ...ProjectAssignmentsProjectFields
+  }
+}
+
+fragment ProjectAssignmentsEmployeeFields on Employee {
+  id
+  displayAs
+  department
+  firstName
+  lastName
+  user {
+    id
+    login
+    fullname
+  }
+}
+
+fragment ProjectAssignmentsProjectFields on Project {
+  id
+  pc { id }
+  pm { id}
+  technicalLead { id}
+  projectUsers { id role user { id } }
+}

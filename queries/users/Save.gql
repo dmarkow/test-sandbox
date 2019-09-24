@@ -1,0 +1,7 @@
+#import "./UserFragment"
+
+mutation SaveUser($input: UserInput!) {
+  saveUser(input: $input) {
+    ...UserFragment
+  }
+}

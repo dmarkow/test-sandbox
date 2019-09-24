@@ -1,0 +1,5 @@
+mutation DeletePeerReview($id: ID) {
+  deletePeerReview(id: $id) {
+    id
+  }
+}

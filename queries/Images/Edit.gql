@@ -1,0 +1,8 @@
+query InfoImage($id: ID!) {
+  infoImage(id: $id) {
+    id
+    category
+    description
+    attachmentUrl
+  }
+}

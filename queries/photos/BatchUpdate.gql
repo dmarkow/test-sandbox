@@ -1,0 +1,7 @@
+#import "./PhotoListFragment"
+
+mutation BatchUpdatePhotos($input: BatchPhotoInput!) {
+  batchUpdatePhotos(input: $input) {
+    ...PhotoListFragment
+  }
+}

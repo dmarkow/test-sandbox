@@ -1,0 +1,17 @@
+#import "./TimesheetParts"
+
+query Timesheets($login: String!, $month: String!) {
+  user(login: $login) {
+    id
+    employee {
+      id
+      office {
+        id
+        location
+      }
+    }
+  }
+  timesheets(login: $login, month: $month) {
+    ...TimesheetParts
+  }
+}

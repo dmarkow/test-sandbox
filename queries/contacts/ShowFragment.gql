@@ -1,0 +1,57 @@
+fragment ContactShowFragment on Contact {
+  id
+  mode
+  strategicTargetCategories
+  name
+  goesBy
+  greetAs
+  jobTitle
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  relationships {
+    id
+    notes
+    role
+    active
+    endDate
+    key
+    strategicTargetRole
+    parent {
+      id
+      displayAs
+      mode
+      name
+      company {
+        id
+        name
+      }
+    }
+  }
+  displayAs
+  marketingStatus
+  avatarUrl
+  avatarThumbUrl
+  clientAccess
+  isActive
+  deletedOn
+  deletedReason
+  createdAt
+  deletedByUser {
+    id fullname
+  }
+  body
+  webPage
+  linkedIn
+  birthday
+  downloadedMec
+  creator {
+    id
+    fullname
+  }
+}

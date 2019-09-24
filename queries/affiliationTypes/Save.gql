@@ -1,0 +1,8 @@
+mutation SaveAffiliationType($input: AffiliationTypeInput!) {
+  saveAffiliationType(input: $input) {
+    id
+    url
+    valueType
+    name
+  }
+}

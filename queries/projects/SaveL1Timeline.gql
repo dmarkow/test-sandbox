@@ -1,0 +1,6 @@
+mutation SaveProjectL1Timeline($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    l1Timeline
+  }
+}

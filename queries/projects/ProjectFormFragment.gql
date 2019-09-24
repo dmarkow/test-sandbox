@@ -1,0 +1,68 @@
+fragment ProjectFormFragment on Project {
+  id
+  name
+  number
+  startDate
+  mdDate
+  deadBox
+  projectType
+  secured
+  address
+  state
+  area
+  represent
+  trade
+  projectDesc
+  rate
+  yearBuilt
+  county
+  fieldInspection
+  otherExperts
+  plans
+  budget
+  invoiceBillingPeriods
+  prioritizeInvoices
+  requireAttachmentsOnInvoices
+  maximumBillingPositionId
+  invoiceNote
+  invoiceHideCosts
+  invoiceHideHours
+  invoiceLevels
+  billingSummary
+  mdHoldNotes
+  coExperts
+  technicalSummary
+  technicalSummaryUpdatedAt
+  technicalSummaryUpdater { id login }
+  oneMinuteSummary
+  oneMinuteSummaryUpdatedAt
+  oneMinuteSummaryUpdater { id login }
+  referralContact { id displayAs mode company { id name }}
+  status
+  closedById
+  closedOn
+  entity
+  entityNumber
+  shareOnClientAccess
+  shareOneMinuteSummary
+  shareL1Timeline
+  shareL2Timeline
+  clientAccessHideAr
+  guesstimate
+  sourceUserId
+  sourceOf
+  campaignId
+  strategicTargetCompany { id name }
+  salesStageId
+  parentOpportunityId
+  opportunityOwnerId
+  opportunityStartDate
+  opportunityCloseDate
+  totalDue
+  totalInvoices
+  unbilledTotal
+  mainPhotoType
+  mainPhotoId
+  updatedAt
+  office { id }
+}

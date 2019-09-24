@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+mutation SaveTimeline($input: TimelineInput!) {
+  saveTimeline(input: $input) {
+    ...TimelineFormFragment
+  }
+}

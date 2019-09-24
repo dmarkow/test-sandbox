@@ -1,0 +1,13 @@
+mutation GenerateInvoice(
+  $timesheetIds: [ID]
+  $invoicelineIds: [ID]
+  $number: String!
+) {
+  generateInvoice(
+    timesheetIds: $timesheetIds
+    invoicelineIds: $invoicelineIds
+    number: $number
+  ) {
+    id
+  }
+}

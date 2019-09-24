@@ -1,0 +1,12 @@
+#import "./DocumentFieldsFragment"
+
+fragment DocumentFragment on Document {
+  ...DocumentFieldsFragment
+  referenceDocument {
+    id
+    ...DocumentFieldsFragment
+  }
+  references {
+    id
+  }
+}

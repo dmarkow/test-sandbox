@@ -1,0 +1,7 @@
+#import "./ShowFragment"
+
+mutation SaveNote($input: NoteInput!) {
+  saveNote(input: $input) {
+    ...NoteShowFragment
+  }
+}

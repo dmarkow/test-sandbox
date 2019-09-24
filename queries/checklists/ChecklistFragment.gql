@@ -1,0 +1,22 @@
+fragment ChecklistFragment on Checklist {
+  id
+  itemsCompleted
+  itemCount
+  complete
+  completedAt
+  category
+  checklistItems {
+    id
+    complete
+    when
+    who
+    notes
+    title
+    position
+    section
+    user {
+      id
+      login
+    }
+  }
+}

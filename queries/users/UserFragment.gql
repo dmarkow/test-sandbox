@@ -1,0 +1,32 @@
+fragment UserFragment on User {
+  id
+  login
+  fullname
+  email
+  userType
+  signature
+  kpiSet { id name }
+  employmentStatus
+  startDate
+  endDate
+  office
+  workState
+  isAdministrator
+  isManager
+  isIgk
+  isSalaryManager
+  isTimeAdministrator
+  allowArChanges
+  showManagement
+  showExecutiveDash
+  showAreaManagerDash
+  showMarketingDash
+  showAreaManagerDash
+  canApprovePayroll
+  tracksTime
+  requiresNewPassword
+  notifications
+  roles
+  goToWebinarAccessToken
+  goToWebinarExpiresAt
+}

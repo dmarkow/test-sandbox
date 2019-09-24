@@ -1,0 +1,10 @@
+query PlayerGroups($id: ID!) {
+  project(id: $id) {
+    id
+    playerGroups {
+      id
+      name
+      position
+    }
+  }
+}

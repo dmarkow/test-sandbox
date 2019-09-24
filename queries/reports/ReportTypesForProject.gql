@@ -1,0 +1,26 @@
+#import "../skus/SkuFragment"
+
+query ReportTypesForProject($number: String!) {
+  reportTypes {
+    id
+    name
+    rank
+    overhead
+    sku {
+      ...SkuFragment
+    }
+    reportTypeSections {
+      id
+      showHeading
+      sectionType
+      rank
+      template
+      title
+      prefill
+    }
+  }
+  project(number: $number) {
+    id
+    projectType
+  }
+}

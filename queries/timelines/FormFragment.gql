@@ -1,0 +1,15 @@
+#import "../BPALinkFragment"
+
+fragment TimelineFormFragment on Timeline {
+  id
+  itemDate
+  title
+  description
+  keyEvent
+  customFields
+  document { id }
+  interview { id }
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+}

@@ -1,0 +1,6 @@
+mutation SavePlanSection($input: PlanSectionInput!) {
+  savePlanSection(input: $input) {
+    id
+    name
+  }
+}

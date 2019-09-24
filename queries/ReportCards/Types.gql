@@ -1,0 +1,19 @@
+query ReportCardTypes {
+  reportCardTypes {
+    id
+    name
+    category
+    active
+    reportCardQuestions {
+      ...ReportCardQuestionFields
+    }
+  }
+}
+
+fragment ReportCardQuestionFields on ReportCardQuestion {
+  id
+  title
+  description
+  maxScore
+  rank
+}

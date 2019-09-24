@@ -1,0 +1,8 @@
+query SKUs {
+  skus {
+    id
+    name
+    description
+    category
+  }
+}

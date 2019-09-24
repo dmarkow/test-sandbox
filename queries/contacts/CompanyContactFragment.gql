@@ -1,0 +1,30 @@
+fragment CompanyContactFragment on Contact {
+  id
+  isActive
+  sortAs
+  jobTitle
+  email
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  residences {
+    id
+    physicalAddress { id  street city state zip}
+    residence { id }
+  }
+  relationships {
+    id
+    notes
+    parent { id }
+    key
+    active
+    endDate
+    role
+    strategicTargetRole
+  }
+}

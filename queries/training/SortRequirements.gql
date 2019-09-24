@@ -1,0 +1,6 @@
+mutation SortTrainingRequirement($id: ID!, $direction: String!) {
+  sortTrainingRequirement(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

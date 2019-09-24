@@ -1,0 +1,7 @@
+#import "./TrainingCompletionFragment"
+
+mutation SaveTrainingCompletion($input: TrainingCompletionInput!) {
+  saveTrainingCompletion(input: $input) {
+    ...TrainingCompletionFragment
+  }
+}

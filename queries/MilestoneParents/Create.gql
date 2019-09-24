@@ -1,0 +1,12 @@
+#import "../Deliverables/DeliverableFragment"
+
+mutation CreateMilestoneParent($input: MilestoneparentInput!) {
+  createMilestoneparent(input: $input) {
+    id
+    title
+    rank
+    deliverables {
+      ...DeliverableFragment
+    }
+  }
+}

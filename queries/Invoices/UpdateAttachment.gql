@@ -1,0 +1,6 @@
+mutation UpdateInvoiceAttachment($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    attachmentUrl
+  }
+}

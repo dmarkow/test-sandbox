@@ -1,0 +1,10 @@
+query EditInvoiceAdjustment($id: ID!) {
+  invoice(id: $id) {
+    id
+    invoiceDate
+    invoiceTotal
+    invoiceType
+    viewByDeliverable
+    description
+  }
+}

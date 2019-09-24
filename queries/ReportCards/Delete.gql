@@ -1,0 +1,5 @@
+mutation DeleteReportCard($id: ID!) {
+  deleteReportCard(id: $id) {
+    id
+  }
+}

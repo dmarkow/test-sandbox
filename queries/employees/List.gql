@@ -1,0 +1,34 @@
+#import "../checklists/ChecklistFragment"
+
+query Employees($status: String, $managerId: ID) {
+  employees(status: $status, managerId: $managerId) {
+    id
+    displayAs
+    sortAs
+    future
+    firstName
+    lastName
+    department
+    startDate
+    employeeType
+    employmentStatus
+    billingPosition { id description }
+    manager {
+      id
+      fullname
+    }
+    user {
+      id login
+    }
+    salaries {
+      id
+      effectiveDate
+      annualBase
+      annualIncentive
+      hourlyRates
+    }
+    checklists {
+      ...ChecklistFragment
+    }
+  }
+}

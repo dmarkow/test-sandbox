@@ -1,0 +1,6 @@
+mutation submitTimesheet($login: String!, $mode: String!, $month: String!) {
+  submitTimesheet(login: $login, mode: $mode, month: $month) {
+    id
+    status
+  }
+}

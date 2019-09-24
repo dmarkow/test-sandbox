@@ -1,0 +1,5 @@
+mutation MarkContactInactive($id: ID!, $userId: ID!, $reason: String!) {
+  markContactInactive(id: $id, userId: $userId, reason: $reason) {
+    id
+  }
+}

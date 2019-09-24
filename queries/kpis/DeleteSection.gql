@@ -1,0 +1,5 @@
+mutation DeleteKpiSection($id: ID!) {
+  deleteKpiSection(id: $id) {
+    id
+  }
+}

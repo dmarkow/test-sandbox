@@ -1,0 +1,37 @@
+query PUMBillings($after: String!, $before: String!) {
+  employees(status: "Active") {
+    ...PUMBillingsEmployeeFields
+  }
+  invoices(filter: "billable", status: "FINAL", after: $after, before: $before) {
+    ...PUMBillingsInvoiceFields
+  }
+}
+
+fragment PUMBillingsEmployeeFields on Employee {
+  id
+  displayAs
+  department
+  firstName
+  lastName
+  user {
+    id
+    login
+    fullname
+  }
+}
+
+fragment PUMBillingsInvoiceFields on Invoice {
+  id
+  status
+  invoiceDate
+  invoiceTotal
+  nonBillableTotal
+  noChargeTotal
+  project {
+    id
+    name
+    number
+    pc { id }
+    pm { id }
+  }
+}

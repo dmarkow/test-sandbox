@@ -1,0 +1,6 @@
+mutation MoveKpiType($id: ID!, $direction: String!) {
+  moveKpiType(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

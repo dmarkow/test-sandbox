@@ -1,0 +1,67 @@
+query ProjectFrame($number: String!) {
+  project(number: $number) {
+    ...ProjectFrameFragment
+  }
+}
+
+fragment ProjectFrameFragment on Project {
+  id
+  number
+  name
+  represent
+  trade
+  address
+  secured
+  shareOneMinuteSummary
+  oneMinuteSummary
+  shareL1Timeline
+  shareL2Timeline
+  pc {
+    id
+    login
+  }
+  pm {
+    id
+    login
+  }
+  technicalLead {
+    id
+    login
+  }
+  projectUsers {
+    id
+    user {
+      id
+      login
+    }
+  }
+  lists {
+    id
+    name
+  }
+  projectType
+  addressesCount
+  locationsCount
+  elementsCount
+  issuesCount
+  issueSort
+  playersCount
+  testLocationsCount
+  dispatchesCount
+  interviewsCount
+  l1Timeline
+  addressFields
+  locationFields
+  elementFields
+  timelineFields
+  issueFields
+  issueAnalysisMode
+  elementAnalysisMode
+  locationAnalysisMode
+  timelines {
+    id
+  }
+  photosets {
+    id
+  }
+}

@@ -1,0 +1,7 @@
+query MainPhotoPhoto($id: ID!) {
+  image: photo(id: $id) {
+    id
+    smallImage
+    fullImage
+  }
+}

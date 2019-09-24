@@ -1,0 +1,11 @@
+#import "./TeamFields"
+
+query Untouched {
+  projects(filter: "Untouched") {
+    id
+    number
+    name
+    status
+    ...TeamFields
+  }
+}

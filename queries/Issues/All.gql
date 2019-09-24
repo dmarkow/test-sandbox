@@ -1,0 +1,11 @@
+#import "./IssueFragment"
+
+query Issues($projectId: ID) {
+  issues(projectId: $projectId) {
+    ...IssueFragment
+  }
+  documents(projectId: $projectId, filter: "issue_sources") {
+    id
+    displayName
+  }
+}

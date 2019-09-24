@@ -1,0 +1,7 @@
+mutation mailInvoices($ids: [String]!) {
+  mailInvoices(ids: $ids) {
+    id
+    mailedAt
+    updatedAt
+  }
+}

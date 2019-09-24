@@ -1,0 +1,7 @@
+#import "./ImageReferenceFragment"
+
+mutation SaveImageReferences($input: ImageReferencesInput!) {
+  saveImageReferences(input: $input) {
+    ...ImageReferenceFragment
+  }
+}

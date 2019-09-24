@@ -1,0 +1,6 @@
+query TaskCounts($user: String) {
+  taskCounts(user: $user) {
+    name
+    count
+  }
+}

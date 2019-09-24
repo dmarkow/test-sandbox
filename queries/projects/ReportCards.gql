@@ -1,0 +1,19 @@
+#import "./TeamFields"
+
+query ProjectAudits {
+  projects(filter: "Active") {
+    id
+    number
+    name
+    ...TeamFields
+    reportCards {
+      id
+      itemDate
+      reportCardType {
+        id
+        name
+        category
+      }
+    }
+  }
+}

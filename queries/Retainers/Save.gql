@@ -1,0 +1,15 @@
+mutation SaveRetainer($input: RetainerInput!) {
+  saveRetainer(input: $input) {
+    id
+    amount
+    checkDate
+    checkNumber
+    referenceNumber
+    payor
+    synced
+    payments {
+      id
+      amount
+    }
+  }
+}

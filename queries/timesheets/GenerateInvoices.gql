@@ -1,0 +1,3 @@
+mutation generateInvoices($month: String!) {
+  generateAllInvoices(month: $month)
+}

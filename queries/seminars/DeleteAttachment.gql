@@ -1,0 +1,5 @@
+mutation DeleteSeminarAttachment($id: ID!) {
+  deleteSeminarAttachment(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,7 @@
+#import "./FormFragment"
+
+mutation SavePlayer($input: PlayerInput!) {
+  savePlayer(input: $input) {
+    ...PlayerFormFragment
+  }
+}

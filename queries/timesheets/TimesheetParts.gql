@@ -1,0 +1,42 @@
+fragment TimesheetParts on Timesheet {
+  id
+  billedPosition
+  itemDate
+  hours
+  total
+  description
+  suggestion
+  mentor {
+    id
+    login
+  }
+  category
+  noCharge
+  attachment
+  status
+  isExpense
+  paymentType
+  testimony
+  opportunity
+  deliverable {
+    id
+    description
+    priority
+    rank
+    milestoneparent {
+      id
+      title
+    }
+  }
+  project {
+    id
+    number
+    name
+    projectType
+    salesStageId
+    pm { id login email}
+    pc { id login email}
+  }
+  campaign { id name }
+  user { id login }
+}

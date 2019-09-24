@@ -1,0 +1,8 @@
+mutation SavePhysicalAddress($input: PhysicalAddressInput!) {
+  savePhysicalAddress(input: $input) {
+    id
+    unit
+    unitType
+    community { id name }
+  }
+}

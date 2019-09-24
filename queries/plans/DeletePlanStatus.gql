@@ -1,0 +1,5 @@
+mutation DeletePlanStatus($id: ID!) {
+  deletePlanStatus(id: $id) {
+    id
+  }
+}

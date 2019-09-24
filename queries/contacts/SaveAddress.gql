@@ -1,0 +1,15 @@
+mutation SaveContactPhysicalAddress($input: PhysicalAddressInput!) {
+  savePhysicalAddress(input: $input) {
+    id
+    premise
+    number
+    street
+    unit
+    unitType
+    city
+    country
+    state
+    zip
+    googleFormatted
+  }
+}

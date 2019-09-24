@@ -1,0 +1,5 @@
+mutation SaveInfoImage($input: InfoImageInput!) {
+  saveInfoImage(input: $input) {
+    id
+  }
+}

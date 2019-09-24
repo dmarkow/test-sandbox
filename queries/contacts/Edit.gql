@@ -1,0 +1,46 @@
+#import "./ContactCardFragment"
+#import "./ContactCampaignsFragment"
+#import "./NotesFragment"
+#import "../TenTouches/TenTouchFragment"
+#import "./ResidenceFragment"
+
+query EditContact($id: ID!) {
+  contact(id: $id) {
+    id
+    mode
+    strategicTargetCategories
+    displayAs
+    firstName
+    lastName
+    name
+    suffix
+    goesBy
+    workPhone
+    extension
+    directPhone
+    mobile
+    jobTitle
+    marketingStatus
+    email
+    additionalEmails
+    webPage
+    linkedIn
+    body
+    birthDay
+    birthMonth
+    clientAccessWholeOffice
+    namesOnInvoices
+    company { id name }
+    residences {
+      ...ResidenceFragment
+    }
+    affiliations {
+      id
+      affiliationType {
+        id
+        valueType
+      }
+      value
+    }
+  }
+}

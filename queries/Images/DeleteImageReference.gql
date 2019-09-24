@@ -1,0 +1,5 @@
+mutation DeleteImageReference($id: ID!) {
+  deleteImageReference(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,28 @@
+query InvoicesToReview($login: String!) {
+  invoices(filter: "to_review", login: $login) {
+    ...InvoicesToReviewFields
+  }
+}
+
+fragment InvoicesToReviewFields on Invoice {
+  id
+  status
+  invoiceDate
+  invoiceTotal
+  nonBillableTotal
+  noChargeTotal
+  project {
+    id
+    prioritizeInvoices
+    name
+    number
+    pc {
+      id
+      login
+    }
+    pm {
+      id
+      login
+    }
+  }
+}

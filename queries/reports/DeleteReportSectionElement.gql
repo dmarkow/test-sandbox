@@ -1,0 +1,5 @@
+mutation DeleteReportSectionElement($id: ID!) {
+  deleteReportSectionElement(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,34 @@
+query Players($number: String!) {
+  project(number: $number) {
+    id
+    number
+    playerGroups {
+      ...PlayerGroupFields
+    }
+    players {
+      ...PlayerFields
+    }
+  }
+}
+
+fragment PlayerGroupFields on PlayerGroup {
+  id
+  name
+  position
+}
+
+fragment PlayerFields on Player {
+  id
+  role
+  company
+  name
+  key
+  description
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  playerGroup {
+    id
+  }
+}

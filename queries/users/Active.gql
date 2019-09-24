@@ -1,0 +1,7 @@
+query ActiveUsers($includeIds: [ID]) {
+  users(includeIds: $includeIds) {
+    id
+    login
+    fullname
+  }
+}

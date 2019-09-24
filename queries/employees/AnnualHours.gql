@@ -1,0 +1,22 @@
+query EmployeeAnnualHours($userLogin: String!, $year: Int!) {
+  employee(userLogin: $userLogin) {
+    id
+    annualHours(year: $year) {
+      date
+      available
+      worked
+      goal
+      billedTimesheets
+      billedInvoices
+      retained
+      testimony
+      expert
+      nonExpert
+      holidays
+      pto
+      sick
+      training
+      overhead
+    }
+  }
+}

@@ -1,0 +1,13 @@
+fragment AddressFragment on Address {
+  id
+  name
+  analysis
+  analysisJson
+  address { id }
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  customFields
+  displayName
+}

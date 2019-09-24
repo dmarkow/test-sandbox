@@ -1,0 +1,33 @@
+query Payments($month: String!) {
+  payments(month: $month) {
+    id
+    amount
+    checkDate
+    depositDate
+    checkNumber
+    payor
+    project {
+      id
+      number
+      name
+      totalDue
+      status
+    }
+    retainer { id }
+  }
+  retainers(month: $month) {
+    id
+    amount
+    checkDate
+    depositDate
+    payor
+    checkNumber
+    project {
+      id
+      number
+      name
+      totalDue
+      status
+    }
+  }
+}

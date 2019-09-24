@@ -1,0 +1,33 @@
+query NewProjects($month: String!) {
+  projects(filter: "New Projects", month: $month) {
+    id
+    number
+    name
+    projectType
+    represent
+    startDate
+    rate
+    guesstimate
+    state
+    sourceOf
+    office { id location }
+    referralContact {
+      id
+      displayAs
+    }
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+        projects { id salesStageId startDate }
+      }
+    }
+    plan {
+      id
+      amount
+    }
+    sourceUser { id fullname }
+  }
+}

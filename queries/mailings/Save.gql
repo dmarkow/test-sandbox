@@ -1,0 +1,5 @@
+mutation SaveMailing($input: MailingInput!) {
+  saveMailing(input: $input) {
+    id
+  }
+}

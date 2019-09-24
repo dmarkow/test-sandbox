@@ -1,0 +1,7 @@
+query ShowCampaignFrame($id: ID!) {
+  campaign(id: $id) {
+    id
+    name
+    fields
+  }
+}

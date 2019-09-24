@@ -1,0 +1,38 @@
+mutation ApplyDeliverableToInvoicelines(
+  $deliverableId: ID
+  $billedPosition: String
+  $invoicelineIds: [ID]!
+) {
+  applyDeliverableToInvoicelines(
+    deliverableId: $deliverableId
+    billedPosition: $billedPosition
+    invoicelineIds: $invoicelineIds
+  ) {
+    id
+    billedPosition
+    rate
+    lineTotal
+    deliverable {
+      id
+      description
+    }
+    invoice {
+      id
+      invoiceTotal
+      invoicedDeliverables {
+        id
+        description
+        fixedFee
+        deliverable {
+          id
+          description
+          rank
+          milestoneparent {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+}

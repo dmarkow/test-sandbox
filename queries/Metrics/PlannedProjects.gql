@@ -1,0 +1,10 @@
+query PlannedCount($quarter: String!) {
+  dynamicMetrics(type: "Planned Projects", quarter: $quarter) {
+    date
+    count
+  }
+  projectCount: dynamicMetrics(type: "Active Projects", quarter: $quarter) {
+    date
+    count
+  }
+}

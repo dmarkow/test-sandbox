@@ -1,0 +1,7 @@
+#import "./ShowFragment"
+
+mutation batchUpdateTestLocations($ids: [ID!]!, $input: TestLocationInput!, $remove: Boolean) {
+  batchUpdateTestLocations(ids: $ids, input: $input, remove: $remove) {
+    ...ShowTestLocationFragment
+  }
+}

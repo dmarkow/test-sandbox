@@ -1,0 +1,26 @@
+#import "../Documents/DocumentFragment"
+
+fragment MessageFields on Message {
+  id
+  sentAt
+  body
+  html
+  from
+  to
+  cc
+  bcc
+  subject
+  user { id fullname }
+  documents {
+    id
+    ...DocumentFragment
+  }
+  attachments {
+    id
+    attachment {
+      fileName
+    }
+    note
+    attachmentUrl
+  }
+}

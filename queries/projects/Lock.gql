@@ -1,0 +1,6 @@
+mutation LockProject($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    secured
+  }
+}

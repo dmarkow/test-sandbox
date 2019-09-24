@@ -1,0 +1,35 @@
+query AnnualChecklists($year: Int!) {
+  checklist(template: true, category: "Webinar Checklist") {
+    id
+    checklistItems {
+      id
+      position
+      section
+      title
+      notes
+      who
+      when
+    }
+  }
+  seminars(year: $year, eventType: "Webinar") {
+    ...AnnualChecklistsSeminarFields
+  }
+}
+
+fragment AnnualChecklistsSeminarFields on Seminar {
+  id
+  eventDate
+  title
+  checklists {
+    id
+    category
+    checklistItems {
+      id
+      title
+      complete
+      template {
+        id
+      }
+    }
+  }
+}

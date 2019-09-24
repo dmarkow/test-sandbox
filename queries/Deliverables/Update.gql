@@ -1,0 +1,7 @@
+#import "./DeliverableFragment"
+
+mutation UpdateDeliverable($id: ID!, $input: DeliverableInput!) {
+  updateDeliverable(id: $id, input: $input) {
+    ...DeliverableFragment
+  }
+}

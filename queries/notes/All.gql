@@ -1,0 +1,36 @@
+query Notes($login: String, $month: String!) {
+  notes(login: $login, month: $month) {
+    id
+    contactType
+    itemDate
+    itemType
+    contact {
+      id
+      displayAs
+      company {
+        id
+        name
+      }
+    }
+    project {
+      id
+      number
+      name
+      salesStageId
+    }
+    campaign {
+      id
+      name
+    }
+    feature {
+      id
+      title
+    }
+    employee {
+      id
+    }
+    device {
+      id
+    }
+  }
+}

@@ -1,0 +1,13 @@
+#import "../BPALinkFragment"
+
+fragment PlayerFormFragment on Player {
+  id
+  name
+  company
+  role
+  description
+  playerGroup { id }
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+}

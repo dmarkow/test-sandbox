@@ -1,0 +1,16 @@
+query Dispatches($number: String!) {
+  project(number: $number) {
+    id
+    number
+    dispatches {
+      id
+      time
+      date
+      category
+      expert {
+        id
+        fullname
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation DeleteAgreement($id: ID!) {
+  deleteAgreement(id: $id) {
+    id
+  }
+}

@@ -1,0 +1,8 @@
+mutation SaveRefund($input: RefundInput!) {
+  saveRefund(input: $input) {
+    id
+    amount
+    payer
+    itemDate
+  }
+}

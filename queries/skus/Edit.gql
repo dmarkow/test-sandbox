@@ -1,0 +1,9 @@
+query SKU($id: ID!) {
+  sku(id: $id) {
+    id
+    name
+    description
+    category
+    trainingUrl
+  }
+}

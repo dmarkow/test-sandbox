@@ -1,0 +1,29 @@
+fragment TaskFragment on Task {
+  id
+  description
+  itemDate
+  priority
+  completed
+  category
+  hours
+  creator { id login }
+  user { id login }
+  userId
+  deliverable { id description }
+  deliverableId
+  project { id number name }
+  projectId
+  interview { id project { id number name } }
+  contact { id displayAs }
+  employee { id displayAs }
+  campaign { id name }
+  feature { id title featureType }
+  kanbanCard { id title deliverable { id description } }
+  device { id }
+  tenTouch { id }
+  tenTouchType
+  tenTouchItem { id category name emailSubject emailBody }
+  tenTouchNote
+  tenTouchSubject
+  tenTouchEmail
+}

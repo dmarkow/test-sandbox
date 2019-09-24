@@ -1,0 +1,5 @@
+mutation DeleteInfoImage($id: ID!) {
+  deleteInfoImage(id: $id) {
+    id
+  }
+}

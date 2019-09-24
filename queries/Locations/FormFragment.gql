@@ -1,0 +1,25 @@
+#import "../BPALinkFragment"
+
+fragment LocationFormFragment on Location {
+  id
+  name
+  specificationsGeneral
+  specificationsMaterials
+  specificationsExecution
+  specificationsQualityAssurance
+  analysisStatus
+  priority
+  customFields
+  iiaccIssue
+  iiaccInvestigation
+  iiaccAnalysis
+  iiaccConclusion
+  iiaccCosts
+  basicAnalysis
+  location { id }
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+  next { id }
+  prev { id }
+}

@@ -1,0 +1,33 @@
+query EditContactPhysicalAddress($id: ID!) {
+  physicalAddress(id: $id) {
+    id
+    street
+    city
+    unit
+    unitType
+    state
+    number
+    premise
+    country
+    zip
+    legacyStreet
+    legacyCity
+    legacyState
+    legacyZip
+    googleFormatted
+    googleData
+    residences {
+      id
+      contact(includeInactive: true) {
+        id
+        displayAs
+        mode
+        name
+        company {
+          id
+          name
+        }
+      }
+    }
+  }
+}

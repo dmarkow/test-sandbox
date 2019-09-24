@@ -1,0 +1,6 @@
+query MainPhotoImage($id: ID!) {
+  image: infoImage(id: $id) {
+    id
+    attachmentUrl
+  }
+}

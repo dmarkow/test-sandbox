@@ -1,0 +1,12 @@
+query PreviewContacts($id: ID!) {
+  mailing(id: $id) {
+    id
+    subject
+    previewContacts {
+      id
+      greetAs
+      displayAs
+      company { id name }
+    }
+  }
+}

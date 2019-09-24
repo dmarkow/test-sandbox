@@ -1,0 +1,10 @@
+#import "../Elements/ListFragment"
+
+query ReportSectionElements($reportSectionId: ID!) {
+  reportSectionElements(reportSectionId: $reportSectionId) {
+    id
+    element {
+      ...ElementListFragment
+    }
+  }
+}

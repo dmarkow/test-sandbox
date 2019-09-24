@@ -1,0 +1,7 @@
+#import "./SeminarFragment"
+
+mutation SaveSeminar($input: SeminarInput!) {
+  saveSeminar(input: $input) {
+    ...SeminarFragment
+  }
+}

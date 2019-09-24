@@ -1,0 +1,8 @@
+query EditGoal($id: ID!) {
+  billableGoal(id: $id) {
+    id
+    effectiveDate
+    fixed
+    goal
+  }
+}

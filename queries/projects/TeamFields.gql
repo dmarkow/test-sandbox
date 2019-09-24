@@ -1,0 +1,11 @@
+fragment TeamFields on Project {
+  id
+  pc { id login email fullname color }
+  pm { id login email fullname color }
+  technicalLead { id login email fullname }
+  projectUsers {
+    id
+    role
+    user { id login email fullname }
+  }
+}

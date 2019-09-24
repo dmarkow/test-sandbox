@@ -1,0 +1,14 @@
+fragment SalesProjectionsFragment on Project {
+  id
+  salesProjections {
+    id
+    itemDate
+    amount
+    closeDate
+    salesStage {
+      id
+      probability
+      description
+    }
+  }
+}

@@ -1,0 +1,6 @@
+mutation SortTrainingAssignments($input: TrainingAssignmentInput!) {
+  sortTrainingAssignment(input: $input) {
+    id
+    position
+  }
+}

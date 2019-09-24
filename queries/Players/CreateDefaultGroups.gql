@@ -1,0 +1,5 @@
+mutation CreateDefaultGroups($id: ID!) {
+  createDefaultPlayerGroups(id: $id) {
+    id
+  }
+}

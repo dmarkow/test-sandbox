@@ -1,0 +1,6 @@
+query DocumentPicker($projectNumber: String!) {
+  documents(projectNumber: $projectNumber, filter: "files") {
+    id
+    displayName
+  }
+}

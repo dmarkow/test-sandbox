@@ -1,0 +1,6 @@
+mutation MoveListItem($id: ID!, $direction: String!) {
+  moveListItem(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}

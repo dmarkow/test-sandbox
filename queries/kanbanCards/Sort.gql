@@ -1,0 +1,13 @@
+mutation SortKanbanCard(
+  $id: ID!
+  $position: String
+  $rank: Int
+  $column: String!
+) {
+  sortKanbanCard(id: $id, position: $position, rank: $rank, column: $column) {
+    id
+    rank
+    column
+    dateCompleted
+  }
+}

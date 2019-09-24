@@ -1,0 +1,10 @@
+#import "./DeliverableFragment"
+
+mutation CreateDeliverables($planId: ID!, $deliverableMenuItemIds: [ID]!) {
+  createDeliverables(
+    planId: $planId
+    deliverableMenuItemIds: $deliverableMenuItemIds
+  ) {
+    ...DeliverableFragment
+  }
+}

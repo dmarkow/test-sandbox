@@ -1,0 +1,6 @@
+mutation AddContactsToGroup($contactId: ID, $filter: ContactSearchFilter, $campaignId: ID, $campaignFields: String) {
+  addContactsToGroup(contactId: $contactId, filter: $filter, campaignId: $campaignId, campaignFields: $campaignFields) {
+    totalCount
+    addedCount
+  }
+}

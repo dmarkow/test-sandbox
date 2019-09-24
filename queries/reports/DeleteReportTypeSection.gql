@@ -1,0 +1,8 @@
+mutation DeleteReportTypeSection($id: ID!) {
+  deleteReportTypeSection(id: $id) {
+    id
+    reportType {
+      id
+    }
+  }
+}

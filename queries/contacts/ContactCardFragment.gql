@@ -1,0 +1,27 @@
+#import "./ResidenceFragment"
+
+fragment ContactCardFragment on Contact {
+  id
+  displayAs
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  workPhone
+  extension
+  directPhone
+  mobile
+  email
+  additionalEmails
+  residences {
+    id
+    ...ResidenceFragment
+  }
+  avatarUrl
+  avatarThumbUrl
+  clientAccess
+}

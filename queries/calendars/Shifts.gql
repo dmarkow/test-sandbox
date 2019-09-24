@@ -1,0 +1,21 @@
+query Shifts($date: String, $startTime: Int!, $endTime: Int!) {
+  employees(activeWeek: $date) {
+    id
+    user { id login }
+    future
+    employeeType
+    displayAs
+    department
+    schedule
+  }
+
+  calendars(startTime: $startTime, endTime: $endTime) {
+    id
+    itemDate
+    endDate
+    allDay
+    user { id }
+    project { id number }
+    description
+  }
+}

@@ -1,0 +1,17 @@
+query DashboardCampaigns($quarter: String!) {
+  metrics(quarter: $quarter, category: "Dashboard: Campaign") {
+    ...DashboardCampaignFields
+
+  }
+}
+
+fragment DashboardCampaignFields on Metric {
+  id
+  captureDate
+  category
+  campaign {
+    id
+    name
+    percentCompleted
+  }
+}

@@ -1,0 +1,10 @@
+#import "./LocationFragment"
+
+fragment LocationRowFragment on Location {
+  ...LocationFragment
+  priority
+  analysisStatus
+  pfcsPhotoCount
+  otherPhotoCount
+  customFields
+}

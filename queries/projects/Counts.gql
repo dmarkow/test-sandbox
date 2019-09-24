@@ -1,0 +1,6 @@
+query ProjectCounts($user: String) {
+  projectCounts(user: $user) {
+    name
+    count
+  }
+}

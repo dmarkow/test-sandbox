@@ -1,0 +1,24 @@
+#import "./ResidenceFragment"
+
+query DuplicateContacts($contactImportId: ID, $mode: String) {
+  duplicateContacts(contactImportId: $contactImportId, mode: $mode) {
+    ...DuplicateContactFields
+  }
+}
+
+fragment DuplicateContactFields on DuplicateContactSet {
+  contacts {
+    ...DuplicateContactsContactFields
+  }
+}
+
+fragment DuplicateContactsContactFields on Contact {
+  id
+  sortAs
+  mode
+  email
+  workPhone
+  company { id name }
+  createdAt
+  residences { ...ResidenceFragment }
+}

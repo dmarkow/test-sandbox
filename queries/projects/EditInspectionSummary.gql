@@ -1,0 +1,6 @@
+query EditProjectInspectionSummary($number: String!) {
+  project(number: $number) {
+    id
+    inspectionSummary
+  }
+}

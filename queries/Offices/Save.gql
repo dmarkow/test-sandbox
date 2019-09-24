@@ -1,0 +1,7 @@
+#import "./OfficeFragment"
+
+mutation SaveOffice($input: OfficeInput!) {
+  saveOffice(input: $input) {
+    ...OfficeFragment
+  }
+}

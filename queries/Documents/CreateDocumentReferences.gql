@@ -1,0 +1,10 @@
+#import "./DocumentReferenceFragment"
+
+mutation CreateDocumentInterviews(
+  $input: DocumentReferenceInput!
+  $documentIds: [ID!]!
+) {
+  createDocumentReferences(input: $input, documentIds: $documentIds) {
+    ...DocumentReferenceFragment
+  }
+}

@@ -1,0 +1,10 @@
+#import "./Fields"
+
+query ProjectMessages($id: ID!) {
+  project(id: $id) {
+    id
+    messages {
+      ...MessageFields
+    }
+  }
+}
