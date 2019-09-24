@@ -1,0 +1,4832 @@
+schema {
+  query: RootQueryType
+  mutation: RootMutationType
+}
+
+type AccessPublication {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  path: String!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type AccessUser {
+  active: Boolean
+  contact: Contact
+  createdAt: DateTime
+  id: ID!
+  isAdmin: Boolean
+  lastLoginAt: DateTime
+  login: String
+  updatedAt: DateTime
+  userAgent: String
+}
+
+type AccessUserSession {
+  accessUser: AccessUser
+  token: String
+}
+
+type AddContactsToGroupResults {
+  addedCount: Int
+  totalCount: Int
+}
+
+type Address {
+  address: Address
+  addressId: ID
+  addresses: [Address!]!
+  analysis: String
+  analysisJson: Quill
+  bpaLinks: [BpaLink!]!
+  createdAt: DateTime
+  customFields: Quill
+  displayName: String
+  id: ID!
+  name: String
+  next: Address
+  otherKeyPhotoCount: Int
+  otherPhotoCount: Int
+  pfcsKeyPhotoCount: Int
+  pfcsPhotoCount: Int
+  photoLinks: [PhotoLink!]!
+  photos: [Photo!]!
+  prev: Address
+  project: Project!
+  updatedAt: DateTime
+}
+
+input AddressInput {
+  addressId: ID
+  analysis: String
+  analysisJson: Quill
+  bpaLinks: [BpaLinkInput]
+  customFields: Quill
+  id: ID
+  name: String
+  projectId: ID
+}
+
+type Affiliation {
+  affiliationType: AffiliationType
+  contact: Contact
+  createdAt: DateTime
+  id: ID!
+  updatedAt: DateTime
+  value: String
+}
+
+input AffiliationInput {
+  affiliationTypeId: ID
+  contactId: ID
+  delete: Boolean
+  id: ID
+  value: String
+}
+
+type AffiliationType {
+  createdAt: DateTime
+  id: ID!
+  name: String!
+  updatedAt: DateTime
+  url: String
+  valueType: String
+}
+
+input AffiliationTypeInput {
+  id: ID
+  name: String
+  url: String
+  valueType: String
+}
+
+type Agreement {
+  content: String!
+  createdAt: DateTime
+  id: ID!
+  title: String!
+  updatedAt: DateTime
+}
+
+input AgreementInput {
+  content: String
+  id: ID
+  title: String
+}
+
+type AnnualHourStats {
+  available: Decimal
+  billedInvoices: Decimal
+  billedTimesheets: Decimal
+  date: Date
+  expert: Decimal
+  goal: Decimal
+  holidays: Decimal
+  nonExpert: Decimal
+  overhead: Decimal
+  pto: Decimal
+  retained: Decimal
+  sick: Decimal
+  testimony: Decimal
+  training: Decimal
+  worked: Decimal
+}
+
+type AppliedPayment {
+  amount: Decimal
+  creditMemo: CreditMemo
+  id: ID!
+  invoice: Invoice
+  payment: Payment
+  project: Project
+  refund: Refund
+}
+
+input AppliedPaymentInput {
+  amount: Decimal
+  delete: Boolean
+  id: ID
+  invoiceId: ID
+  projectId: ID
+}
+
+type ArcAttachment {
+  fileName: String!
+  updatedAt: String
+}
+
+type AsteriskCall {
+  accountcode: String
+  amaflags: Int
+  billsec: Int
+  calldate: DateTime
+  channel: String
+  clid: String
+  dcontext: String
+  disposition: String
+  dst: String
+  dstchannel: String
+  duration: Int
+  id: ID!
+  lastapp: String
+  lastdata: String
+  linkedid: String
+  peeraccount: String
+  sequence: Int
+  src: String
+  uniqueid: String
+  userfield: String
+}
+
+type AttachedFile {
+  attachment: ArcAttachment
+  attachmentThumbUrl: String
+  attachmentUrl: String
+  document: Document
+  id: ID!
+  md5: String
+  name: String
+  primaryFile: Boolean
+  size: Int
+  sourceFile: SourceFile
+}
+
+input AttachedFileInput {
+  attachment: Upload
+  documentId: ID
+  id: ID
+  name: String
+  primaryFile: Boolean
+}
+
+type Attachment {
+  attachment: ArcAttachment
+  attachmentFileSize: Int
+  attachmentThumbUrl: String
+  attachmentUrl: String
+  contact: Contact
+  createdAt: DateTime
+  document: Document
+  id: ID!
+  invoice: Invoice
+  message: Message
+  note: String
+  prepend: Boolean
+  project: Project
+  projectId: ID
+  rank: Int
+  topic: Topic
+  training: Training
+  updatedAt: DateTime
+  url: String
+}
+
+input AttachmentInput {
+  attachment: Upload
+  contactId: ID
+  documentId: ID
+  id: ID
+  invoiceId: ID
+  note: String
+  prepend: Boolean
+  projectId: ID
+  topicId: ID
+  trainingId: ID
+  url: String
+}
+
+input BatchPhotoInput {
+  addressIds: [ID]
+  elementIds: [ID]
+  ids: [ID]
+  issueIds: [ID]
+  key: Boolean
+  locationIds: [ID]
+  playerIds: [ID]
+  remove: Boolean
+  testLocationIds: [ID]
+}
+
+input BatchTagInput {
+  filter: ContactSearchFilter!
+  tagId: ID!
+}
+
+type BillableGoal {
+  createdAt: DateTime
+  effectiveDate: Date
+  fixed: Boolean
+  goal: Float
+  id: ID!
+  percentage: Decimal
+  updatedAt: DateTime
+}
+
+input BillableGoalInput {
+  effectiveDate: String
+  employeeId: ID
+  fixed: Boolean
+  goal: String
+  id: ID
+}
+
+type BillableGoalReduction {
+  amount: Decimal
+  createdAt: DateTime
+  description: String
+  employee: Employee
+  id: ID!
+  itemDate: Date
+  manager: User
+  project: Project
+  updatedAt: DateTime
+}
+
+input BillableGoalReductionInput {
+  amount: Decimal
+  description: String
+  employeeId: ID
+  id: ID
+  itemDate: String
+  managerId: ID
+  projectId: ID
+}
+
+type BillingPosition {
+  active: Boolean!
+  billingRates: [BillingRate!]!
+  createdAt: DateTime
+  description: String!
+  id: ID!
+  initials: String!
+  updatedAt: DateTime
+}
+
+type BillingRate {
+  billingPosition: BillingPosition!
+  createdAt: DateTime!
+  effectiveDate: Date!
+  feeSchedule: FeeSchedule!
+  id: ID!
+  rate: Int!
+  updatedAt: DateTime!
+}
+
+input BillingRateInput {
+  billingPositionId: ID
+  feeScheduleId: ID
+  id: ID
+  rate: String
+}
+
+type BpaLink {
+  address: Address
+  addressId: ID
+  createdAt: DateTime
+  description: String
+  document: Document
+  documentId: ID
+  element: Element
+  elementId: ID
+  id: ID!
+  infoImage: InfoImage
+  infoImageId: ID
+  issue: Issue
+  issueId: ID
+  location: Location
+  locationId: ID
+  player: Player
+  playerId: ID
+  testLocation: TestLocation
+  testLocationId: ID
+  updatedAt: DateTime
+}
+
+input BpaLinkInput {
+  addressId: ID
+  delete: Boolean
+  description: String
+  documentId: ID
+  elementId: ID
+  id: ID
+  infoImageId: ID
+  issueId: ID
+  locationId: ID
+  playerId: ID
+  testLocationId: ID
+  uuid: String
+}
+
+type Calendar {
+  allDay: Boolean
+  cancelled: Boolean
+  completedAt: DateTime
+  completer: User
+  createdAt: DateTime
+  description: String
+  endDate: DateTime
+  followupDate: DateTime
+  followupType: String
+  id: ID!
+  itemDate: DateTime
+  itemType: String
+  project: Project
+  updatedAt: DateTime
+  user: User
+}
+
+input CalendarInput {
+  allDay: Boolean
+  cancelled: Boolean
+  description: String
+  endDate: String
+  id: ID
+  itemDate: String
+  projectId: ID
+  userId: ID
+}
+
+type Campaign {
+  active: Boolean
+  campaignsContacts: [CampaignsContact]
+  campaignsContactsCount: Int!
+  closeActivities: String
+  closeDate: Date
+  company: Contact
+  createdAt: DateTime
+  description: String
+  fields: [String!]!
+  id: ID!
+  includeAttendance: Boolean
+  includeIndustry: Boolean
+  includeSegments: Boolean
+  includeUnsubscribed: Boolean
+  mailings: [Mailing!]!
+  name: String!
+  notes: [Note!]!
+  percentCompleted: Int!
+  projects: [Project!]!
+  script: String
+  seminar: Seminar
+  seminarId: Int
+  status: String!
+  targetDate: Date!
+  tasks: [Task!]!
+  tenTouchBatches: [TenTouchBatch!]!
+  timesheets: [Timesheet!]!
+  updatedAt: DateTime
+  user: User!
+  userId: ID
+}
+
+input CampaignInput {
+  campaignId: ID
+  closeActivities: String
+  closeDate: String
+  contactId: ID
+  contactParams: ContactParamsInput
+  copyContacts: String
+  description: String
+  fieldsAsText: String
+  id: ID
+  includeAttendance: Boolean
+  includeIndustry: Boolean
+  includeSegments: Boolean
+  includeUnsubscribed: Boolean
+  name: String
+  percentCompleted: String
+  script: String
+  seminarId: ID
+  status: String
+  targetDate: String
+  userId: ID
+}
+
+type CampaignMetrics {
+  activity: [MetricValue]
+  information: [MetricValue]
+  outcome: [MetricValue]
+}
+
+type CampaignsContact {
+  campaign: Campaign!
+  contact: Contact!
+  createdAt: DateTime
+  currentClient: Boolean
+  eventAttendee: Boolean
+  existingOpportunity: Boolean
+  fields: Raw
+  id: ID!
+  memberships: [Membership!]!
+  newOpportunity: Boolean
+  pastClient: Boolean
+  projects: [Project!]!
+  updatedAt: DateTime
+}
+
+type Checklist {
+  category: String!
+  checklistItems: [ChecklistItem!]!
+  complete: Boolean
+  completedAt: DateTime
+  createdAt: DateTime
+  employee: Employee
+  id: ID!
+  itemCount: Int
+  itemsCompleted: Int
+  mailing: Mailing
+  photoset: Photoset
+  project: Project
+  roles: [String!]!
+  seminar: Seminar
+  template: Boolean
+  updatedAt: DateTime
+}
+
+input ChecklistInput {
+  category: String
+  id: ID
+  roles: [String]
+  template: Boolean
+}
+
+type ChecklistItem {
+  checklist: Checklist
+  complete: Boolean
+  completedAt: DateTime
+  createdAt: DateTime
+  id: ID!
+  notes: String
+  position: Int
+  section: String
+  template: ChecklistItem
+  title: String
+  updatedAt: DateTime
+  user: User
+  when: String
+  who: String
+}
+
+input ChecklistItemInput {
+  checklistId: ID
+  complete: Boolean
+  id: ID
+  notes: String
+  section: String
+  title: String
+  userId: ID
+  when: String
+  who: String
+}
+
+type Commonbillingentry {
+  category: String
+  createdAt: DateTime
+  description: String
+  id: ID!
+  updatedAt: DateTime
+}
+
+type Community {
+  city: String!
+  complete: Boolean
+  createdAt: DateTime
+  description: String
+  id: ID!
+  name: String!
+  notes: [Note!]!
+  physicalAddresses: [PhysicalAddress!]!
+  state: String!
+  updatedAt: DateTime
+}
+
+input CommunityInput {
+  city: String
+  complete: Boolean
+  description: String
+  id: ID
+  name: String
+  state: String
+}
+
+type Contact {
+  formerContacts: [Contact!]!
+  avatar: ArcAttachment
+  lastName: String
+  birthday: Date
+  isActive: Boolean
+  legacyState: String
+  tagNames: [String]
+  workPhone: String
+  campaignsAsCompany: [Campaign!]!
+  importedContacts: [ImportedContact!]!
+  companyName: String
+  suffix: String
+  directPhone: String
+  relationshipsAsParent: [Relationship!]!
+  legacyZip: String
+  campaigns: [Campaign!]!
+  externalId: String
+  coworkers: [Contact!]!
+  marketingStatus: String
+  strategicTargetCategories: [String!]!
+  aliases: [String!]!
+  mode: String!
+  surveys: [Survey!]!
+  body: String
+  normalized: String
+  avatarThumbUrl: String
+  legacyStreet: String
+  taggings: [Tagging!]!
+  fax: String
+  lastContactedBy: User
+  creator: User
+  company: Contact
+  email: String
+  additionalEmails: String
+  goesBy: String
+  lastContactedOn: Date
+  name: String
+  attachments: [Attachment!]!
+  linkedIn: String
+  officeProjects: [Project!]!
+  updatedAt: DateTime
+  legacyCity: String
+  relationships: [Relationship!]!
+  longitude: String
+  webPage: String
+  referralProjects: [Project!]!
+  imported: Int
+  createdAt: DateTime
+  contacts(includeInactive: Boolean = false): [Contact!]!
+  avatarUrl: String
+  latitude: String
+  tasks: [Task!]!
+  affiliations: [Affiliation!]!
+  oldCompany: String
+  greetAs: String
+  strategicTargetProjects: [Project!]!
+  clientAccess: Boolean
+  deletedOn: Date
+  title: String
+  birthDay: String
+  extension: String
+  mobile: String
+  tags(sections: [String]): [Tag!]!
+  doNotMergeWith: [Int!]!
+  temp: Int
+  sentFeeSchedule: Boolean
+  projects: [Project!]!
+  id: ID!
+  memberships: [Membership!]!
+  deletedByUser: User
+  tenTouches: [TenTouch!]!
+  namesOnInvoices: Boolean
+  sortAs: String
+  residences: [Residence!]!
+  downloadedMec: DateTime
+  campaignsContacts: [CampaignsContact!]!
+  deletedReason: String
+  seminarAttendees: [SeminarAttendee!]!
+  displayAs: String!
+  firstName: String
+  jobTitle: String
+  notes: [Note!]!
+  hexId: String
+  clientAccessWholeOffice: Boolean
+  birthMonth: String
+}
+
+type ContactImport {
+  attachment: ArcAttachment
+  attachmentUrl: String
+  campaign: Campaign
+  campaignField: String
+  campaignFieldNewContact: String
+  countAdded: Int
+  countMatched: Int
+  createdAt: DateTime
+  id: ID!
+  importedAt: DateTime
+  importedContacts: [ImportedContact!]!
+  mappings: Quill
+  name: String!
+  tagPending: Boolean
+  tags: [Tag!]!
+  updatedAt: DateTime
+}
+
+input ContactImportInput {
+  attachment: Upload
+  campaignField: String
+  campaignFieldNewContact: String
+  campaignId: ID
+  data: [[String]]
+  mappings: Quill
+  name: String
+  tagIds: [ID]
+  tagPending: Boolean
+}
+
+input ContactInput {
+  birthMonth: String
+  clientAccessWholeOffice: Boolean
+  jobTitle: String
+  firstName: String
+  deletedReason: String
+  residences: [ResidenceInput]
+  namesOnInvoices: Boolean
+  id: ID
+  sentFeeSchedule: Boolean
+  mobile: String
+  extension: String
+  birthDay: String
+  deletedOn: Date
+  clientAccess: Boolean
+  affiliations: [AffiliationInput]
+  latitude: String
+  webPage: String
+  longitude: String
+  linkedIn: String
+  name: String
+  goesBy: String
+  creatorId: ID
+  additionalEmails: String
+  email: String
+  body: String
+  mode: String
+  aliases: [String]
+  strategicTargetCategories: [String]
+  marketingStatus: String
+  contactId: ID
+  directPhone: String
+  suffix: String
+  workPhone: String
+  lastName: String
+  avatar: Upload
+}
+
+input ContactParamsInput {
+  commit: String
+  filter: String
+  fromSearch: String
+  id: String
+  query: String
+  sort: String
+  utf8: String
+}
+
+type ContactResults {
+  clientAccessCount: Int!
+  clientCount: Int!
+  companyCount: Int!
+  contactCompaniesCount: Int!
+  contacts: [Contact!]!
+  currentClientCount: Int!
+  emailCount: Int!
+  excludingClientsCount: Int!
+  filteredCompanyCount: Int!
+  filteredContactCompaniesCount: Int!
+  filteredContactCount: Int!
+  filteredProspectCount: Int!
+  filteredWhaleCount: Int!
+  pastClientCount: Int!
+  prospectCount: Int!
+  title: String!
+  totalCount: Int!
+  whaleCount: Int!
+}
+
+input ContactSearchAdvancedFilter {
+  criteria: String
+  value: String
+  values: [String]
+}
+
+input ContactSearchFilter {
+  company: ID
+  custom: String
+  filter: String
+  filters: [ContactSearchAdvancedFilter]
+  firstName: String
+  includeArchived: Boolean
+  lastName: String
+  mode: String
+  order: String
+  page: String
+  pageSize: Int
+  query: String
+  searchNotes: Boolean
+  strategicTarget: Boolean
+  tags: [ID]
+}
+
+type ContactsMailing {
+  contact: Contact
+  createdAt: DateTime
+  id: ID!
+  mailing: Mailing
+  sent: Boolean
+  updatedAt: DateTime
+}
+
+type ConversionRate {
+  count: Int!
+  stage: Int!
+  to0: Int
+  to10: Int
+  to100: Int
+  to30: Int
+  to50: Int
+  to70: Int
+  to90: Int
+}
+
+type CopyCampaignContactsResult {
+  addedCount: Int!
+  totalCount: Int!
+}
+
+input CreateReportInput {
+  projectNumber: String
+  reportTypeId: ID
+  userId: ID
+}
+
+type CreditMemo {
+  amount: Decimal!
+  appliedPayments: [AppliedPayment!]!
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  itemDate: Date!
+  project: Project!
+  synced: Boolean!
+  updatedAt: DateTime!
+}
+
+input CreditMemoInput {
+  amount: Decimal
+  appliedPayments: [AppliedPaymentInput]
+  description: String
+  id: ID
+  itemDate: Date
+  projectId: ID
+  synced: Boolean
+}
+
+"""
+The `Date` scalar type represents a date. The Date appears in a JSON
+response as an ISO8601 formatted string.
+"""
+scalar Date
+
+"""
+The `DateTime` scalar type represents a date and time in the UTC
+timezone. The DateTime appears in a JSON response as an ISO8601 formatted
+string, including UTC timezone ("Z"). The parsed date and time string will
+be converted to UTC and any UTC offset other than 0 will be rejected.
+"""
+scalar DateTime
+
+scalar Decimal
+
+type Deliverable {
+  budget: Decimal
+  completed: Boolean
+  costs: [DeliverableCost!]!
+  createdAt: DateTime
+  description: String!
+  dueDate: Date
+  id: ID!
+  ilTotal: Decimal
+  kanbanCards: [KanbanCard!]!
+  milestoneparent: Milestoneparent!
+  plan: Plan!
+  priority: String!
+  project: Project!
+  rank: Int
+  totalInvoiced: Decimal
+  totalNc: Decimal
+  totalPending: Decimal
+  tsTotal: Decimal
+  updatedAt: DateTime
+}
+
+type DeliverableCost {
+  amount: Decimal!
+  billingPosition: BillingPosition!
+  completed: Boolean
+  createdAt: DateTime!
+  deliverable: Deliverable
+  deliverablemenuitemId: Int
+  description: String
+  dueDate: DateTime
+  hours: Decimal!
+  id: ID!
+  plan: Plan!
+  position: Int
+  updatedAt: DateTime!
+  updater: User
+  user: User
+}
+
+input DeliverableCostInput {
+  amount: String
+  billingPositionId: ID
+  delete: Boolean
+  description: String
+  hours: String
+  id: ID
+  planId: ID
+  uuid: String
+}
+
+input DeliverableInput {
+  completed: Boolean
+  costs: [DeliverableCostInput]
+  description: String
+  dueDate: String
+  milestoneparentId: ID
+  planId: ID
+  priority: String
+}
+
+type DeliverableMenuItem {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  name: String!
+  planSection: PlanSection!
+  position: Int
+  sku: Sku!
+  updatedAt: DateTime!
+}
+
+input DeliverableMenuItemInput {
+  description: String
+  id: ID
+  name: String
+  planSectionId: ID
+  skuId: ID
+}
+
+type Deposit {
+  account: String!
+  ach: Boolean
+  amount: Decimal!
+  date: Date!
+  id: ID!
+  payments: [Payment!]!
+  retainers: [Retainer!]!
+  status: String!
+  synced: Boolean!
+}
+
+input DepositInput {
+  account: String
+  ach: Boolean
+  amount: Decimal
+  date: Date
+  id: ID
+  status: String
+  synced: Boolean
+}
+
+type Device {
+  office: String!
+  user: User
+  faststone: String
+  cpuRank: Int
+  pfcsAccount: Boolean
+  motherboard: String
+  originalInstallDate: Date
+  acrobat: String
+  chrome: Boolean
+  ramType: String
+  graphics: String
+  cpu: String
+  ramSize: String
+  videoPorts: String
+  os: String
+  purchaseDate: Date
+  description: String
+  updatedAt: DateTime
+  storage: String
+  createdAt: DateTime
+  checkoutDate: Date
+  tasks: [Task]
+  printer: Boolean
+  productKey: String
+  model: String
+  lastUpdated: Date
+  goToMeeting: String
+  category: String!
+  location: String
+  id: ID!
+  vnc: String
+  ip: String
+  remote: Boolean
+  msOffice: String
+  equipmentId: String
+  notes: [Note!]!
+}
+
+input DeviceInput {
+  acrobat: String
+  category: String
+  checkoutDate: String
+  chrome: Boolean
+  cpu: String
+  cpuRank: Int
+  description: String
+  equipmentId: String
+  faststone: String
+  goToMeeting: String
+  graphics: String
+  id: ID
+  ip: String
+  lastUpdated: String
+  location: String
+  model: String
+  motherboard: String
+  msOffice: String
+  office: String
+  originalInstallDate: String
+  os: String
+  pfcsAccount: Boolean
+  printer: Boolean
+  productKey: String
+  purchaseDate: String
+  ramSize: String
+  ramType: String
+  remote: Boolean
+  storage: String
+  userId: ID
+  videoPorts: String
+  vnc: String
+}
+
+type Dispatch {
+  category: String!
+  checklists: [Checklist!]!
+  createdAt: DateTime
+  date: Date!
+  description: String
+  documentReferences: [DocumentReference!]!
+  documents: [Document!]!
+  expert: User!
+  hideElements: Boolean
+  hideImages: Boolean
+  hideIssues: Boolean
+  hideLocations: Boolean
+  hideMaps: Boolean
+  hideOms: Boolean
+  id: ID!
+  imageReferences: [ImageReference!]!
+  infoImages: [InfoImage!]!
+  legacy: Boolean
+  location: String
+  materials: String
+  meetings: String
+  oneMinuteSummary: String
+  photoNumber: String
+  photoset: Photoset
+  project: Project!
+  startingAddress: String
+  time: Time
+  updatedAt: DateTime
+}
+
+input DispatchInput {
+  category: String
+  date: String
+  description: String
+  expertId: ID
+  hideElements: Boolean
+  hideImages: Boolean
+  hideIssues: Boolean
+  hideLocations: Boolean
+  hideMaps: Boolean
+  hideOms: Boolean
+  id: ID
+  legacy: Boolean
+  location: String
+  materials: String
+  meetings: String
+  oneMinuteSummary: String
+  photoNumber: String
+  projectId: ID
+  startingAddress: String
+  time: String
+}
+
+type Document {
+  attachedFiles: [AttachedFile!]!
+  endDate: Date
+  analysisTitle: String
+  hidden: Boolean
+  batesStamp: String
+  section: String
+  sourceFile: SourceFile
+  documentCategories: [DocumentCategory!]!
+  ancestors: [Document!]!
+  recipient: String
+  suffix: String
+  pages: Int
+  key: Boolean
+  references: [Document!]!
+  library: Boolean
+  analysisUser: User
+  path: String
+  mode: String
+  pageReference: Int
+  legacySection: String
+  referenceDocument: Document
+  attachmentUrl: String
+  summary: String
+  employee: Employee
+  pdfSecurity: Boolean
+  source: String
+  attachmentFileSize: Int
+  alternateAttachment: ArcAttachment
+  attachmentId: Int
+  attachment: ArcAttachment
+  description: String
+  updatedAt: DateTime
+  documents: [Document!]!
+  alternateAttachmentUrl: String
+  displayName: String
+  header: Boolean
+  createdAt: DateTime
+  analysisJson: Quill
+  url: String
+  migrated: Boolean
+  md5: String
+  analysis: String
+  alternateAttachmentFileSize: Int
+  elements: [Element!]!
+  document: Document
+  receivedDate: Date
+  publicDescription: String
+  id: ID!
+  project: Project
+  author: String
+  date: Date
+  printed: Boolean
+  attachmentThumbUrl: String
+  tenTouchItems: [TenTouchItem!]!
+  analysisDate: Date
+}
+
+type DocumentCategory {
+  documentCategories: [DocumentCategory!]!
+  documentCategory: DocumentCategory
+  documentCategoryId: ID
+  id: ID!
+  name: String!
+}
+
+input DocumentInput {
+  analysisDate: String
+  projectId: ID
+  printed: Boolean
+  date: String
+  elementIds: [ID]
+  author: String
+  documentId: ID
+  sourceFileId: ID
+  id: ID
+  referenceDocumentId: ID
+  copyDocumentId: ID
+  receivedDate: String
+  initialAttachment: Upload
+  analysis: String
+  md5: String
+  categoryIds: [ID]
+  migrated: Boolean
+  url: String
+  analysisJson: Quill
+  header: Boolean
+  remoteAttachmentUrl: String
+  description: String
+  attachment: Upload
+  alternateAttachment: Upload
+  source: String
+  pdfSecurity: Boolean
+  summary: String
+  pageReference: String
+  mode: String
+  library: Boolean
+  employeeId: ID
+  key: Boolean
+  pages: String
+  suffix: String
+  recipient: String
+  section: String
+  batesStamp: String
+  hidden: Boolean
+  analysisTitle: String
+  analysisUserId: ID
+  endDate: String
+}
+
+type DocumentReference {
+  createdAt: DateTime
+  dispatch: Dispatch
+  document: Document
+  id: ID!
+  interview: Interview
+  rank: Int
+  updatedAt: DateTime
+}
+
+input DocumentReferenceInput {
+  dispatchId: ID
+  documentId: ID
+  id: ID
+  interviewId: ID
+  position: String
+}
+
+input DownloadPhotosInput {
+  detail: String
+  filters: PhotoSearchFilters
+  introText: String
+  layout: String
+  sort: String
+  title: String
+  uuid: String
+}
+
+type DuplicateContactSet {
+  contacts: [Contact!]!
+}
+
+type DynamicMetric {
+  count: Int
+  currentOnly: Boolean
+  date: ErlDate
+  extraInt: Int
+  format: String
+  id: ID
+  name: String
+  notes: [String]
+  sum: Decimal
+}
+
+type EditorTemplate {
+  category: String
+  content: Quill!
+  contentType: String!
+  createdAt: DateTime
+  id: ID
+  name: String
+  plainContent: String
+  scope: String!
+  updatedAt: DateTime
+}
+
+type Element {
+  analysisStatus: String
+  basicAnalysis: String
+  bpaLinks: [BpaLink!]!
+  createdAt: DateTime
+  customFields: Quill
+  description: String
+  displayName: String
+  id: ID!
+  iiaccAnalysis: String
+  iiaccConclusion: String
+  iiaccCosts: String
+  iiaccInvestigation: String
+  iiaccIssue: String
+  name: String!
+  next: Element
+  number: String!
+  otherKeyPhotoCount: Int!
+  otherPhotoCount: Int!
+  pfcsKeyPhotoCount: Int!
+  pfcsPhotoCount: Int!
+  photoLinks: [PhotoLink!]!
+  photos: [Photo!]!
+  prev: Element
+  priority: String
+  project: Project
+  specificationsExecution: String
+  specificationsGeneral: String
+  specificationsMaterials: String
+  specificationsQualityAssurance: String
+  template: Boolean
+  updatedAt: DateTime
+}
+
+input ElementInput {
+  analysisStatus: String
+  basicAnalysis: String
+  bpaLinks: [BpaLinkInput]
+  customFields: Quill
+  description: String
+  id: ID
+  iiaccAnalysis: String
+  iiaccConclusion: String
+  iiaccCosts: String
+  iiaccInvestigation: String
+  iiaccIssue: String
+  name: String
+  number: String
+  priority: String
+  projectId: ID
+  specificationsExecution: String
+  specificationsGeneral: String
+  specificationsMaterials: String
+  specificationsQualityAssurance: String
+  template: Boolean
+}
+
+type Employee {
+  salaries: [Salary!]!
+  office: Office!
+  user: User
+  lastName: String
+  endDate: Date
+  version: Int
+  manager: User
+  monthlyPayments(month: String): [MonthlyPayment!]!
+  goals: [Goal!]!
+  originalBillableGoal(month: String!): Goal
+  annualHours(year: Int!): [AnnualHourStats!]!
+  forecasts(year: Int!): [EmployeeForecast!]!
+  address: String
+  standardHours: Int
+  startDate: Date!
+  schedule: String
+  department: String!
+  future: Boolean!
+  checklists: [Checklist!]!
+  dateOfBirth: Date
+  state: String
+  description: String
+  updatedAt: DateTime
+  documents: [Document!]!
+  city: String
+  employeeReviews: [EmployeeReview!]!
+  billableHours(end: String!, filter: String, start: String!): [DynamicMetric!]!
+  billableGoalReductions: [BillableGoalReduction!]!
+  revisedBillableGoal(month: String!): Decimal
+  createdAt: DateTime
+  employmentStatus: String!
+  tasks: [Task!]!
+  originalBillableTarget(end: String!, start: String!): Decimal
+  billingPosition: BillingPosition!
+  employeeType: String!
+  priorPtoBalance: Float
+  milestones: [Milestone!]!
+  id: ID!
+  billableGoals: [BillableGoal!]!
+  sortAs: String
+  displayAs: String
+  zip: String
+  firstName: String
+  notes: [Note!]!
+  revisedBillableTarget(day: Boolean, end: String!, start: String!): Decimal
+  workingHours(month: String!): Int
+}
+
+type EmployeeForecast {
+  cost: Decimal
+  date: Date
+  goal: Decimal
+  gp: Decimal
+  rate: Int
+  sales: Decimal
+}
+
+input EmployeeInput {
+  billableGoalTarget: Decimal
+  billableGoalTargetFixed: Boolean
+  billingPositionId: ID
+  department: String
+  description: String
+  employeeType: String
+  employmentStatus: String
+  endDate: String
+  firstName: String
+  future: Boolean
+  id: ID
+  lastName: String
+  managerId: ID
+  officeId: ID
+  salaries: [SalaryInput]
+  schedule: String
+  shiftDates: Boolean
+  standardHours: String
+  startDate: String
+  userId: ID
+}
+
+type EmployeeReview {
+  completed: Boolean
+  createdAt: DateTime
+  employee: Employee
+  id: ID!
+  reviewDate: Date
+  reviewer: User
+  updatedAt: DateTime
+}
+
+input EmployeeReviewInput {
+  completed: Boolean
+  employeeId: ID
+  id: ID
+  reviewDate: String
+  reviewerId: ID
+}
+
+scalar ErlDate
+
+type Feature {
+  attachment: ArcAttachment
+  attachmentUrl: String
+  category: String!
+  closeNote: String
+  completedOn: Date
+  createdAt: DateTime
+  description: String
+  feature: Feature
+  featureType: String!
+  features: [Feature!]!
+  hours: Int
+  id: ID!
+  kanbanCards: [KanbanCard!]!
+  notes: [Note!]!
+  priority: String!
+  scale: String
+  status: String!
+  tasks: [Task!]!
+  title: String!
+  updatedAt: DateTime
+  user: User!
+}
+
+input FeatureInput {
+  attachment: Upload
+  category: String
+  closeNote: String
+  description: String
+  featureId: ID
+  featureType: String
+  hours: String
+  id: ID
+  priority: String
+  scale: String
+  status: String
+  title: String
+  userId: ID
+}
+
+type FeeSchedule {
+  attachmentUrl: String
+  billingRates: [BillingRate!]!
+  createdAt: DateTime!
+  effectiveDate: Date!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input FeeScheduleInput {
+  attachment: Upload
+  effectiveDate: Date
+  id: ID
+  name: String
+}
+
+type Goal {
+  createdAt: DateTime!
+  date: Date!
+  employee: Employee
+  id: ID!
+  name: String!
+  period: String!
+  updatedAt: DateTime!
+  value: Decimal!
+}
+
+input GoalInput {
+  date: String
+  employeeId: ID
+  id: ID
+  name: String
+  period: String
+  value: String
+}
+
+type ImageReference {
+  createdAt: DateTime
+  dispatch: Dispatch
+  id: ID!
+  infoImage: InfoImage
+  rank: Int
+  reportSection: ReportSection
+  updatedAt: DateTime
+}
+
+input ImageReferenceInput {
+  dispatchId: ID
+  id: ID
+  infoImageId: ID
+  position: String
+  reportSectionId: ID
+}
+
+input ImageReferencesInput {
+  dispatchId: ID
+  infoImageIds: [ID]
+  position: String
+  reportSectionId: ID
+}
+
+type ImportedContact {
+  action: String
+  contact: Contact!
+  contactImport: ContactImport!
+  id: ID!
+}
+
+type InfoImage {
+  attachment: ArcAttachment!
+  attachmentUrl: String!
+  category: String
+  createdAt: DateTime
+  description: String
+  id: ID!
+  position: Int
+  project: Project!
+  updatedAt: DateTime
+}
+
+input InfoImageInput {
+  attachment: Upload
+  category: String
+  description: String
+  direction: Int
+  id: ID
+  projectId: ID
+}
+
+scalar IntegerInput
+
+type Interview {
+  attendees: String
+  body: String
+  bodyJson: Quill
+  createdAt: DateTime
+  date: Date
+  description: String
+  documentReferences: [DocumentReference]
+  id: ID!
+  legacy: Boolean
+  meetingType: String
+  project: Project
+  tasks: [Task]
+  template: Boolean
+  updatedAt: DateTime
+}
+
+input InterviewInput {
+  attendees: String
+  body: String
+  bodyJson: Quill
+  date: String
+  description: String
+  id: ID
+  legacy: Boolean
+  meetingType: String
+  projectId: ID
+  template: Boolean
+}
+
+type Invoice {
+  appliedPayments: [AppliedPayment]
+  attachment: ArcAttachment
+  attachmentUrl: String
+  attachments: [Attachment!]!
+  createdAt: DateTime
+  description: String
+  displayLines: Boolean
+  document: Document
+  emailedAt: DateTime
+  finalizedAt: DateTime
+  id: ID!
+  invoiceDate: Date!
+  invoiceTotal: Decimal!
+  invoiceType: String!
+  invoicedDeliverables: [InvoicedDeliverable!]!
+  invoicelines: [Invoiceline!]!
+  isAdjustment: Boolean
+  mailedAt: DateTime
+  memo: String
+  noChargeTotal: Decimal
+  nonBillableTotal: Decimal
+  paymentTotal: Decimal
+  payments: [Payment]
+  project: Project!
+  sentAt: DateTime
+  status: String!
+  submitter: User
+  syncedToQbw: Boolean
+  updatedAt: DateTime
+  viewByDeliverable: Boolean
+}
+
+type InvoicedDeliverable {
+  createdAt: DateTime
+  deliverable: Deliverable!
+  description: String
+  displayOrder: Int
+  fixedFee: Decimal
+  id: ID!
+  invoice: Invoice!
+  updatedAt: DateTime
+}
+
+input InvoicedDeliverableInput {
+  description: String
+  fixedFee: String
+}
+
+input InvoiceInput {
+  attachment: Upload
+  description: String
+  displayLines: Boolean
+  id: ID
+  invoiceDate: String
+  invoiceTotal: String
+  invoiceType: String
+  isAdjustment: Boolean
+  memo: String
+  projectId: ID
+  status: String
+  syncedToQbw: Boolean
+  viewByDeliverable: Boolean
+}
+
+type Invoiceline {
+  allowPayment: Boolean
+  attachment: ArcAttachment
+  attachmentUrl: String
+  billedPosition: String!
+  category: String
+  createdAt: DateTime
+  deliverable: Deliverable
+  description: String!
+  hours: Decimal!
+  id: ID!
+  invoice: Invoice!
+  isExpense: Boolean
+  itemDate: Date!
+  lineTotal: Decimal!
+  noCharge: Boolean
+  nonBillable: Boolean
+  project: Project!
+  rate: Decimal!
+  revised: Boolean
+  testimony: Boolean
+  updatedAt: DateTime
+  user: User!
+}
+
+input InvoicelineInput {
+  allowPayment: Boolean
+  billedPosition: String
+  category: String
+  deliverableId: ID
+  description: String
+  hours: String
+  id: ID
+  isExpense: Boolean
+  itemDate: String
+  lineTotal: String
+  noCharge: Boolean
+  nonBillable: Boolean
+  projectId: ID
+  rate: String
+  testimony: Boolean
+  userId: ID
+}
+
+type Issue {
+  iiaccConclusion: String
+  iiaccCosts: String
+  next: Issue
+  sourceDocument: Document
+  bpaLinks: [BpaLink]
+  specificationsGeneral: String
+  status: String
+  customFields: Quill
+  specificationsExecution: String
+  issues: [Issue]
+  otherKeyPhotoCount: Int
+  pfcsPhotoCount: Int
+  analysisStatus: String
+  basicAnalysis: String
+  photos: [Photo]
+  iiaccIssue: String
+  iiaccInvestigation: String
+  otherPhotoCount: Int
+  description: String
+  updatedAt: DateTime
+  prev: Issue
+  displayName: String
+  header: Boolean
+  createdAt: DateTime
+  issue: Issue
+  analysis: String
+  elements: [Element]
+  photoLinks: [PhotoLink]
+  issueId: ID
+  specificationsMaterials: String
+  alternateNumber: String
+  id: ID!
+  specificationsQualityAssurance: String
+  project: Project
+  iiaccAnalysis: String
+  number: String
+  pfcsKeyPhotoCount: Int
+  priority: String
+}
+
+input IssueInput {
+  alternateNumber: String
+  analysis: String
+  analysisStatus: String
+  basicAnalysis: String
+  bpaLinks: [BpaLinkInput]
+  customFields: Quill
+  description: String
+  header: Boolean
+  id: ID
+  iiaccAnalysis: String
+  iiaccConclusion: String
+  iiaccCosts: String
+  iiaccInvestigation: String
+  iiaccIssue: String
+  issueId: ID
+  number: String
+  priority: String
+  projectId: ID
+  sourceDocumentId: ID
+  specificationsExecution: String
+  specificationsGeneral: String
+  specificationsMaterials: String
+  specificationsQualityAssurance: String
+  status: String
+}
+
+type KanbanCard {
+  blocked: Boolean
+  blockedReason: String
+  column: String!
+  createdAt: DateTime
+  cycleTime: Int
+  dateAdded: Date
+  dateCompleted: Date
+  dateStarted: Date
+  deliverable: Deliverable
+  dueDate: Date
+  events: [KanbanCardEvents!]!
+  feature: Feature
+  hours: Decimal
+  id: ID!
+  leadTime: Int
+  notes: String
+  project: Project
+  rank: Int
+  tasks: [Task!]!
+  title: String
+  updatedAt: DateTime
+  user: User
+}
+
+type KanbanCardEvents {
+  column: String
+  time: String
+}
+
+input KanbanCardInput {
+  blocked: Boolean
+  blockedReason: String
+  column: String
+  deliverableId: ID
+  dueDate: String
+  featureId: ID
+  hours: String
+  id: ID
+  notes: String
+  projectId: ID
+  tasks: [TaskInput]
+  title: String
+  userId: ID
+}
+
+type Kpi {
+  createdAt: DateTime
+  date: Date
+  globalSet: String
+  id: ID!
+  kpiType: KpiType
+  notApplicable: Boolean
+  updatedAt: DateTime
+  user: User
+  value: Decimal
+}
+
+input KpiInput {
+  date: String
+  globalSet: String
+  id: ID
+  kpiTypeId: ID
+  repeatGoal: Boolean
+  userLogin: String
+  value: String
+}
+
+type KpiSection {
+  category: String
+  createdAt: DateTime
+  description: String
+  id: ID!
+  kpiSet: KpiSet
+  kpiTypes: [KpiType]
+  name: String
+  pageBreak: Boolean
+  rank: Int
+  updatedAt: DateTime
+  who: String
+}
+
+input KpiSectionInput {
+  category: String
+  description: String
+  id: ID
+  kpiSetId: ID
+  name: String
+  pageBreak: Boolean
+  rank: Int
+  who: String
+}
+
+type KpiSet {
+  createdAt: DateTime
+  globalSet: String
+  id: ID!
+  kpiSections: [KpiSection!]!
+  name: String!
+  updatedAt: DateTime
+  users: [User!]!
+}
+
+input KpiSetInput {
+  globalSet: String
+  id: ID
+  name: String
+}
+
+type KpiType {
+  aggregation: String
+  createdAt: DateTime
+  description: String
+  editable: Boolean
+  endYear: Int
+  hideWhenEmpty: Boolean
+  id: ID!
+  kpiSection: KpiSection
+  kpis: [Kpi]
+  mode: String
+  rank: Int
+  section: String
+  shouldNotExceedGoal: Boolean
+  staffTypes: [String]
+  startYear: Int
+  title: String
+  updatedAt: DateTime
+  valueType: String
+}
+
+input KpiTypeInput {
+  aggregation: String
+  description: String
+  editable: Boolean
+  endYear: IntegerInput
+  hideWhenEmpty: Boolean
+  id: ID
+  kpiSectionId: ID
+  mode: String
+  shouldNotExceedGoal: Boolean
+  startYear: IntegerInput
+  title: String
+  valueType: String
+}
+
+type LibrarySearch {
+  label: String!
+  results: [Document!]!
+}
+
+type List {
+  active: Boolean
+  createdAt: DateTime
+  fields: [[String!]!]!
+  id: ID!
+  items: [ListItem!]!
+  mode: String!
+  name: String!
+  project: Project!
+  sortBy: String
+  updatedAt: DateTime
+}
+
+input ListInput {
+  active: Boolean
+  fields: [[String]]
+  id: ID
+  mode: String
+  name: String
+  projectId: ID
+  sortBy: String
+}
+
+type ListItem {
+  createdAt: DateTime
+  fields: Quill
+  id: ID!
+  item: ListItem
+  items: ListItem
+  list: List!
+  name: String
+  rank: Int!
+  updatedAt: DateTime
+}
+
+input ListItemInput {
+  fields: Quill
+  id: ID
+  itemId: ID
+  listId: ID
+  name: String
+}
+
+type Location {
+  analysisStatus: String
+  basicAnalysis: String
+  bpaLinks: [BpaLink]
+  createdAt: DateTime
+  customFields: Quill
+  displayName: String
+  id: ID!
+  iiaccAnalysis: String
+  iiaccConclusion: String
+  iiaccCosts: String
+  iiaccInvestigation: String
+  iiaccIssue: String
+  location: Location
+  locationId: ID
+  locations: [Location]
+  name: String
+  nestedName: String
+  next: Location
+  otherKeyPhotoCount: Int
+  otherPhotoCount: Int
+  pfcsKeyPhotoCount: Int
+  pfcsPhotoCount: Int
+  photoLinks: [PhotoLink]
+  photos: [Photo]
+  prev: Location
+  priority: String
+  project: Project
+  specificationsExecution: String
+  specificationsGeneral: String
+  specificationsMaterials: String
+  specificationsQualityAssurance: String
+  updatedAt: DateTime
+}
+
+input LocationInput {
+  analysisStatus: String
+  basicAnalysis: String
+  bpaLinks: [BpaLinkInput]
+  customFields: Quill
+  id: ID
+  iiaccAnalysis: String
+  iiaccConclusion: String
+  iiaccCosts: String
+  iiaccInvestigation: String
+  iiaccIssue: String
+  locationId: ID
+  name: String
+  priority: String
+  projectId: ID
+  specificationsExecution: String
+  specificationsGeneral: String
+  specificationsMaterials: String
+  specificationsQualityAssurance: String
+}
+
+type Mailing {
+  attachment: ArcAttachment
+  attachmentUrl: String
+  body: String!
+  bypassFilters: Boolean
+  campaign: Campaign
+  campaignField: String
+  checklists: [Checklist!]!
+  clientFilter: String
+  company: String
+  contactType: String
+  contactsMailings: [ContactsMailing!]!
+  contactsMailingsCount: Int
+  createdAt: DateTime
+  excludeCampaignField: String
+  id: ID!
+  previewContacts: [Contact!]!
+  replyTo: String
+  sender: String!
+  sentAt: DateTime
+  status: String!
+  subject: String!
+  suppressUnsubscribeLink: Boolean
+  taggings: [Tagging!]!
+  updateCampaignField: String
+  updatedAt: DateTime
+  user: User
+}
+
+input MailingInput {
+  attachment: Upload
+  body: String
+  bypassFilters: Boolean
+  campaignField: String
+  campaignId: ID
+  clientFilter: String
+  company: String
+  contactType: String
+  excludeCampaignField: String
+  id: ID
+  replyTo: String
+  sender: String
+  status: String
+  subject: String
+  suppressUnsubscribeLink: Boolean
+  updateCampaignField: String
+  userId: ID
+}
+
+type Membership {
+  blockClientAccess: Boolean
+  contact: Contact!
+  createdAt: DateTime
+  fileNumber: String
+  hashKey: String
+  id: ID!
+  invoicePercentage: Float!
+  invoiceRecipient: String
+  invoicing: String!
+  memberId: Int
+  memberType: String
+  namesOnInvoices: Boolean
+  notes: String
+  primaryContact: Boolean
+  project: Project
+  role: String
+  sendInvoice: Boolean
+  survey: Survey
+  updatedAt: DateTime
+}
+
+input MembershipInput {
+  blockClientAccess: Boolean
+  contactId: ID
+  fileNumber: String
+  hashKey: String
+  id: ID
+  invoicePercentage: String
+  invoiceRecipient: String
+  invoicing: String
+  memberId: Int
+  memberType: String
+  namesOnInvoices: Boolean
+  notes: String
+  primaryContact: Boolean
+  projectId: ID
+  role: String
+  sendInvoice: Boolean
+}
+
+type Message {
+  attachments: [Attachment!]!
+  bcc: String
+  body: String
+  cc: String
+  createdAt: DateTime
+  documents: [Document!]!
+  from: String
+  html: String
+  id: ID!
+  project: Project!
+  sentAt: DateTime!
+  subject: String
+  to: String
+  updatedAt: DateTime
+  user: User
+}
+
+input MessageInput {
+  body: String
+  id: ID
+  projectId: ID
+  sentAt: String
+  userId: ID
+}
+
+type Metric {
+  campaign: Campaign
+  campaignData: CampaignMetrics!
+  captureDate: Date!
+  category: String
+  createdAt: DateTime
+  data: MetricValue!
+  id: ID!
+  rank: Int
+  updatedAt: DateTime
+  user: User
+}
+
+input MetricInput {
+  campaignId: ID
+  captureDate: String
+  category: String
+  data: MetricValueInput
+}
+
+type MetricValue {
+  description: String
+  value: Float
+}
+
+input MetricValueInput {
+  description: String
+  value: Float
+}
+
+type Milestone {
+  amount: Decimal
+  approved: Boolean
+  approver: User
+  completed: Boolean
+  createdAt: DateTime
+  datePaid: Date
+  description: String
+  employee: Employee
+  id: ID!
+  itemDate: Date
+  manager: User
+  payPeriod: PayPeriod
+  updatedAt: DateTime
+}
+
+input MilestoneInput {
+  amount: Decimal
+  approved: Boolean
+  completed: Boolean
+  datePaid: String
+  description: String
+  employeeId: ID
+  id: ID
+  itemDate: String
+}
+
+type Milestoneparent {
+  createdAt: DateTime
+  deliverables: [Deliverable!]!
+  id: ID!
+  plan: Plan!
+  rank: Int!
+  title: String!
+  updatedAt: DateTime
+}
+
+input MilestoneparentInput {
+  planId: ID
+  title: String
+}
+
+type MonthlyPayment {
+  amount: Decimal
+  category: String
+  createdAt: DateTime
+  date: Date
+  employee: Employee
+  id: ID!
+  paidOn: Date
+  timesheets: [Timesheet]
+  updatedAt: DateTime
+}
+
+input MonthlyPaymentInput {
+  amount: Decimal
+  category: String
+  date: Date
+  employeeId: ID
+  id: ID
+  paidOn: Date
+}
+
+type Note {
+  topic: Topic
+  user: User
+  feature: Feature
+  noteUserNotifications: [NoteUserNotification]
+  hidden: Boolean
+  notifiedUsers: [User]
+  contactType: String
+  key: Boolean
+  contact: Contact
+  physicalAddress: PhysicalAddress
+  notifyTl: Boolean
+  community: Community
+  attachmentUrl: String
+  deviceId: ID
+  employee: Employee
+  source: String
+  attachment: ArcAttachment
+  device: Device
+  campaign: Campaign
+  updater: User
+  description: String
+  updatedAt: DateTime
+  notifyPm: Boolean
+  createdAt: DateTime
+  tasks: [Task]
+  itemType: String
+  humanInteraction: Boolean
+  timesheet: Timesheet
+  notifiedUsersHash: String
+  id: ID!
+  project: Project
+  notableType: String
+  attachmentThumbUrl: String
+  itemDate: Date
+  notableId: Int
+  projectId: ID
+}
+
+input NoteInput {
+  attachment: Upload
+  bypassEmail: Boolean
+  campaignId: ID
+  communityId: ID
+  contactId: ID
+  contactType: String
+  description: String
+  deviceId: ID
+  employeeId: ID
+  featureId: ID
+  hidden: Boolean
+  id: ID
+  itemDate: String
+  itemType: String
+  key: Boolean
+  notifiedUserIds: [ID]
+  notifyPm: Boolean
+  notifyTl: Boolean
+  physicalAddressId: ID
+  projectId: ID
+  source: String
+  tasks: [TaskInput]
+  topicId: ID
+  userId: ID
+}
+
+type NoteUserNotification {
+  createdAt: DateTime
+  id: ID!
+  note: Note
+  updatedAt: DateTime
+  user: User
+}
+
+type Office {
+  address: String
+  closedOn: Date
+  createdAt: DateTime
+  id: ID!
+  location: String!
+  openedOn: Date!
+  physical: Boolean
+  updatedAt: DateTime
+}
+
+input OfficeInput {
+  address: String
+  closedOn: Date
+  id: ID
+  location: String
+  openedOn: Date
+  physical: Boolean
+}
+
+type Payment {
+  adjuster: String
+  amount: Decimal!
+  appliedPayments: [AppliedPayment]
+  attachment: ArcAttachment
+  attachmentUrl: String
+  checkDate: Date!
+  checkNumber: String
+  claimNumber: String
+  claimant: String
+  createdOn: Date
+  deposit: Deposit
+  depositDate: Date!
+  description: String
+  id: ID!
+  insured: String
+  invoice: Invoice
+  lossDate: Date
+  payor: String
+  policyNumber: String
+  project: Project!
+  retainer: Retainer
+  share: String
+  syncedToQbw: Boolean
+  writeoff: Boolean
+}
+
+type PaymentAutocomplete {
+  adjuster: [String]
+  claimNumber: [String]
+  claimant: [String]
+  payor: [String]
+  policyNumber: [String]
+}
+
+input PaymentInput {
+  adjuster: String
+  amount: Decimal
+  appliedPayments: [AppliedPaymentInput]
+  attachment: Upload
+  checkDate: Date
+  checkNumber: String
+  claimNumber: String
+  claimant: String
+  depositDate: Date
+  depositId: ID
+  description: String
+  id: ID
+  insured: String
+  invoiceId: ID
+  lossDate: Date
+  payor: String
+  policyNumber: String
+  projectId: ID
+  retainerId: ID
+  share: String
+  syncedToQbw: Boolean
+  writeoff: Boolean
+}
+
+type PayPeriod {
+  checkDate: Date!
+  endDate: Date!
+  id: ID!
+  manager: User
+  milestones: [Milestone!]!
+  payPeriodLines: [PayPeriodLine!]!
+  processed: Boolean
+  processedAt: DateTime
+  startDate: Date!
+}
+
+type PayPeriodLine {
+  employee: Employee!
+  incentive: Decimal!
+  milestones: Decimal!
+  otHours: Decimal!
+  pay: Decimal!
+  regularHours: Decimal!
+  salary: Salary!
+}
+
+type PeerReview {
+  attachment: String
+  createdAt: DateTime
+  feedback: String
+  id: ID!
+  itemDate: Date
+  report: Report
+  updatedAt: DateTime
+  user: User
+}
+
+input PeerReviewInput {
+  attachment: Upload
+  feedback: String
+  itemDate: String
+  reportId: ID
+  userId: ID
+}
+
+type Photo {
+  addresses: [Address!]!
+  createdAt: DateTime
+  date: Date
+  elements: [Element!]!
+  fieldNote: String
+  finalAnnotation: String
+  fullImage: String!
+  id: ID!
+  image: ArcAttachment
+  imageNumber: Int!
+  imageUrl: String!
+  issues: [Issue!]!
+  keyPhoto: Boolean
+  keyPhotoDescription: String
+  locations: [Location!]!
+  nextPhoto: Photo
+  photoLinks: [PhotoLink!]!
+  photoset: Photoset!
+  players: [Player!]!
+  previousPhoto: Photo
+  project: Project!
+  revisedAnnotation: String
+  smallImage: String!
+  testLocations: [TestLocation!]!
+  thumbImage: String!
+  updatedAt: DateTime
+}
+
+input PhotoInput {
+  date: String
+  fieldNote: String
+  id: ID
+  image: Upload
+  imageNumber: Int
+  keyPhoto: Boolean
+  keyPhotoDescription: String
+  photoLinks: [PhotoLinkInput]
+  photosetId: ID
+  revisedAnnotation: String
+}
+
+type PhotoLink {
+  address: Address
+  addressId: ID
+  createdAt: DateTime
+  element: Element
+  elementId: ID
+  id: ID!
+  issue: Issue
+  issueId: ID
+  key: Boolean
+  location: Location
+  locationId: ID
+  photo: Photo
+  photoId: ID
+  player: Player
+  playerId: ID
+  testLocation: TestLocation
+  testLocationId: ID
+  updatedAt: DateTime
+}
+
+input PhotoLinkInput {
+  addressId: ID
+  delete: Boolean
+  elementId: ID
+  id: ID
+  issueId: ID
+  key: Boolean
+  locationId: ID
+  photoId: ID
+  playerId: ID
+  testLocationId: ID
+}
+
+type PhotoResult {
+  count: Int!
+  filteredCount: Int!
+  photos: [Photo!]!
+}
+
+input PhotoSearchFilters {
+  addressIds: [ID]
+  elementIds: [ID]
+  id: ID
+  issueIds: [ID]
+  keyPhotos: Boolean
+  locationIds: [ID]
+  matchAll: Boolean = false
+  page: Int
+  parties: [String]
+  playerIds: [ID]
+  project: String
+  query: String
+  testLocationIds: [ID]
+}
+
+type Photoset {
+  complete: Boolean
+  createdAt: DateTime!
+  day: Int
+  description: String
+  dispatch: Dispatch
+  endDate: Date
+  id: ID!
+  inspectionDate: Date
+  keyPhotoCount: Int!
+  legacyReports: [Report!]!
+  nextPhotoToAnnotate: Photo
+  party: String
+  pfcs: Boolean!
+  photos: [Photo!]!
+  photosCount: Int!
+  project: Project!
+  reports: [Report!]!
+  source: String
+  startDate: Date
+  summary: Quill
+  updatedAt: DateTime!
+  user: User
+}
+
+input PhotosetInput {
+  complete: Boolean
+  day: String
+  description: String
+  dispatchId: ID
+  endDate: String
+  expertId: ID
+  id: ID
+  inspectionDate: String
+  party: String
+  pfcs: Boolean
+  projectId: ID
+  source: String
+  startDate: String
+  summary: Quill
+}
+
+type PhysicalAddress {
+  city: String
+  community: Community
+  country: String
+  county: String
+  createdAt: DateTime!
+  googleData: Quill
+  googleFormatted: String
+  googleId: String
+  googleMultipleMatches: Boolean
+  id: ID!
+  latitude: Decimal
+  legacyCity: String
+  legacyState: String
+  legacyStreet: String
+  legacyZip: String
+  longitude: Decimal
+  northeastLatitude: Decimal
+  northeastLongitude: Decimal
+  notes: [Note!]!
+  number: String
+  premise: String
+  residences: [Residence!]!
+  southwestLatitude: Decimal
+  southwestLongitude: Decimal
+  state: String
+  street: String
+  unit: String
+  unitType: String
+  updatedAt: DateTime!
+  zip: String
+}
+
+input PhysicalAddressInput {
+  city: String
+  communityId: ID
+  country: String
+  county: String
+  googleData: Quill
+  googleFormatted: String
+  googleId: String
+  googleMultipleMatches: Boolean
+  id: ID
+  latitude: Decimal
+  legacyCity: String
+  legacyState: String
+  legacyStreet: String
+  legacyZip: String
+  longitude: Decimal
+  northeastLatitude: Decimal
+  northeastLongitude: Decimal
+  number: String
+  premise: String
+  southwestLatitude: Decimal
+  southwestLongitude: Decimal
+  state: String
+  street: String
+  unit: String
+  unitType: String
+  zip: String
+}
+
+type Pile {
+  createdAt: DateTime!
+  date: Date!
+  id: ID!
+  name: String!
+  project: Project!
+  sourceFiles: [SourceFile!]!
+  status: String!
+  updatedAt: DateTime!
+}
+
+input PileInput {
+  date: String
+  id: ID
+  name: String
+  projectId: ID
+}
+
+type Plan {
+  amount: Decimal!
+  billedTotal: Decimal
+  costs: [DeliverableCost!]!
+  createdAt: DateTime
+  deliverables: [Deliverable!]!
+  expensesInvoiced: Decimal
+  expensesPending: Decimal
+  id: ID!
+  milestoneparents: [Milestoneparent!]!
+  objective: String
+  pendingTotal: Decimal
+  planStatuses: [PlanStatus!]!
+  planType: PlanType!
+  project: Project!
+  uncategorizedInvoiced: Decimal
+  uncategorizedNc: Decimal
+  uncategorizedPending: Decimal
+  updatedAt: DateTime
+}
+
+input PlanInput {
+  id: ID
+  objective: String
+  planTypeId: ID
+}
+
+type PlanSection {
+  createdAt: DateTime
+  deliverableMenuItems: [DeliverableMenuItem!]!
+  id: ID!
+  name: String
+  planType: PlanType
+  position: Int
+  updatedAt: DateTime
+}
+
+input PlanSectionInput {
+  id: ID
+  name: String
+  planTypeId: ID
+}
+
+type PlanStatus {
+  amount: Decimal
+  attachment: String
+  createdAt: DateTime
+  date: Date
+  id: ID!
+  notes: String
+  plan: Plan
+  status: String
+  updatedAt: DateTime
+}
+
+input PlanStatusInput {
+  amount: Decimal
+  attachment: Upload
+  date: String
+  id: ID
+  notes: String
+  planId: ID
+  status: String
+}
+
+type PlanType {
+  createdAt: DateTime
+  id: ID!
+  name: String!
+  objective: String
+  planSections: [PlanSection!]!
+  plans: [Plan!]!
+  proposalIntro: String
+  updatedAt: DateTime
+}
+
+input PlanTypeInput {
+  id: ID
+  name: String
+}
+
+type Player {
+  bpaLinks: [BpaLink]
+  company: String
+  createdAt: DateTime
+  description: String
+  displayName: String
+  id: ID!
+  key: Boolean
+  name: String
+  otherKeyPhotoCount: Int
+  otherPhotoCount: Int
+  pfcsKeyPhotoCount: Int
+  pfcsPhotoCount: Int
+  photoLinks: [PhotoLink]
+  photos: [Photo]
+  playerGroup: PlayerGroup
+  project: Project
+  role: String
+  updatedAt: DateTime
+}
+
+type PlayerGroup {
+  createdAt: DateTime
+  id: ID!
+  name: String!
+  players: [Player!]!
+  position: Int
+  project: Project
+  updatedAt: DateTime
+}
+
+input PlayerGroupInput {
+  id: ID
+  name: String
+  projectId: ID
+}
+
+input PlayerInput {
+  bpaLinks: [BpaLinkInput]
+  company: String
+  description: String
+  id: ID
+  key: Boolean
+  name: String
+  playerGroupId: ID
+  projectId: ID
+  role: String
+}
+
+type Project {
+  recentHours: Decimal
+  office: Office!
+  budget: Decimal
+  planUpdatedOn: Date
+  addressFields: [[String!]!]!
+  deliverableLevelsOnInvoices: Boolean
+  testLocationsCount: Int
+  mainPhotoId: ID
+  interviews: [Interview!]!
+  trade: String
+  issueFields: [[String!]!]!
+  fieldInspection: String
+  rate: String
+  totalRefunds: Decimal
+  deliverables: [Deliverable!]!
+  status: String!
+  invoiceNote: String
+  dispatches: [Dispatch!]!
+  yearBuilt: String
+  requireAttachmentsOnInvoices: Boolean
+  area: String
+  issues: [Issue!]!
+  technicalSummaryUpdater: User
+  prioritizeInvoices: Boolean
+  closedBy: User
+  address: String
+  coExperts: String
+  dispatchesCount: Int
+  totalPayments: Decimal
+  invoicelines: [Invoiceline!]!
+  shareOneMinuteSummary: Boolean
+  startDate: Date
+  elementFields: [[String!]!]!
+  sourceUserId: ID
+  documentsCount: Int
+  addresses: [Address!]!
+  plans: String
+  mdHoldNotes: String
+  oneMinuteSummaryUpdatedAt: DateTime
+  infoImages: [InfoImage!]!
+  maximumBillingPositionId: ID
+  taggings: [Tagging!]!
+  invoiceHideHours: Boolean
+  totalInvoicesWithPending: Decimal
+  retainers: [Retainer!]!
+  parentOpportunityId: ID
+  opportunityOwner: User
+  represent: String
+  checklists: [Checklist!]!
+  playerGroups: [PlayerGroup!]!
+  photos: [Photo!]!
+  otherExperts: String
+  oneMinuteSummaryUpdater: User
+  playersCount: Int
+  refunds: [Refund!]!
+  oneMinuteSummary: String
+  plan: Plan!
+  opportunityStartDate: Date
+  parentOpportunity: Project
+  piles: [Pile!]!
+  billingSummary: String
+  maximumBillingPosition: BillingPosition
+  invoiceLevels: String
+  name: String!
+  elementAnalysisMode: String
+  totalDue: Decimal
+  technicalLead: User
+  state: String
+  elementsCount: Int
+  hideHoursAndDollarsOnInvoices: Boolean
+  lineItemInvoices: Boolean
+  pc: User
+  appliedPayments: [AppliedPayment!]!
+  opportunityCloseDate: Date
+  updatedAt: DateTime
+  issuesCount: Int!
+  lists: [List!]!
+  projectUsers: [ProjectUser!]!
+  technicalSummaryUpdatedAt: DateTime
+  timesheets(status: String): [Timesheet!]!
+  locationFields: [[String!]!]!
+  documents: [Document!]!
+  locationAnalysisMode: String
+  issueAnalysisMode: String
+  timelines: [Timeline!]!
+  invoiceBillingPeriods: Boolean
+  timelineFields: [[String!]!]!
+  secured: Boolean
+  county: String
+  testLocations: [TestLocation!]!
+  salesStageId: ID!
+  entity: String
+  topics: [Topic!]!
+  opportunityOwnerId: ID
+  feeSchedule: FeeSchedule
+  createdAt: DateTime
+  salesProjections: [SalesProjection!]!
+  childOpportunities: [Project!]!
+  sourceOf: String
+  tasks: [Task!]!
+  invoiceHideCosts: Boolean
+  syncedToQbw: Boolean
+  reports: [Report!]!
+  projectType: String!
+  guesstimate: Decimal
+  deadBox: String
+  addressesCount: Int!
+  arSummary: String
+  elements: [Element!]!
+  mdDate: Date
+  shareL2Timeline: Boolean
+  referralContact: Contact
+  tags: [Tag!]!
+  totalInvoices: Decimal
+  locations: [Location!]!
+  inspectionSummary: Quill
+  shareL1Timeline: Boolean
+  pm: User
+  players: [Player!]!
+  aging: ProjectAging
+  kanbanCards: [KanbanCard!]!
+  invoices: [Invoice!]!
+  photosets: [Photoset!]!
+  projectDesc: String
+  closedById: ID
+  id: ID!
+  memberships: [Membership!]!
+  salesStage: SalesStage!
+  sourceUser: User
+  officeId: ID!
+  opportunityId: ID
+  locationsCount: Int
+  payments: [Payment!]!
+  unbilledTotal: Decimal
+  shareOnClientAccess: Boolean
+  interviewsCount: Int
+  technicalSummary: String
+  l1Timeline: String
+  number: String!
+  clientAccessHideAr: Boolean
+  strategicTargetCompany: Contact
+  notes(itemType: String): [Note!]!
+  messages: [Message!]!
+  reportCards: [ReportCard!]!
+  closedOn: Date
+  mainPhotoType: String
+  campaignId: ID
+  entityNumber: String
+  issueSort: String!
+}
+
+type ProjectAging {
+  """0-30"""
+  agingA: Decimal
+
+  """31-60"""
+  agingB: Decimal
+
+  """61-90"""
+  agingC: Decimal
+
+  """91-180"""
+  agingD: Decimal
+
+  """181-365"""
+  agingE: Decimal
+
+  """Over 1 Year"""
+  agingF: Decimal
+}
+
+input ProjectInput {
+  issueSort: String
+  entityNumber: String
+  campaignId: ID
+  mainPhotoType: String
+  closedOn: String
+  clientAccessHideAr: Boolean
+  number: String
+  l1Timeline: String
+  technicalSummary: String
+  shareOnClientAccess: Boolean
+  opportunityId: ID
+  officeId: ID
+  memberships: [MembershipInput]
+  id: ID
+  closedById: ID
+  projectDesc: String
+  shareL1Timeline: Boolean
+  inspectionSummary: Quill
+  shareL2Timeline: Boolean
+  mdDate: String
+  arSummary: String
+  deadBox: String
+  guesstimate: Decimal
+  projectType: String
+  oneMinuteSummaryUpdaterId: ID
+  syncedToQbw: Boolean
+  invoiceHideCosts: Boolean
+  sourceOf: String
+  opportunityOwnerId: ID
+  entity: String
+  salesStageId: ID
+  county: String
+  secured: Boolean
+  timelineFields: [[String]]
+  invoiceBillingPeriods: Boolean
+  issueAnalysisMode: String
+  locationAnalysisMode: String
+  locationFields: [[String]]
+  technicalSummaryUpdatedAt: String
+  projectUsers: [ProjectUserInput]
+  opportunityCloseDate: String
+  lineItemInvoices: Boolean
+  referralContactId: ID
+  hideHoursAndDollarsOnInvoices: Boolean
+  state: String
+  elementAnalysisMode: String
+  name: String
+  invoiceLevels: String
+  billingSummary: String
+  pcId: ID
+  creatorId: ID
+  opportunityStartDate: String
+  oneMinuteSummary: String
+  otherExperts: String
+  represent: String
+  parentOpportunityId: ID
+  invoiceHideHours: Boolean
+  maximumBillingPositionId: ID
+  oneMinuteSummaryUpdatedAt: String
+  mdHoldNotes: String
+  plans: String
+  technicalleadId: ID
+  sourceUserId: ID
+  elementFields: [[String]]
+  startDate: String
+  shareOneMinuteSummary: Boolean
+  technicalSummaryUpdaterId: ID
+  coExperts: String
+  address: String
+  prioritizeInvoices: Boolean
+  area: String
+  requireAttachmentsOnInvoices: Boolean
+  yearBuilt: String
+  invoiceNote: String
+  status: String
+  pmId: ID
+  rate: String
+  fieldInspection: String
+  issueFields: [[String]]
+  trade: String
+  mainPhotoId: ID
+  strategicTargetCompanyId: ID
+  deliverableLevelsOnInvoices: Boolean
+  addressFields: [[String]]
+  planUpdatedOn: String
+  budget: String
+}
+
+type ProjectUser {
+  createdAt: DateTime
+  id: ID!
+  project: Project!
+  role: String!
+  updatedAt: DateTime
+  user: User!
+  userId: ID!
+}
+
+input ProjectUserInput {
+  delete: Boolean
+  id: ID
+  role: String
+  userId: ID
+}
+
+type PtoPlan {
+  createdAt: DateTime
+  id: ID!
+  name: String!
+  tierOne: Int!
+  tierThree: Int!
+  tierTwo: Int!
+  updatedAt: DateTime
+}
+
+scalar Quill
+
+scalar Raw
+
+type Receivables {
+  projects: [Project!]!
+  title: String!
+}
+
+input ReceivablesFilter {
+  flags: [String]
+  query: String
+  status: String
+  tagIds: [ID]
+}
+
+type Refund {
+  amount: Float!
+  appliedPayments: [AppliedPayment!]!
+  createdAt: DateTime
+  id: ID!
+  itemDate: Date!
+  payer: String!
+  paymentMethod: String!
+  project: Project!
+  updatedAt: DateTime
+  user: User!
+}
+
+input RefundInput {
+  amount: Decimal
+  appliedPayments: [AppliedPaymentInput]
+  id: ID
+  itemDate: String
+  payer: String
+  paymentMethod: String
+  projectId: ID
+  userId: ID
+}
+
+type Relationship {
+  active: Boolean!
+  contact: Contact!
+  endDate: Date
+  id: ID!
+  key: Boolean
+  notes: String
+  parent: Contact!
+  role: String!
+  strategicTargetRole: String
+}
+
+input RelationshipInput {
+  active: Boolean
+  contactId: ID
+  endDate: Date
+  id: ID
+  key: Boolean
+  notes: String
+  parentId: ID
+  role: String
+  strategicTargetRole: String
+}
+
+type Report {
+  headerTitle: String
+  user: User!
+  reportPhotoGroups: [ReportPhotoGroup!]!
+  publishedOn: Date
+  note: String
+  status: String!
+  includeToc: Boolean
+  intro: Quill
+  legacy: Boolean
+  reportSources: [ReportSource!]!
+  autoGenerateToc: Boolean
+  omitCover: Boolean
+  reportSections: [ReportSection!]!
+  staticRecipient: String
+  updatedAt: DateTime
+  retainer: Decimal
+  userId: ID!
+  reportType: String!
+  feeSchedule: Boolean
+  createdAt: DateTime
+  noteInFooter: Boolean
+  customToc: Quill
+  includeNote: Boolean
+  title: String
+  membershipId: ID
+  internalDescription: String
+  membership: Membership
+  peerReviews: [PeerReview!]!
+  id: ID!
+  project: Project!
+  agreement: Agreement
+  clientName: String
+  includePageNumbers: Boolean
+}
+
+type ReportCard {
+  attachment: ArcAttachment
+  average: Float
+  commentUserIds: [ID]
+  comments: String
+  createdAt: DateTime
+  id: ID!
+  itemDate: Date
+  possibleScore: Float
+  project: Project
+  reportCardType: ReportCardType
+  score: Float
+  scores: [Int]
+  updatedAt: DateTime
+  user: User
+}
+
+input ReportCardInput {
+  attachment: Upload
+  commentUserIds: [ID]
+  comments: String
+  id: ID
+  itemDate: String
+  projectId: ID
+  reportCardTypeId: ID
+  scores: [Int]
+  userId: ID
+}
+
+type ReportCardQuestion {
+  createdAt: DateTime
+  description: String
+  id: ID!
+  maxScore: Int
+  rank: Int
+  reportCardType: ReportCardType
+  title: String
+  updatedAt: DateTime
+}
+
+input ReportCardQuestionInput {
+  description: String
+  id: ID
+  maxScore: IntegerInput
+  reportCardTypeId: ID
+  title: String
+}
+
+type ReportCardType {
+  active: Boolean
+  category: String
+  createdAt: DateTime
+  id: ID!
+  name: String!
+  reportCardQuestions: [ReportCardQuestion!]!
+  reportCards: [ReportCard!]!
+  updatedAt: DateTime
+}
+
+input ReportCardTypeInput {
+  active: Boolean
+  category: String
+  id: ID
+  name: String
+}
+
+type ReportDocument {
+  createdAt: DateTime
+  document: Document!
+  id: ID!
+  rank: Int!
+  reportSection: ReportSection!
+  updatedAt: DateTime
+}
+
+input ReportInput {
+  agreementId: ID
+  autoGenerateToc: Boolean
+  clientName: String
+  customToc: Quill
+  feeSchedule: Boolean
+  headerTitle: String
+  id: ID
+  includeNote: Boolean
+  includePageNumbers: Boolean
+  includeToc: Boolean
+  internalDescription: String
+  intro: Quill
+  membershipId: ID
+  note: String
+  noteInFooter: Boolean
+  omitCover: Boolean
+  publishedOn: Date
+  reportSections: [ReportSectionInput]
+  reportType: String
+  retainer: Decimal
+  staticRecipient: String
+  status: String
+  title: String
+  userId: ID
+}
+
+type ReportPhotoGroup {
+  address: Address
+  createdAt: DateTime
+  element: Element
+  id: ID!
+  issue: Issue
+  location: Location
+  photoset: Photoset
+  player: Player
+  rank: Int
+  reportSection: ReportSection
+  testLocation: TestLocation
+  updatedAt: DateTime
+}
+
+input ReportPhotoGroupInput {
+  addressId: ID
+  elementId: ID
+  id: ID
+  issueId: ID
+  locationId: ID
+  photosetId: ID
+  playerId: ID
+  reportSectionId: ID
+  testLocationId: ID
+}
+
+type ReportSection {
+  addresses: [Address!]!
+  analysisFields: String
+  analysisPhotos: Boolean
+  analysisSource: String
+  autoGenerateAttachmentList: Boolean
+  body: String
+  bodyJson: Quill
+  createdAt: DateTime
+  customAttachmentList: Quill
+  documents: [Document!]!
+  heading: String
+  id: ID!
+  imageReferences: [ImageReference!]!
+  includeAddressesOnPhotos: Boolean
+  includeAnalysisList: Boolean
+  includeAttachmentList: Boolean
+  infoImages: [InfoImage!]!
+  issueSort: String
+  locations: [Location!]!
+  newPage: Boolean
+  photoSort: String
+  rank: Int
+  report: Report
+  reportDocuments: [ReportDocument!]!
+  reportPhotoGroups: [ReportPhotoGroup!]!
+  sectionType: String
+  showHeading: Boolean
+  skipEmptyFields: Boolean
+  title: String
+  updatedAt: DateTime
+}
+
+type ReportSectionElement {
+  createdAt: DateTime
+  element: Element!
+  id: ID!
+  reportSection: ReportSection!
+  updatedAt: DateTime
+}
+
+input ReportSectionInput {
+  addressIds: [ID]
+  analysisFields: String
+  analysisPhotos: Boolean
+  analysisSource: String
+  autoGenerateAttachmentList: Boolean
+  bodyJson: Quill
+  customAttachmentList: Quill
+  heading: String
+  id: ID
+  includeAddressesOnPhotos: Boolean
+  includeAnalysisList: Boolean
+  includeAttachmentList: Boolean
+  issueSort: String
+  locationIds: [ID]
+  newPage: Boolean
+  photoSort: String
+  reportId: ID
+  sectionType: String
+  showHeading: Boolean
+  skipEmptyFields: Boolean
+  title: String
+}
+
+type ReportSectionIssue {
+  createdAt: DateTime
+  id: ID!
+  issue: Issue!
+  reportSection: ReportSection!
+  updatedAt: DateTime
+}
+
+type ReportSectionLocation {
+  createdAt: DateTime
+  id: ID!
+  location: Location!
+  reportSection: ReportSection!
+  updatedAt: DateTime
+}
+
+type ReportSource {
+  id: ID!
+  photoset: Photoset
+  report: Report
+}
+
+type ReportType {
+  agreement: Agreement
+  createdAt: DateTime
+  feeSchedule: Boolean
+  headerTitle: String
+  id: ID!
+  includeNote: Boolean
+  includeToc: Boolean
+  intro: Quill
+  name: String!
+  omitCover: Boolean
+  overhead: Boolean
+  rank: Int
+  regarding: String
+  reportTypeSections: [ReportTypeSection!]!
+  sku: Sku
+  updatedAt: DateTime
+}
+
+input ReportTypeInput {
+  agreementId: ID
+  feeSchedule: Boolean
+  headerTitle: String
+  id: ID
+  includeNote: Boolean
+  includeToc: Boolean
+  intro: Quill
+  name: String
+  omitCover: Boolean
+  overhead: Boolean
+  regarding: String
+  skuId: ID
+}
+
+type ReportTypeSection {
+  createdAt: DateTime
+  heading: String
+  id: ID!
+  includeAnalysisList: Boolean
+  includeAttachmentList: Boolean
+  prefill: String
+  rank: Int
+  reportType: ReportType
+  sectionType: String
+  showHeading: Boolean
+  template: Quill
+  title: String
+  updatedAt: DateTime
+}
+
+input ReportTypeSectionInput {
+  heading: String
+  id: ID
+  includeAnalysisList: Boolean
+  includeAttachmentList: Boolean
+  prefill: String
+  reportTypeId: ID
+  sectionType: String
+  showHeading: Boolean
+  template: Quill
+  title: String
+}
+
+type Residence {
+  category: String
+  contact(includeInactive: Boolean): Contact
+  endDate: Date
+  id: ID!
+  physicalAddress: PhysicalAddress
+  primary: Boolean
+  residence: Residence
+}
+
+input ResidenceInput {
+  category: String
+  contactId: ID
+  endDate: Date
+  id: ID
+  physicalAddressId: ID
+  primary: Boolean
+}
+
+type Retainer {
+  amount: Decimal!
+  checkDate: Date!
+  checkNumber: String!
+  createdAt: DateTime!
+  deposit: Deposit!
+  depositDate: Date!
+  id: ID!
+  payments: [Payment!]!
+  payor: String!
+  project: Project!
+  referenceNumber: String
+  synced: Boolean!
+  updatedAt: DateTime!
+}
+
+input RetainerInput {
+  amount: Decimal
+  checkDate: String
+  checkNumber: String
+  depositDate: String
+  depositId: ID
+  id: ID
+  payor: String
+  projectId: ID
+  referenceNumber: String
+  synced: Boolean
+}
+
+type RootMutationType {
+  addCampaignsContact(campaignId: ID!, contactId: ID!): CampaignsContact
+  deleteList(id: ID!): List
+  deleteKpiSection(id: ID!): KpiSection
+  saveTopic(input: TopicInput!): Topic
+  deleteTask(id: ID!): Task
+  addReportSectionLocations(locationIds: [ID], reportSectionId: ID): [ReportSectionLocation!]!
+  sortMetric(direction: String!, id: ID!): [Metric]
+  deletePhotoset(id: ID!): Photoset
+  saveDocument(input: DocumentInput!): [Document]
+  addReportSectionElements(elementIds: [ID], reportSectionId: ID): [ReportSectionElement!]!
+  sendTenTouchTask(id: ID!): TenTouchTask
+  saveListItem(input: ListItemInput!): ListItem
+  completePhotoset(id: ID!): Photoset
+  saveTrainingRequirement(input: TrainingRequirementInput!): TrainingRequirement
+  deleteBillableGoal(id: ID!): BillableGoal
+  deleteReport(id: ID!): Report
+  saveKpiSection(input: KpiSectionInput!): KpiSection
+  deletePlayer(id: ID!): Player
+  deleteRefund(id: ID!): Refund
+  movePlayerGroup(direction: String!, id: ID!): [PlayerGroup]
+  saveAffiliationType(input: AffiliationTypeInput!): AffiliationType
+  deleteMailing(id: ID!): Mailing
+  rotatePhoto(id: ID!): Photo
+  createMetric(input: MetricInput): Metric
+  savePlayer(input: PlayerInput!): Player
+  saveReportType(input: ReportTypeInput): ReportType
+  saveTraining(input: TrainingInput!): Training
+  copyInvoicesToFiles(projectId: ID!): [Document]
+  saveOffice(input: OfficeInput!): Office
+  saveChecklistItem(input: ChecklistItemInput!): ChecklistItem
+  updateMetric(id: ID, input: MetricInput): Metric
+  saveMembership(input: MembershipInput): Membership
+  deleteAttachedFile(id: ID!): AttachedFile
+  loginAccessUser(login: String!, password: String!): AccessUserSession
+  saveIssue(input: IssueInput!): Issue
+  saveTestLocation(input: TestLocationInput!): TestLocation
+  deleteEmployeeReview(id: ID!): EmployeeReview
+  saveTag(input: TagInput!): Tag
+  saveRelationship(input: RelationshipInput!): Relationship
+  batchTag(input: BatchTagInput!): Int
+  addReportSectionIssues(issueIds: [ID], reportSectionId: ID): [ReportSectionIssue!]!
+  sortChecklistItem(direction: String!, id: ID!): [ChecklistItem]
+  deleteDeliverable(id: ID!): Deliverable
+  saveReportCardType(input: ReportCardTypeInput!): ReportCardType
+  noChargeInvoicelines(ids: [ID]!): [Invoiceline]
+  saveTenTouch(input: TenTouchInput!): [TenTouch]
+  savePhoto(input: PhotoInput!): Photo
+  splitInvoiceline(id: ID!): Invoiceline!
+  deleteIssue(id: ID!): Issue
+  savePlanType(input: PlanTypeInput!): PlanType
+  markContactOutdated(id: ID!, userId: ID!): Contact
+  savePlanSection(input: PlanSectionInput!): PlanSection
+  moveImageReference(input: ImageReferenceInput!): [ImageReference]
+  saveTemplate(input: TemplateInput!): Template
+  saveInvoice(input: InvoiceInput): Invoice
+  saveBillableGoal(input: BillableGoalInput!): BillableGoal
+  copyDocumentFromLibrary(documentId: ID!, projectId: ID!): Document
+  savePhysicalAddress(input: PhysicalAddressInput!): PhysicalAddress
+  syncCampaignToMailchimp(id: ID!): String
+  saveFeeSchedule(input: FeeScheduleInput!): FeeSchedule
+  deleteInfoImage(id: ID!): InfoImage
+  sortAttachment(direction: String!, id: ID!): [Attachment]
+  deleteMessage(id: ID!): Message
+  setGoal(input: GoalInput): Goal
+  deleteMetric(id: ID): Metric
+  saveInfoImage(input: InfoImageInput!): InfoImage
+  deleteCalendar(id: ID!): Calendar
+  moveReportTypeSection(direction: String!, id: ID!): [ReportTypeSection]
+  updateInvoiceline(id: ID, input: InvoicelineInput): Invoiceline
+  saveTenTouchTemplate(input: TenTouchTemplateInput!): TenTouchTemplate
+  saveNote(input: NoteInput!): Note
+  deleteDispatch(id: ID): Dispatch
+  deleteReportTypeSection(id: ID): ReportTypeSection
+  deletePayment(id: ID!): Payment
+  deleteTagging(id: ID!): Tagging
+  deleteTrainingCompletion(id: ID!): TrainingCompletion
+  saveTenTouchTask(input: TenTouchTaskInput!): TenTouchTask
+  saveInterview(input: InterviewInput!): Interview
+  setNewAccessUserPassword(password: String!, token: String!): AccessUserSession
+  saveKpi(input: KpiInput!): Kpi
+  deleteAffiliationType(id: ID!): AffiliationType
+  sortKanbanCard(column: String!, id: ID!, position: String, rank: Int): [KanbanCard]
+  saveSeminar(input: SeminarInput!): Seminar
+  deleteTenTouchTemplate(id: ID!): TenTouchTemplate
+  batchUpdatePhotos(input: BatchPhotoInput!): [Photo]
+  deleteDocumentReference(id: ID!): DocumentReference
+  deletePeerReview(id: ID): PeerReview
+  createDeliverable(input: DeliverableInput!): Deliverable
+  saveReportTypeSection(input: ReportTypeSectionInput): ReportTypeSection
+  deleteMilestoneparent(id: ID!): Milestoneparent
+  saveAttachedFile(input: AttachedFileInput!): [AttachedFile]
+  updateTimesheet(id: ID!, input: TimesheetInput): Timesheet
+  saveMilestone(input: MilestoneInput!): Milestone
+  delayInvoicelines(invoiceId: ID, invoicelineIds: [ID]!): Invoice
+  seminarImport(id: ID!, token: String!): SeminarImportResults
+  deleteReportSectionElement(id: ID): ReportSectionElement
+  deleteFeeSchedule(id: ID!): FeeSchedule
+  saveRefund(input: RefundInput!): Refund
+  batchUpdateTestLocations(ids: [ID!]!, input: TestLocationInput!, remove: Boolean): [TestLocation]
+  saveSku(input: SkuInput!): Sku
+  saveTrainingCompletion(input: TrainingCompletionInput!): TrainingCompletion
+  chargeCard(amountCents: Int!, projectNumber: String!, token: String!): String
+  saveCalendar(input: CalendarInput!): Calendar
+  deletePlayerGroup(id: ID!): PlayerGroup
+  sortInfoImage(input: InfoImageInput!): [InfoImage]
+  generateInvoice(invoicelineIds: [ID], number: String!, timesheetIds: [ID]): Invoice
+  saveList(input: ListInput!): List
+  deleteMembership(id: ID!): Membership
+  sortDeliverable(id: ID!, milestoneparentId: ID!, position: Int!): [Deliverable]
+  mailInvoices(ids: [String]): [Invoice]
+  saveEmployee(input: EmployeeInput!): Employee
+  deleteChecklistItem(id: ID!): ChecklistItem
+  updatePlan(id: ID!, input: PlanInput!): Plan
+  approveMilestone(id: ID!, managerId: ID!): Milestone
+  saveElement(input: ElementInput!): Element
+  saveReportCardQuestion(input: ReportCardQuestionInput!): ReportCardQuestion
+  batchUpdateDocuments(ids: [ID!]!, input: DocumentInput!): [Document]
+  saveEmployeeReview(input: EmployeeReviewInput!): EmployeeReview
+  saveTimesheet(input: TimesheetInput): Timesheet
+  saveMailing(input: MailingInput!): Mailing
+  toggleCampaignContactField(field: String!, id: ID!, value: Boolean!): CampaignsContact
+  deleteTraining(id: ID!): Training
+  downloadPhotos(input: DownloadPhotosInput!): String
+  confirmSeparateContacts(contactId: ID!, otherId: ID!): [Contact]
+  saveTimeline(input: TimelineInput!): Timeline
+  deleteListItem(id: ID!): ListItem
+  saveAttachment(input: AttachmentInput!): Attachment
+  saveSeminarAttendee(input: SeminarAttendeeInput!): SeminarAttendee
+  approveExpenses(employeeId: ID!, ids: [ID], month: String!): MonthlyPayment
+  applyDeliverableToInvoicelines(billedPosition: String, deliverableId: ID, invoicelineIds: [ID]!): [Invoiceline]
+  deletePlanStatus(id: ID!): PlanStatus
+  createReport(input: CreateReportInput): Report
+  deleteReportPhotoGroup(id: ID!): ReportPhotoGroup
+  deleteAttachment(id: ID!): Attachment
+  savePhotoLink(input: PhotoLinkInput!): PhotoLink
+  deleteKanbanCard(id: ID!): KanbanCard
+  saveTrainingAssignment(input: TrainingAssignmentInput!): TrainingAssignment
+  saveReportDocuments(ids: [ID!]!, reportSectionId: ID!): [ReportDocument]
+  copyReport(id: ID!): Report
+  deleteEmployee(id: ID!): Employee
+  deleteElement(id: ID!): Element
+  deleteSalary(id: ID!): Salary
+  deleteTrainingAssignment(id: ID!): TrainingAssignment
+  saveMonthlyPayment(input: MonthlyPaymentInput): MonthlyPayment
+  deleteAgreement(id: ID!): Agreement
+  moveDeliverable(direction: String!, id: ID!): [Deliverable]
+  savePile(input: PileInput!): Pile
+  deleteImageReference(id: ID!): ImageReference
+  login(token: String!): UserSession
+  generateAllInvoices(month: String): String
+  updateDeliverable(id: ID!, input: DeliverableInput!): Deliverable
+  moveReportSection(direction: String!, id: ID!): [ReportSection]
+  deleteReportSection(id: ID!): ReportSection
+  deleteTrainingPlan(id: ID!): TrainingPlan
+  createMilestoneparent(input: MilestoneparentInput!): Milestoneparent
+  saveBillableGoalReduction(input: BillableGoalReductionInput!): BillableGoalReduction
+  saveGoal(input: GoalInput): Goal
+  createPeerReview(input: PeerReviewInput): PeerReview
+  deleteReportDocument(id: ID!): ReportDocument
+  saveKpiSet(input: KpiSetInput!): KpiSet
+  deleteBillableGoalReduction(id: ID!): BillableGoalReduction
+  saveDispatch(input: DispatchInput!): Dispatch
+  submitPayPeriod: PayPeriod
+  updateMilestoneparent(id: ID!, input: MilestoneparentInput!): Milestoneparent
+  saveContactImport(input: ContactImportInput!): ContactImport
+  moveDocumentReference(direction: String!, id: ID!): [DocumentReference]
+  saveTask(input: TaskInput!): Task
+  moveKpiType(direction: String!, id: ID!): [KpiType]
+  moveMilestoneparent(id: ID!, position: Int!): [Milestoneparent]
+  saveCommunity(input: CommunityInput!): Community
+  addContactsToGroup(campaignFields: String, campaignId: ID, contactId: ID, filter: ContactSearchFilter): AddContactsToGroupResults
+  updateInvoicedDeliverable(id: ID, input: InvoicedDeliverableInput): InvoicedDeliverable
+  saveSeminarAttachment(input: SeminarAttachmentInput!): SeminarAttachment
+  saveContact(input: ContactInput!): Contact
+  createAttachment(input: AttachmentInput): Attachment
+  saveDevice(input: DeviceInput!): Device!
+  deleteInterview(id: ID!): Interview
+  createDocumentReferences(documentIds: [ID]!, input: DocumentReferenceInput!): [DocumentReference]
+  moveKpiSection(direction: String!, id: ID!): [KpiSection]
+  saveMessage(input: MessageInput!): Message
+  deleteReportSectionIssue(id: ID): ReportSectionIssue
+  deleteSkuSample(id: ID!): SkuSample
+  saveSourceFile(input: SourceFileInput!): SourceFile
+  deleteRetainer(id: ID!): Retainer
+  deleteSeminarAttachment(id: ID!): SeminarAttachment
+  deleteResidence(id: ID!): Residence
+  saveDeposit(input: DepositInput!): Deposit
+  saveSkuSample(input: SkuSampleInput!): SkuSample
+  saveProject(input: ProjectInput): Project
+  seminarSync(id: ID!): Seminar
+  deleteTimesheet(id: ID): Timesheet
+  deleteCampaignsContact(id: ID!): CampaignsContact
+  addElementsFromMenu(elementIds: [ID]!, projectId: ID!): [Element]
+  saveImageReferences(input: ImageReferencesInput!): [ImageReference]
+  saveAgreement(input: AgreementInput!): Agreement
+  copyPreviousPhoto(id: ID!, sourceId: ID!): Photo
+  saveDeliverableMenuItem(input: DeliverableMenuItemInput!): DeliverableMenuItem
+  deleteReportSectionLocation(id: ID): ReportSectionLocation
+  deleteTimeline(id: ID!): Timeline
+  deleteAddress(id: ID!): Address
+  deleteDocument(id: ID!, markAsKnown: Boolean): Document
+  createDefaultPlayerGroups(id: ID!): [PlayerGroup]
+  deleteNote(id: ID!): Note
+  saveImageReference(input: ImageReferenceInput!): ImageReference
+  deleteReportCardQuestion(id: ID!): ReportCardQuestion
+  saveReport(input: ReportInput!): Report
+  submitInvoice(id: ID!, mode: String!): Invoice
+  saveBillingRate(input: BillingRateInput!): BillingRate
+  saveCampaign(input: CampaignInput!): Campaign
+  saveReportPhotoGroup(input: ReportPhotoGroupInput!): ReportPhotoGroup
+  deleteDeposit(id: ID!): Deposit
+  savePlanStatus(input: PlanStatusInput): PlanStatus
+  saveChecklist(input: ChecklistInput!): Checklist
+  activateAccessUser(token: String!): AccessUserSession
+  saveLocation(input: LocationInput!): Location
+  savePhotoset(input: PhotosetInput!): Photoset
+  deleteKpiType(id: ID!): KpiType
+  deleteSeminarAttendee(id: ID!): SeminarAttendee
+  deleteMilestone(id: ID!): Milestone
+  saveSalary(input: SalaryInput!): Salary
+  deleteTrainingRequirement(id: ID!): TrainingRequirement
+  createDeliverables(deliverableMenuItemIds: [ID]!, planId: ID!): [Deliverable]
+  deleteReportCard(id: ID!): ReportCard
+  savePayment(input: PaymentInput!): Payment
+  deleteDevice(id: ID!): Device
+  sortTrainingRequirement(direction: String!, id: ID!): [TrainingRequirement]
+  createTagging(input: TaggingInput!): Tagging
+  saveReportCard(input: ReportCardInput!): ReportCard
+  savePlayerGroup(input: PlayerGroupInput!): PlayerGroup
+  saveKpiType(input: KpiTypeInput!): KpiType
+  sendMailingTestEmail(email: String!, id: ID!): Mailing
+  createSurveys(membershipIds: [ID]!, projectId: ID!): [Survey]
+  viewAccessPublication(id: ID!): AccessPublication
+  deleteTestLocation(id: ID!): TestLocation
+  saveFeature(input: FeatureInput!): Feature
+  saveReportSection(input: ReportSectionInput!): ReportSection
+  deleteInvoiceline(id: ID): Invoiceline
+  saveCreditMemo(input: CreditMemoInput!): CreditMemo
+  saveUser(input: UserInput!): User
+  saveKanbanCard(input: KanbanCardInput!): KanbanCard
+  sendMailing(id: ID!): Mailing
+  copyCampaignContacts(id: ID!, sourceId: ID!): CopyCampaignContactsResult!
+  moveReportDocument(direction: String!, id: ID!): [ReportDocument]
+  moveReportCardQuestion(direction: String!, id: ID!): [ReportCardQuestion]
+  deleteChecklist(id: ID!): Checklist
+  resetAccessUserPassword(login: String!): String
+  createStandardLocations(projectId: ID!): Project
+  submitTimesheet(login: String, mode: String, month: String): [Timesheet]
+  markContactInactive(id: ID!, reason: String!, userId: ID!): Contact
+  saveTenTouchItem(input: TenTouchItemInput!): TenTouchItem
+  saveTrainingPlan(input: TrainingPlanInput!): TrainingPlan
+  createAccessUser(login: String!, password: String!): AccessUser
+  sendSeminarTestEmail(email: String!, id: ID!): Seminar
+  sortTrainingAssignment(input: TrainingAssignmentInput!): [TrainingAssignment]
+  deleteLocation(id: ID!): Location
+  dnbInvoices(ids: [ID]!): [Invoice]
+  mergeContacts(fieldsToCopy: [String], fieldsToMerge: [String], id: ID!, mergeId: ID!, residenceIds: [ID], userId: ID!): Contact!
+  saveRetainer(input: RetainerInput!): Retainer
+  moveListItem(direction: String!, id: ID!): [ListItem]
+  sendSeminar(id: ID!): Seminar
+  saveAddress(input: AddressInput!): Address
+  createTimesheet(input: TimesheetInput): Timesheet
+}
+
+type RootQueryType {
+  survey(id: ID!): Survey!
+  creditMemo(id: ID!): CreditMemo
+  office(id: ID!): Office
+  topic(id: ID!): Topic!
+  user(id: ID, login: String): User!
+  feature(id: ID!): Feature!
+  photo(id: ID, imageNumber: ID, photosetNumber: String, projectNumber: String): Photo!
+  tenTouchTasks(category: String, parentId: ID, parentType: String, scope: String, type: String): [TenTouchTask!]!
+  accessUsers: [AccessUser]
+  payment(id: ID!): Payment!
+  asteriskCalls: [AsteriskCall]
+  documentParties(projectNumber: String!): [String!]!
+  sourceFile(id: ID!): SourceFile
+  interviews(template: Boolean): [Interview]
+  milestone(id: ID!): Milestone
+  tenTouch(id: ID!): TenTouch
+  documentCategories: [DocumentCategory!]!
+  reportCardType(id: ID!): ReportCardType
+  paymentAutocomplete(number: String!): PaymentAutocomplete
+  payPeriod(id: ID!): PayPeriod
+  trainings(filter: String): [Training!]!
+  billableGoalReduction(id: ID!): BillableGoalReduction
+  photoSearch(filters: PhotoSearchFilters!): PhotoResult!
+  note(id: ID!): Note!
+  listItem(id: ID!): ListItem!
+  features: [Feature!]!
+  goals: [Goal]
+  testLocation(id: ID!): TestLocation
+  calendar(id: ID!): Calendar
+  campaigns(filter: String, includeId: ID): [Campaign!]!
+  currentAccessUser: AccessUser
+  ptoPlans: [PtoPlan!]!
+  interview(id: ID!): Interview
+  issues(projectId: ID): [Issue!]!
+  feeSchedules: [FeeSchedule!]!
+  training(id: ID!): Training!
+  address(id: ID!): Address
+  kpiSet(globalSet: String, id: ID, login: String): KpiSet!
+  closedProjects(month: String!): [Project!]!
+  invoicelines(billedDuringMonth: Boolean, filter: String, month: String, number: String, userId: ID): [Invoiceline!]!
+  users(filter: String, includeIds: [ID]): [User!]!
+  kpiSection(id: ID!): KpiSection
+  contactImports: [ContactImport!]!
+  addresses(filter: String, projectId: ID, search: String): [Address!]!
+  surveys(completed: Boolean, template: Boolean = false): [Survey!]!
+  contact(id: ID!): Contact!
+  billableGoal(id: ID!): BillableGoal
+  tenTouchTemplate(id: ID!): TenTouchTemplate!
+  planSection(id: ID!): PlanSection
+  affiliationTypes: [AffiliationType!]!
+  reportSection(id: ID): ReportSection
+  relationship(id: ID!): Relationship
+  report(id: ID): Report!
+  offices: [Office!]!
+  deposit(id: ID!): Deposit
+  physicalAddress(id: ID!): PhysicalAddress
+  reportSectionElements(reportSectionId: ID): [ReportSectionElement!]!
+  billingRate(id: ID!): BillingRate
+  sku(id: ID!): Sku!
+  kpiType(id: ID!): KpiType
+  conversionRates: [ConversionRate!]!
+  planTypes: [PlanType!]!
+  employeeReview(id: ID!): EmployeeReview
+  employees(activeDuring: String, activeWeek: String, activeYear: Int, future: Boolean, managerId: ID, status: String): [Employee!]!
+  infoImage(id: ID!): InfoImage
+  community(id: ID!): Community
+  retainers(filter: String, month: String): [Retainer!]!
+  salary(id: ID!): Salary
+  employee(id: ID, userId: ID, userLogin: String): Employee!
+  deposits(includeId: ID, limit: Int, month: String, status: String, synced: Boolean): [Deposit!]!
+  trainingCategories: [TrainingCategory!]!
+  template(id: ID!): Template
+  checklists(category: String, template: Boolean): [Checklist]
+  downloadContacts(filter: ContactSearchFilter!, mode: String!): String
+  skus: [Sku!]!
+  playerGroups(projectId: ID): [PlayerGroup]
+  photos(addressId: ID, elementId: ID, issueId: ID, keyForParent: Boolean, keyPhotos: Boolean, locationId: ID, parentId: ID, parentType: String, photosetId: ID, playerId: ID, projectId: ID): [Photo!]!
+  refunds: [Refund!]!
+  tenTouchBatch(id: ID!): TenTouchBatch
+  device(id: ID!): Device!
+  seminars(attended: Boolean, contactId: ID, eventType: String, year: Int): [Seminar!]!
+  campaign(id: ID!): Campaign!
+  contactImport(id: ID!): ContactImport!
+  list(id: ID!): List!
+  physicalAddresses(filter: String): [PhysicalAddress]
+  reportCard(id: ID!): ReportCard
+  billingPositions: [BillingPosition!]!
+  commonbillingentries: [Commonbillingentry]
+  retainer(id: ID!): Retainer
+  timesheetStatus: TimesheetStatus
+  timesheets(expenses: Boolean, filter: String, login: String, month: String, number: String, paymentType: String, year: String): [Timesheet!]!
+  milestoneparents(planId: ID!): [Milestoneparent!]!
+  documents(employeeId: ID, filter: String, global: Boolean, md5: String, parentId: ID, projectId: ID, projectNumber: String, query: String): [Document!]!
+  reportType(id: ID): ReportType!
+  testLocations(projectId: ID): [TestLocation!]!
+  dynamicMetrics(end: String, filter: String, quarter: String, start: String, type: String, types: [String], user: String): [DynamicMetric!]!
+  projectCounts(user: String): [DynamicMetric!]!
+  dispatch(id: ID!): Dispatch!
+  topics(category: String): [Topic]
+  salesMetrics(date: Date!, period: String = "Day", user: String): [SalesMetric!]!
+  editorTemplates(projectId: ID, scope: String!): [EditorTemplate!]!
+  feeSchedule(id: ID!): FeeSchedule
+  contacts(ids: [ID], query: String, tagId: ID): [Contact!]!
+  reportSectionIssues(reportSectionId: ID): [ReportSectionIssue!]!
+  trainingPlan(id: ID!): TrainingPlan
+  tasks(category: String, parentId: ID, parentType: String, scope: String, type: String): [Task!]!
+  librarySearch(category: ID, element: ID, filter: String, query: String): LibrarySearch!
+  kpiSets: [KpiSet!]!
+  playerGroup(id: ID!): PlayerGroup
+  legacyReports: [Report]
+  timeline(id: ID!): Timeline
+  contactSearch(filter: ContactSearchFilter!, paginate: Boolean): ContactResults!
+  planType(id: ID!): PlanType!
+  player(id: ID!): Player
+  reports(author: String, billable: Boolean, notAuthor: String, projectStatus: String, projectUser: String, status: String): [Report]
+  taskCounts(user: String): [DynamicMetric!]!
+  reportTypeSection(id: ID): ReportTypeSection
+  tag(id: ID!): Tag
+  mailing(id: ID!): Mailing!
+  timesheet(id: ID): Timesheet!
+  deliverableMenuItem(id: ID!): DeliverableMenuItem
+  duplicateContacts(contactImportId: ID, mode: String = "Contact"): [DuplicateContactSet!]!
+  tenTouchTemplates: [TenTouchTemplate!]!
+  issue(id: ID!): Issue
+  communities: [Community!]!
+  photoset(id: ID!, project: String): Photoset!
+  calendars(endTime: Int!, office: String, project: String, projectUser: String, startTime: Int!, user: String): [Calendar!]!
+  elements(projectId: ID, template: Boolean): [Element!]!
+  document(id: ID): Document!
+  companies(search: String): [Contact!]!
+  goal(date: String, name: String!, period: String!, quarter: String): Goal
+  planStatus(id: ID!): PlanStatus
+  tags(scope: String): [Tag!]!
+  locations(projectId: ID): [Location!]!
+  reportTypes: [ReportType!]!
+  skuSample(id: ID!): SkuSample
+  reportCardTypes: [ReportCardType!]!
+  players(projectId: ID): [Player]
+  kanbanCards(projectNumber: String, user: String): [KanbanCard!]!
+  creditMemos(month: String, synced: Boolean): [CreditMemo!]!
+  affiliationType(id: ID!): AffiliationType
+  invoices(after: String, before: String, filter: String, login: String, status: String): [Invoice!]!
+  photosets(filter: String, projectId: ID, user: String): [Photoset!]!
+  agreements: [Agreement!]!
+  projects(billable: Boolean, conflictQuery: String, date: Date, filter: String, includeId: ID, month: String, opportunityUser: String, projectsOnly: Boolean, search: String, user: String): [Project!]!
+  location(id: ID!): Location
+  accessPublications: [AccessPublication!]!
+  memberships(memberId: ID!, memberType: String!): [Membership]
+  kpiTypes: [KpiType]
+  monthlyPayment(id: ID!): MonthlyPayment
+  project(id: ID, number: String): Project!
+  tenTouches(tenTouchBatchId: ID): [TenTouch!]!
+  element(id: ID!): Element
+  mailings: [Mailing!]!
+  refund(id: ID!): Refund
+  currentUser: User
+  payments(endDate: String, filter: String, month: String, startDate: String): [Payment!]!
+  checklistItem(id: ID!): ChecklistItem
+  invoice(id: ID!): Invoice!
+  devices: [Device!]!
+  agreement(id: ID!): Agreement
+  salesStages: [SalesStage!]!
+  seminar(id: ID!): Seminar!
+  receivables(filter: ReceivablesFilter): Receivables!
+  pile(id: ID!): Pile!
+  notes(contactId: ID, login: String, month: String, projectId: ID): [Note]
+  trainingPlans(login: String!): [TrainingPlan!]!
+  reportSectionLocations(reportSectionId: ID): [ReportSectionLocation!]!
+  checklist(category: String, id: ID, template: Boolean): Checklist!
+  tenTouchItems(active: Boolean, includeId: ID): [TenTouchItem!]!
+  tenTouchItem(id: ID!): TenTouchItem
+  kpis(globalSet: String, login: String): [Kpi]
+  templates(projectId: ID, scope: String): [Template!]!
+  metrics(campaignId: ID, category: String, quarter: String): [Metric!]!
+  reportCardQuestion(id: ID!): ReportCardQuestion
+}
+
+type Salary {
+  annualBase: Decimal
+  annualIncentive: Decimal
+  createdAt: DateTime
+  effectiveDate: Date
+  employee: Employee
+  hourlyRate: Decimal
+  hourlyRates: Quill
+  id: ID!
+  manager: User
+  performancePaySummary: String
+  ptoPlan: PtoPlan
+  retroactiveDate: Date
+  updatedAt: DateTime
+}
+
+input SalaryInput {
+  annualBase: Decimal
+  annualIncentive: Decimal
+  effectiveDate: String
+  employeeId: ID
+  hourlyRate: Decimal
+  hourlyRates: Quill
+  id: ID
+  performancePaySummary: String
+  ptoPlanId: ID
+  retroactiveDate: String
+}
+
+type SalesMetric {
+  category: String!
+  count: Int!
+  date: Date!
+  name: String!
+  points: Int!
+  score: Int!
+  totalOnly: Boolean
+}
+
+type SalesProjection {
+  amount: Decimal
+  closeDate: Date
+  createdAt: DateTime
+  id: ID!
+  itemDate: Date
+  project: Project
+  salesStage: SalesStage
+  updatedAt: DateTime
+}
+
+type SalesStage {
+  createdAt: DateTime
+  description: String!
+  id: ID!
+  probability: Int!
+  updatedAt: DateTime
+}
+
+type Seminar {
+  seminarrecipientsCount: Int
+  user: User
+  categoriesSome: String
+  subject: String!
+  seminarAttachments: [SeminarAttachment!]!
+  categoriesAll: String
+  bodyConfirmation: String
+  followupStatus: String!
+  eventLocation: String
+  body: String
+  bodyReminder: String
+  bodyFollowup: String
+  categoriesNone: String
+  checklists: [Checklist!]!
+  eventTime: String!
+  campaign: Campaign
+  updatedAt: DateTime
+  goToWebinarKey: String
+  attendeeCount: Int
+  followupSentAt: DateTime
+  approved: Boolean
+  createdAt: DateTime
+  fromName: String!
+  eventDate: Date!
+  videoUrl: String
+  title: String!
+  id: ID!
+  fromEmail: String!
+  seminarAttendees: [SeminarAttendee!]!
+  eventDirections: String
+  eventType: String!
+  campaignId: ID
+  registrantCount: Int
+}
+
+type SeminarAttachment {
+  attachment: ArcAttachment
+  attachmentFileSize: Int
+  attachmentUrl: String
+  createdAt: DateTime
+  description: String
+  id: ID!
+  role: String
+  seminar: Seminar
+  updatedAt: DateTime
+}
+
+input SeminarAttachmentInput {
+  attachment: Upload
+  description: String
+  id: ID
+  role: String
+  seminarId: ID
+}
+
+type SeminarAttendee {
+  attended: Boolean!
+  confirmed: Boolean!
+  contact: Contact!
+  createdAt: DateTime
+  followedup: Boolean!
+  id: ID!
+  key: Boolean!
+  registered: Boolean!
+  seminar: Seminar!
+  tickled: Boolean!
+  updatedAt: DateTime
+}
+
+input SeminarAttendeeInput {
+  attended: Boolean
+  contactId: ID
+  id: ID
+  key: Boolean
+  registered: Boolean
+  seminarId: ID
+}
+
+type SeminarImportResults {
+  matchCount: Int
+  unmatched: Quill
+}
+
+input SeminarInput {
+  approved: Boolean
+  body: String
+  bodyConfirmation: String
+  bodyFollowup: String
+  bodyReminder: String
+  campaignId: ID
+  eventDate: String
+  eventLocation: String
+  eventTime: String
+  eventType: String
+  followupSentAt: String
+  followupStatus: String
+  fromEmail: String
+  fromName: String
+  goToWebinarKey: String
+  id: ID
+  subject: String
+  title: String
+  userId: ID
+  videoUrl: String
+}
+
+type Sku {
+  category: String!
+  createdAt: DateTime
+  description: String
+  id: ID!
+  name: String!
+  reportTypes: [ReportType!]!
+  samples: [SkuSample!]!
+  trainingUrl: String
+  updatedAt: DateTime
+}
+
+input SkuInput {
+  category: String
+  description: String
+  id: ID
+  name: String
+  trainingUrl: String
+}
+
+type SkuSample {
+  attachment: ArcAttachment
+  attachmentUrl: String
+  createdAt: DateTime
+  description: String
+  id: ID!
+  project: Project
+  updatedAt: DateTime
+  url: String
+}
+
+input SkuSampleInput {
+  attachment: Upload
+  description: String
+  id: ID
+  projectId: ID
+  skuId: ID
+  url: String
+}
+
+type SourceFile {
+  attachedFiles: [AttachedFile!]!
+  createdAt: DateTime!
+  document: Document
+  id: ID!
+  name: String!
+  path: String!
+  pile: Pile!
+  project: Project!
+  sourceFile: SourceFile
+  sourceFiles: [SourceFile!]!
+  status: String!
+  updatedAt: DateTime!
+}
+
+input SourceFileInput {
+  attachment: Upload
+  id: ID
+  name: String
+  path: String
+  pileId: ID
+}
+
+type Survey {
+  averageRating: Float
+  completed: Boolean
+  createdAt: DateTime
+  emailSent: Boolean
+  hashKey: String
+  id: ID!
+  keepAnonymous: Boolean
+  membership: Membership!
+  noGift: Boolean
+  project: Project!
+  surveyQuestions: [SurveyQuestion!]!
+  updatedAt: DateTime
+}
+
+type SurveyQuestion {
+  answer: String
+  createdAt: DateTime!
+  id: ID!
+  numeric: Boolean!
+  question: String!
+  survey: Survey!
+  updatedAt: DateTime!
+}
+
+type Tag {
+  category: String!
+  createdAt: DateTime
+  id: ID!
+  isActive: Boolean
+  projectCount: Int
+  scope: String!
+  section: String!
+  subsection: String
+  updatedAt: DateTime
+}
+
+type Tagging {
+  contact: Contact
+  createdAt: DateTime
+  id: ID!
+  mailing: Mailing
+  project: Project
+  scope: String
+  tag: Tag!
+  updatedAt: DateTime
+}
+
+input TaggingInput {
+  contactId: ID
+  id: ID
+  mailingId: ID
+  projectId: ID
+  scope: String
+  tagId: ID
+}
+
+input TagInput {
+  category: String
+  id: ID
+  scope: String
+  section: String
+  subsection: String
+}
+
+type Task {
+  user: User
+  feature: Feature
+  pending: Boolean
+  completed: Boolean
+  tenTouch: TenTouch
+  kanbanCard: KanbanCard
+  note: Note
+  interview: Interview
+  hours: Decimal
+  uuid: String
+  contact: Contact
+  tenTouchItemId: ID
+  tenTouchSubject: String
+  tenTouchNote: String
+  creator: User
+  deviceId: ID
+  employee: Employee
+  completedAt: DateTime
+  device: Device
+  campaign: Campaign
+  completer: User
+  description: String
+  updatedAt: DateTime
+  completedOn: Date
+  userId: ID
+  createdAt: DateTime
+  deliverable: Deliverable
+  tenTouchType: String
+  tenTouchEmail: String
+  category: String
+  deliverableId: ID
+  id: ID!
+  project: Project
+  itemDate: Date
+  priority: String
+  tenTouchItem: TenTouchItem
+  projectId: ID
+}
+
+input TaskInput {
+  campaignId: ID
+  category: String
+  completed: Boolean
+  completerId: ID
+  contactId: ID
+  creatorId: ID
+  delete: Boolean
+  deliverableId: ID
+  description: String
+  deviceId: ID
+  employeeId: ID
+  featureId: ID
+  hours: String
+  id: ID
+  interviewId: ID
+  itemDate: String
+  priority: String
+  projectId: ID
+  tempUuid: String
+  tenTouchEmail: String
+  tenTouchItemId: ID
+  tenTouchNote: String
+  tenTouchSubject: String
+  tenTouchType: String
+  userId: ID
+}
+
+type Template {
+  category: String
+  content: Quill
+  contentType: String
+  createdAt: DateTime
+  id: ID!
+  name: String
+  plainContent: String
+  scope: String
+  updatedAt: DateTime
+}
+
+input TemplateInput {
+  category: String
+  content: Quill
+  contentType: String
+  id: ID
+  name: String
+  plainContent: String
+  scope: String
+}
+
+type TenTouch {
+  campaign: Campaign
+  campaignField: String
+  campaignId: ID
+  completed: Boolean
+  completedOn: Date
+  contact: Contact!
+  createdAt: DateTime!
+  id: ID!
+  notes: String
+  status: String
+  tenTouchBatch: TenTouchBatch
+  tenTouchTasks: [TenTouchTask!]!
+  title: String
+  updatedAt: DateTime!
+}
+
+type TenTouchBatch {
+  campaign: Campaign!
+  campaignField: String!
+  createdAt: DateTime!
+  id: ID!
+  tenTouches: [TenTouch!]!
+  updatedAt: DateTime!
+}
+
+input TenTouchInput {
+  campaignField: String
+  campaignId: ID
+  completedOn: Date
+  contactId: ID
+  id: ID
+  notes: String
+  status: String
+  tenTouchTasks: [TenTouchTaskInput]
+  title: String
+}
+
+type TenTouchItem {
+  active: Boolean
+  category: String
+  createdAt: DateTime
+  document: Document
+  emailBody: String
+  emailSubject: String
+  id: ID!
+  name: String!
+  tenTouchTasks: [TenTouchTask!]!
+  touchTypes: [String!]!
+  updatedAt: DateTime
+}
+
+input TenTouchItemInput {
+  active: Boolean
+  category: String
+  documentId: ID
+  emailBody: String
+  emailSubject: String
+  id: ID
+  name: String
+  touchTypes: [String]
+}
+
+type TenTouchTask {
+  body: String
+  completed: Boolean
+  completedOn: Date
+  createdAt: DateTime!
+  days: Int!
+  id: ID!
+  itemDate: Date
+  manualEmail: Boolean
+  notes: String
+  number: Int!
+  overrideEmail: Boolean
+  subject: String
+  template: Boolean
+  tenTouch: TenTouch
+  tenTouchItem: TenTouchItem
+  tenTouchTemplate: TenTouchTemplate
+  touchType: String!
+  updatedAt: DateTime!
+  user: User
+}
+
+input TenTouchTaskInput {
+  body: String
+  completed: Boolean
+  days: String
+  delete: Boolean
+  id: ID
+  itemDate: String
+  manualEmail: Boolean
+  notes: String
+  number: Int
+  overrideEmail: Boolean
+  subject: String
+  template: Boolean
+  tenTouchId: ID
+  tenTouchItemId: ID
+  tenTouchTemplateId: ID
+  touchType: String
+  userId: ID
+}
+
+type TenTouchTemplate {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  notes: String
+  tenTouchTasks: [TenTouchTask!]!
+  updatedAt: DateTime!
+}
+
+input TenTouchTemplateInput {
+  id: ID
+  name: String
+  notes: String
+  tenTouchTasks: [TenTouchTaskInput]
+}
+
+type TestLocation {
+  addresses: [Address!]!
+  alternateNumber: String
+  analysis: String
+  attended: Boolean
+  bpaLinks: [BpaLink!]!
+  createdAt: DateTime
+  damage: Boolean
+  description: String
+  displayName: String!
+  elements: [Element!]!
+  id: ID!
+  issues: [Issue!]!
+  locations: [Location!]!
+  next: TestLocation
+  number: String!
+  otherKeyPhotoCount: Int!
+  otherPhotoCount: Int!
+  pfcsKeyPhotoCount: Int!
+  pfcsPhotoCount: Int!
+  photoLinks: [PhotoLink!]!
+  photos: [Photo!]!
+  prev: TestLocation
+  project: Project!
+  swi: Boolean
+  testedAt: Date
+  testedBy: String
+  updatedAt: DateTime
+}
+
+input TestLocationInput {
+  addressIds: [ID]
+  alternateNumber: String
+  analysis: String
+  attended: Boolean
+  bpaLinks: [BpaLinkInput]
+  damage: Boolean
+  description: String
+  elementIds: [ID]
+  id: ID
+  issueIds: [ID]
+  locationIds: [ID]
+  number: String
+  projectId: ID
+  swi: Boolean
+  testedAt: Date
+  testedBy: String
+}
+
+"""
+The `Time` scalar type represents a time. The Time appears in a JSON
+response as an ISO8601 formatted string.
+"""
+scalar Time
+
+type Timeline {
+  bpaLinks: [BpaLink!]!
+  createdAt: DateTime
+  customFields: Quill
+  description: String
+  document: Document
+  elements: [Element!]!
+  id: ID!
+  interview: Interview
+  itemDate: Date
+  keyEvent: Boolean
+  players: [Player!]!
+  project: Project
+  title: String
+  updatedAt: DateTime
+}
+
+input TimelineInput {
+  bpaLinks: [BpaLinkInput]
+  customFields: Quill
+  description: String
+  documentId: ID
+  id: ID
+  interviewId: ID
+  itemDate: Date
+  keyEvent: Boolean
+  projectId: ID
+  title: String
+}
+
+type Timesheet {
+  user: User!
+  paymentType: String
+  note: Note
+  rate: Decimal
+  status: String!
+  suggestion: String
+  expenseStatus: String
+  hours: Decimal!
+  hasNote: Boolean
+  isExpense: Boolean
+  mentor: User
+  opportunity: Boolean
+  attachmentUrl: String
+  paidOn: Date
+  attachment: String
+  paid: Boolean
+  testimony: Boolean
+  campaign: Campaign
+  description: String!
+  updatedAt: DateTime
+  userId: ID!
+  seconds: Int
+  createdAt: DateTime
+  noCharge: Boolean
+  deliverable: Deliverable
+  total: Decimal
+  category: String
+  deliverableId: ID
+  id: ID!
+  project: Project!
+  billedPosition: String
+  itemDate: Date!
+  dueDate: Date
+  campaignId: ID
+  projectId: ID!
+}
+
+input TimesheetInput {
+  attachment: Upload
+  billedPosition: String
+  campaignId: ID
+  category: String
+  deliverableId: ID
+  description: String
+  dueDate: String
+  hasNote: Boolean
+  hours: String
+  id: ID
+  isExpense: Boolean
+  itemDate: String
+  mentorId: ID
+  noCharge: Boolean
+  note: NoteInput
+  paymentType: String
+  projectId: ID
+  rate: String
+  status: String
+  suggestion: String
+  testimony: Boolean
+  userId: ID
+}
+
+type TimesheetStatus {
+  month: Date
+  results: [TimesheetStatusResult]
+}
+
+type TimesheetStatusResult {
+  count: Int
+  user: User
+  weeklyStatus: String
+}
+
+type Topic {
+  attachments: [Attachment!]!
+  category: String
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  notes: [Note!]!
+  project: Project!
+  status: String!
+  title: String
+  updatedAt: DateTime!
+  user: User!
+}
+
+input TopicInput {
+  category: String
+  description: String
+  id: ID
+  projectId: ID
+  status: String
+  title: String
+  userId: ID
+}
+
+type Training {
+  attachments: [Attachment!]!
+  bodyJson: Quill
+  bodyOld: String
+  createdAt: DateTime
+  expectedDate: Date
+  id: ID!
+  name: String
+  parentId: ID
+  position: Int
+  priority: String
+  producedOn: Date
+  status: String!
+  training: Training
+  trainingAssignments: [TrainingAssignment!]!
+  trainingCategories: [TrainingCategory!]!
+  trainingCompletions: [TrainingCompletion!]!
+  trainingRequirements: [TrainingRequirement!]!
+  trainings: [Training!]!
+  updatedAt: DateTime
+  url: String
+}
+
+type TrainingAssignment {
+  completed: Boolean
+  createdAt: DateTime
+  id: ID!
+  position: Int
+  training: Training!
+  trainingPlan: TrainingPlan!
+  updatedAt: DateTime
+}
+
+input TrainingAssignmentInput {
+  direction: Int
+  id: ID
+  trainingId: ID
+  trainingPlanId: ID
+}
+
+type TrainingCategorization {
+  createdAt: DateTime
+  id: ID!
+  training: Training
+  trainingCategory: TrainingCategory
+  updatedAt: DateTime
+}
+
+type TrainingCategory {
+  createdAt: DateTime
+  id: ID!
+  name: String!
+  trainingCategorizations: [TrainingCategorization]
+  trainings: [Training]
+  updatedAt: DateTime
+}
+
+type TrainingCompletion {
+  answer: String
+  answers: [String!]!
+  attachment: ArcAttachment
+  attachmentUrl: String
+  correct: Boolean
+  createdAt: DateTime!
+  id: ID!
+  project: Project
+  status: String!
+  training: Training!
+  trainingRequirement: TrainingRequirement
+  trainingRequirementId: ID
+  updatedAt: DateTime!
+  user: User!
+  userId: ID!
+}
+
+input TrainingCompletionInput {
+  answer: String
+  answers: [String!]
+  attachment: Upload
+  correct: Boolean
+  id: ID
+  projectId: ID
+  status: String
+  trainingId: ID
+  trainingRequirementId: ID
+  userId: ID
+}
+
+input TrainingInput {
+  bodyJson: Quill
+  expectedDate: String
+  id: ID
+  name: String
+  parentId: ID
+  priority: String
+  producedOn: String
+  status: String
+  trainingCategoryIds: [ID]
+  url: String
+}
+
+type TrainingPlan {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  status: String!
+  trainingAssignments: [TrainingAssignment!]!
+  updatedAt: DateTime!
+  user: User
+  userId: ID
+}
+
+input TrainingPlanInput {
+  id: ID
+  name: String
+  status: String
+  templateId: ID
+  userId: ID
+}
+
+type TrainingRequirement {
+  createdAt: DateTime
+  deliverables: String
+  description: String!
+  id: ID!
+  mode: String!
+  options: [Quill!]!
+  rank: Int
+  training: Training
+  trainingCompletions: [TrainingCompletion]
+  updatedAt: DateTime
+}
+
+input TrainingRequirementInput {
+  deliverables: String
+  description: String
+  id: ID
+  mode: String
+  options: [Quill]
+  trainingId: ID
+}
+
+"""
+Represents an uploaded file.
+
+"""
+scalar Upload
+
+type User {
+  todayTaskCount: Int
+  office: String!
+  endDate: Date
+  signature: String
+  noteUserNotifications: [NoteUserNotification]
+  roles: [String!]!
+  isTimeAdministrator: Boolean
+  passwordDigest: String
+  workState: String!
+  isSalaryManager: Boolean
+  tracksTime: Boolean
+  features: [Feature]
+  isManager: Boolean
+  contactId: Int
+  invoiceReviewCount: Int
+  kpiSet: KpiSet
+  invoicelines(filters: [String], invoiceMonth: String): [Invoiceline]
+  startDate: Date!
+  showMarketingDash: Boolean
+  showManagement: Boolean
+  timesheetsScrollToBottom: Boolean
+  goToWebinarExpiresAt: Int
+  employee: Employee
+  email: String
+  notifications: [String!]!
+  showArDash: Boolean
+  showAreaManagerDash: Boolean
+  timesheetsHideLockedWeeks: Boolean
+  color: String
+  projectListTotalDue: Boolean
+  login: String!
+  updatedAt: DateTime
+  timesheets(expenses: Boolean, filter: String, filterMonth: String, login: String, month: String, number: String, paymentType: String): [Timesheet]
+  canApprovePayroll: Boolean
+  createdAt: DateTime
+  employmentStatus: String!
+  requiresNewPassword: Boolean
+  isIgk: Boolean
+  planMethodShow: Boolean
+  pendingTimesheets: Boolean
+  userType: String!
+  trainingCompletions: [TrainingCompletion!]!
+  token: String
+  taskCompletionNotification: Boolean
+  id: ID!
+  fullname: String!
+  timesheetsShowWeeks: Boolean
+  allowArChanges: Boolean
+  goToWebinarAccessToken: String
+  projectListStartDate: Boolean
+  showPrimaryContactsOnly: Boolean
+  showExecutiveDash: Boolean
+  trainingPlans: [TrainingPlan!]!
+  kpis: [Kpi]
+  pastDueTaskCount: Int
+  isAdministrator: Boolean
+}
+
+input UserInput {
+  isAdministrator: Boolean
+  showExecutiveDash: Boolean
+  showPrimaryContactsOnly: Boolean
+  projectListStartDate: Boolean
+  goToWebinarAccessToken: String
+  allowArChanges: Boolean
+  timesheetsShowWeeks: Boolean
+  kpiSetId: ID
+  fullname: String
+  id: ID
+  taskCompletionNotification: Boolean
+  userType: String
+  planMethodShow: Boolean
+  isIgk: Boolean
+  requiresNewPassword: Boolean
+  employmentStatus: String
+  canApprovePayroll: Boolean
+  login: String
+  projectListTotalDue: Boolean
+  color: String
+  timesheetsHideLockedWeeks: Boolean
+  showAreaManagerDash: Boolean
+  showArDash: Boolean
+  notifications: [String]
+  email: String
+  goToWebinarExpiresAt: Int
+  timesheetsScrollToBottom: Boolean
+  showManagement: Boolean
+  showMarketingDash: Boolean
+  startDate: String
+  contactId: ID
+  isManager: Boolean
+  tracksTime: Boolean
+  isSalaryManager: Boolean
+  workState: String
+  passwordDigest: String
+  isTimeAdministrator: Boolean
+  roles: [String]
+  signature: String
+  endDate: String
+  office: String
+}
+
+type UserSession {
+  token: String
+  user: User
+}
+

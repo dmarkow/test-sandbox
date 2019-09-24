@@ -1,0 +1,9638 @@
+mutation ActivateAccessUser($token: String!) {
+  activateAccessUser(token: $token) {
+    token
+    accessUser {
+      id
+    }
+  }
+}
+mutation ChoosePassword($token: String!, $password: String!) {
+  setNewAccessUserPassword(token: $token, password: $password) {
+    token
+    accessUser {
+      id
+    }
+  }
+}
+mutation CreateAccessUser($login: String!, $password: String!) {
+  createAccessUser(login: $login, password: $password) {
+    id
+  }
+}
+mutation LoginAccessUser($login: String!, $password: String!) {
+  loginAccessUser(login: $login, password: $password) {
+    token
+    accessUser {
+      id
+    }
+  }
+}
+mutation resetAccessUserPassword($login: String!) {
+  resetAccessUserPassword(login: $login)
+}
+fragment AddressFragment on Address {
+  id
+  name
+  analysis
+  analysisJson
+  address { id }
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  customFields
+  displayName
+}
+mutation DeleteAddress($id: ID!) {
+  deleteAddress(id: $id) {
+    id
+  }
+}
+#import "./FormFragment"
+
+query Address($id: ID!) {
+  address(id: $id) {
+    ...AddressFormFragment
+  }
+}
+#import "./AddressFragment"
+
+query Addresses($projectId: ID) {
+  project(id: $projectId) {
+    id
+    addresses {
+      ...AddressFragment
+    }
+  }
+}
+#import "../BPALinkFragment"
+
+fragment AddressFormFragment on Address {
+  id
+  analysis
+  analysisJson
+  customFields
+  name
+  address { id }
+  next { id }
+  prev { id }
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+}query GlobalAddresses($filter: String!) {
+  addresses(filter: $filter) {
+    id
+    analysis
+    analysisJson
+  }
+}
+#import "./FormFragment"
+
+mutation SaveAddress($input: AddressInput!) {
+  saveAddress(input: $input) {
+    ...AddressFormFragment
+  }
+}
+#import "./AddressFragment"
+
+query AddressSearch($search: String) {
+  addresses(search: $search) {
+    ...AddressFragment
+    project {
+      id
+      number
+      name
+    }
+  }
+}
+fragment AttachmentFragment on Attachment {
+  id
+  attachmentThumbUrl
+  attachmentUrl
+  attachment {
+    fileName
+    updatedAt
+  }
+}
+mutation DeleteAttachment($id: ID!) {
+  deleteAttachment(id: $id) {
+    id
+  }
+}
+#import "../Documents/DocumentRowFragment"
+
+mutation SaveAttachment($input: AttachmentInput!) {
+  saveAttachment(input: $input) {
+    id
+    url
+    rank
+    projectId
+    note
+    project {
+      id
+      number
+      name
+    }
+    document {
+      ...DocumentRowFragment
+    }
+    attachmentUrl
+    attachment {
+      fileName
+    }
+  }
+}
+mutation SortAttachment($id: ID!, $direction: String!) {
+  sortAttachment(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+fragment BpaLinkFragment on BpaLink {
+  id
+  addressId
+  locationId
+  elementId
+  issueId
+  playerId
+  testLocationId
+  infoImageId
+  documentId
+  description
+}query BillingPositions {
+  billingPositions {
+    id
+    description
+    active
+  }
+}
+fragment CostFragment on DeliverableCost {
+  id
+  hours
+  amount
+  description
+  billingPosition {
+    id
+    initials
+  }
+}
+#import "./DeliverableFragment"
+
+mutation CreateDeliverable($input: DeliverableInput!) {
+  createDeliverable(input: $input) {
+    ...DeliverableFragment
+  }
+}
+#import "./DeliverableFragment"
+
+mutation CreateDeliverables($planId: ID!, $deliverableMenuItemIds: [ID]!) {
+  createDeliverables(
+    planId: $planId
+    deliverableMenuItemIds: $deliverableMenuItemIds
+  ) {
+    ...DeliverableFragment
+  }
+}
+mutation DeleteDeliverable($id: ID!) {
+  deleteDeliverable(id: $id) {
+    id
+  }
+}
+#import "./CostFragment"
+#import "../kanbanCards/CardFragment"
+
+fragment DeliverableFragment on Deliverable {
+  id
+  priority
+  completed
+  rank
+  description
+  dueDate
+  project {
+    id
+  }
+  costs {
+    ...CostFragment
+  }
+  kanbanCards {
+    ...CardFragment
+  }
+  milestoneparent {
+    id
+  }
+}
+mutation MoveDeliverable($id: ID!, $direction: String!) {
+  moveDeliverable(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+query Deliverables($projectId: ID) {
+  project(id: $projectId) {
+    id
+    number
+    plan {
+      id
+      milestoneparents {
+        id
+        title
+        rank
+        deliverables {
+          id
+          description
+          completed
+          rank
+        }
+      }
+    }
+  }
+}
+#import "./DeliverableFragment"
+
+mutation SortDeliverable($id: ID!, $position: Int!, $milestoneparentId: ID!) {
+  sortDeliverable(
+    id: $id
+    position: $position
+    milestoneparentId: $milestoneparentId
+  ) {
+    ...DeliverableFragment
+  }
+}
+#import "./DeliverableFragment"
+
+mutation UpdateDeliverable($id: ID!, $input: DeliverableInput!) {
+  updateDeliverable(id: $id, input: $input) {
+    ...DeliverableFragment
+  }
+}
+#import "./DeviceFragment"
+
+query Devices {
+  devices {
+    ...DeviceFragment
+  }
+}
+#import "./DeviceFragment"
+
+mutation DeleteDevice($id: ID!) {
+  deleteDevice(id: $id) {
+    id
+  }
+}
+#import "../notes/ShowFragment"
+
+fragment DeviceFragment on Device {
+  id
+  category
+  location
+  office
+  model
+  os
+  ip
+  storage
+  cpuRank
+  cpu
+  ramType
+  ramSize
+  motherboard
+  graphics
+  videoPorts
+  originalInstallDate
+  vnc
+  goToMeeting
+  msOffice
+  acrobat
+  faststone
+  chrome
+  pfcsAccount
+  lastUpdated
+  productKey
+  printer
+  equipmentId
+  user {
+    id
+    login
+  }
+  notes {
+    id
+    ...NoteShowFragment
+  }
+}
+#import "./DeviceFragment"
+
+query Device($id: ID!) {
+  device(id: $id) {
+    ...DeviceFragment
+  }
+}
+#import "./DeviceFragment"
+
+mutation UpdateDevice($input: DeviceInput!) {
+  saveDevice(input: $input) {
+    ...DeviceFragment
+  }
+}
+mutation DeleteDispatch($id: ID!) {
+  deleteDispatch(id: $id) {
+    id
+  }
+}
+#import "../Documents/DocumentReferenceFragment.gql"
+#import "../Images/ImageReferenceFragment.gql"
+#import "../checklists/ChecklistFragment.gql"
+
+fragment DispatchFragment on Dispatch {
+  id
+  date
+  time
+  category
+  location
+  legacy
+  startingAddress
+  photoNumber
+  meetings
+  materials
+  description
+  oneMinuteSummary
+  expert {
+    id
+    fullname
+  }
+  photoset { id }
+  documentReferences {
+    ...DocumentReferenceFragment
+  }
+  imageReferences {
+    ...ImageReferenceFragment
+  }
+  checklists {
+    ...ChecklistFragment
+  }
+  hideOms
+  hideLocations
+  hideElements
+  hideIssues
+  hideImages
+  hideMaps
+}
+#import "./DispatchFragment.gql"
+
+query EditDispatch($id: ID!) {
+  dispatch(id: $id) {
+    ...DispatchFragment
+  }
+}
+query Dispatches($number: String!) {
+  project(number: $number) {
+    id
+    number
+    dispatches {
+      id
+      time
+      date
+      category
+      expert {
+        id
+        fullname
+      }
+    }
+  }
+}
+query DispatchProjectInfo($number: String!) {
+  project(number: $number) {
+    id
+    oneMinuteSummary
+    address
+  }
+}
+#import "./DispatchFragment"
+
+mutation SaveDispatch($input: DispatchInput!) {
+  saveDispatch(input: $input) {
+    ...DispatchFragment
+  }
+}
+#import "./DocumentRowFragment"
+#import "../Piles/Fields"
+
+query ProjectDocuments($projectNumber: String, $parentId: ID, $filter: String, $hasParent: Boolean = false) {
+  documents(projectNumber: $projectNumber, parentId: $parentId, filter: $filter) {
+    ...DocumentRowFragment
+  }
+
+  project(number: $projectNumber) {
+    id
+    piles {
+      ...PileFields
+    }
+  }
+
+  parent: document(id: $parentId) @include(if: $hasParent) {
+    id
+    section
+    mode
+    author
+    ancestors {
+      id
+      path
+      section
+      mode
+      author
+    }
+  }
+}
+fragment AttachedFileFragment on AttachedFile {
+  id
+  primaryFile
+  attachmentUrl
+  md5
+  attachmentThumbUrl
+  attachment {
+    fileName
+  }
+}
+query ProjectDocumentAuthors($projectNumber: String!) {
+  documentParties(projectNumber: $projectNumber)
+}
+#import "./DocumentRowFragment"
+
+mutation BatchUpdateDocuments($ids: [ID!]!, $input: DocumentInput!) {
+  batchUpdateDocuments(ids: $ids, input: $input) {
+    ...DocumentRowFragment
+  }
+}
+#import "./DocumentRowFragment"
+
+mutation CopyDocumentFromLibrary($projectId: ID!, $documentId: ID!) {
+  copyDocumentFromLibrary(projectId: $projectId, documentId: $documentId) {
+    ...DocumentRowFragment
+  }
+}
+#import "./DocumentReferenceFragment"
+
+mutation CreateDocumentInterviews(
+  $input: DocumentReferenceInput!
+  $documentIds: [ID!]!
+) {
+  createDocumentReferences(input: $input, documentIds: $documentIds) {
+    ...DocumentReferenceFragment
+  }
+}
+#import "./DocumentRowFragment"
+
+mutation DeleteDocument($id: ID!, $markAsKnown: Boolean) {
+  deleteDocument(id: $id, markAsKnown: $markAsKnown) {
+    id
+  }
+}
+mutation DeleteAttachedFile($id: ID!) {
+  deleteAttachedFile(id: $id) {
+    id
+  }
+}
+mutation DeleteDocumentReference($id: ID!) {
+  deleteDocumentReference(id: $id) {
+    id
+  }
+}
+query DocumentCategories {
+  documentCategories {
+    id
+    name
+    documentCategoryId
+    documentCategories {
+      id
+      name
+    }
+  }
+}
+#import "./AttachedFileFragment"
+fragment DocumentFieldsFragment on Document {
+  id
+  description
+  hidden
+  path
+  mode
+  section
+  suffix
+  author
+  recipient
+  md5
+  pdfSecurity
+  url
+  library
+  migrated
+  attachmentId
+  analysis
+  analysisJson
+  analysisUser {
+    id
+  }
+  analysisDate
+  analysisTitle
+  header
+  key
+  attachedFiles {
+    ...AttachedFileFragment
+  }
+  date
+  endDate
+  receivedDate
+  pages
+  pageReference
+  batesStamp
+  printed
+  summary
+  source
+  updatedAt
+  documentCategories { id }
+  elements { id }
+  document { id section }
+  sourceFile {
+    id
+    name
+    pile { id name }
+    attachedFiles {
+      ...AttachedFileFragment
+    }
+  }
+  project { id number name }
+}
+#import "./DocumentFieldsFragment"
+
+fragment DocumentFragment on Document {
+  ...DocumentFieldsFragment
+  referenceDocument {
+    id
+    ...DocumentFieldsFragment
+  }
+  references {
+    id
+  }
+}
+#import "./DocumentRowFieldsFragment.gql"
+
+fragment DocumentReferenceFragment on DocumentReference {
+  id
+  rank
+  document {
+    ...DocumentRowFieldsFragment
+    referenceDocument {
+      ...DocumentRowFieldsFragment
+    }
+    project {
+      id
+      number
+    }
+  }
+}
+#import "./AttachedFileFragment.gql"
+
+fragment DocumentRowFieldsFragment on Document {
+  id
+  header
+  hidden
+  mode
+  section
+  suffix
+  key
+  path
+  pdfSecurity
+  description
+  library
+  recipient
+  attachedFiles {
+    ...AttachedFileFragment
+  }
+  project { id number name }
+  date
+  endDate
+  author
+  receivedDate
+  pages
+  pageReference
+  batesStamp
+  printed
+  analysis
+  analysisJson
+  summary
+  source
+  document { id section hidden }
+  sourceFile {
+    id
+    attachedFiles {
+      ...AttachedFileFragment
+    }
+  }
+}
+#import "./DocumentRowFieldsFragment"
+fragment DocumentRowFragment on Document {
+  ...DocumentRowFieldsFragment
+  referenceDocument {
+    ...DocumentRowFieldsFragment
+  }
+}
+#import "./DocumentFragment"
+
+query EditDocument($id: ID!) {
+  document(id: $id) {
+    ...DocumentFragment
+    project {
+      id
+      number
+      name
+    }
+  }
+}
+#import "./DocumentRowFragment"
+
+query EmployeeDocuments($id: ID!) {
+  employee(id: $id) {
+    id
+    documents {
+      ...DocumentRowFragment
+    }
+  }
+}
+
+#import "./DocumentRowFragment"
+
+query GlobalDocuments($filter: String!) {
+  documents(global: true, filter: $filter) {
+    id
+    analysis
+    analysisJson
+  }
+}
+#import "./DocumentRowFragment"
+
+query LibrarySearch($query: String, $category: ID, $element: ID, $filter: String) {
+  librarySearch(query: $query, category: $category, element: $element, filter: $filter) {
+    label
+    results {
+      ...DocumentRowFragment
+    }
+  }
+}
+query DocumentMD5($md5: String!, $projectId: ID, $employeeId: ID) {
+  documents(md5: $md5, projectId: $projectId, employeeId: $employeeId) {
+    id
+    description
+  }
+}
+mutation MoveDocumentReference($id: ID!, $direction: String!) {
+  moveDocumentReference(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+query DocumentPicker($projectNumber: String!) {
+  documents(projectNumber: $projectNumber, filter: "files") {
+    id
+    displayName
+  }
+}#import "./DocumentFragment"
+
+mutation SaveDocument($input: DocumentInput!) {
+  saveDocument(input: $input) {
+    ...DocumentFragment
+  }
+}
+#import "./AttachedFileFragment"
+mutation SaveAttachedFile($input: AttachedFileInput!) {
+  saveAttachedFile(input: $input) {
+    ...AttachedFileFragment
+  }
+}
+query ProjectDocumentSections($projectNumber: String, $employeeId: ID) {
+  documents(projectNumber: $projectNumber, employeeId: $employeeId, filter: "headers") {
+    id
+    section
+    author
+    document { id }
+  }
+}
+#import "./ListFragment"
+
+mutation AddElementsFromMenu($projectId: ID!, $elementIds: [ID]!) {
+  addElementsFromMenu(projectId: $projectId, elementIds: $elementIds) {
+    ...ElementListFragment
+  }
+}#import "./ListFragment"
+
+query Elements($projectId: ID, $template: Boolean = false) {
+  elements(projectId: $projectId, template: $template) {
+    ...ElementListFragment
+  }
+}
+mutation DeleteElement($id: ID!) {
+  deleteElement(id: $id) {
+    id
+  }
+}#import "./FormFragment"
+
+query Element($id: ID!) {
+  element(id: $id) {
+    ...ElementFormFragment
+  }
+}#import "../BPALinkFragment"
+
+fragment ElementFormFragment on Element {
+  id
+  number
+  name
+  template
+  description
+  analysisStatus
+  priority
+  basicAnalysis
+  iiaccIssue
+  iiaccInvestigation
+  iiaccAnalysis
+  iiaccConclusion
+  iiaccCosts
+  specificationsGeneral
+  specificationsMaterials
+  specificationsExecution
+  specificationsQualityAssurance
+  customFields
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+  next { id }
+  prev { id }
+}fragment ElementListFragment on Element {
+  id
+  number
+  name
+  description
+  priority
+  analysisStatus
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  customFields
+}#import "./FormFragment"
+
+mutation SaveElement($input: ElementInput!) {
+  saveElement(input: $input) {
+    ...ElementFormFragment
+  }
+}query EmployeeMonthlyGoals($month: String!, $startDate: String!, $endDate: String!) {
+  employees(activeDuring: $month) {
+    id
+    displayAs
+    department
+    firstName
+    lastName
+    billableHours(start: $startDate, end: $endDate) {
+      sum
+      name
+      date
+    }
+    billableHoursNoOpportunities: billableHours(start: $startDate, end: $endDate, filter: "no_opportunities") {
+      sum
+      name
+      date
+    }
+    yesterdayBillableHours: billableHours(start: $endDate, end: $endDate) {
+      sum
+      name
+      date
+    }
+    revisedBillableGoal(month: $month)
+    revisedBillableTarget(start: $startDate, end: $endDate)
+    dayTarget: revisedBillableTarget(
+      start: $startDate
+      end: $endDate
+      day: true
+    )
+    originalBillableTarget(start: $startDate, end: $endDate)
+    originalBillableGoal(month: $month) {
+      id
+      value
+      name
+    }
+    billableGoals {
+      id
+      effectiveDate
+      fixed
+      percentage
+      goal
+    }
+    workingHours(month: $month)
+    billableGoalReductions {
+      id
+      itemDate
+      amount
+    }
+    user {
+      id
+      login
+      fullname
+      timesheets(filter: "PTO", month: $month) {
+        id
+        hours
+      }
+    }
+  }
+}
+query EmployeeForecasts($year: Int!) {
+  employees(activeYear: $year) {
+    ...EmployeeForecastsEmployeeFields
+  }
+}
+
+fragment EmployeeForecastsEmployeeFields on Employee {
+  id
+  displayAs
+  sortAs
+  department
+  future
+  firstName
+  lastName
+  description
+  startDate
+  lastName
+  user { id login }
+  forecasts(year: $year) {
+    date
+    goal
+    cost
+    rate
+    gp
+    sales
+  }
+}mutation SaveGoal($input: GoalInput!) {
+  saveGoal(input: $input) {
+    id
+    value
+  }
+}
+mutation SetGoal($input: GoalInput) {
+  setGoal(input: $input) {
+    id
+    name
+    date
+    period
+    value
+  }
+}
+mutation DeleteInfoImage($id: ID!) {
+  deleteInfoImage(id: $id) {
+    id
+  }
+}
+mutation DeleteImageReference($id: ID!) {
+  deleteImageReference(id: $id) {
+    id
+  }
+}
+query InfoImage($id: ID!) {
+  infoImage(id: $id) {
+    id
+    category
+    description
+    attachmentUrl
+  }
+}fragment InfoImageFields on InfoImage {
+  id
+  position
+  category
+  description
+  attachment {
+    fileName
+  }
+  attachmentUrl
+}#import "./Fields"
+
+query InfoImages($number: String!) {
+  project(number: $number) {
+    id
+    mainPhotoType
+    mainPhotoId
+    infoImages {
+      ...InfoImageFields
+    }
+  }
+}
+fragment ImageReferenceFragment on ImageReference {
+  id
+  rank
+  infoImage {
+    id
+    category
+    description
+    attachmentUrl
+    attachment {
+      fileName
+    }
+  }
+}
+query MainPhotoImage($id: ID!) {
+  image: infoImage(id: $id) {
+    id
+    attachmentUrl
+  }
+}
+#import "./ImageReferenceFragment"
+
+mutation MoveImageReference($input: ImageReferenceInput!) {
+  moveImageReference(input: $input) {
+    id
+    rank
+  }
+}
+mutation SaveInfoImage($input: InfoImageInput!) {
+  saveInfoImage(input: $input) {
+    id
+  }
+}
+#import "./ImageReferenceFragment"
+
+mutation SaveImageReference($input: ImageReferenceInput!) {
+  saveImageReference(input: $input) {
+    ...ImageReferenceFragment
+  }
+}
+#import "./ImageReferenceFragment"
+
+mutation SaveImageReferences($input: ImageReferencesInput!) {
+  saveImageReferences(input: $input) {
+    ...ImageReferenceFragment
+  }
+}
+mutation SortInfoImage($input: InfoImageInput!) {
+  sortInfoImage(input: $input) {
+    id
+    position
+  }
+}
+mutation ApplyDeliverableToInvoicelines(
+  $deliverableId: ID
+  $billedPosition: String
+  $invoicelineIds: [ID]!
+) {
+  applyDeliverableToInvoicelines(
+    deliverableId: $deliverableId
+    billedPosition: $billedPosition
+    invoicelineIds: $invoicelineIds
+  ) {
+    id
+    billedPosition
+    rate
+    lineTotal
+    deliverable {
+      id
+      description
+    }
+    invoice {
+      id
+      invoiceTotal
+      invoicedDeliverables {
+        id
+        description
+        fixedFee
+        deliverable {
+          id
+          description
+          rank
+          milestoneparent {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+}
+query BilledHours($month: String!, $userId: ID!) {
+  user(id: $userId) {
+    id
+    employee {
+      id
+      monthlyPayments {
+        id
+        date
+        amount
+        category
+        updatedAt
+      }
+      salaries {
+        ...BilledHoursSalaryFields
+      }
+    }
+  }
+  invoicelines(userId: $userId, month: $month) {
+    ...BilledHoursInvoicelineFields
+  }
+}
+fragment BilledHoursSalaryFields on Salary {
+  id
+  effectiveDate
+  hourlyRates
+}
+
+fragment BilledHoursInvoicelineFields on Invoiceline {
+  id
+  itemDate
+  noCharge
+  billedPosition
+  description
+  nonBillable
+  testimony
+  hours
+  allowPayment
+  deliverable {
+    id
+    description
+  }
+  invoice {
+    id
+    status
+    invoiceDate
+    project {
+      id
+      number
+      name
+      rate
+      projectType
+    }
+  }
+}mutation CopyToFiles($projectId: ID!) {
+  copyInvoicesToFiles(projectId: $projectId) {
+    id
+  }
+}
+mutation CreateAttachment($input: AttachmentInput) {
+  createAttachment(input: $input) {
+    id
+    prepend
+    attachment {
+      fileName
+    }
+    attachmentUrl
+  }
+}
+mutation DNBInvoices($ids: [ID]!) {
+  dnbInvoices(ids: $ids) {
+    id
+    status
+  }
+}
+mutation DelayEntries($invoiceId: ID!, $invoicelineIds: [ID]!) {
+  delayInvoicelines(invoiceId: $invoiceId, invoicelineIds: $invoicelineIds) {
+    id
+    invoiceTotal
+  }
+}
+mutation deleteInvoiceAttachment($id: ID!) {
+  deleteAttachment(id: $id) {
+    id
+  }
+}
+mutation DeleteInvoiceline($id: ID!) {
+  deleteInvoiceline(id: $id) {
+    id
+    invoice {
+      id
+      invoiceTotal
+    }
+  }
+}
+#import "../contacts/ResidenceFragment"
+
+query EditInvoice($id: ID!) {
+  invoice(id: $id) {
+    ...EditInvoiceFields
+  }
+}
+
+fragment EditInvoiceAttachmentFields on Attachment {
+  id
+  prepend
+  attachment {
+    fileName
+  }
+  attachmentUrl
+}
+
+fragment EditInvoiceInvoiceLineFields on Invoiceline {
+  id
+  itemDate
+  hours
+  rate
+  lineTotal
+  isExpense
+  testimony
+  noCharge
+  nonBillable
+  billedPosition
+  description
+  category
+  user {
+    id
+    login
+    fullname
+    email
+  }
+  deliverable {
+    id
+    description
+  }
+  project {
+    id
+  }
+  invoice {
+    id
+  }
+}
+
+fragment EditInvoiceInvoicedDeliverableFields on InvoicedDeliverable {
+  id
+  description
+  fixedFee
+  deliverable {
+    id
+    description
+    rank
+    milestoneparent {
+      id
+      title
+      rank
+    }
+  }
+}
+
+fragment EditInvoiceFields on Invoice {
+  id
+  invoiceDate
+  invoiceTotal
+  invoiceType
+  viewByDeliverable
+  memo
+  displayLines
+  description
+  status
+  attachments {
+    ...EditInvoiceAttachmentFields
+  }
+  invoicedDeliverables {
+    ...EditInvoiceInvoicedDeliverableFields
+  }
+  invoicelines {
+    ...EditInvoiceInvoiceLineFields
+  }
+  project {
+    id
+    rate
+    number
+    name
+    invoiceNote
+    salesStage {
+      id
+    }
+    status
+    projectType
+    billingSummary
+    pm {
+      id
+      login
+    }
+    pc {
+      id
+      login
+    }
+    projectUsers {
+      id
+      role
+      user {
+        id
+        fullname
+      }
+    }
+    memberships {
+      id
+      invoicing
+      contact {
+        id
+        displayAs
+        company {
+          id
+          name
+        }
+        workPhone
+        directPhone
+        extension
+        mobile
+        email
+        clientAccess
+        residences {
+          ...ResidenceFragment
+        }
+      }
+    }
+  }
+}
+query EditInvoiceAdjustment($id: ID!) {
+  invoice(id: $id) {
+    id
+    invoiceDate
+    invoiceTotal
+    invoiceType
+    viewByDeliverable
+    description
+  }
+}
+query ProjectInvoices($number: String!) {
+  project(number: $number) {
+    id
+    number
+    totalInvoices
+    totalPayments
+    totalDue
+    invoices {
+      id
+      status
+      attachmentUrl
+      invoiceDate
+      invoiceTotal
+      paymentTotal
+      appliedPayments {
+        id
+        amount
+        payment {
+          id
+          amount
+          payor
+          checkNumber
+          claimNumber
+          checkDate
+          retainer { id checkDate }
+        }
+        creditMemo {
+          id
+          itemDate
+          amount
+        }
+        refund {
+          id
+          payer
+          amount
+          itemDate
+        }
+      }
+    }
+    payments {
+      id
+      checkDate
+      amount
+    }
+    retainers {
+      id
+      checkDate
+      amount
+      payments {
+        id
+        amount
+      }
+    }
+    refunds {
+      id
+      payer
+      amount
+      itemDate
+    }
+  }
+}
+mutation GenerateInvoice(
+  $timesheetIds: [ID]
+  $invoicelineIds: [ID]
+  $number: String!
+) {
+  generateInvoice(
+    timesheetIds: $timesheetIds
+    invoicelineIds: $invoicelineIds
+    number: $number
+  ) {
+    id
+  }
+}
+query ProjectInvoiceLines($number: String!) {
+  project(number: $number) {
+    id
+    invoicelines {
+      id
+      description
+      itemDate
+      billedPosition
+      noCharge
+      nonBillable
+      hours
+      rate
+      lineTotal
+      deliverable {
+        id
+        description
+        milestoneparent {
+          id
+          title
+        }
+      }
+      user {
+        id
+        login
+        fullname
+      }
+    }
+  }
+}
+mutation mailInvoices($ids: [String]!) {
+  mailInvoices(ids: $ids) {
+    id
+    mailedAt
+    updatedAt
+  }
+}
+mutation NoChargeInvoicelines($ids: [ID]!) {
+  noChargeInvoicelines(ids: $ids) {
+    id
+    noCharge
+    invoice {
+      id
+      invoiceTotal
+    }
+  }
+}
+query NoCharges($month: String!, $billedDuringMonth: Boolean!) {
+  invoicelines(filter: "no-charges", month: $month, billedDuringMonth: $billedDuringMonth) {
+    id
+    project {
+      id
+      number
+      name
+    }
+    user {
+      id
+      login
+    }
+    hours
+    lineTotal
+    noCharge
+    nonBillable
+    itemDate
+    description
+  }
+}
+query ReportDNBInvoices {
+  invoices(filter: "dnb") {
+    id
+    invoiceTotal
+    invoiceDate
+    project {
+      id
+      number
+      name
+      salesStageId
+    }
+  }
+}#import "../projects/TeamFields"
+
+query ReportInvoiceStatus {
+  invoices(filter: "recent_and_pending") {
+    ...ReportInvoiceStatusFields
+  }
+}
+
+fragment ReportInvoiceStatusFields on Invoice {
+  id
+  invoiceTotal
+  status
+  invoiceDate
+  nonBillableTotal
+  noChargeTotal
+  project {
+    id
+    number
+    name
+    projectType
+    prioritizeInvoices
+    ...TeamFields
+  }
+}query InvoicesToReview($login: String!) {
+  invoices(filter: "to_review", login: $login) {
+    ...InvoicesToReviewFields
+  }
+}
+
+fragment InvoicesToReviewFields on Invoice {
+  id
+  status
+  invoiceDate
+  invoiceTotal
+  nonBillableTotal
+  noChargeTotal
+  project {
+    id
+    prioritizeInvoices
+    name
+    number
+    pc {
+      id
+      login
+    }
+    pm {
+      id
+      login
+    }
+  }
+}mutation SaveInvoiceAdjustment($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    isAdjustment
+    status
+    attachmentUrl
+    invoiceDate
+    invoiceTotal
+    paymentTotal
+    emailedAt
+    mailedAt
+    appliedPayments {
+      id
+      amount
+      payment {
+        id
+        description
+        amount
+        checkDate
+        payor
+        claimNumber
+        checkNumber
+      }
+    }
+  }
+}
+mutation SplitInvoiceline($id: ID!) {
+  splitInvoiceline(id: $id) {
+    id
+    itemDate
+    hours
+    rate
+    lineTotal
+    isExpense
+    testimony
+    noCharge
+    nonBillable
+    billedPosition
+    description
+    category
+    user {
+      id
+      login
+      fullname
+      email
+    }
+    deliverable {
+      id
+      description
+    }
+    project {
+      id
+    }
+    invoice {
+      id
+      invoiceTotal
+    }
+  }
+}
+mutation SubmitInvoice($id: ID!, $mode: String!) {
+  submitInvoice(id: $id, mode: $mode) {
+    id
+    status
+  }
+}
+query InvoiceToMail {
+  invoices(filter: "to_mail") {
+    ...InvoiceToMailFragment
+  }
+}
+
+fragment InvoiceToMailFragment on Invoice {
+  id
+  sentAt
+  invoiceDate
+  emailedAt
+  mailedAt
+  project {
+    id
+    number
+    name
+    memberships {
+      id
+      invoicing
+      contact {
+        id
+        displayAs
+        company {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+#import "./UnbilledDeliverableFragment"
+
+query UnbilledTime($number: String!) {
+  timesheets(number: $number, filter: "unbilled") {
+    id
+    description
+    itemDate
+    hours
+    noCharge
+    rate
+    isExpense
+    billedPosition
+    total
+    user {
+      id
+      email
+      login
+    }
+    deliverable {
+      ...UnbilledDeliverableFragment
+    }
+  }
+  invoicelines(number: $number, filter: "unbilled") {
+    id
+    description
+    itemDate
+    hours
+    noCharge
+    nonBillable
+    rate
+    isExpense
+    billedPosition
+    lineTotal
+    user {
+      id
+      email
+      login
+    }
+    invoice {
+      id
+      project {
+        id
+        number
+      }
+    }
+    project {
+      id
+    }
+    deliverable {
+      ...UnbilledDeliverableFragment
+    }
+  }
+  project(number: $number) {
+    id
+    number
+    projectType
+    plan {
+      id
+      deliverables {
+        id
+        description
+        milestoneparent {
+          id
+          title
+        }
+      }
+    }
+  }
+}
+fragment UnbilledDeliverableFragment on Deliverable {
+  id
+  description
+  priority
+  rank
+  milestoneparent {
+    id
+    title
+  }
+}
+mutation UpdateInvoiceAttachment($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    attachmentUrl
+  }
+}
+mutation UpdateInvoiceDate($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    invoiceDate
+  }
+}
+mutation UpdateFixedFeeInvoice($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    displayLines
+    description
+    invoiceTotal
+  }
+}
+mutation UpdateInvoicedDeliverable(
+  $id: ID!
+  $input: InvoicedDeliverableInput!
+) {
+  updateInvoicedDeliverable(id: $id, input: $input) {
+    id
+    fixedFee
+    description
+    invoice {
+      id
+      invoiceTotal
+    }
+  }
+}
+mutation UpdateInvoiceline($id: ID!, $input: InvoicelineInput!) {
+  updateInvoiceline(id: $id, input: $input) {
+    id
+    description
+    itemDate
+    hours
+    noCharge
+    billedPosition
+    testimony
+    nonBillable
+    category
+    rate
+    lineTotal
+    user {
+      id
+      fullname
+      login
+      email
+    }
+    deliverable {
+      id
+      description
+      priority
+      rank
+      milestoneparent {
+        id
+        title
+      }
+    }
+    project {
+      id
+    }
+    invoice {
+      id
+      invoiceTotal
+      invoicedDeliverables {
+        id
+        description
+        fixedFee
+        deliverable {
+          id
+          description
+          rank
+          milestoneparent {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+}
+mutation UpdateInvoicelineDescription($id: ID!, $input: InvoicelineInput!) {
+  updateInvoiceline(id: $id, input: $input) {
+    id
+    description
+  }
+}
+mutation UpdateInvoiceLine($id: ID!, $input: InvoicelineInput!) {
+  updateInvoiceline(id: $id, input: $input) {
+    id
+    allowPayment
+  }
+}
+mutation UpdateInvoiceMemo($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    memo
+  }
+}
+mutation UpdateInvoiceModes($input: InvoiceInput!) {
+  saveInvoice(input: $input) {
+    id
+    viewByDeliverable
+    invoiceType
+    invoiceTotal
+  }
+}
+#import "./IssueFragment"
+
+query Issues($projectId: ID) {
+  issues(projectId: $projectId) {
+    ...IssueFragment
+  }
+  documents(projectId: $projectId, filter: "issue_sources") {
+    id
+    displayName
+  }
+}
+mutation DeleteIssue($id: ID!) {
+  deleteIssue(id: $id) {
+    id
+  }
+}#import "./FormFragment"
+
+query Issue($id: ID!) {
+  issue(id: $id) {
+    ...IssueFormFragment
+  }
+}#import "../BPALinkFragment"
+
+fragment IssueFormFragment on Issue {
+  id
+  number
+  alternateNumber
+  description
+  header
+  status
+  issue { id }
+  sourceDocument { id }
+  analysisStatus
+  priority
+  basicAnalysis
+  iiaccIssue
+  iiaccInvestigation
+  iiaccAnalysis
+  iiaccConclusion
+  iiaccCosts
+  specificationsGeneral
+  specificationsMaterials
+  specificationsExecution
+  specificationsQualityAssurance
+  customFields
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+  next { id }
+  prev { id }
+}fragment IssueFragment on Issue {
+  id
+  number
+  alternateNumber
+  description
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  header
+  issue { id }
+  elements {
+    id
+    number
+    name
+  }
+  analysisStatus
+  customFields
+  sourceDocument { id  }
+  priority
+}
+#import "./IssueFragment"
+
+query IssuesPicker($projectId: ID) {
+  issues(projectId: $projectId) {
+    ...IssueFragment
+  }
+}
+#import "./FormFragment"
+
+mutation SaveIssue($input: IssueInput!) {
+  saveIssue(input: $input) {
+    ...IssueFormFragment
+  }
+}#import "./LocationRowFragment"
+#import "../Addresses/AddressFragment"
+
+mutation CreateStandardLocations($projectId: ID!) {
+  createStandardLocations(projectId: $projectId) {
+    id
+    locations {
+      ...LocationRowFragment
+    }
+    addresses {
+      ...AddressFragment
+    }
+  }
+}mutation DeleteLocation($id: ID!) {
+  deleteLocation(id: $id) {
+    id
+  }
+}
+#import "./FormFragment"
+
+query Location($id: ID!) {
+  location(id: $id) {
+    ...LocationFormFragment
+  }
+}
+#import "./LocationFragment"
+
+query ProjectLocations($projectId: ID) {
+  project(id: $projectId) {
+    id
+    locations {
+      ...LocationFragment
+    }
+  }
+}
+#import "../BPALinkFragment"
+
+fragment LocationFormFragment on Location {
+  id
+  name
+  specificationsGeneral
+  specificationsMaterials
+  specificationsExecution
+  specificationsQualityAssurance
+  analysisStatus
+  priority
+  customFields
+  iiaccIssue
+  iiaccInvestigation
+  iiaccAnalysis
+  iiaccConclusion
+  iiaccCosts
+  basicAnalysis
+  location { id }
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+  next { id }
+  prev { id }
+}#import "./LocationRowFragment"
+#import "../Addresses/AddressFragment"
+
+query Locations($id: ID!) {
+  project(id: $id) {
+    id
+    locations {
+      ...LocationRowFragment
+    }
+    addresses {
+      ...AddressFragment
+    }
+  }
+}
+fragment LocationFragment on Location {
+  id
+  name
+  nestedName
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  location { id }
+}
+#import "./LocationFragment"
+
+fragment LocationRowFragment on Location {
+  ...LocationFragment
+  priority
+  analysisStatus
+  pfcsPhotoCount
+  otherPhotoCount
+  customFields
+}
+#import "./LocationRowFragment"
+
+query LocationsPicker($projectId: ID) {
+  locations(projectId: $projectId) {
+    ...LocationRowFragment
+  }
+}
+#import "./FormFragment"
+
+mutation SaveLocation($input: LocationInput!) {
+  saveLocation(input: $input) {
+    ...LocationFormFragment
+  }
+}
+query ActiveProjectsMetric($quarter: String!) {
+  dynamicMetrics(type: "Active Projects", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "Active Projects", period: "Quarter") {
+    id
+    value
+  }
+}
+query AnnualMetrics($types: [String]!, $start: String!, $end: String!) {
+  dynamicMetrics(types: $types, start: $start, end: $end) {
+    date
+    count
+    format
+    sum
+    name
+    currentOnly
+  }
+}
+query AuditCount($quarter: String!, $user: String) {
+  audits: dynamicMetrics(type: "Audits", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  activeProjects: dynamicMetrics(type: "Active Projects", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+}
+query BillableHoursCount($quarter: String!, $filter: String, $user: String) {
+  dynamicMetrics(type: "Billable Hours", quarter: $quarter, user: $user, filter: $filter) {
+    date
+    sum
+  }
+  goals: dynamicMetrics(type: "Billable Hours: Goal", quarter: $quarter, user: $user) {
+    date
+    sum
+  }
+  targets: dynamicMetrics(type: "Billable Hours: Target", quarter: $quarter, user: $user) {
+    date
+    sum
+  }
+}
+query CallsMetric($quarter: String!) {
+  dynamicMetrics(type: "calls", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "Calls", period: "Quarter") {
+    id
+    value
+  }
+}
+query DashboardCampaigns($quarter: String!) {
+  metrics(quarter: $quarter, category: "Dashboard: Campaign") {
+    ...DashboardCampaignFields
+
+  }
+}
+
+fragment DashboardCampaignFields on Metric {
+  id
+  captureDate
+  category
+  campaign {
+    id
+    name
+    percentCompleted
+  }
+}query ConversionRates {
+  conversionRates {
+    stage
+    to10
+    to30
+    to50
+    to70
+    to90
+    to0
+    to100
+    count
+  }
+}mutation CreateMetric($input: MetricInput) {
+  createMetric(input: $input) {
+    id
+    captureDate
+    category
+    rank
+    data {
+      value
+      description
+    }
+    campaign {
+      id
+      name
+      percentCompleted
+    }
+  }
+}
+mutation DeleteMetric($id: ID!) {
+  deleteMetric(id: $id) {
+    id
+  }
+}
+query HeadCount($quarter: String!) {
+  employeeCount: dynamicMetrics(
+    type: "Head Count: Employees"
+    quarter: $quarter
+  ) {
+    date
+    count
+    notes
+  }
+  contractorCount: dynamicMetrics(
+    type: "Head Count: Contractors"
+    quarter: $quarter
+  ) {
+    date
+    count
+    notes
+  }
+}
+query ProspectMeetingsMetric($quarter: String!) {
+  dynamicMetrics(type: "Prospect Meetings", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "Prospect Meetings", period: "Quarter") {
+    id
+    value
+  }
+}
+query SalesMilestones($quarter: String!) {
+  metrics(quarter: $quarter, category: "Marketing & Sales Milestone") {
+    ...SalesMilestonesMetricFields
+  }
+}
+
+fragment SalesMilestonesMetricFields on Metric {
+  id
+  captureDate
+  rank
+  category
+  data {
+    value
+    description
+  }
+}query NewOpportunitiesMetric($quarter: String!) {
+  dynamicMetrics(type: "New Opportunities", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "New Opportunities", period: "Quarter") {
+    id
+    value
+  }
+}
+query NewProjectVolume($start: String!, $end: String!) {
+  dynamicMetrics(type: "new_projects", start: $start, end: $end) {
+    date
+    count
+    sum
+  }
+}
+query NewProjectsMetric($quarter: String!) {
+  dynamicMetrics(type: "New Projects", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "New Projects", period: "Quarter") {
+    id
+    value
+  }
+}
+query PPMCount($quarter: String!, $user: String) {
+  ppms: dynamicMetrics(type: "PPMs", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  activeProjects: dynamicMetrics(type: "Active Projects", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+}
+query PlannedCount($quarter: String!) {
+  dynamicMetrics(type: "Planned Projects", quarter: $quarter) {
+    date
+    count
+  }
+  projectCount: dynamicMetrics(type: "Active Projects", quarter: $quarter) {
+    date
+    count
+  }
+}
+query ProjectMetrics($quarter: String!, $user: String) {
+  audits: dynamicMetrics(type: "Audits", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  myAudits: dynamicMetrics(type: "My Audits", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  ppms: dynamicMetrics(type: "PPMs", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+  activeProjects: dynamicMetrics(type: "Active Projects", quarter: $quarter, user: $user) {
+    date
+    count
+  }
+}
+query SalesFunnel {
+  dynamicMetrics(types:["All Prospects", "Active Opportunities by Stage", "Recent Projects"]) {
+    sum
+    count
+    name
+    extraInt
+    date
+  }
+  salesStages {
+    id
+    probability
+    description
+  }
+}query SalesMetrics($user: String, $date: Date!, $period: String) {
+  salesMetrics(user: $user, date: $date, period: $period) {
+    name
+    category
+    points
+    totalOnly
+    score
+    count
+    date
+  }
+}
+query ShippedProposalsMetric($quarter: String!) {
+  dynamicMetrics(type: "Shipped Proposals", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "Shipped Proposals", period: "Quarter") {
+    id
+    value
+  }
+}
+mutation SortMetric($id: ID!, $direction: String!) {
+  sortMetric(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+query SurveysCount($quarter: String!) {
+  dynamicMetrics(type: "Survey Scores", quarter: $quarter) {
+    date
+    count
+    sum
+  }
+}
+query TenTouchesMetric($quarter: String!) {
+  months: dynamicMetrics(type: "Months", quarter: $quarter) {
+    date
+  }
+  started: dynamicMetrics(type: "Ten Touches: Started", quarter: $quarter) {
+    date
+    count
+  }
+  completed: dynamicMetrics(
+    type: "Ten Touches: Completed"
+    quarter: $quarter
+  ) {
+    date
+    count
+  }
+}
+mutation UpdateMetric($id: ID, $input: MetricInput) {
+  updateMetric(id: $id, input: $input) {
+    id
+    captureDate
+    rank
+    category
+    data {
+      value
+      description
+    }
+  }
+}
+query WonOpportunitiesMetric($quarter: String!) {
+  dynamicMetrics(type: "Won Opportunities", quarter: $quarter) {
+    date
+    count
+  }
+  goal(quarter: $quarter, name: "Won Opportunities", period: "Quarter") {
+    id
+    value
+  }
+}
+#import "../Deliverables/DeliverableFragment"
+
+mutation CreateMilestoneParent($input: MilestoneparentInput!) {
+  createMilestoneparent(input: $input) {
+    id
+    title
+    rank
+    deliverables {
+      ...DeliverableFragment
+    }
+  }
+}
+mutation DeleteMilestoneParent($id: ID!) {
+  deleteMilestoneparent(id: $id) {
+    id
+  }
+}
+mutation MoveMilestoneParent($id: ID!, $position: Int!) {
+  moveMilestoneparent(id: $id, position: $position) {
+    id
+    rank
+  }
+}
+query MilestoneParents($planId: ID!) {
+  milestoneparents(planId: $planId) {
+    ...MilestoneParentsFields
+  }
+}
+
+fragment MilestoneParentsFields on Milestoneparent {
+  id
+  title
+  rank
+}mutation UpdateMilestoneParent($id: ID!, $input: MilestoneparentInput!) {
+  updateMilestoneparent(id: $id, input: $input) {
+    id
+    title
+  }
+}
+#import "./OfficeFragment"
+
+ query Office($id: ID!) {
+  office(id: $id) {
+    ...OfficeFragment
+  }
+}#import "./OfficeFragment"
+
+query Offices {
+  offices {
+    ...OfficeFragment
+  }
+}fragment OfficeFragment on Office {
+  id
+  location
+  openedOn
+  closedOn
+  physical
+  address
+}query OfficesPicker {
+  offices {
+    id
+    location
+  }
+}
+#import "./OfficeFragment"
+
+mutation SaveOffice($input: OfficeInput!) {
+  saveOffice(input: $input) {
+    ...OfficeFragment
+  }
+}mutation ChargeCard($token: String!, $amountCents: Int!, $projectNumber: String!) {
+  chargeCard(token: $token, amountCents: $amountCents, projectNumber: $projectNumber)
+}
+mutation DeletePayment($id: ID!) {
+  deletePayment(id: $id) {
+    id
+  }
+}
+query Payment($id: ID!) {
+  payment(id: $id) {
+    id
+    description
+    amount
+    checkDate
+    depositDate
+    payor
+    claimNumber
+    checkNumber
+    lossDate
+    adjuster
+    deposit { id }
+    claimant
+    policyNumber
+    appliedPayments {
+      id
+      amount
+      invoice { id }
+    }
+  }
+}
+query Payments($month: String!) {
+  payments(month: $month) {
+    id
+    amount
+    checkDate
+    depositDate
+    checkNumber
+    payor
+    project {
+      id
+      number
+      name
+      totalDue
+      status
+    }
+    retainer { id }
+  }
+  retainers(month: $month) {
+    id
+    amount
+    checkDate
+    depositDate
+    payor
+    checkNumber
+    project {
+      id
+      number
+      name
+      totalDue
+      status
+    }
+  }
+}
+query RecentPayments($startDate: String!, $endDate: String!) {
+  payments(startDate: $startDate, endDate: $endDate, filter: "Payments") {
+    id
+    amount
+    depositDate
+    retainer { id }
+  }
+}
+mutation SavePayment($input: PaymentInput!) {
+  savePayment(input: $input) {
+    id
+    description
+    amount
+    checkDate
+    payor
+    claimNumber
+    checkNumber
+    attachmentUrl
+  }
+}
+mutation SaveMultiplePayments($input: PaymentInput!) {
+  savePayment(input: $input) {
+    id
+    description
+    amount
+    checkDate
+    payor
+    claimNumber
+    checkNumber
+  }
+}
+query Writeoffs($month: String!) {
+  creditMemos(month: $month) {
+    id
+    itemDate
+    description
+    amount
+    project {
+      id
+      number
+      name
+    }
+  }
+}
+mutation CreatePeerReview($input: PeerReviewInput) {
+  createPeerReview(input: $input) {
+    id
+    feedback
+    itemDate
+    attachment
+    user {
+      fullname
+    }
+  }
+}
+mutation DeletePeerReview($id: ID) {
+  deletePeerReview(id: $id) {
+    id
+  }
+}
+query ReportPeerReviews($id: ID) {
+  report(id: $id) {
+    id
+    peerReviews {
+      id
+      user {
+        fullname
+      }
+      feedback
+      itemDate
+      attachment
+    }
+  }
+}
+fragment PileFields on Pile {
+  id
+  name
+  date
+  status
+}#import "./Fields"
+
+query Piles($projectNumber: String!) {
+  project(number: $projectNumber) {
+    id
+    piles {
+      ...PileFields
+    }
+  }
+}
+mutation SavePile($input: PileInput!) {
+  savePile(input: $input) {
+    id
+    name
+    date
+  }
+}
+#import "../Documents/AttachedFileFragment"
+mutation SaveSourceFile($input: SourceFileInput!) {
+  saveSourceFile(input: $input) {
+    id
+    status
+    attachedFiles {
+      ...AttachedFileFragment
+    }
+  }
+}
+#import "../Documents/AttachedFileFragment"
+query ShowPile($id: ID!) {
+  pile(id: $id) {
+    ...ShowPileFields
+
+  }
+}
+
+fragment ShowPileFields on Pile {
+  id
+  name
+  date
+  status
+  sourceFiles {
+    ...ShowPileSourceFileFields
+
+  }
+}
+
+fragment ShowPileSourceFileFields on SourceFile {
+  id
+  name
+  path
+  status
+  document { id }
+  attachedFiles {
+    ...AttachedFileFragment
+  }
+}#import "../Documents/AttachedFileFragment"
+query SourceFile($id: ID!) {
+  sourceFile(id: $id) {
+    id
+    name
+    path
+    status
+    attachedFiles {
+      ...AttachedFileFragment
+    }
+    pile {
+      id
+      name
+    }
+    project {
+      id
+      number
+    }
+  }
+}
+query Players($number: String!) {
+  project(number: $number) {
+    id
+    number
+    playerGroups {
+      ...PlayerGroupFields
+    }
+    players {
+      ...PlayerFields
+    }
+  }
+}
+
+fragment PlayerGroupFields on PlayerGroup {
+  id
+  name
+  position
+}
+
+fragment PlayerFields on Player {
+  id
+  role
+  company
+  name
+  key
+  description
+  pfcsPhotoCount
+  otherPhotoCount
+  pfcsKeyPhotoCount
+  otherKeyPhotoCount
+  playerGroup {
+    id
+  }
+}mutation CreateDefaultGroups($id: ID!) {
+  createDefaultPlayerGroups(id: $id) {
+    id
+  }
+}
+mutation DeletePlayer($id: ID!) {
+  deletePlayer(id: $id) {
+    id
+  }
+}
+mutation DeletePlayerGroup($id: ID!) {
+  deletePlayerGroup(id: $id) {
+    id
+  }
+}
+#import "./FormFragment"
+
+query Player($id: ID!) {
+  player(id: $id) {
+    ...PlayerFormFragment
+
+  }
+}
+query PlayerGroup($id: ID!) {
+  playerGroup(id: $id) {
+    id
+    name
+  }
+}#import "../BPALinkFragment"
+
+fragment PlayerFormFragment on Player {
+  id
+  name
+  company
+  role
+  description
+  playerGroup { id }
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+}query PlayerGroups($id: ID!) {
+  project(id: $id) {
+    id
+    playerGroups {
+      id
+      name
+      position
+    }
+  }
+}mutation MovePlayerGroup($id: ID!, $direction: String!) {
+  movePlayerGroup(id: $id, direction: $direction) {
+    id
+    position
+  }
+}
+query PlayersPicker($projectId: ID) {
+  playerGroups(projectId: $projectId) {
+    name
+    position
+    id
+  }
+  players(projectId: $projectId) {
+    id
+    role
+    company
+    name
+    pfcsPhotoCount
+    otherPhotoCount
+    pfcsKeyPhotoCount
+    otherKeyPhotoCount
+    playerGroup {
+      id
+    }
+  }
+}
+#import "./FormFragment"
+
+mutation SavePlayer($input: PlayerInput!) {
+  savePlayer(input: $input) {
+    ...PlayerFormFragment
+  }
+}mutation SavePlayerGroup($input: PlayerGroupInput!) {
+  savePlayerGroup(input: $input) {
+    id
+  }
+}query AccessPublications {
+  accessPublications {
+    ...AccessPublicationFields
+  }
+}
+
+fragment AccessPublicationFields on AccessPublication {
+  id
+  title
+  path
+  description
+}mutation MarkViewed($id: ID!) {
+  viewAccessPublication(id: $id) {
+    id
+  }
+}
+query Refunds {
+  refunds {
+    id
+    amount
+    payer
+    itemDate
+    project { id number name }
+    appliedPayments { id amount }
+  }
+}
+mutation DeleteRefund($id: ID!) {
+  deleteRefund(id: $id) {
+    id
+  }
+}
+query EditRefund($id: ID!) {
+  refund(id: $id) {
+    id
+    amount
+    paymentMethod
+    payer
+    itemDate
+    appliedPayments {
+      id
+      amount
+      invoice { id }
+    }
+  }
+}
+mutation SaveRefund($input: RefundInput!) {
+  saveRefund(input: $input) {
+    id
+    amount
+    payer
+    itemDate
+  }
+}
+mutation DeleteReportCard($id: ID!) {
+  deleteReportCard(id: $id) {
+    id
+  }
+}
+mutation DeleteReportCardQuestion($id: ID!) {
+  deleteReportCardQuestion(id: $id) {
+    id
+  }
+}
+query EditReportCard($id: ID!) {
+  reportCard(id: $id) {
+    id
+    itemDate
+    scores
+    comments
+    commentUserIds
+    reportCardType {
+      id
+      name
+    }
+    user { id login }
+  }
+}
+query EditReportCardQuestion($id: ID!) {
+  reportCardQuestion(id: $id) {
+    id
+    title
+    description
+    maxScore
+  }
+}
+query ReportCardType($id: ID!) {
+  reportCardType(id: $id) {
+    id
+    name
+    category
+    active
+  }
+}
+mutation MoveReportCardQuestion($id: ID!, $direction: String!) {
+  moveReportCardQuestion(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+mutation SaveReportCard($input: ReportCardInput!) {
+  saveReportCard(input: $input) {
+    id
+    score
+    itemDate
+    reportCardType {
+      id
+      name
+    }
+    possibleScore
+    user { id login }
+  }
+}
+mutation SaveReportCardQuestion($input: ReportCardQuestionInput!) {
+  saveReportCardQuestion(input: $input) {
+    id
+    title
+    description
+    maxScore
+    rank
+  }
+}
+mutation SaveReportCardType($input: ReportCardTypeInput!) {
+  saveReportCardType(input: $input) {
+    id
+    name
+    category
+    active
+  }
+}
+query ReportCardTypes {
+  reportCardTypes {
+    id
+    name
+    category
+    active
+    reportCardQuestions {
+      ...ReportCardQuestionFields
+    }
+  }
+}
+
+fragment ReportCardQuestionFields on ReportCardQuestion {
+  id
+  title
+  description
+  maxScore
+  rank
+}
+query Retainers {
+  retainers {
+    id
+    depositDate
+    amount
+    payments { id amount }
+    project {
+      id
+      number
+      name
+      status
+      totalDue
+    }
+  }
+}
+mutation DeleteRetainer($id: ID!) {
+  deleteRetainer(id: $id) {
+    id
+  }
+}
+query Retainer($id: ID!) {
+  retainer(id: $id) {
+    id
+    amount
+    checkDate
+    deposit { id }
+    checkNumber
+    payor
+    referenceNumber
+    synced
+  }
+}
+mutation SaveRetainer($input: RetainerInput!) {
+  saveRetainer(input: $input) {
+    id
+    amount
+    checkDate
+    checkNumber
+    referenceNumber
+    payor
+    synced
+    payments {
+      id
+      amount
+    }
+  }
+}
+query SalesStages {
+  salesStages {
+    id
+    description
+    probability
+  }
+}
+query Surveys($completed: Boolean) {
+  surveys(completed: $completed) {
+    id
+    completed
+    updatedAt
+    averageRating
+    hashKey
+    project {
+      id
+      number
+      name
+    }
+    membership {
+      id
+      contact {
+        id
+        displayAs
+      }
+    }
+  }
+}
+mutation CreateSurveys($projectId: ID!, $membershipIds: [ID]!) {
+  createSurveys(projectId: $projectId, membershipIds: $membershipIds) {
+    id
+  }
+}
+#import "../tags/TagFields"
+
+query SurveyData($projectId: ID!) {
+  project(id: $projectId) {
+    id
+    memberships {
+      id
+      primaryContact
+      role
+      notes
+      contact {
+        id
+        tags {
+          ...TagFields
+        }
+        displayAs
+        email
+      }
+      survey {
+        id
+        completed
+        hashKey
+        createdAt
+      }
+    }
+  }
+}
+query Survey($id: ID!) {
+  survey(id: $id) {
+    id
+    updatedAt
+    averageRating
+    surveyQuestions {
+      id
+      numeric
+      answer
+      question
+    }
+    project {
+      id
+      number
+      name
+    }
+    membership {
+      id
+      contact {
+        id
+        displayAs
+        company {
+          id
+          displayAs
+        }
+      }
+    }
+  }
+}query TenTouchBatch($id: ID!) {
+  tenTouchBatch(id: $id) {
+    id
+    campaignField
+    campaign {
+      id
+      name
+    }
+  }
+}
+#import "../Documents/AttachedFileFragment"
+#import "./TemplateFields"
+
+query TenTouchItems($includeId: ID, $active: Boolean) {
+  tenTouchTemplates {
+    ...TenTouchTemplateFields
+  }
+  tenTouchItems(includeId: $includeId, active: $active) {
+    ...TenTouchItemFields
+  }
+}
+
+fragment TenTouchItemFields on TenTouchItem {
+  id
+  name
+  touchTypes
+  category
+  emailSubject
+  emailBody
+  active
+  document {
+    id
+    displayName
+    attachedFiles { ...AttachedFileFragment }
+  }
+}#import "../Documents/DocumentRowFragment"
+
+query TenTouchItem($id: ID!) {
+  tenTouchItem(id: $id) {
+    id
+    category
+    touchTypes
+    name
+    emailSubject
+    active
+    emailBody
+    document {
+      ...DocumentRowFragment
+    }
+  }
+}
+mutation SaveTenTouchItem($input: TenTouchItemInput!) {
+  saveTenTouchItem(input: $input) {
+    id
+  }
+}
+#import "../TenTouches/TenTouchTaskFragment"
+
+fragment TenTouchTemplateFields on TenTouchTemplate {
+  id
+  name
+  notes
+  tenTouchTasks {
+    ...TenTouchTaskFragment
+  }
+}#import "../Documents/AttachedFileFragment"
+#import "../TenTouches/TenTouchTaskFragment"
+#import "./TemplateFields"
+
+query TenTouchTemplates {
+  tenTouchTemplates {
+    ...TenTouchTemplateFields
+  }
+}
+
+query TenTouches($tenTouchBatchId: ID) {
+  tenTouches(tenTouchBatchId: $tenTouchBatchId) {
+    id
+    createdAt
+    status
+    completedOn
+    tenTouchTasks { id completed }
+    contact {
+      id
+      displayAs
+      company {
+        id
+        name
+      }
+    }
+  }
+}
+#import "./TenTouchFragment"
+
+query EditTenTouch($id: ID!) {
+  tenTouch(id: $id) {
+    ...TenTouchFragment
+  }
+}#import "./TenTouchTaskFragment"
+
+query EditTenTouchTemplate($id: ID!) {
+  tenTouchTemplate(id: $id) {
+    ...EditTenTouchTemplateFields
+  }
+}
+
+fragment EditTenTouchTemplateFields on TenTouchTemplate {
+  id
+  name
+  notes
+  tenTouchTasks {
+    ...TenTouchTaskFragment
+  }
+}#import "./TenTouchTaskFragment"
+
+mutation SaveTenTouchTask($input: TenTouchTaskInput!) {
+  saveTenTouchTask(input: $input) {
+    ...TenTouchTaskFragment
+  }
+}
+mutation SaveTenTouchTemplate($input: TenTouchTemplateInput!) {
+  saveTenTouchTemplate(input: $input) {
+    id
+    name
+    notes
+  }
+}#import "./TenTouchTaskFragment"
+
+mutation SendTenTouchTask($id: ID!) {
+  sendTenTouchTask(id: $id) {
+    ...TenTouchTaskFragment
+  }
+}
+#import "./TenTouchTaskFragment"
+
+fragment TenTouchFragment on TenTouch {
+  id
+  createdAt
+  completed
+  completedOn
+  status
+  title
+  campaignField
+  campaign {
+    id
+    name
+  }
+  tenTouchTasks {
+    ...TenTouchTaskFragment
+  }
+  contact {
+    id
+    displayAs
+    company {
+      id
+      name
+    }
+  }
+}
+#import "../Documents/AttachedFileFragment"
+
+fragment TenTouchTaskFragment on TenTouchTask {
+  id
+  number
+  completed
+  user { id login signature }
+  itemDate
+  days
+  notes
+  touchType
+  subject
+  body
+  overrideEmail
+  manualEmail
+  tenTouchItem {
+    id
+    category
+    name
+    emailBody
+    emailSubject
+    active
+    document {
+      id
+      displayName
+      attachedFiles { ...AttachedFileFragment }
+    }
+  }
+  tenTouch {
+    id
+    contact {
+      id
+      displayAs
+      greetAs
+    }
+  }
+}
+query AffiliationTypes {
+  affiliationTypes {
+    ...AffiliationTypeFields
+  }
+}
+
+fragment AffiliationTypeFields on AffiliationType {
+  id
+  url
+  name
+  valueType
+}mutation DeleteAffiliationType($id: ID!) {
+  deleteAffiliationType(id: $id) {
+    id
+  }
+}
+query AffiliationType($id: ID!) {
+  affiliationType(id: $id) {
+    id
+    url
+    name
+    valueType
+  }
+}
+mutation SaveAffiliationType($input: AffiliationTypeInput!) {
+  saveAffiliationType(input: $input) {
+    id
+    url
+    valueType
+    name
+  }
+}
+mutation DeleteAgreement($id: ID!) {
+  deleteAgreement(id: $id) {
+    id
+  }
+}query EditAgreement($id: ID!) {
+  agreement(id: $id) {
+    id
+    content
+    title
+  }
+}query AgreementPicker {
+  agreements {
+    id
+    title
+  }
+}
+mutation SaveAgreement($input: AgreementInput!) {
+  saveAgreement(input: $input) {
+    id
+    content
+    title
+  }
+}query BillingRate($id: ID!) {
+  billingRate(id: $id) {
+    id
+    rate
+    billingPosition { id }
+    feeSchedule { id }
+  }
+}
+mutation SaveBillingRate($input: BillingRateInput!) {
+  saveBillingRate(input: $input) {
+    id
+    rate
+  }
+}
+mutation DeleteCalendar($id: ID!) {
+  deleteCalendar(id: $id) {
+    id
+  }
+}
+query EditCalendar($id: ID!) {
+  calendar(id: $id) {
+    id
+    itemDate
+    endDate
+    description
+    user { id }
+    project { id }
+    allDay
+    cancelled
+  }
+}
+query Calendars($startTime: Int!, $endTime: Int!, $user: String, $office: String, $project: String, $projectUser: String) {
+  calendars(startTime: $startTime, endTime: $endTime, user: $user, office: $office, project: $project, projectUser: $projectUser) {
+    id
+    user { id login }
+    project { id number }
+    description
+    itemDate
+    endDate
+    allDay
+  }
+}
+mutation SaveCalendar($input: CalendarInput!) {
+  saveCalendar(input: $input) {
+    id
+  }
+}
+query Shifts($date: String, $startTime: Int!, $endTime: Int!) {
+  employees(activeWeek: $date) {
+    id
+    user { id login }
+    future
+    employeeType
+    displayAs
+    department
+    schedule
+  }
+
+  calendars(startTime: $startTime, endTime: $endTime) {
+    id
+    itemDate
+    endDate
+    allDay
+    user { id }
+    project { id number }
+    description
+  }
+}
+#import "./CampaignsContactRowFragment"
+
+mutation AddCampaignsContact($campaignId: ID!, $contactId: ID!) {
+  addCampaignsContact(campaignId: $campaignId, contactId: $contactId) {
+    ...CampaignsContactRowFragment
+  }
+}
+fragment CampaignsContactRowFragment on CampaignsContact {
+  id
+  fields
+  currentClient
+  pastClient
+  newOpportunity
+  existingOpportunity
+  eventAttendee
+  contact {
+    id
+    email
+    company {
+      id
+      name
+      company {
+        id
+        name
+      }
+    }
+    sortAs
+    lastName
+    greetAs
+    marketingStatus
+    tags(sections:["Area", "Products", "Segment", "Industry", "Filters"]) {
+      id
+      category
+      section
+    }
+  }
+}
+#import "./ShowCampaignFragment"
+
+mutation CopyCampaignContacts($id: ID!, $sourceId: ID!) {
+  copyCampaignContacts(id: $id, sourceId: $sourceId) {
+    addedCount
+    totalCount
+  }
+}
+mutation DeleteCampaignsContact($id: ID!) {
+  deleteCampaignsContact(id: $id) {
+    id
+  }
+}
+query EditCampaign($id: ID!) {
+  campaign(id: $id) {
+    id
+    status
+    closeActivities
+    closeDate
+    description
+    fields
+    percentCompleted
+    includeIndustry
+    includeUnsubscribed
+    includeAttendance
+    includeSegments
+    name
+    script
+    targetDate
+    userId
+    company { id name }
+  }
+}
+query ShowCampaignFrame($id: ID!) {
+  campaign(id: $id) {
+    id
+    name
+    fields
+  }
+}
+query FullMetrics($campaignId: ID!) {
+  metrics(campaignId: $campaignId, category: null) {
+    ...FullMetricsFields
+  }
+  campaign(id: $campaignId) {
+    id
+    name
+  }
+}
+
+fragment FullMetricsFields on Metric {
+  id
+  captureDate
+  campaignData {
+    information { description value }
+    activity { description value }
+    outcome { description value }
+  }
+}query Campaigns {
+  campaigns {
+    ...CampaignFields
+  }
+}
+
+fragment CampaignFields on Campaign {
+  id
+  name
+  status
+  campaignsContactsCount
+  createdAt
+  closeDate
+  targetDate
+  user {
+    id
+    login
+  }
+}
+#import "../notes/ShowFragment"
+
+query CampaignNotes($id: ID!) {
+  campaign(id: $id) {
+    id
+    name
+    notes {
+      ...NoteShowFragment
+    }
+  }
+}
+query CampaignPicker($filter: String, $includeId: ID) {
+  campaigns(filter: $filter, includeId: $includeId) {
+    id
+    name
+  }
+}
+#import "./ShowCampaignFragment"
+
+mutation SaveCampaign($input: CampaignInput!) {
+  saveCampaign(input: $input) {
+    ...ShowCampaignFragment
+  }
+}
+#import "./ShowCampaignFragment"
+
+query ShowCampaign($id: ID!) {
+  campaign(id: $id) {
+    ...ShowCampaignFragment
+  }
+}
+fragment ShowCampaignFragment on Campaign {
+  id
+  name
+  fields
+  status
+  closeActivities
+  script
+  description
+  targetDate
+  closeDate
+  includeIndustry
+  includeUnsubscribed
+  includeAttendance
+  includeSegments
+  mailings {
+    id
+    campaignField
+    excludeCampaignField
+    contactsMailingsCount
+    sentAt
+    subject
+    sender
+  }
+  projects {
+    id
+    number
+    name
+    salesStageId
+    guesstimate
+  }
+  tenTouchBatches {
+    id
+    campaignField
+    createdAt
+    tenTouches {
+      id
+    }
+  }
+  company {
+    id
+    name
+  }
+}
+#import "./CampaignsContactRowFragment"
+
+query ShowCampaignContacts($id: ID!) {
+  campaign(id: $id) {
+    id
+    campaignsContacts {
+      ...CampaignsContactRowFragment
+    }
+  }
+}
+mutation SyncToMailchimp($id: ID!) {
+  syncCampaignToMailchimp(id: $id)
+}
+query CampaignTimesheets($id: ID!) {
+  campaign(id: $id) {
+    id
+    name
+    timesheets {
+      id
+      itemDate
+      hours
+      billedPosition
+      description
+      user {
+        id
+        fullname
+      }
+    }
+  }
+}mutation ToggleCampaignContactField(
+  $id: ID!
+  $field: String!
+  $value: Boolean!
+) {
+  toggleCampaignContactField(id: $id, field: $field, value: $value) {
+    id
+    fields
+  }
+}
+fragment ChecklistFragment on Checklist {
+  id
+  itemsCompleted
+  itemCount
+  complete
+  completedAt
+  category
+  checklistItems {
+    id
+    complete
+    when
+    who
+    notes
+    title
+    position
+    section
+    user {
+      id
+      login
+    }
+  }
+}
+mutation DeleteChecklist($id: ID!) {
+  deleteChecklist(id: $id) {
+    id
+  }
+}
+mutation DeleteChecklistItem($id: ID!) {
+  deleteChecklistItem(id: $id) {
+    id
+  }
+}
+query EditChecklist($id: ID!) {
+  checklist(id: $id) {
+    id
+    category
+    roles
+  }
+}
+query ChecklistItem($id: ID!) {
+  checklistItem(id: $id) {
+    id
+    section
+    who
+    when
+    notes
+    title
+    checklist { id }
+  }
+}
+query Checklist($id: ID!) {
+  checklist(id: $id) {
+    id
+    category
+    checklistItems {
+      id
+      when
+      who
+      notes
+      title
+      section
+      position
+    }
+  }
+}
+mutation SaveChecklist($input: ChecklistInput!) {
+  saveChecklist(input: $input) {
+    id
+    category
+  }
+}
+mutation SaveChecklistItem($input: ChecklistItemInput!) {
+  saveChecklistItem(input: $input) {
+    id
+    complete
+    title
+    position
+    section
+    user {
+      id
+      login
+    }
+    checklist {
+      id
+      itemsCompleted
+      completedAt
+      complete
+    }
+  }
+}
+mutation SortChecklistItem($id: ID!, $direction: String!) {
+  sortChecklistItem(id: $id, direction: $direction) {
+    id
+    when
+    who
+    notes
+    title
+    section
+    position
+  }
+}
+  query ChecklistTemplates {
+    checklists(template: true) {
+      id
+      category
+      roles
+      checklistItems {
+        id
+        when
+        who
+        notes
+        title
+        section
+        position
+      }
+    }
+  }
+query Communities {
+  communities {
+    id
+    name
+    city
+    state
+  }
+}query EditCommunity($id: ID!) {
+  community(id: $id) {
+    id
+    name
+    description
+    complete
+    city
+    state
+  }
+}mutation SaveCommunity($input: CommunityInput!) {
+  saveCommunity(input: $input) {
+    id
+    name
+    city
+    state
+    description
+    complete
+  }
+}#import "../contacts/PhysicalAddressFragment"
+#import "../notes/ShowFragment"
+
+query Community($id: ID!) {
+  community(id: $id) {
+    id
+    name
+    description
+    city
+    state
+    complete
+    physicalAddresses {
+      ...PhysicalAddressFragment
+    }
+    notes {
+      id
+      ...NoteShowFragment
+    }
+  }
+}mutation SaveContactImport($input: ContactImportInput!) {
+  saveContactImport(input: $input) {
+    id
+  }
+}
+query ContactImport($id: ID!) {
+  contactImport(id: $id) {
+    id
+    name
+    importedContacts {
+      id
+      action
+    }
+    attachmentUrl
+    campaign { id name }
+  }
+}
+mutation AddContactsToGroup($contactId: ID, $filter: ContactSearchFilter, $campaignId: ID, $campaignFields: String) {
+  addContactsToGroup(contactId: $contactId, filter: $filter, campaignId: $campaignId, campaignFields: $campaignFields) {
+    totalCount
+    addedCount
+  }
+}
+query ContactAddresses($filter: String) {
+  physicalAddresses(filter: $filter) {
+    id
+    premise
+    number
+    street
+    city
+    unit
+    unitType
+    state
+    zip
+    country
+    legacyStreet
+    legacyCity
+    legacyState
+    legacyZip
+    googleFormatted
+  }
+}
+mutation BatchTag($input: BatchTagInput!) {
+  batchTag(input: $input)
+}#import "./ContactCardFragment"
+
+query ContactCard($id: ID!) {
+  contact(id: $id) {
+    ...ContactCardFragment
+  }
+}
+query Companies($search: String) {
+  companies(search: $search) {
+    id
+    name
+  }
+}
+query Company($id: ID!) {
+  contact(id: $id) {
+    id
+    name
+  }
+}fragment CompanyContactFragment on Contact {
+  id
+  isActive
+  sortAs
+  jobTitle
+  email
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  residences {
+    id
+    physicalAddress { id  street city state zip}
+    residence { id }
+  }
+  relationships {
+    id
+    notes
+    parent { id }
+    key
+    active
+    endDate
+    role
+    strategicTargetRole
+  }
+}mutation ConfirmSeparateContacts($contactId: ID!, $otherId: ID!) {
+  confirmSeparateContacts(contactId: $contactId, otherId: $otherId) {
+    id
+  }
+}
+fragment ContactCampaignsFragment on Contact {
+  id
+  campaigns {
+    ...ContactCampaignFields
+  }
+  campaignsAsCompany {
+    id
+    name
+    status
+  }
+}
+
+fragment ContactCampaignFields on Campaign {
+  id
+  name
+  status
+}#import "./ResidenceFragment"
+
+fragment ContactCardFragment on Contact {
+  id
+  displayAs
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  workPhone
+  extension
+  directPhone
+  mobile
+  email
+  additionalEmails
+  residences {
+    id
+    ...ResidenceFragment
+  }
+  avatarUrl
+  avatarThumbUrl
+  clientAccess
+}
+query ContactImports {
+  contactImports {
+    id
+    name
+    importedAt
+    countMatched
+    countAdded
+  }
+}
+#import "./ResidenceFragment"
+
+query DuplicateContacts($contactImportId: ID, $mode: String) {
+  duplicateContacts(contactImportId: $contactImportId, mode: $mode) {
+    ...DuplicateContactFields
+  }
+}
+
+fragment DuplicateContactFields on DuplicateContactSet {
+  contacts {
+    ...DuplicateContactsContactFields
+  }
+}
+
+fragment DuplicateContactsContactFields on Contact {
+  id
+  sortAs
+  mode
+  email
+  workPhone
+  company { id name }
+  createdAt
+  residences { ...ResidenceFragment }
+}
+#import "./ContactCardFragment"
+#import "./ContactCampaignsFragment"
+#import "./NotesFragment"
+#import "../TenTouches/TenTouchFragment"
+#import "./ResidenceFragment"
+
+query EditContact($id: ID!) {
+  contact(id: $id) {
+    id
+    mode
+    strategicTargetCategories
+    displayAs
+    firstName
+    lastName
+    name
+    suffix
+    goesBy
+    workPhone
+    extension
+    directPhone
+    mobile
+    jobTitle
+    marketingStatus
+    email
+    additionalEmails
+    webPage
+    linkedIn
+    body
+    birthDay
+    birthMonth
+    clientAccessWholeOffice
+    namesOnInvoices
+    company { id name }
+    residences {
+      ...ResidenceFragment
+    }
+    affiliations {
+      id
+      affiliationType {
+        id
+        valueType
+      }
+      value
+    }
+  }
+}
+query EditContactPhysicalAddress($id: ID!) {
+  physicalAddress(id: $id) {
+    id
+    street
+    city
+    unit
+    unitType
+    state
+    number
+    premise
+    country
+    zip
+    legacyStreet
+    legacyCity
+    legacyState
+    legacyZip
+    googleFormatted
+    googleData
+    residences {
+      id
+      contact(includeInactive: true) {
+        id
+        displayAs
+        mode
+        name
+        company {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+#import "../tags/TagFields"
+#import "./ResidenceFragment"
+
+query FullContactSearch($filter: ContactSearchFilter!) {
+  contactSearch(filter: $filter) {
+    ...FullContactSearchFields
+  }
+  tags {
+  ...TagFields
+  }
+}
+
+fragment FullContactSearchFields on ContactResults {
+  totalCount
+  filteredContactCount
+  filteredCompanyCount
+  filteredContactCompaniesCount
+  clientCount
+  pastClientCount
+  currentClientCount
+  excludingClientsCount
+  prospectCount
+  whaleCount
+  filteredProspectCount
+  filteredWhaleCount
+  emailCount
+  clientAccessCount
+  title
+  contacts {
+    ...FullContactSearchContactFields
+  }
+}
+
+fragment FullContactSearchContactFields on Contact {
+  id
+  isActive
+  lastContactedOn
+  sortAs
+  displayAs
+  email
+  extension
+  mobile
+  workPhone
+  marketingStatus
+  mode
+  avatarThumbUrl
+  lastContactedBy { id fullname }
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  residences {
+    ...ResidenceFragment
+  }
+}mutation MarkContactInactive($id: ID!, $userId: ID!, $reason: String!) {
+  markContactInactive(id: $id, userId: $userId, reason: $reason) {
+    id
+  }
+}
+mutation MarkContactOutdated($id: ID!, $userId: ID!) {
+  markContactOutdated(id: $id, userId: $userId) {
+    id
+
+  }
+}
+#import "./ResidenceFragment"
+
+mutation MergeContacts($id: ID!, $mergeId: ID!, $residenceIds: [ID!], $fieldsToCopy: [String!], $fieldsToMerge: [String!], $userId: ID!) {
+  mergeContacts(id: $id, mergeId: $mergeId, residenceIds: $residenceIds, fieldsToCopy: $fieldsToCopy, fieldsToMerge: $fieldsToMerge, userId: $userId) {
+    ...MergeContactsContactFields
+  }
+}
+
+fragment MergeContactsContactFields on Contact {
+  id
+  sortAs
+  email
+  workPhone
+  company { id name }
+  createdAt
+  residences { ...ResidenceFragment }
+}#import "./ResidenceFragment"
+
+query MergeFields($ids: [ID!]!) {
+  contacts(ids: $ids) {
+    ...MergeFieldsContactFields
+
+  }
+}
+
+fragment MergeFieldsContactFields on Contact {
+  id
+  mode
+  name
+  firstName
+  lastName
+  suffix
+  goesBy
+  marketingStatus
+  jobTitle
+  company { id name }
+  avatarThumbUrl
+  workPhone
+  extension
+  directPhone
+  mobile
+  email
+  additionalEmails
+  webPage
+  linkedIn
+  body
+  createdAt
+  projects { id }
+  campaigns { id }
+  notes { id }
+  residences { ...ResidenceFragment }
+  contacts { id }
+}#import "../notes/ShowFragment"
+
+fragment ContactNotesFragment on Contact {
+  id
+  notes {
+    ...NoteShowFragment
+  }
+}
+fragment PhysicalAddressFragment on PhysicalAddress {
+  id
+  premise
+  number
+  street
+  unit
+  unitType
+  city
+  state
+  zip
+  country
+  latitude
+  longitude
+  community { id name }
+}
+query RequestDownload($mode: String!, $filter: ContactSearchFilter!) {
+  downloadContacts(mode: $mode, filter: $filter)
+}
+#import "./PhysicalAddressFragment"
+
+fragment ResidenceFragment on Residence {
+  id
+  primary
+  category
+  endDate
+  physicalAddress {
+    ...PhysicalAddressFragment
+  }
+  residence {
+    id
+    physicalAddress {
+      ...PhysicalAddressFragment
+    }
+  }
+}
+#import "./ShowFragment"
+
+mutation SaveContact($input: ContactInput!) {
+  saveContact(input: $input) {
+    ...ContactShowFragment
+  }
+}
+mutation SaveContactPhysicalAddress($input: PhysicalAddressInput!) {
+  savePhysicalAddress(input: $input) {
+    id
+    premise
+    number
+    street
+    unit
+    unitType
+    city
+    country
+    state
+    zip
+    googleFormatted
+  }
+}
+#import "../TenTouches/TenTouchFragment"
+
+mutation SaveTenTouch($input: TenTouchInput!) {
+  saveTenTouch(input: $input) {
+    ...TenTouchFragment
+  }
+}
+#import "./ResidenceFragment"
+
+query ContactSearch($filter: ContactSearchFilter!, $paginate: Boolean) {
+  contactSearch(filter: $filter, paginate: $paginate) {
+    contacts {
+      ...ContactSearchContactFields
+
+    }
+  }
+}
+
+fragment ContactSearchContactFields on Contact {
+  id
+  sortAs
+  displayAs
+  mode
+  name
+  isActive
+  strategicTargetCategories
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  avatarThumbUrl
+  email
+  workPhone
+  directPhone
+  mobile
+  residences {
+    ...ResidenceFragment
+  }
+}#import "../tags/TagFields"
+#import "./ContactCardFragment"
+#import "./CompanyContactFragment"
+#import "./ContactCampaignsFragment"
+#import "./NotesFragment"
+#import "./ShowFragment"
+#import "../TenTouches/TenTouchFragment"
+#import "../Attachments/AttachmentFragment"
+
+query ShowContact($id: ID!) {
+  contact(id: $id) {
+    ...ShowContactFields
+  }
+}
+
+fragment ShowContactFields on Contact {
+  ...ContactShowFragment
+  contacts {
+    ...CompanyContactFragment
+  }
+  formerContacts {
+    ...CompanyContactFragment
+  }
+  relationshipsAsParent {
+    id
+    role
+    strategicTargetRole
+    key
+    endDate
+    active
+    contact {
+      id
+      sortAs
+      jobTitle
+      isActive
+      email
+      company {
+        id
+        name
+        company {
+          id
+          name
+        }
+      }
+    }
+  }
+  importedContacts {
+    id
+    action
+    contactImport {
+      id
+      name
+      importedAt
+    }
+  }
+  ...ContactCardFragment
+  ...ContactCampaignsFragment
+  coworkers {
+    id
+    displayAs
+  }
+  tenTouches {
+    ...TenTouchFragment
+  }
+  referralProjects {
+    ...ShowContactProjectFields
+  }
+  projects {
+    ...ShowContactProjectFields
+
+  }
+  strategicTargetProjects {
+    id
+    number
+    name
+    status
+    trade
+    represent
+    salesStage {
+      id
+      probability
+      description
+    }
+    guesstimate
+    opportunityOwner {
+      id
+      fullname
+    }
+  }
+  officeProjects {
+    ...ShowContactProjectFields
+  }
+  surveys {
+    id
+    completed
+    updatedAt
+    project { id number name }
+    surveyQuestions {
+      id
+      answer
+      numeric
+    }
+  }
+  seminarAttendees {
+    id
+    attended
+    seminar {
+      id
+      title
+      eventDate
+    }
+  }
+  taggings {
+    id
+    createdAt
+    tag {
+      ...TagFields
+    }
+  }
+  affiliations {
+    id
+    value
+    affiliationType {
+      id
+      valueType
+      url
+      name
+    }
+  }
+  ...ContactNotesFragment
+  attachments {
+    ...AttachmentFragment
+  }
+}
+
+fragment ShowContactProjectFields on Project {
+  id
+  number
+  name
+  status
+  trade
+  represent
+  salesStage {
+    id
+    probability
+    description
+  }
+  guesstimate
+  opportunityOwner {
+    id
+    fullname
+  }
+}fragment ContactShowFragment on Contact {
+  id
+  mode
+  strategicTargetCategories
+  name
+  goesBy
+  greetAs
+  jobTitle
+  company {
+    id
+    name
+    company {
+      id
+      name
+    }
+  }
+  relationships {
+    id
+    notes
+    role
+    active
+    endDate
+    key
+    strategicTargetRole
+    parent {
+      id
+      displayAs
+      mode
+      name
+      company {
+        id
+        name
+      }
+    }
+  }
+  displayAs
+  marketingStatus
+  avatarUrl
+  avatarThumbUrl
+  clientAccess
+  isActive
+  deletedOn
+  deletedReason
+  createdAt
+  deletedByUser {
+    id fullname
+  }
+  body
+  webPage
+  linkedIn
+  birthday
+  downloadedMec
+  creator {
+    id
+    fullname
+  }
+}
+#import "../tags/TagFields"
+#import "./ResidenceFragment"
+
+query StrategicTargetCompanies($filter: ContactSearchFilter!, $paginate: Boolean) {
+  contactSearch(filter: $filter, paginate: $paginate) {
+    contacts {
+      id
+      name
+      isActive
+      strategicTargetCategories
+      company {
+        id
+        name
+      }
+      tags {
+        ...TagFields
+      }
+    }
+  }
+}
+query CreditMemo($id: ID!) {
+  creditMemo(id: $id) {
+    id
+    description
+    amount
+    itemDate
+    appliedPayments {
+      id
+      amount
+      invoice { id }
+    }
+  }
+}
+mutation SaveCreditMemo($input: CreditMemoInput!) {
+  saveCreditMemo(input: $input) {
+    id
+  }
+}
+mutation DeleteDeposit($id: ID!) {
+  deleteDeposit(id: $id) {
+    id
+  }
+}
+fragment DepositFields on Deposit {
+  id
+  date
+  status
+  synced
+  account
+  ach
+  amount
+  payments {
+    id
+    amount
+    checkDate
+    depositDate
+    checkNumber
+    payor
+    project {
+      id
+      number
+      name
+      totalDue
+      status
+    }
+    retainer { id }
+  }
+  retainers {
+    id
+    amount
+    checkDate
+    depositDate
+    payor
+    checkNumber
+    project {
+      id
+      number
+      name
+      totalDue
+      status
+    }
+  }
+}
+query Deposit($id: ID!) {
+  deposit(id :$id) {
+    id
+    date
+    status
+    account
+    ach
+    amount
+  }
+}
+#import "./DepositFields"
+
+query Deposits($month: String!, $startDate: String!, $endDate: String!) {
+  deposits(month: $month) {
+    ...DepositFields
+  }
+  payments(startDate: $startDate, endDate: $endDate, filter: "Applied Retainers") {
+    id
+    amount
+  }
+}
+#import "./DepositFields"
+
+query DepositPicker($includeId: ID) {
+  deposits(includeId: $includeId, status: "Pending") {
+    ...DepositFields
+  }
+}
+#import "./DepositFields"
+
+query RecentDeposits {
+  deposits(limit: 10) {
+    ...DepositFields
+  }
+}
+#import "./DepositFields"
+
+mutation SaveDeposit($input: DepositInput!) {
+  saveDeposit(input: $input) {
+    ...DepositFields
+  }
+}
+query EmployeeAnnualHours($userLogin: String!, $year: Int!) {
+  employee(userLogin: $userLogin) {
+    id
+    annualHours(year: $year) {
+      date
+      available
+      worked
+      goal
+      billedTimesheets
+      billedInvoices
+      retained
+      testimony
+      expert
+      nonExpert
+      holidays
+      pto
+      sick
+      training
+      overhead
+    }
+  }
+}
+mutation ApproveMilestone($id: ID!, $managerId: ID!) {
+  approveMilestone(id: $id, managerId: $managerId) {
+    id
+    completed
+    approved
+    payPeriod { id checkDate }
+  }
+}
+#import "../checklists/ChecklistFragment"
+
+query EmployeeChecklists($id: ID!) {
+  employee(id: $id) {
+    id
+    checklists {
+      ...ChecklistFragment
+    }
+  }
+}
+mutation DeleteEmployee($id: ID!) {
+  deleteEmployee(id: $id) {
+    id
+  }
+}
+mutation DeleteGoal($id: ID!) {
+  deleteBillableGoal(id: $id) {
+    id
+  }
+}
+mutation DeleteMilestone($id: ID!) {
+  deleteMilestone(id: $id) {
+    id
+  }
+}
+mutation DeleteReduction($id: ID!) {
+  deleteBillableGoalReduction(id: $id) {
+    id
+  }
+}
+mutation DeleteReview($id: ID!) {
+  deleteEmployeeReview(id: $id) {
+    id
+  }
+}
+mutation DeleteSalary($id: ID!) {
+  deleteSalary(id: $id) {
+    id
+  }
+}
+query EditEmployee($id: ID!) {
+  employee(id: $id) {
+    id
+    firstName
+    lastName
+    future
+    schedule
+    description
+    startDate
+    endDate
+    office { id }
+    manager { id }
+    billingPosition { id }
+    user { id }
+    department
+    standardHours
+    employmentStatus
+    employeeType
+    schedule
+  }
+}
+query EditGoal($id: ID!) {
+  billableGoal(id: $id) {
+    id
+    effectiveDate
+    fixed
+    goal
+  }
+}
+query EditMilestone($id: ID!) {
+  milestone(id: $id) {
+    id
+    description
+    itemDate
+    amount
+    datePaid
+    completed
+    approved
+  }
+}
+query EditReduction($id: ID!) {
+  billableGoalReduction(id: $id) {
+    id
+    itemDate
+    amount
+    description
+    project { id }
+  }
+}
+query EditReview($id: ID!) {
+  employeeReview(id: $id) {
+    id
+    reviewer { id }
+    completed
+    reviewDate
+  }
+}
+query EditSalary($id: ID!) {
+  salary(id: $id) {
+    id
+    effectiveDate
+    hourlyRates
+    hourlyRate
+    annualBase
+    hourlyRates
+    annualIncentive
+    retroactiveDate
+    performancePaySummary
+    ptoPlan { id }
+  }
+}
+query EmployeeGoals($id: ID!) {
+  employee(id: $id) {
+    id
+    billableGoals {
+      id
+      effectiveDate
+      goal
+      percentage
+      fixed
+    }
+    billableGoalReductions {
+      id
+      itemDate
+      amount
+      project { id number name }
+      manager { id fullname }
+      description
+    }
+  }
+}
+#import "../checklists/ChecklistFragment"
+
+query Employees($status: String, $managerId: ID) {
+  employees(status: $status, managerId: $managerId) {
+    id
+    displayAs
+    sortAs
+    future
+    firstName
+    lastName
+    department
+    startDate
+    employeeType
+    employmentStatus
+    billingPosition { id description }
+    manager {
+      id
+      fullname
+    }
+    user {
+      id login
+    }
+    salaries {
+      id
+      effectiveDate
+      annualBase
+      annualIncentive
+      hourlyRates
+    }
+    checklists {
+      ...ChecklistFragment
+    }
+  }
+}
+query EmployeeMonthlyPayments($month: String!) {
+  employees(activeDuring: $month, future: false) {
+    id
+    displayAs
+    department
+    employeeType
+    user {
+      id
+      login
+      timesheets(paymentType: "EMPLOYEE", filterMonth: $month, filter: "Pending Expenses") {
+        id
+      }
+      invoicelines(filters: ["No Expenses", "Billed", "Shipped"], invoiceMonth: $month) {
+        id
+      }
+    }
+    monthlyPayments(month: $month) {
+      id
+      category
+      amount
+      date
+      paidOn
+      updatedAt
+    }
+  }
+}
+query PTOPlans {
+  ptoPlans {
+    id
+    name
+    tierOne
+    tierTwo
+    tierThree
+  }
+}
+query PUMBillings($after: String!, $before: String!) {
+  employees(status: "Active") {
+    ...PUMBillingsEmployeeFields
+  }
+  invoices(filter: "billable", status: "FINAL", after: $after, before: $before) {
+    ...PUMBillingsInvoiceFields
+  }
+}
+
+fragment PUMBillingsEmployeeFields on Employee {
+  id
+  displayAs
+  department
+  firstName
+  lastName
+  user {
+    id
+    login
+    fullname
+  }
+}
+
+fragment PUMBillingsInvoiceFields on Invoice {
+  id
+  status
+  invoiceDate
+  invoiceTotal
+  nonBillableTotal
+  noChargeTotal
+  project {
+    id
+    name
+    number
+    pc { id }
+    pm { id }
+  }
+}query ProjectAssignments($filter: String!) {
+  employees(status: "Active") {
+    ...ProjectAssignmentsEmployeeFields
+  }
+  projects(filter: $filter, projectsOnly: true) {
+    ...ProjectAssignmentsProjectFields
+  }
+}
+
+fragment ProjectAssignmentsEmployeeFields on Employee {
+  id
+  displayAs
+  department
+  firstName
+  lastName
+  user {
+    id
+    login
+    fullname
+  }
+}
+
+fragment ProjectAssignmentsProjectFields on Project {
+  id
+  pc { id }
+  pm { id}
+  technicalLead { id}
+  projectUsers { id role user { id } }
+}query EmployeeReviews($id: ID!) {
+  employee(id: $id) {
+    id
+    employeeReviews {
+      id
+      reviewDate
+      reviewer { id fullname }
+      completed
+    }
+  }
+}
+query EmployeeSalaries($id: ID!) {
+  employee(id: $id) {
+    id
+    salaries {
+      id
+      effectiveDate
+      hourlyRates
+      hourlyRate
+      annualBase
+      annualIncentive
+      hourlyRates
+      ptoPlan {
+        id
+        name
+      }
+    }
+    milestones {
+      id
+      description
+      itemDate
+      amount
+      datePaid
+      completed
+      approved
+      payPeriod { id checkDate }
+    }
+  }
+}
+mutation SaveEmployee($input: EmployeeInput!) {
+  saveEmployee(input: $input) {
+    id
+    firstName
+    displayAs
+    lastName
+    startDate
+    manager {
+      id
+      fullname
+    }
+    office { id location }
+    billableGoals {
+      id
+      effectiveDate
+    }
+    salaries {
+      id
+      effectiveDate
+    }
+    milestones {
+      id
+      itemDate
+    }
+  }
+}
+mutation SaveBillableGoal($input: BillableGoalInput!) {
+  saveBillableGoal(input: $input) {
+    id
+  }
+}
+mutation SaveMilestone($input: MilestoneInput!) {
+  saveMilestone(input: $input) {
+    id
+  }
+}
+mutation SaveBillableGoalReduction($input: BillableGoalReductionInput!) {
+  saveBillableGoalReduction(input: $input) {
+    id
+  }
+}
+mutation SaveEmployeeReview($input: EmployeeReviewInput!) {
+  saveEmployeeReview(input: $input) {
+    id
+  }
+}
+mutation SaveSalary($input: SalaryInput!) {
+  saveSalary(input: $input) {
+    id
+  }
+}
+#import "../notes/ShowFragment"
+#import "../checklists/ChecklistFragment"
+
+query Employee($id: ID!) {
+  employee(id: $id) {
+    id
+    firstName
+    displayAs
+    lastName
+    startDate
+    user { id login }
+    manager {
+      id
+      fullname
+    }
+    office { id location }
+    notes {
+      ...NoteShowFragment
+    }
+    checklists {
+      ...ChecklistFragment
+    }
+  }
+}
+query GetEmployee($userLogin: String!) {
+  employee(userLogin: $userLogin) {
+    id
+    salaries {
+      id
+      effectiveDate
+      hourlyRates
+    }
+  }
+}
+#import "./ShowFeatureFragment"
+
+query Feature($id: ID!) {
+  feature(id: $id) {
+    id
+    ...ShowFeatureFragment
+  }
+}
+query FeaturesList {
+  features {
+    id
+    status
+    priority
+    category
+    featureType
+    scale
+    hours
+    completedOn
+    title
+    createdAt
+    user {
+      id
+      login
+    }
+  }
+}
+query FeaturePicker {
+  features {
+    id
+    category
+    title
+  }
+}
+#import "./ShowFeatureFragment"
+
+mutation SaveFeature($input: FeatureInput!) {
+  saveFeature(input: $input) {
+    ...ShowFeatureFragment
+  }
+}
+#import "../notes/ShowFragment"
+
+fragment ShowFeatureFragment on Feature {
+    id
+    title
+    user { id fullname }
+    feature { id title category }
+    features { id title category status }
+    featureType
+    status
+    scale
+    priority
+    hours
+    description
+    category
+    closeNote
+    attachment { fileName }
+    attachmentUrl
+    createdAt
+    completedOn
+    notes {
+      ...NoteShowFragment
+    }
+}
+query EditFeeSchedule($id: ID!) {
+  feeSchedule(id: $id) {
+    id
+    name
+    effectiveDate
+  }
+}
+query FeeSchedules {
+  feeSchedules {
+    id
+    name
+    effectiveDate
+    attachmentUrl
+  }
+}
+query FeeSchedule($id: ID!) {
+  feeSchedule(id: $id) {
+    id
+    name
+    effectiveDate
+    billingRates {
+      id
+      rate
+      billingPosition { id }
+    }
+  }
+  billingPositions { id description }
+}
+mutation SaveFeeSchedule($input: FeeScheduleInput!) {
+  saveFeeSchedule(input: $input) {
+    id
+  }
+}
+mutation DeleteInterview($id: ID!) {
+  deleteInterview(id: $id) {
+    id
+  }
+}
+#import "../Documents/DocumentReferenceFragment.gql"
+
+query EditInterview($id: ID!) {
+  interview(id: $id) {
+    id
+    date
+    attendees
+    description
+    body
+    bodyJson
+    legacy
+    meetingType
+    template
+    documentReferences {
+      ...DocumentReferenceFragment
+    }
+  }
+}
+fragment InterviewFragment on Interview {
+  id
+  date
+  attendees
+  description
+  template
+  body
+  bodyJson
+  legacy
+  meetingType
+  tasks {
+    id
+    completed
+  }
+}
+#import "./InterviewFragment"
+
+query Interviews($number: String!) {
+  project(number: $number) {
+    id
+    projectType
+    interviews {
+      ...InterviewFragment
+    }
+  }
+}
+#import "./InterviewFragment"
+
+mutation SaveInterview($input: InterviewInput!) {
+  saveInterview(input: $input) {
+    ...InterviewFragment
+  }
+}
+#import "./InterviewFragment"
+
+query InterviewTemplates {
+  interviews(template: true) {
+    ...InterviewFragment
+  }
+}
+fragment CardFragment on KanbanCard {
+  id
+  column
+  title
+  notes
+  dueDate
+  dateCompleted
+  hours
+  blocked
+  blockedReason
+  rank
+  leadTime
+  cycleTime
+  deliverable { id description }
+  project {
+    id number name projectType
+    pc { id login color }
+    pm { id login color }
+  }
+  feature {
+    id
+    title
+  }
+  user { id login }
+  tasks { id description completed itemDate hours user { id } }
+  events { time column }
+}
+mutation DeleteKanbanCard($id: ID!) {
+  deleteKanbanCard(id: $id) {
+    id
+  }
+}
+#import "./KanbanCardsFeatureFragment"
+
+query FeatureKanbanCards($id: ID!) {
+  feature(id: $id) {
+    ...KanbanCardsFeatureFragment
+  }
+}
+#import "./CardFragment"
+
+fragment KanbanCardsFeatureFragment on Feature {
+  id
+  kanbanCards {
+    ...CardFragment
+  }
+}
+#import "./CardFragment"
+
+fragment KanbanCardsFragment on Project {
+  id
+  kanbanCards {
+    ...CardFragment
+  }
+}
+#import "./KanbanCardsFragment"
+
+query KanbanCards($projectNumber: String) {
+  project(number: $projectNumber) {
+    ...KanbanCardsFragment
+  }
+}
+query ProjectCards {
+  projects(filter: "Active") {
+    ...ProjectCardsProjectFields
+  }
+}
+
+fragment ProjectCardsProjectFields on Project {
+  id
+  number
+  name
+  pm {
+    id
+    login
+  }
+  pc {
+    id
+    login
+  }
+  technicalLead {
+    id
+    login
+  }
+  kanbanCards {
+    id
+    dueDate
+    column
+  }
+}#import "./CardFragment"
+
+mutation SaveKanbanCard($input: KanbanCardInput!) {
+  saveKanbanCard(input: $input) {
+    ...CardFragment
+  }
+}
+mutation SortKanbanCard(
+  $id: ID!
+  $position: String
+  $rank: Int
+  $column: String!
+) {
+  sortKanbanCard(id: $id, position: $position, rank: $rank, column: $column) {
+    id
+    rank
+    column
+    dateCompleted
+  }
+}
+#import "./CardFragment"
+
+query AllKanbanCards($user: String) {
+  kanbanCards(user: $user) {
+    ...CardFragment
+  }
+}
+#import "./KpiFragment"
+#import "./KpiSetFragment"
+
+query Kpis($globalSet: String, $login: String, $global: Boolean!) {
+  user(login: $login) @skip(if: $global) {
+    id
+    fullname
+  }
+  kpiSet(login: $login, globalSet: $globalSet) {
+    ...KpiSetFragment
+  }
+  kpis(login: $login, globalSet: $globalSet) {
+    ...KpiFragment
+  }
+}
+mutation DeleteKpiSection($id: ID!) {
+  deleteKpiSection(id: $id) {
+    id
+  }
+}
+mutation DeleteKpiType($id: ID!) {
+  deleteKpiType(id: $id) {
+    id
+  }
+}
+fragment KpiFragment on Kpi {
+  id
+  date
+  value
+  notApplicable
+  kpiType {
+    id
+    title
+    mode
+    description
+    hideWhenEmpty
+    editable
+    shouldNotExceedGoal
+    startYear
+    endYear
+    section
+    title
+    valueType
+    aggregation
+    kpiSection {
+      id
+    }
+  }
+}
+fragment KpiSetFragment on KpiSet {
+  id
+  name
+  globalSet
+  kpiSections {
+    id
+    rank
+    name
+    category
+    who
+    description
+    kpiTypes {
+      id
+      title
+      rank
+      description
+      hideWhenEmpty
+      mode
+      editable
+      shouldNotExceedGoal
+      startYear
+      endYear
+      aggregation
+      section
+      title
+      valueType
+      staffTypes
+    }
+  }
+}
+mutation MoveKpiSection($id: ID!, $direction: String!) {
+  moveKpiSection(id: $id, direction: $direction) {
+    id
+    name
+    rank
+  }
+}
+mutation MoveKpiType($id: ID!, $direction: String!) {
+  moveKpiType(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+mutation SaveKpi($input: KpiInput!) {
+  saveKpi(input: $input) {
+    id
+  }
+}
+mutation SaveKpiSection($input: KpiSectionInput!) {
+  saveKpiSection(input: $input) {
+    id
+    name
+    description
+    who
+    category
+    rank
+    pageBreak
+  }
+}
+mutation SaveKpiSet($input: KpiSetInput!) {
+  saveKpiSet(input: $input) {
+    id
+    name
+    globalSet
+  }
+}
+mutation SaveKpiType($input: KpiTypeInput!) {
+  saveKpiType(input: $input) {
+    id
+    mode
+    title
+    valueType
+    shouldNotExceedGoal
+    editable
+    description
+    startYear
+    endYear
+    hideWhenEmpty
+    rank
+    aggregation
+  }
+}
+query KpiSection($id: ID!) {
+  kpiSection(id: $id) {
+    id
+    name
+    category
+    who
+    description
+    rank
+    pageBreak
+  }
+}
+query KpiSet($id: ID!) {
+  kpiSet(id: $id) {
+    id
+    name
+    globalSet
+    kpiSections {
+      id
+      rank
+      name
+      who
+      description
+      kpiTypes {
+        id
+        rank
+        title
+        valueType
+        editable
+        description
+        hideWhenEmpty
+        aggregation
+        mode
+      }
+    }
+  }
+}
+query KpiSets {
+  kpiSets {
+    ...KpiSetsFields
+  }
+}
+
+
+fragment KpiSetsFields on KpiSet {
+  id
+  name
+  globalSet
+  kpiSections {
+    id
+    rank
+    name
+    who
+    description
+    kpiTypes {
+      id
+      rank
+      title
+      valueType
+      editable
+      description
+      hideWhenEmpty
+      aggregation
+      mode
+    }
+  }
+}query KpiType($id: ID!) {
+  kpiType(id: $id) {
+    id
+    mode
+    title
+    valueType
+    shouldNotExceedGoal
+    editable
+    startYear
+    endYear
+    description
+    hideWhenEmpty
+    aggregation
+    rank
+  }
+}
+mutation DeleteList($id: ID!) {
+  deleteList(id: $id) {
+    id
+  }
+}
+mutation DeleteListItem($id: ID!) {
+  deleteListItem(id: $id) {
+    id
+  }
+}
+query EditList($id: ID!) {
+  list(id: $id) {
+    ...EditListFragment
+  }
+}
+
+fragment EditListFragment on List {
+  id
+  name
+  sortBy
+  fields
+}
+query EditListItem($id: ID!) {
+  listItem(id: $id) {
+    ...EditListItemFields
+  }
+}
+
+fragment EditListItemFields on ListItem {
+  id
+  name
+  fields
+  item { id }
+}
+mutation MoveListItem($id: ID!, $direction: String!) {
+  moveListItem(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+query ProjectLists($number: String!) {
+  project(number: $number) {
+    id
+    lists {
+      id
+      name
+    }
+  }
+}
+mutation SaveList($input: ListInput!) {
+  saveList(input: $input) {
+    id
+    name
+  }
+}
+mutation SaveListItem($input: ListItemInput!) {
+  saveListItem(input: $input) {
+    id
+    name
+  }
+}
+query ShowList($id: ID!) {
+  list(id: $id) {
+    ...ShowListFields
+  }
+}
+
+fragment ShowListFields on List {
+  id
+  name
+  sortBy
+  fields
+  items {
+    ...ShowListItemFields
+  }
+}
+
+fragment ShowListItemFields on ListItem {
+  id
+  name
+  rank
+  fields
+  item { id }
+}mutation DeleteMailing($id: ID!) {
+  deleteMailing(id: $id) {
+    id
+  }
+}
+query EditMailing($id: ID!) {
+  mailing(id: $id) {
+    id
+    body
+    bypassFilters
+    campaignField
+    clientFilter
+    company
+    excludeCampaignField
+    contactType
+    replyTo
+    sender
+    status
+    subject
+    suppressUnsubscribeLink
+    updateCampaignField
+    user { id }
+    campaign { id }
+    taggings { id }
+  }
+}
+fragment MailingFields on Mailing {
+  id
+  subject
+  sender
+  sentAt
+  contactsMailingsCount
+  attachmentUrl
+}#import "./Fields"
+
+query Mailings {
+  mailings {
+    ...MailingFields
+  }
+}
+query PreviewContacts($id: ID!) {
+  mailing(id: $id) {
+    id
+    subject
+    previewContacts {
+      id
+      greetAs
+      displayAs
+      company { id name }
+    }
+  }
+}
+mutation SaveMailing($input: MailingInput!) {
+  saveMailing(input: $input) {
+    id
+  }
+}mutation SendMailing($id: ID!) {
+  sendMailing(id: $id) {
+    id
+    status
+  }
+}
+#import "../checklists/ChecklistFragment"
+
+query Mailing($id: ID!) {
+  mailing(id: $id) {
+    ...ShowMailingFields
+
+  }
+}
+
+
+fragment ShowMailingFields on Mailing {
+  id
+  subject
+  body
+  company
+  status
+  replyTo
+  sender
+  sentAt
+  contactsMailingsCount
+  attachmentUrl
+  attachment {
+    fileName
+  }
+  campaignField
+  excludeCampaignField
+  campaign {
+    id
+    name
+  }
+  taggings {
+    id
+    scope
+    tag {
+      id
+      category
+    }
+  }
+  checklists {
+    ...ChecklistFragment
+  }
+}mutation SendMailingTestEmail($id: ID!, $email: String!) {
+  sendMailingTestEmail(id: $id, email: $email) {
+    id
+  }
+}
+mutation DeleteMembership($id: ID!) {
+  deleteMembership(id: $id) {
+    id
+  }
+}
+#import "../contacts/ResidenceFragment"
+
+fragment MembershipFragment on Membership {
+  id
+  role
+  invoicing
+  invoicePercentage
+  primaryContact
+  namesOnInvoices
+  fileNumber
+  invoiceRecipient
+  notes
+  blockClientAccess
+  contact {
+    id
+    displayAs
+    company {
+      id
+      name
+      company {
+        id
+        name
+      }
+    }
+    workPhone
+    directPhone
+    mobile
+    extension
+    email
+    avatarUrl
+    avatarThumbUrl
+    clientAccess
+    residences {
+      ...ResidenceFragment
+    }
+  }
+  project { id }
+}
+query ProjectMemberships($id: ID!) {
+  project(id: $id) {
+    id
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        company {
+          id
+          name
+        }
+        displayAs
+      }
+    }
+  }
+}
+#import "./Fragment"
+
+mutation SaveMembership($input: MembershipInput!) {
+  saveMembership(input: $input) {
+    ...MembershipFragment
+  }
+}
+#import "../Documents/DocumentFragment"
+
+mutation DeleteMessage($id: ID!) {
+  deleteMessage(id: $id) {
+    id
+  }
+}#import "../Documents/DocumentFragment"
+
+fragment MessageFields on Message {
+  id
+  sentAt
+  body
+  html
+  from
+  to
+  cc
+  bcc
+  subject
+  user { id fullname }
+  documents {
+    id
+    ...DocumentFragment
+  }
+  attachments {
+    id
+    attachment {
+      fileName
+    }
+    note
+    attachmentUrl
+  }
+}#import "./Fields"
+
+query ProjectMessages($id: ID!) {
+  project(id: $id) {
+    id
+    messages {
+      ...MessageFields
+    }
+  }
+}#import "./Fields"
+
+mutation SaveMessage($input: MessageInput!) {
+  saveMessage(input: $input) {
+    ...MessageFields
+  }
+}query EditorTemplates($projectId: ID, $scope: String!) {
+  editorTemplates(projectId: $projectId, scope: $scope) {
+    id
+    name
+    content
+  }
+}
+query MonthlyPayment($id: ID!) {
+  monthlyPayment(id: $id) {
+    id
+    date
+    amount
+    category
+    paidOn
+    updatedAt
+  }
+}mutation SaveMonthlyPayment($input: MonthlyPaymentInput!) {
+  saveMonthlyPayment(input: $input) {
+    id
+    date
+    amount
+    category
+    paidOn
+    updatedAt
+  }
+}query Notes($login: String, $month: String!) {
+  notes(login: $login, month: $month) {
+    id
+    contactType
+    itemDate
+    itemType
+    contact {
+      id
+      displayAs
+      company {
+        id
+        name
+      }
+    }
+    project {
+      id
+      number
+      name
+      salesStageId
+    }
+    campaign {
+      id
+      name
+    }
+    feature {
+      id
+      title
+    }
+    employee {
+      id
+    }
+    device {
+      id
+    }
+  }
+}
+mutation DeleteNote($id: ID!) {
+  deleteNote(id: $id) {
+    id
+  }
+}
+#import "./ShowFragment"
+
+query Note($id: ID!) {
+  note(id: $id) {
+    id
+    ...NoteShowFragment
+    tasks {
+      ...TaskFragment
+    }
+  }
+}
+#import "./ShowFragment"
+
+mutation SaveNote($input: NoteInput!) {
+  saveNote(input: $input) {
+    ...NoteShowFragment
+  }
+}
+#import "../tasks/TaskFragment"
+
+fragment NoteShowFragment on Note {
+  id
+  itemDate
+  updatedAt
+  description
+  contactType
+  itemType
+  key
+  source
+  hidden
+  notifiedUsers { id login fullname }
+  user { id login fullname }
+  attachmentUrl
+  attachmentThumbUrl
+  notifyPm
+  attachment {
+    fileName
+  }
+  contact { id }
+  feature { id }
+  employee { id }
+  project { id salesStageId }
+  projectId
+  topic { id }
+  tasks {
+    ...TaskFragment
+  }
+}
+query PayPeriod($id: ID!) {
+  payPeriod(id: $id) {
+    id
+    checkDate
+    endDate
+    processed
+    startDate
+    payPeriodLines {
+      ...PayPeriodLineFields
+    }
+  }
+}
+
+fragment PayPeriodLineFields on PayPeriodLine {
+  employee {
+    id
+    firstName
+    lastName
+  }
+  salary { id hourlyRate }
+  pay
+  milestones
+  incentive
+  regularHours
+  otHours
+}mutation SubmitPayPeriod {
+  submitPayPeriod {
+    id
+    processed
+    payPeriodLines {
+      employee {
+        id
+        firstName
+        lastName
+      }
+      salary { id hourlyRate }
+      pay
+      milestones
+      incentive
+      regularHours
+      otHours
+    }
+  }
+}
+query Photoset($id: ID!, $project: String!) {
+  photoset(id: $id, project: $project) {
+    ...PhotosetFields
+  }
+}
+
+fragment PhotosetFields on Photoset {
+  id
+  photosCount
+  user { id login fullname }
+  pfcs
+  party
+  description
+  day
+  inspectionDate
+}#import "./PhotoListFragment"
+
+mutation BatchUpdatePhotos($input: BatchPhotoInput!) {
+  batchUpdatePhotos(input: $input) {
+    ...PhotoListFragment
+  }
+}
+query ClientAccessPhotoFilters($number: String!) {
+  project(number: $number) {
+    id
+    issueSort
+    addresses {
+      id
+      name
+      addressId
+    }
+    locations {
+      id
+      name
+      locationId
+    }
+    elements {
+      id
+      number
+      name
+    }
+    players {
+      id
+      displayName
+    }
+    issues {
+      id
+      number
+      description
+      issueId
+      elements {
+        id
+        number
+        name
+      }
+    }
+    photosets {
+      id
+      inspectionDate
+      endDate
+      startDate
+      pfcs
+      party
+      description
+      photosCount
+      complete
+      day
+      user {
+        id
+        login
+        fullname
+      }
+    }
+  }
+}query ClientAccessPhotos(
+  $projectId: ID!
+  $photosetId: ID
+  $addressId: ID
+  $locationId: ID
+  $elementId: ID
+  $issueId: ID
+  $playerId: ID
+  $keyPhotos: Boolean
+) {
+  photos(
+    projectId: $projectId
+    photosetId: $photosetId
+    addressId: $addressId
+    locationId: $locationId
+    elementId: $elementId
+    issueId: $issueId
+    playerId: $playerId
+    keyPhotos: $keyPhotos
+  ) {
+    id
+    fieldNote
+    smallImage
+    fullImage
+    imageNumber
+    photoset {
+      id
+      party
+      description
+      user {
+        id
+        login
+      }
+      day
+      pfcs
+      inspectionDate
+      startDate
+    }
+    addresses {
+      id
+      name
+    }
+    locations {
+      id
+      name
+    }
+  }
+}mutation CompletePhotoset($id: ID!) {
+  completePhotoset(id: $id) {
+    id
+    complete
+  }
+}
+#import "./EditFragment"
+
+mutation CopyPreviousPhoto($id: ID!, $sourceId: ID!) {
+  copyPreviousPhoto(id: $id, sourceId: $sourceId) {
+    ...EditPhotoFragment
+  }
+}
+mutation DeletePhotoset($id: ID!) {
+  deletePhotoset(id: $id) {
+    id
+  }
+}
+mutation DownloadPhotos($input: DownloadPhotosInput!) {
+  downloadPhotos(input: $input)
+}#import "./EditFragment"
+
+query EditPhoto($id: ID!) {
+  photo(id: $id) {
+    ...EditPhotoFragment
+  }
+}
+fragment EditPhotoFragment on Photo {
+  project {
+    id
+    number
+    mainPhotoType
+    mainPhotoId
+  }
+  photoset {
+    id
+    pfcs
+    party
+    photosCount
+    user {
+      id
+      login
+    }
+    day
+  }
+  id
+  imageNumber
+  smallImage
+  fieldNote
+  revisedAnnotation
+  keyPhoto
+  keyPhotoDescription
+  photoLinks {
+    id
+    addressId
+    locationId
+    elementId
+    issueId
+    playerId
+    testLocationId
+    key
+  }
+  previousPhoto {
+    id
+  }
+  nextPhoto {
+    id
+  }
+  updatedAt
+}
+#import "../Dispatches/DispatchFragment"
+
+query EditPhotoset($id: ID!) {
+  photoset(id: $id) {
+    id
+    user { id login fullname }
+    pfcs
+    party
+    description
+    day
+    inspectionDate
+    complete
+    source
+    dispatch { id }
+  }
+}
+query EditPhotosetSummary($id: ID!) {
+  photoset(id: $id) {
+    id
+    summary
+  }
+}
+query MainPhotoPhoto($id: ID!) {
+  image: photo(id: $id) {
+    id
+    smallImage
+    fullImage
+  }
+}
+fragment PhotoListFragment on Photo {
+  id
+  keyPhoto
+  fieldNote
+  revisedAnnotation
+  imageNumber
+  smallImage
+  thumbImage
+  fullImage
+  photoset {
+    id
+    pfcs
+    party
+    day
+    inspectionDate
+    user {
+      id
+      login
+    }
+  }
+  photoLinks {
+    id
+    key
+    address {
+      id
+      displayName
+    }
+    location {
+      id
+      displayName
+    }
+    element {
+      id
+      displayName
+    }
+    issue {
+      id
+      number
+      description
+    }
+    player {
+      id
+      displayName
+    }
+    testLocation {
+      id
+      displayName
+    }
+  }
+}query Photosets($projectId: ID) {
+  photosets(projectId: $projectId) {
+    id
+    inspectionDate
+    day
+    party
+    pfcs
+    description
+    user {
+      id
+      login
+    }
+    keyPhotoCount
+  }
+}
+#import "../Dispatches/DispatchFragment"
+
+query ProjectPhotosets($number: String!) {
+  project(number: $number) {
+    id
+    number
+    inspectionSummary
+    photosets {
+      id
+      user { id login fullname }
+      pfcs
+      party
+      description
+      day
+      inspectionDate
+      complete
+      summary
+      photosCount
+      reports { id legacy status reportType }
+      legacyReports { id legacy status reportType }
+      nextPhotoToAnnotate { id imageNumber }
+      dispatch { ...DispatchFragment }
+    }
+    dispatches {
+      ...DispatchFragment
+    }
+    reports {
+      id
+      legacy
+      status
+      reportType
+      user { id fullname }
+      reportPhotoGroups {
+        id
+        photoset { id }
+      }
+      reportSources {
+        id
+        photoset { id }
+      }
+    }
+  }
+}
+mutation RotatePhoto($id: ID!) {
+  rotatePhoto(id: $id) {
+    id
+    smallImage
+    fullImage
+    updatedAt
+  }
+}
+#import "./EditFragment"
+
+mutation SavePhoto($input: PhotoInput!) {
+  savePhoto(input: $input) {
+    ...EditPhotoFragment
+  }
+}
+mutation SavePhotoset($input: PhotosetInput!) {
+  savePhotoset(input: $input) {
+    id
+    summary
+  }
+}
+#import "./PhotoListFragment"
+
+query PhotoSearch($filters: PhotoSearchFilters!) {
+  photoSearch(filters: $filters) {
+    count
+    filteredCount
+    photos {
+      ...PhotoListFragment
+    }
+  }
+}
+query ThumbnailPreview($parentType: String!, $parentId: ID!) {
+  photos(parentType: $parentType, parentId: $parentId, keyForParent: true) {
+    id
+    imageNumber
+    thumbImage
+    addresses { id }
+    locations { id }
+    photoset {
+      id
+      day
+      pfcs
+      party
+      user {
+        id
+        login
+      }
+    }
+  }
+}
+mutation ToggleKeyPhoto($input: PhotoLinkInput!) {
+  savePhotoLink(input: $input) {
+    id
+    key
+  }
+}
+query PhotoViewer($projectId: ID!, $parentType: String!, $parentId: ID!) {
+  photos(
+    projectId: $projectId
+    parentType: $parentType
+    parentId: $parentId
+  ) {
+    id
+    imageNumber
+    smallImage
+    finalAnnotation
+    keyPhotoDescription
+    date
+    photoset {
+      id
+      inspectionDate
+      pfcs
+      user {
+        id
+        login
+      }
+      day
+      party
+    }
+    photoLinks {
+      id
+      key
+      issue {
+        id
+        displayName
+      }
+      address {
+        id
+        displayName
+      }
+      location {
+        id
+        displayName
+      }
+      element {
+        id
+        displayName
+      }
+      player {
+        id
+        displayName
+      }
+      testLocation {
+        id
+        displayName
+      }
+    }
+  }
+}
+query EditPhysicalAddress($id: ID!) {
+  physicalAddress(id: $id) {
+    id
+    unit
+    unitType
+    community { id  }
+  }
+}
+mutation SavePhysicalAddress($input: PhysicalAddressInput!) {
+  savePhysicalAddress(input: $input) {
+    id
+    unit
+    unitType
+    community { id name }
+  }
+}
+#import "../notes/ShowFragment"
+
+query PhysicalAddress($id: ID!) {
+  physicalAddress(id: $id) {
+    id
+    premise
+    street
+    number
+    unit
+    unitType
+    city
+    state
+    zip
+    county
+    country
+    latitude
+    longitude
+    northeastLatitude
+    northeastLongitude
+    southwestLatitude
+    southwestLongitude
+    residences {
+      id
+      contact {
+        id
+        displayAs
+        company { id name }
+      }
+    }
+    community { id name }
+    notes {
+      id
+      ...NoteShowFragment
+    }
+  }
+}
+#import "../Deliverables/DeliverableFragment"
+#import "./MethodFragment"
+#import "./ObjectiveFragment"
+
+query CompareProjectPlan($number: String!) {
+  project(number: $number) {
+    id
+    plan {
+      id
+      milestoneparents {
+        id
+        title
+        rank
+      }
+      uncategorizedInvoiced
+      uncategorizedPending
+      uncategorizedNc
+      expensesInvoiced
+      expensesPending
+      deliverables {
+        ...CompareProjectPlanDeliverableFields
+      }
+    }
+  }
+}
+
+
+fragment CompareProjectPlanDeliverableFields on Deliverable {
+  ...DeliverableFragment
+  totalInvoiced
+  totalPending
+  totalNc
+  milestoneparent {
+    id
+  }
+}mutation DeletePlanStatus($id: ID!) {
+  deletePlanStatus(id: $id) {
+    id
+  }
+}
+query EditDeliverableMenuItem($id: ID!) {
+  deliverableMenuItem(id: $id) {
+    id
+    sku {
+      id
+    }
+  }
+}
+query EditPlanSection($id: ID!) {
+  planSection(id: $id) {
+    id
+    name
+  }
+}
+query EditPlanStatus($id: ID!) {
+  planStatus(id: $id) {
+    id
+    status
+    date
+    notes
+    amount
+  }
+}
+query EditPlanType($id: ID!) {
+  planType(id: $id) {
+    id
+    name
+  }
+}
+fragment MethodFragment on Plan {
+  planType {
+    id
+    name
+    planSections {
+      id
+      name
+      position
+    }
+  }
+}
+fragment ObjectiveFragment on Plan {
+  objective
+}
+fragment PlanStatusFields on PlanStatus {
+  id
+  status
+  date
+  notes
+  amount
+  attachment
+}#import "./PlanStatusFields"
+
+query PlanStatuses($number: String!) {
+  project(number: $number) {
+    id
+    plan {
+      id
+      costs {
+        id
+        amount
+      }
+      planStatuses {
+        ...PlanStatusFields
+      }
+    }
+  }
+}
+fragment PlanSummaryFragment on Project {
+  id
+  number
+  totalDue
+  planUpdatedOn
+  plan {
+    id
+    billedTotal
+    amount
+    pendingTotal
+    milestoneparents {
+      id
+      rank
+      title
+      deliverables {
+        id
+        completed
+        tsTotal
+        ilTotal
+        budget
+      }
+    }
+    deliverables {
+      id
+    }
+  }
+}
+query PlanType($id: ID!) {
+  planType(id: $id) {
+    id
+    name
+    planSections {
+      id
+      name
+      position
+      deliverableMenuItems {
+        id
+        sku {
+          id
+          name
+          description
+        }
+        position
+      }
+    }
+  }
+}
+query PlanTypes {
+  planTypes {
+    id
+    name
+    planSections {
+      id
+      position
+      name
+      deliverableMenuItems {
+        id
+        position
+        sku {
+          id
+          name
+          description
+        }
+      }
+    }
+  }
+}
+query PlanTypesPicker {
+  planTypes {
+    id
+    name
+  }
+}
+mutation SaveDeliverableMenuItem($input: DeliverableMenuItemInput!) {
+  saveDeliverableMenuItem(input: $input) {
+    id
+  }
+}
+mutation SavePlanDate($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    planUpdatedOn
+  }
+}
+mutation SavePlanSection($input: PlanSectionInput!) {
+  savePlanSection(input: $input) {
+    id
+    name
+  }
+}
+mutation SavePlanStatus($input: PlanStatusInput!) {
+  savePlanStatus(input: $input) {
+    id
+    status
+    date
+    notes
+    amount
+    attachment
+  }
+}
+mutation SavePlanType($input: PlanTypeInput!) {
+  savePlanType(input: $input) {
+    id
+    name
+  }
+}
+#import "../Deliverables/DeliverableFragment"
+#import "./MethodFragment"
+#import "./ObjectiveFragment"
+
+query ProjectPlan($number: String!) {
+  project(number: $number) {
+    id
+    number
+    name
+    billingSummary
+    plan {
+      ...ProjectPlanFields
+
+    }
+  }
+}
+
+fragment ProjectPlanFields on Plan {
+  id
+  ...ObjectiveFragment
+  ...MethodFragment
+  milestoneparents {
+    ...MilestoneparentFields
+
+  }
+  deliverables {
+    ...DeliverableFragment
+  }
+}
+
+fragment MilestoneparentFields on Milestoneparent {
+  id
+  title
+  rank
+  deliverables {
+    ...DeliverableFragment
+    ilTotal
+    tsTotal
+  }
+}#import "./ObjectiveFragment"
+
+mutation UpdatePlanObjective($id: ID!, $input: PlanInput!) {
+  updatePlan(id: $id, input: $input) {
+    id
+    ...ObjectiveFragment
+  }
+}
+#import "./MethodFragment"
+
+mutation UpdatePlanPlanType($id: ID!, $input: PlanInput!) {
+  updatePlan(id: $id, input: $input) {
+    id
+    ...MethodFragment
+  }
+}
+query AssociatedProjects($id: ID!) {
+  project(id: $id) {
+    id
+    childOpportunities {
+      id
+      number
+      name
+    }
+  }
+}
+#import "../Issues/IssueFragment"
+#import "../plans/PlanSummaryFragment"
+
+query BasicAnalysis($number: String!) {
+  project(number: $number) {
+    ...BasicAnalysisProjectFields
+  }
+}
+
+fragment BasicAnalysisProjectFields on Project {
+  id
+  number
+  name
+  oneMinuteSummary
+  technicalSummary
+  issueSort
+  l1Timeline
+  inspectionSummary
+  ...PlanSummaryFragment
+  photosets {
+    id
+    pfcs
+    photosCount
+    summary
+    inspectionDate
+  }
+  timelines {
+    id
+    itemDate
+    title
+    description
+    keyEvent
+  }
+  infoImages {
+    id
+    category
+    description
+    position
+    attachmentUrl
+  }
+  playerGroups {
+    id
+    name
+    position
+  }
+  players {
+    id
+    role
+    company
+    name
+    key
+    playerGroup {
+      id
+    }
+  }
+  issues {
+    ...IssueFragment
+  }
+  documents {
+    id
+    key
+    mode
+    section
+    description
+    author
+    date
+    receivedDate
+  }
+}#import "../checklists/ChecklistFragment"
+
+fragment ChecklistsFragment on Project {
+  id
+  checklists {
+    ...ChecklistFragment
+  }
+}
+query ClientAccessProject($number: String!) {
+  project(number: $number) {
+    id
+    number
+    name
+    represent
+    trade
+    address
+    shareOneMinuteSummary
+    oneMinuteSummary
+    addresses {
+      id
+      name
+      pfcsPhotoCount
+      otherPhotoCount
+      address {
+        id
+      }
+    }
+  }
+}query ClosedProjects($month: String!) {
+  closedProjects(month: $month) {
+    ...ClosedProjectFields
+  }
+}
+
+fragment ClosedProjectFields on Project {
+  id
+  number
+  name
+  mdDate
+  mdHoldNotes
+  guesstimate
+  closedOn
+  totalInvoices
+  memberships {
+    id
+    primaryContact
+    contact {
+      id
+      displayAs
+    }
+    survey {
+      id
+      completed
+    }
+  }
+  closedBy {
+    id
+    login
+  }
+  office {
+    id
+    location
+  }
+  plan {
+    id
+    costs {
+      id
+      amount
+    }
+  }
+  pm {
+    id
+    login
+  }
+  pc {
+    id
+    login
+  }
+  technicalLead {
+    id
+    login
+  }
+  projectUsers {
+    id
+    role
+    user {
+      id
+      login
+    }
+  }
+}query ConflictProjects($query: String!) {
+  projects(conflictQuery: $query) {
+    id
+    number
+    name
+    represent
+    address
+    salesStageId
+  }
+}
+query ProjectCounts($user: String) {
+  projectCounts(user: $user) {
+    name
+    count
+  }
+}
+#import "./TeamFields"
+#import "./MembershipsFragment"
+#import "./ReportCardsFragment"
+#import "./ChecklistsFragment"
+#import "./ProjectFormFragment"
+#import "../kanbanCards/KanbanCardsFragment"
+#import "./SalesProjectionsFragment"
+#import "../plans/PlanSummaryFragment"
+
+query ProjectDash($number: String!) {
+  project(number: $number) {
+    id
+    ...ProjectFormFragment
+    ...TeamFields
+    ...MembershipsFragment
+    ...ReportCardsFragment
+    ...SalesProjectionsFragment
+    ...PlanSummaryFragment
+    ...KanbanCardsFragment
+    ...ChecklistsFragment
+  }
+}
+query EditCollectionsSummary($number: String!) {
+  project(number: $number) {
+    id
+    arSummary
+  }
+}
+query EditCustomFields($number: String!) {
+  project(number: $number) {
+    id
+    addressFields
+    locationFields
+    elementFields
+    issueFields
+    timelineFields
+  }
+}
+query EditProjectInspectionSummary($number: String!) {
+  project(number: $number) {
+    id
+    inspectionSummary
+  }
+}
+query EditProjectL1Timeline($id: ID!) {
+  project(id: $id) {
+    id
+    l1Timeline
+  }
+}
+#import "./TeamFields"
+
+query EditProjectTeam($id: ID!) {
+  project(id: $id) {
+    ...TeamFields
+  }
+}
+#import "./TeamFields"
+
+query First10Things($user: String!, $allUsers: Boolean!) {
+  projects(user: $user, filter: "active", billable: true, projectsOnly: true) {
+    id
+    number
+    name
+    status
+    ...TeamFields
+    checklists {
+      id
+      category
+      complete
+      itemsCompleted
+      itemCount
+    }
+  }
+  user(login: $user) @skip(if: $allUsers) {
+    id
+    fullname
+  }
+}
+query ProjectFrame($number: String!) {
+  project(number: $number) {
+    ...ProjectFrameFragment
+  }
+}
+
+fragment ProjectFrameFragment on Project {
+  id
+  number
+  name
+  represent
+  trade
+  address
+  secured
+  shareOneMinuteSummary
+  oneMinuteSummary
+  shareL1Timeline
+  shareL2Timeline
+  pc {
+    id
+    login
+  }
+  pm {
+    id
+    login
+  }
+  technicalLead {
+    id
+    login
+  }
+  projectUsers {
+    id
+    user {
+      id
+      login
+    }
+  }
+  lists {
+    id
+    name
+  }
+  projectType
+  addressesCount
+  locationsCount
+  elementsCount
+  issuesCount
+  issueSort
+  playersCount
+  testLocationsCount
+  dispatchesCount
+  interviewsCount
+  l1Timeline
+  addressFields
+  locationFields
+  elementFields
+  timelineFields
+  issueFields
+  issueAnalysisMode
+  elementAnalysisMode
+  locationAnalysisMode
+  timelines {
+    id
+  }
+  photosets {
+    id
+  }
+}
+query Guesstimates($date: Date!) {
+  projects(date: $date, filter: "Closed In") {
+    id
+    number
+    name
+    trade
+    represent
+    mdDate
+    guesstimate
+    totalInvoices
+  }
+}query Inspections($user: String!, $filter: String!) {
+  photosets(user: $user, filter: $filter) {
+    id
+    inspectionDate
+    pfcs
+    complete
+    summary
+    party
+    photosCount
+    user {
+      id fullname
+    }
+    project {
+      id
+      number
+      name
+      status
+      pm { id login }
+      pc { id login }
+    }
+    dispatch {
+      id
+      checklists {
+        id
+        itemsCompleted
+        itemCount
+        complete
+        category
+      }
+    }
+  }
+}
+#import "../tags/TagFields"
+#import "./TeamFields"
+#import "./MembershipsFragment"
+#import "../notes/ShowFragment"
+#import "./ReportCardsFragment"
+
+query InvoiceDash($number: String!) {
+  project(number: $number) {
+    ...InvoiceDashProjectFields
+  }
+}
+
+fragment InvoiceDashProjectFields on Project {
+  id
+  number
+  billingSummary
+  arSummary
+  name
+  represent
+  trade
+  status
+  projectType
+  oneMinuteSummary
+  ...TeamFields
+  ...MembershipsFragment
+  ...ReportCardsFragment
+  taggings {
+    id
+    createdAt
+    tag {
+      ...TagFields
+    }
+  }
+  invoices {
+    id
+    isAdjustment
+    status
+    attachmentUrl
+    invoiceDate
+    invoiceTotal
+    paymentTotal
+    emailedAt
+    mailedAt
+    appliedPayments {
+      id
+      amount
+      creditMemo {
+        id
+        description
+        itemDate
+      }
+      payment {
+        id
+        description
+        amount
+        checkDate
+        payor
+        claimNumber
+        checkNumber
+        attachmentUrl
+        retainer {
+          id
+          checkDate
+          checkNumber
+          referenceNumber
+          payor
+        }
+      }
+      refund {
+        id
+        itemDate
+        payer
+        paymentMethod
+      }
+    }
+  }
+  refunds {
+    id
+    amount
+    payer
+    itemDate
+    appliedPayments {
+      id
+      amount
+    }
+  }
+  timesheets(status: "Unlocked") {
+    id
+  }
+  notes(itemType: "AR") {
+    ...NoteShowFragment
+  }
+  retainers {
+    id
+    amount
+    checkDate
+    checkNumber
+    payor
+    payments {
+      id
+      amount
+    }
+  }
+}
+#import "./TeamFields"
+
+query ProjectList($filter: String!, $user: String, $search: String) {
+  projects(filter: $filter, user: $user, search: $search) {
+    id
+    number
+    name
+    trade
+    projectType
+    totalDue
+    status
+    secured
+    represent
+    salesStage {
+      id
+    }
+    ...TeamFields
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+      }
+    }
+  }
+}
+mutation LockProject($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    secured
+  }
+}
+#import "../memberships/Fragment"
+
+fragment MembershipsFragment on Project {
+  id
+  memberships {
+    id
+    ...MembershipFragment
+  }
+}
+query NewProjects($month: String!) {
+  projects(filter: "New Projects", month: $month) {
+    id
+    number
+    name
+    projectType
+    represent
+    startDate
+    rate
+    guesstimate
+    state
+    sourceOf
+    office { id location }
+    referralContact {
+      id
+      displayAs
+    }
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+        projects { id salesStageId startDate }
+      }
+    }
+    plan {
+      id
+      amount
+    }
+    sourceUser { id fullname }
+  }
+}
+#import "../notes/ShowFragment"
+
+query ProjectNotes($number: String!) {
+  project(number: $number) {
+    id
+    name
+    number
+    salesStageId
+    notes {
+      ...NoteShowFragment
+    }
+    interviews {
+      id
+      date
+      meetingType
+      description
+    }
+  }
+}
+#import "./TeamFields"
+
+query Opportunities($filter: String!, $opportunityUser: String) {
+  projects(filter: $filter, opportunityUser: $opportunityUser) {
+    id
+    number
+    name
+    trade
+    projectType
+    totalDue
+    status
+    secured
+    represent
+    guesstimate
+    opportunityStartDate
+    opportunityCloseDate
+    salesStage {
+      id
+      probability
+      description
+    }
+    opportunityOwner {
+      id login fullname
+    }
+    salesProjections {
+      id
+      createdAt
+      updatedAt
+      salesStage {
+        id
+      }
+    }
+    tasks {
+      id
+      completed
+      itemDate
+    }
+    ...TeamFields
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+        company { id name }
+      }
+    }
+    notes { id itemDate }
+  }
+}
+#import "./TeamFields"
+
+query OpportunityForecast($startDate: Date!) {
+  projects(filter: "Late Stage Forecast", date: $startDate) {
+    id
+    number
+    name
+    guesstimate
+    startDate
+    opportunityOwner {
+      id login fullname
+    }
+    tasks {
+      id
+      completed
+      itemDate
+    }
+  }
+  opportunities: projects(filter: "Opportunities") {
+    id
+    number
+    name
+    trade
+    projectType
+    totalDue
+    status
+    secured
+    represent
+    guesstimate
+    opportunityStartDate
+    opportunityCloseDate
+    startDate
+    salesStage {
+      id
+      probability
+      description
+    }
+    opportunityOwner {
+      id login fullname
+    }
+    salesProjections {
+      id
+      createdAt
+      updatedAt
+      salesStage {
+        id
+      }
+    }
+    tasks {
+      id
+      completed
+      itemDate
+    }
+    ...TeamFields
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+        company { id name }
+      }
+    }
+    notes { id itemDate }
+  }
+}
+#import "./TeamFields"
+
+query PPMs {
+  projects(filter: "Active") {
+    id
+    number
+    name
+    interviews {
+      id
+      meetingType
+      date
+    }
+    ...TeamFields
+  }
+}
+query PUM($user: String!) {
+  projects(filter: "active_hold", user: $user, projectsOnly: true) {
+    id
+    number
+    name
+    status
+    planUpdatedOn
+    totalDue
+    technicalSummaryUpdatedAt
+    salesStage {
+      id
+    }
+    pc {
+      id
+      login
+      fullname
+    }
+    pm {
+      id
+      login
+      fullname
+    }
+    technicalLead {
+      id
+      login
+      fullname
+    }
+    projectUsers {
+      id
+      role
+      user {
+        id
+        login
+        fullname
+      }
+    }
+    plan {
+      id
+      amount
+      pendingTotal
+      billedTotal
+    }
+  }
+}
+#import "./TeamFields"
+#import "./MembershipsFragment"
+#import "../notes/ShowFragment"
+
+query PaymentSupport($number: String!) {
+  project(number: $number) {
+    id
+    number
+    invoices {
+      id
+      isAdjustment
+      status
+      invoiceDate
+      invoiceTotal
+      paymentTotal
+      appliedPayments {
+        id
+        amount
+        payment {
+          id
+          payor
+          claimNumber
+        }
+      }
+    }
+  }
+  paymentAutocomplete(number: $number) {
+    payor
+    claimNumber
+    adjuster
+    policyNumber
+    claimant
+  }
+}
+query OpenProjects($filter: String, $includeId: ID) {
+  projects(filter: $filter, includeId: $includeId) {
+    id
+    number
+    name
+    projectType
+    projectUsers {
+      id
+      userId
+      role
+    }
+  }
+}
+fragment ProjectFormFragment on Project {
+  id
+  name
+  number
+  startDate
+  mdDate
+  deadBox
+  projectType
+  secured
+  address
+  state
+  area
+  represent
+  trade
+  projectDesc
+  rate
+  yearBuilt
+  county
+  fieldInspection
+  otherExperts
+  plans
+  budget
+  invoiceBillingPeriods
+  prioritizeInvoices
+  requireAttachmentsOnInvoices
+  maximumBillingPositionId
+  invoiceNote
+  invoiceHideCosts
+  invoiceHideHours
+  invoiceLevels
+  billingSummary
+  mdHoldNotes
+  coExperts
+  technicalSummary
+  technicalSummaryUpdatedAt
+  technicalSummaryUpdater { id login }
+  oneMinuteSummary
+  oneMinuteSummaryUpdatedAt
+  oneMinuteSummaryUpdater { id login }
+  referralContact { id displayAs mode company { id name }}
+  status
+  closedById
+  closedOn
+  entity
+  entityNumber
+  shareOnClientAccess
+  shareOneMinuteSummary
+  shareL1Timeline
+  shareL2Timeline
+  clientAccessHideAr
+  guesstimate
+  sourceUserId
+  sourceOf
+  campaignId
+  strategicTargetCompany { id name }
+  salesStageId
+  parentOpportunityId
+  opportunityOwnerId
+  opportunityStartDate
+  opportunityCloseDate
+  totalDue
+  totalInvoices
+  unbilledTotal
+  mainPhotoType
+  mainPhotoId
+  updatedAt
+  office { id }
+}
+#import "../tags/TagFields"
+
+query Receivables($filter: ReceivablesFilter, $includeAging: Boolean!) {
+  receivables(filter: $filter) {
+    title
+    projects {
+      id
+      number
+      name
+      totalDue
+      totalInvoices
+      totalPayments
+      totalRefunds
+      tasks {
+        id
+        category
+        completed
+      }
+      invoices {
+        id
+        status
+        sentAt
+        invoiceDate
+        invoiceTotal
+        paymentTotal
+      }
+      tags { ...TagFields }
+      aging @include(if: $includeAging) {
+        agingA
+        agingB
+        agingC
+        agingD
+        agingE
+        agingF
+      }
+    }
+  }
+}
+#import "./TeamFields"
+
+query RecentlyBilledProjects($user: String!) {
+  projects(filter: "active", user: $user) {
+    id
+    number
+    name
+    trade
+    projectType
+    totalDue
+    status
+    represent
+    ...TeamFields
+    recentHours
+    memberships {
+      id
+      primaryContact
+      contact {
+        id
+        displayAs
+      }
+    }
+  }
+}
+#import "./TeamFields"
+
+query ProjectAudits {
+  projects(filter: "Active") {
+    id
+    number
+    name
+    ...TeamFields
+    reportCards {
+      id
+      itemDate
+      reportCardType {
+        id
+        name
+        category
+      }
+    }
+  }
+}
+fragment ReportCardsFragment on Project {
+  id
+  reportCards {
+    id
+    score
+    itemDate
+    reportCardType {
+      id
+      name
+    }
+    possibleScore
+    user { id login }
+  }
+}
+fragment SalesProjectionsFragment on Project {
+  id
+  salesProjections {
+    id
+    itemDate
+    amount
+    closeDate
+    salesStage {
+      id
+      probability
+      description
+    }
+  }
+}
+#import "./ProjectFormFragment"
+#import "./SalesProjectionsFragment"
+
+mutation SaveProject($input: ProjectInput!) {
+  saveProject(input: $input) {
+    ...ProjectFormFragment
+    ...SalesProjectionsFragment
+  }
+}
+mutation SaveCollectionsSummary($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    arSummary
+  }
+}
+mutation SaveCustomFields($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    addressFields
+    locationFields
+    elementFields
+    issueFields
+    timelineFields
+  }
+}
+mutation SaveProjectInspectionSummary($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    inspectionSummary
+  }
+}
+mutation SaveProjectIssueSort($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    issueSort
+  }
+}
+mutation SaveProjectL1Timeline($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    l1Timeline
+  }
+}
+mutation SetMainPhoto($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    mainPhotoType
+    mainPhotoId
+  }
+}
+fragment TeamFields on Project {
+  id
+  pc { id login email fullname color }
+  pm { id login email fullname color }
+  technicalLead { id login email fullname }
+  projectUsers {
+    id
+    role
+    user { id login email fullname }
+  }
+}
+#import "./TeamFields"
+
+query Untouched {
+  projects(filter: "Untouched") {
+    id
+    number
+    name
+    status
+    ...TeamFields
+  }
+}
+mutation UpdateAnalysisMode($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    elementAnalysisMode
+    issueAnalysisMode
+    locationAnalysisMode
+  }
+}
+#import "./TeamFields"
+
+mutation UpdateTeam($input: ProjectInput!) {
+  saveProject(input: $input) {
+    id
+    ...TeamFields
+  }
+}
+query EditRelationship($id: ID!) {
+  relationship(id: $id) {
+    id
+    strategicTargetRole
+    role
+    notes
+    key
+    active
+  }
+}mutation SaveRelationship($input: RelationshipInput!) {
+  saveRelationship(input: $input) {
+    id
+    key
+    strategicTargetRole
+    active
+    notes
+    endDate
+  }
+}
+#import "../Elements/ListFragment"
+
+mutation AddReportSectionElements($reportSectionId: ID!, $elementIds: [ID]!) {
+  addReportSectionElements(
+    reportSectionId: $reportSectionId
+    elementIds: $elementIds
+  ) {
+    id
+    element {
+      ...ElementListFragment
+    }
+  }
+}
+#import "./ReportSectionIssueFields"
+
+mutation AddReportSectionIssues($reportSectionId: ID!, $issueIds: [ID]!) {
+  addReportSectionIssues(
+    reportSectionId: $reportSectionId
+    issueIds: $issueIds
+  ) {
+    ...ReportSectionIssueFields
+  }
+}
+#import "../Locations/LocationRowFragment"
+
+mutation AddReportSectionLocations($reportSectionId: ID!, $locationIds: [ID]!) {
+  addReportSectionLocations(
+    reportSectionId: $reportSectionId
+    locationIds: $locationIds
+  ) {
+    id
+    location {
+      ...LocationRowFragment
+    }
+  }
+}
+#import "./ReportRowFragment"
+#import "../projects/TeamFields"
+
+query Reports($user: String, $billable: Boolean, $status: String, $projectStatus: String, $global: Boolean!) {
+  reports(author: $user, billable: $billable, status: $status, projectStatus: $projectStatus) {
+    id
+    status
+    reportType
+    title
+    updatedAt
+    publishedOn
+    user { id fullname }
+    project {
+      id
+      number
+      name
+      ...TeamFields
+    }
+  }
+  pumReports: reports(projectUser: $user, notAuthor: $user, billable: $billable, status: $status, projectStatus: $projectStatus) {
+    id
+    status
+    reportType
+    title
+    updatedAt
+    publishedOn
+    user { id fullname }
+    project {
+      id
+      number
+      name
+      ...TeamFields
+    }
+  }
+  user(login: $user) @skip(if: $global) {
+    id
+    fullname
+  }
+}
+#import "./ReportRowFragment"
+
+mutation CopyReport($id: ID!) {
+  copyReport(id: $id) {
+    ...ReportRowFragment
+  }
+}
+mutation CreateReport($input: CreateReportInput!) {
+  createReport(input: $input) {
+    id
+  }
+}
+mutation DeleteReport($id: ID!) {
+  deleteReport(id: $id) {
+    id
+  }
+}
+mutation DeleteReportDocument($id: ID!) {
+  deleteReportDocument(id: $id) {
+    id
+  }
+}
+mutation DeleteReportPhotoGroup($id: ID!) {
+  deleteReportPhotoGroup(id: $id) {
+    id
+  }
+}
+mutation DeleteReportSection($id: ID!) {
+  deleteReportSection(id: $id) {
+    id
+  }
+}
+mutation DeleteReportSectionElement($id: ID!) {
+  deleteReportSectionElement(id: $id) {
+    id
+  }
+}
+mutation DeleteReportSectionIssue($id: ID!) {
+  deleteReportSectionIssue(id: $id) {
+    id
+  }
+}
+mutation DeleteReportSectionLocation($id: ID!) {
+  deleteReportSectionLocation(id: $id) {
+    id
+  }
+}
+mutation DeleteReportTypeSection($id: ID!) {
+  deleteReportTypeSection(id: $id) {
+    id
+    reportType {
+      id
+    }
+  }
+}
+#import "./EditReportFragment"
+
+query EditReport($id: ID!) {
+  report(id: $id) {
+    ...EditReportFragment
+  }
+}
+#import "./ReportSectionFragment"
+
+fragment EditReportFragment on Report {
+  id
+  status
+  agreement { id }
+  updatedAt
+  headerTitle
+  title
+  publishedOn
+  includePageNumbers
+  autoGenerateToc
+  staticRecipient
+  reportType
+  omitCover
+  membershipId
+  includeToc
+  customToc
+  intro
+  note
+  includeNote
+  noteInFooter
+  userId
+  retainer
+  clientName
+  feeSchedule
+  internalDescription
+  reportSections {
+    ...ReportSectionFragment
+
+  }
+}
+query EditReportType($id: ID!) {
+  reportType(id: $id) {
+    id
+    name
+    overhead
+    omitCover
+    includeNote
+    includeToc
+    intro
+    headerTitle
+    regarding
+    feeSchedule
+    agreement { id }
+    sku { id }
+  }
+}
+query ReportTypeSection($id: ID!) {
+  reportTypeSection(id: $id) {
+    id
+    sectionType
+    showHeading
+    template
+    title
+    prefill
+    includeAnalysisList
+  }
+}
+#import "./ReportRowFragment"
+
+query ProjectReports($number: String!) {
+  project(number: $number) {
+    id
+    reports {
+      ...ReportRowFragment
+    }
+  }
+}
+query legacyReports {
+ legacyReports {
+  id
+  intro
+  reportSections {
+    id
+    bodyJson
+  }
+}
+}mutation MoveReportDocument($id: ID!, $direction: String!) {
+  moveReportDocument(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+mutation MoveReportSection($id: ID!, $direction: String!) {
+  moveReportSection(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+mutation MoveReportTypeSection($id: ID!, $direction: String!) {
+  moveReportTypeSection(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+#import "../Documents/AttachedFileFragment"
+query ReportDocuments($reportSectionId: ID!) {
+  reportSection(id: $reportSectionId) {
+    id
+    reportDocuments {
+      id
+      rank
+      document {
+        id
+        mode
+        key
+        header
+        receivedDate
+        pages
+        author
+        description
+        section
+        date
+        publicDescription
+        attachedFiles {
+          ...AttachedFileFragment
+        }
+        referenceDocument {
+          id
+          mode
+          key
+          header
+          receivedDate
+          pages
+          author
+          description
+          section
+          date
+          publicDescription
+          attachedFiles {
+            ...AttachedFileFragment
+          }
+        }
+      }
+    }
+  }
+}
+#import "../Images/ImageReferenceFragment"
+
+query ReportImages($id: ID!) {
+  reportSection(id: $id) {
+    id
+    imageReferences {
+      ...ImageReferenceFragment
+    }
+  }
+}
+query ReportPhotoGroups($reportSectionId: ID!) {
+  reportSection(id: $reportSectionId) {
+    id
+    reportPhotoGroups {
+      id
+      rank
+      photoset {
+        id
+        party
+        inspectionDate
+        pfcs
+        day
+        keyPhotoCount
+        user { id login }
+      }
+      address {
+        id
+        name
+        pfcsKeyPhotoCount
+        otherKeyPhotoCount
+      }
+      location {
+        id
+        name
+        pfcsKeyPhotoCount
+        otherKeyPhotoCount
+      }
+      element {
+        id
+        number
+        name
+        pfcsKeyPhotoCount
+        otherKeyPhotoCount
+      }
+      issue {
+        id
+        number
+        description
+        pfcsKeyPhotoCount
+        otherKeyPhotoCount
+      }
+      player {
+        id
+        company
+        name
+        role
+        pfcsKeyPhotoCount
+        otherKeyPhotoCount
+      }
+      testLocation {
+        id
+        number
+        description
+        pfcsKeyPhotoCount
+        otherKeyPhotoCount
+      }
+    }
+  }
+}
+fragment ReportRowFragment on Report {
+  id
+  legacy
+  reportType
+  title
+  headerTitle
+  status
+  publishedOn
+  internalDescription
+  updatedAt
+  user {
+    id
+    fullname
+  }
+}
+#import "../Elements/ListFragment"
+
+query ReportSectionElements($reportSectionId: ID!) {
+  reportSectionElements(reportSectionId: $reportSectionId) {
+    id
+    element {
+      ...ElementListFragment
+    }
+  }
+}
+
+fragment ReportSectionFragment on ReportSection {
+  id
+  bodyJson
+  showHeading
+  newPage
+  sectionType
+  photoSort
+  includeAddressesOnPhotos
+  includeAnalysisList
+  issueSort
+  analysisPhotos
+  analysisSource
+  analysisFields
+  rank
+  title
+  includeAttachmentList
+  customAttachmentList
+  skipEmptyFields
+  autoGenerateAttachmentList
+  addresses { id }
+  locations { id }
+}
+fragment ReportSectionIssueFields on ReportSectionIssue {
+  id
+  issue {
+    id
+    number
+    alternateNumber
+    description
+    issue {
+      id
+    }
+    elements {
+      id
+      number
+      name
+    }
+    issues {
+      id
+      number
+      alternateNumber
+      description
+      issues {
+        id
+        number
+        alternateNumber
+        description
+        issues {
+          id
+          number
+          alternateNumber
+          description
+        }
+      }
+    }
+  }
+}#import "./ReportSectionIssueFields"
+
+query ReportSectionIssues($reportSectionId: ID!) {
+  reportSectionIssues(reportSectionId: $reportSectionId) {
+    ...ReportSectionIssueFields
+  }
+}
+#import "../Locations/LocationRowFragment"
+
+query ReportSectionLocations($reportSectionId: ID!) {
+  reportSectionLocations(reportSectionId: $reportSectionId) {
+    id
+    location {
+      ...LocationRowFragment
+    }
+  }
+}
+query ReportType($id: ID!) {
+  reportType(id: $id) {
+    id
+    name
+    rank
+    overhead
+    reportTypeSections {
+      id
+      showHeading
+      sectionType
+      rank
+      template
+      title
+      prefill
+    }
+  }
+}
+query ReportTypes {
+  reportTypes {
+    id
+    name
+    rank
+    overhead
+    sku { id name }
+    reportTypeSections {
+      id
+      showHeading
+      sectionType
+      rank
+      template
+      title
+      prefill
+    }
+  }
+}
+#import "../skus/SkuFragment"
+
+query ReportTypesForProject($number: String!) {
+  reportTypes {
+    id
+    name
+    rank
+    overhead
+    sku {
+      ...SkuFragment
+    }
+    reportTypeSections {
+      id
+      showHeading
+      sectionType
+      rank
+      template
+      title
+      prefill
+    }
+  }
+  project(number: $number) {
+    id
+    projectType
+  }
+}
+#import "./EditReportFragment"
+
+mutation SaveReport($input: ReportInput!) {
+  saveReport(input: $input) {
+    ...EditReportFragment
+  }
+}
+mutation SaveReportDocuments($reportSectionId: ID!, $ids: [ID!]!) {
+  saveReportDocuments(reportSectionId: $reportSectionId, ids: $ids) {
+    id
+    rank
+    document {
+      id
+      header
+      receivedDate
+      pages
+      author
+      description
+      section
+      date
+      publicDescription
+      attachment {
+        fileName
+      }
+    }
+  }
+}
+mutation SaveReportPhotoGroup($input: ReportPhotoGroupInput!) {
+  saveReportPhotoGroup(input: $input) {
+    id
+    rank
+    photoset {
+      id
+      party
+      inspectionDate
+      pfcs
+      day
+      keyPhotoCount
+      user { id login }
+    }
+    address {
+      id
+      name
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    location {
+      id
+      name
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    element {
+      id
+      number
+      name
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    issue {
+      id
+      number
+      description
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    player {
+      id
+      company
+      name
+      role
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+    testLocation {
+      id
+      number
+      description
+      pfcsKeyPhotoCount
+      otherKeyPhotoCount
+    }
+  }
+}
+#import "./ReportSectionFragment"
+
+mutation SaveReportSection($input: ReportSectionInput!) {
+  saveReportSection(input: $input) {
+    ...ReportSectionFragment
+  }
+}
+mutation SaveReportType($input: ReportTypeInput!) {
+  saveReportType(input: $input) {
+    id
+    name
+    rank
+    overhead
+    omitCover
+    includeNote
+    includeToc
+    intro
+  }
+}
+mutation SaveReportTypeSection($input: ReportTypeSectionInput!) {
+  saveReportTypeSection(input: $input) {
+    id
+    showHeading
+    sectionType
+    rank
+    template
+    title
+    prefill
+    includeAnalysisList
+  }
+}
+mutation DeleteResidence($id: ID!) {
+  deleteResidence(id: $id) {
+    id
+  }
+}query AnnualChecklists($year: Int!) {
+  checklist(template: true, category: "Webinar Checklist") {
+    id
+    checklistItems {
+      id
+      position
+      section
+      title
+      notes
+      who
+      when
+    }
+  }
+  seminars(year: $year, eventType: "Webinar") {
+    ...AnnualChecklistsSeminarFields
+  }
+}
+
+fragment AnnualChecklistsSeminarFields on Seminar {
+  id
+  eventDate
+  title
+  checklists {
+    id
+    category
+    checklistItems {
+      id
+      title
+      complete
+      template {
+        id
+      }
+    }
+  }
+}
+mutation DeleteSeminarAttachment($id: ID!) {
+  deleteSeminarAttachment(id: $id) {
+    id
+  }
+}
+mutation DeleteSeminarAttendee($id: ID!) {
+  deleteSeminarAttendee(id: $id) {
+    id
+  }
+}
+#import "./SeminarFragment"
+
+query EditSeminar($id: ID!) {
+  seminar(id: $id) {
+    ...SeminarFragment
+  }
+}
+query EditSeminarFollowup($id: ID!) {
+  seminar(id: $id) {
+    id
+    bodyFollowup
+  }
+}
+mutation SeminarImport($id: ID!, $token: String!) {
+  seminarImport(id: $id, token: $token) {
+    matchCount
+    unmatched
+  }
+}
+query Seminars($contactId: ID) {
+  seminars(contactId: $contactId) {
+    id
+    title
+    eventType
+    videoUrl
+    eventDate
+    registrantCount
+    attendeeCount
+  }
+}
+#import "./SeminarFragment"
+
+mutation SaveSeminar($input: SeminarInput!) {
+  saveSeminar(input: $input) {
+    ...SeminarFragment
+  }
+}
+mutation SaveSeminarAttachment($input: SeminarAttachmentInput!) {
+  saveSeminarAttachment(input: $input) {
+    id
+    description
+    role
+    attachmentUrl
+    attachment { fileName }
+  }
+}#import "./SeminarAttendeeFragment"
+
+mutation SaveSeminarAttendee($input: SeminarAttendeeInput!) {
+  saveSeminarAttendee(input: $input) {
+    ...SeminarAttendeeFragment
+  }
+}
+mutation SaveSeminarFollowup($input: SeminarInput!) {
+  saveSeminar(input: $input) {
+    id
+    bodyFollowup
+  }
+}
+fragment SeminarAttendeeFragment on SeminarAttendee {
+  id
+  registered
+  attended
+  key
+  contact {
+    id
+    displayAs
+    sortAs
+    company {
+      id
+      name
+    }
+    email
+  }
+}
+fragment SeminarFragment on Seminar {
+  id
+  title
+  subject
+  eventType
+  eventDate
+  eventTime
+  eventLocation
+  videoUrl
+  fromName
+  fromEmail
+  followupStatus
+  followupSentAt
+  bodyConfirmation
+  bodyReminder
+  bodyFollowup
+  goToWebinarKey
+  campaignId
+}
+mutation SendSeminar($id: ID!) {
+  sendSeminar(id: $id) {
+    id
+    followupStatus
+  }
+}
+#import "../checklists/ChecklistFragment"
+#import "./SeminarAttendeeFragment"
+#import "./SeminarFragment"
+
+query Seminar($id: ID!) {
+  seminar(id: $id) {
+    ...SeminarFields
+  }
+}
+
+
+fragment SeminarFields on Seminar {
+  ...SeminarFragment
+  campaign {
+    id
+    name
+  }
+  checklists {
+    ...ChecklistFragment
+  }
+  seminarAttendees {
+    ...SeminarAttendeeFragment
+  }
+  seminarAttachments {
+    id
+    description
+    role
+    attachmentUrl
+    attachment { fileName }
+  }
+}mutation SeminarSync($id: ID!) {
+  seminarSync(id: $id) {
+    id
+  }
+}
+mutation SendSeminarTestEmail($id: ID!, $email: String!) {
+  sendSeminarTestEmail(id: $id, email: $email) {
+    id
+  }
+}
+mutation DeleteSample($id: ID!) {
+  deleteSkuSample(id: $id) {
+    id
+  }
+}query SKU($id: ID!) {
+  sku(id: $id) {
+    id
+    name
+    description
+    category
+    trainingUrl
+  }
+}#import "./SampleFragment"
+
+query EditSKUSample($id: ID!) {
+  skuSample(id: $id) {
+    id
+    project { id }
+    url
+    description
+  }
+}query SKUs {
+  skus {
+    id
+    name
+    description
+    category
+  }
+}fragment SampleFragment on SkuSample {
+  id
+  attachment {
+    fileName
+  }
+  attachmentUrl
+  project { id number name }
+  url
+  description
+}#import "./SkuFragment"
+
+mutation SaveSKU($input: SkuInput!) {
+  saveSku(input: $input) {
+    ...SkuFragment
+  }
+}
+#import "./SampleFragment"
+
+mutation SaveSKUSample($input: SkuSampleInput!) {
+  saveSkuSample(input: $input) {
+    ...SampleFragment
+  }
+}#import "./SkuFragment"
+
+query ShowSKU($id: ID!) {
+  sku(id: $id) {
+    ...SkuFragment
+
+  }
+}
+#import "./SampleFragment"
+
+fragment SkuFragment on Sku {
+  id
+  name
+  description
+  category
+  trainingUrl
+  samples {
+    ...SampleFragment
+  }
+}
+#import "./TagFields"
+
+query ARTags($scope: String) {
+  tags(scope: $scope) {
+    ...TagFields
+    projectCount
+  }
+}
+#import "./TagFields"
+
+mutation CreateTagging($input: TaggingInput!) {
+  createTagging(input: $input) {
+    id
+    createdAt
+    tag {
+      ...TagFields
+    }
+  }
+}
+mutation DeleteTagging($id: ID!) {
+  deleteTagging(id: $id) {
+    id
+  }
+}
+#import "./TagFields"
+
+query Tag($id: ID!) {
+  tag(id: $id) {
+    ...TagFields
+  }
+}
+#import "./TagFields"
+
+mutation SaveTag($input: TagInput!) {
+  saveTag(input: $input) {
+    ...TagFields
+  }
+}
+fragment TagFields on Tag {
+  id
+  scope
+  category
+  section
+  subsection
+}#import "./TagFields"
+
+query Tags($scope: String) {
+  tags(scope: $scope) {
+    ...TagFields
+  }
+}
+#import "./UserTaskFragment"
+
+mutation CompleteTask($input: TaskInput!) {
+  saveTask(input: $input) {
+    id
+    completed
+    ...UserTaskFragment
+  }
+}
+query TaskCounts($user: String) {
+  taskCounts(user: $user) {
+    name
+    count
+  }
+}
+#import "./UserTaskFragment"
+
+mutation DeleteTask($id: ID!) {
+  deleteTask(id: $id) {
+    id
+    ...UserTaskFragment
+  }
+}
+#import "./TaskFragment"
+#import "./UserTaskFragment"
+
+mutation SaveTask($input: TaskInput!) {
+  saveTask(input: $input) {
+    ...TaskFragment
+    ...UserTaskFragment
+  }
+}
+fragment TaskFragment on Task {
+  id
+  description
+  itemDate
+  priority
+  completed
+  category
+  hours
+  creator { id login }
+  user { id login }
+  userId
+  deliverable { id description }
+  deliverableId
+  project { id number name }
+  projectId
+  interview { id project { id number name } }
+  contact { id displayAs }
+  employee { id displayAs }
+  campaign { id name }
+  feature { id title featureType }
+  kanbanCard { id title deliverable { id description } }
+  device { id }
+  tenTouch { id }
+  tenTouchType
+  tenTouchItem { id category name emailSubject emailBody }
+  tenTouchNote
+  tenTouchSubject
+  tenTouchEmail
+}
+fragment UserTaskFragment on Task {
+  id
+  user {
+    id
+    pastDueTaskCount
+    todayTaskCount
+  }
+}
+#import "./TaskFragment"
+#import "../TenTouches/TenTouchTaskFragment"
+
+query Tasks($parentType: String!, $parentId: ID!, $scope: String, $category: String, $type: String, $includeTenTouches: Boolean!) {
+  tasks(parentType: $parentType, parentId: $parentId, scope: $scope, category: $category, type: $type) {
+    ...TaskFragment
+  }
+  tenTouchTasks(parentType: $parentType, parentId: $parentId, scope: $scope, category: $category, type: $type) @include(if: $includeTenTouches) {
+    ...TenTouchTaskFragment
+  }
+}
+query Templates {
+  templates {
+    id
+    name
+    content
+    scope
+    category
+    plainContent
+    contentType
+  }
+}
+  query Template($id: ID!) {
+    template(id: $id) {
+      id
+      name
+      content
+      contentType
+      category
+      scope
+      plainContent
+    }
+  }
+mutation SaveTemplate($input: TemplateInput!) {
+  saveTemplate(input: $input) {
+    id
+    name
+    content
+    contentType
+    category
+    scope
+    plainContent
+  }
+}
+#import "./ShowFragment"
+
+query ProjectTestLocations($number: String!) {
+  project(number: $number) {
+    id
+    number
+    testLocations {
+      ...ShowTestLocationFragment
+    }
+  }
+}
+#import "./ShowFragment"
+
+mutation batchUpdateTestLocations($ids: [ID!]!, $input: TestLocationInput!, $remove: Boolean) {
+  batchUpdateTestLocations(ids: $ids, input: $input, remove: $remove) {
+    ...ShowTestLocationFragment
+  }
+}
+mutation DeleteTestLocation($id: ID!) {
+  deleteTestLocation(id: $id) {
+    id
+  }
+}#import "./FormFragment"
+
+query EditTestLocation($id: ID!) {
+  testLocation(id: $id) {
+    ...TestLocationFormFragment
+  }
+}#import "../BPALinkFragment"
+
+fragment TestLocationFormFragment on TestLocation {
+  id
+  description
+  testedBy
+  testedAt
+  number
+  attended
+  alternateNumber
+  analysis
+  swi
+  damage
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+  next { id }
+  prev { id }
+}#import "./ShowFragment"
+
+query TestLocations($projectId: ID) {
+  testLocations(projectId: $projectId) {
+    ...ShowTestLocationFragment
+  }
+}
+#import "./FormFragment"
+
+mutation SaveTestLocation($input: TestLocationInput!) {
+  saveTestLocation(input: $input) {
+    ...TestLocationFormFragment
+  }
+}fragment ShowTestLocationFragment on TestLocation {
+  id
+  description
+  testedBy
+  testedAt
+  number
+  attended
+  alternateNumber
+  analysis
+  swi
+  damage
+  pfcsPhotoCount
+  pfcsKeyPhotoCount
+  otherPhotoCount
+  otherKeyPhotoCount
+  updatedAt
+  elements {
+    id
+    displayName
+  }
+  addresses {
+    id
+    displayName
+  }
+  locations {
+    id
+    displayName
+  }
+  issues {
+    id
+    displayName
+  }
+}
+query Timelines($number: String!) {
+  project(number: $number) {
+    id
+    number
+    shareL1Timeline
+    shareL2Timeline
+    l1Timeline
+    timelines {
+      ...TimelineFields
+    }
+  }
+}
+
+
+fragment TimelineFields on Timeline {
+  id
+  itemDate
+  title
+  description
+  keyEvent
+  customFields
+  players {
+    id
+    displayName
+  }
+  elements {
+    id
+    displayName
+  }
+  document {
+    id
+    publicDescription
+    displayName
+    attachedFiles {
+      id
+      primaryFile
+      attachmentUrl
+      attachment {
+        fileName
+      }
+    }
+  }
+}mutation DeleteTimeline($id: ID!) {
+  deleteTimeline(id: $id) {
+    id
+  }
+}#import "./FormFragment"
+
+query Timeline($id: ID!) {
+  timeline(id: $id) {
+    ...TimelineFormFragment
+  }
+}#import "../BPALinkFragment"
+
+fragment TimelineFormFragment on Timeline {
+  id
+  itemDate
+  title
+  description
+  keyEvent
+  customFields
+  document { id }
+  interview { id }
+  bpaLinks {
+    ...BpaLinkFragment
+  }
+}#import "./FormFragment"
+
+mutation SaveTimeline($input: TimelineInput!) {
+  saveTimeline(input: $input) {
+    ...TimelineFormFragment
+  }
+}mutation ApproveExpenses($ids: [ID!]!, $employeeId: ID!, $month: String!) {
+  approveExpenses(ids: $ids, employeeId: $employeeId, month: $month) {
+    id
+    date
+    category
+    amount
+    createdAt
+    paidOn
+    employee { id }
+    timesheets {
+      id
+      expenseStatus
+      description
+      itemDate
+      total
+      attachmentUrl
+      project { id number name }
+    }
+  }
+}query Commonbillingentries {
+  templates(scope: "Timesheets") {
+    id
+    plainContent
+    category
+  }
+}
+#import "./TimesheetParts"
+
+mutation createTimesheet($input: TimesheetInput) {
+  createTimesheet(input: $input) {
+    ...TimesheetParts
+  }
+}
+mutation DeleteTimesheet($id: ID) {
+  deleteTimesheet(id: $id) {
+    id
+  }
+}
+#import "./TimesheetEditFragment"
+
+query Timesheet($id: ID) {
+  timesheet(id: $id) {
+    ...TimesheetEditFragment
+  }
+}
+query Expenses($month: String!) {
+  employees(activeDuring: $month, future: false) {
+    id
+    displayAs
+    user {
+      id
+      login
+      fullname
+      timesheets(paymentType: "EMPLOYEE", filterMonth: $month, filter: "Pending Expenses") {
+        id
+        expenseStatus
+        description
+        itemDate
+        total
+        attachmentUrl
+        project { id number name }
+      }
+    }
+    monthlyPayments(month: $month) {
+      id
+      date
+      category
+      amount
+      createdAt
+      paidOn
+      timesheets {
+        id
+        expenseStatus
+        description
+        itemDate
+        total
+        attachmentUrl
+        project { id number name }
+      }
+    }
+  }
+}mutation generateInvoices($month: String!) {
+  generateAllInvoices(month: $month)
+}
+#import "./TimesheetParts"
+
+query Timesheets($login: String!, $month: String!) {
+  user(login: $login) {
+    id
+    employee {
+      id
+      office {
+        id
+        location
+      }
+    }
+  }
+  timesheets(login: $login, month: $month) {
+    ...TimesheetParts
+  }
+}
+query OverheadHours($login: String!, $year: String!) {
+  timesheets(login: $login, year: $year, expenses: false) {
+    id
+    itemDate
+    hours
+    project { id projectType number name }
+  }
+}#import "./TimesheetParts"
+
+mutation SaveTimesheet($input: TimesheetInput) {
+  saveTimesheet(input: $input) {
+    ...TimesheetParts
+  }
+}
+query TimesheetStatus {
+  timesheetStatus {
+    month
+    results {
+      user {
+        id
+        login
+        fullname
+      }
+      count
+      weeklyStatus
+    }
+  }
+}
+mutation submitTimesheet($login: String!, $mode: String!, $month: String!) {
+  submitTimesheet(login: $login, mode: $mode, month: $month) {
+    id
+    status
+  }
+}
+fragment TimesheetEditFragment on Timesheet {
+  id
+  billedPosition
+  itemDate
+  hours
+  description
+  category
+  noCharge
+  attachment
+  isExpense
+  paymentType
+  dueDate
+  deliverableId
+  projectId
+  campaignId
+  userId
+  suggestion
+  rate
+  status
+  testimony
+  mentor {
+    id
+    login
+  }
+  user {
+    id
+    login
+  }
+  project {
+    id
+    number
+    name
+    projectType
+    projectUsers {
+      id
+      userId
+      role
+    }
+  }
+}
+fragment TimesheetParts on Timesheet {
+  id
+  billedPosition
+  itemDate
+  hours
+  total
+  description
+  suggestion
+  mentor {
+    id
+    login
+  }
+  category
+  noCharge
+  attachment
+  status
+  isExpense
+  paymentType
+  testimony
+  opportunity
+  deliverable {
+    id
+    description
+    priority
+    rank
+    milestoneparent {
+      id
+      title
+    }
+  }
+  project {
+    id
+    number
+    name
+    projectType
+    salesStageId
+    pm { id login email}
+    pc { id login email}
+  }
+  campaign { id name }
+  user { id login }
+}
+#import "./TimesheetParts"
+
+mutation UpdateTimesheet($id: ID!, $input: TimesheetInput) {
+  updateTimesheet(id: $id, input: $input) {
+    ...TimesheetParts
+  }
+}
+#import "./Fragment"
+
+query EditTopic($id: ID!) {
+  topic(id: $id) {
+    ...TopicFragment
+  }
+}fragment TopicFragment on Topic {
+  id
+  category
+  user { id fullname }
+  status
+  description
+  title
+}#import "./Fragment"
+
+query ProjectTopics($id: ID!) {
+  project(id: $id) {
+    id
+    topics {
+      ...TopicFragment
+    }
+  }
+}mutation SaveTopic($input: TopicInput!) {
+  saveTopic(input: $input) {
+    id
+  }
+}#import "./Fragment"
+#import "../notes/ShowFragment"
+#import "../Attachments/AttachmentFragment"
+
+query Topic($id: ID!) {
+  topic(id: $id) {
+    ...ShowTopicFields
+  }
+}
+
+fragment ShowTopicFields on Topic {
+  ...TopicFragment
+  createdAt
+  notes {
+    ...NoteShowFragment
+  }
+  attachments {
+    ...AttachmentFragment
+  }
+}query TrainingCategories {
+  trainingCategories {
+    id
+    name
+  }
+}
+mutation DeleteTraining($id: ID!) {
+  deleteTraining(id: $id) {
+    id
+  }
+}
+mutation DeleteTrainingAssignment($id: ID!) {
+  deleteTrainingAssignment(id: $id) {
+    id
+  }
+}
+mutation DeleteTrainingCompletion($id: ID!) {
+  deleteTrainingCompletion(id: $id) {
+    id
+  }
+}
+mutation DeleteTrainingPlan($id: ID!) {
+  deleteTrainingPlan(id: $id) {
+    id
+  }
+}
+mutation DeleteTrainingRequirement($id: ID!) {
+  deleteTrainingRequirement(id: $id) {
+    id
+  }
+}
+#import "../Documents/DocumentRowFragment"
+#import "./RequirementFields"
+#import "./TrainingCompletionFragment"
+
+query EditTraining($id: ID!) {
+  training(id: $id) {
+    ...EditTrainingFields
+  }
+}
+
+fragment EditTrainingFields on Training {
+  id
+  name
+  producedOn
+  expectedDate
+  bodyJson
+  parentId
+  url
+  priority
+  status
+  trainingCategories {
+    id
+  }
+  trainingRequirements {
+    ...TrainingRequirementFields
+  }
+  trainingCompletions {
+    ...TrainingCompletionFragment
+  }
+  attachments {
+    id
+    rank
+    url
+    projectId
+    note
+    project {
+      id
+      number
+      name
+    }
+    document {
+      ...DocumentRowFragment
+    }
+    attachmentUrl
+    attachment {
+      fileName
+    }
+  }
+  trainings {
+    id
+  }
+}query EditTrainingPlan($id: ID!) {
+  trainingPlan(id: $id) {
+    id
+    name
+    status
+    userId
+  }
+}
+fragment TrainingListFragment on Training {
+  id
+  parentId
+  name
+  url
+  bodyJson
+  updatedAt
+  position
+  priority
+  status
+  trainingCategories {
+    id
+    name
+  }
+  trainingRequirements {
+    id
+  }
+  trainingAssignments {
+    id
+    trainingPlan {
+      id
+      user { id }
+    }
+  }
+}
+
+query TrainingList($filter: String) {
+  trainingCategories {
+    id
+    name
+  }
+  trainings(filter: $filter) {
+    ...TrainingListFragment
+    trainings {
+      ...TrainingListFragment
+    }
+  }
+}
+query Trainings {
+  trainings {
+    id
+    name
+    trainings {
+      id
+      name
+    }
+  }
+}
+fragment TrainingRequirementFields on TrainingRequirement {
+  id
+  description
+  deliverables
+  mode
+  options
+  rank
+}#import "./RequirementFields"
+
+mutation SaveTrainingRequirement($input: TrainingRequirementInput!) {
+  saveTrainingRequirement(input: $input) {
+    ...TrainingRequirementFields
+  }
+}
+#import "./ShowTrainingFragment"
+
+mutation SaveTraining($input: TrainingInput!) {
+  saveTraining(input: $input) {
+    ...ShowTrainingFragment
+  }
+}
+#import "./TrainingAssignmentFragment"
+
+mutation SaveTrainingAssignment($input: TrainingAssignmentInput!) {
+  saveTrainingAssignment(input: $input) {
+    ...TrainingAssignmentFragment
+  }
+}
+#import "./TrainingCompletionFragment"
+
+mutation SaveTrainingCompletion($input: TrainingCompletionInput!) {
+  saveTrainingCompletion(input: $input) {
+    ...TrainingCompletionFragment
+  }
+}
+#import "./TrainingPlanFragment"
+
+mutation SaveTrainingPlan($input: TrainingPlanInput!) {
+  saveTrainingPlan(input: $input) {
+    ...TrainingPlanFragment
+  }
+}
+#import "./ShowTrainingFragment"
+
+query ShowTraining($id: ID!) {
+  training(id: $id) {
+    ...ShowTrainingFragment
+  }
+}
+#import "./TrainingCompletionFragment"
+#import "./RequirementFields"
+#import "../Documents/DocumentRowFragment"
+
+fragment ShowTrainingFragment on Training {
+  id
+  name
+  bodyJson
+  producedOn
+  updatedAt
+  url
+  priority
+  status
+  training {
+    id
+    name
+    url
+    bodyJson
+    trainings {
+      id
+      name
+      url
+      bodyJson
+    }
+  }
+  trainings {
+    id
+    url
+    bodyJson
+    name
+    position
+  }
+  attachments {
+    id
+    project { id number name }
+    document {
+      ...DocumentRowFragment
+    }
+    attachmentUrl
+    attachment { fileName }
+    note
+    url
+    rank
+  }
+  trainingCompletions {
+    ...TrainingCompletionFragment
+  }
+  trainingCategories {
+    id
+    name
+  }
+  trainingRequirements {
+    ...TrainingRequirementFields
+  }
+}
+mutation SortTrainingAssignments($input: TrainingAssignmentInput!) {
+  sortTrainingAssignment(input: $input) {
+    id
+    position
+  }
+}
+mutation SortTrainingRequirement($id: ID!, $direction: String!) {
+  sortTrainingRequirement(id: $id, direction: $direction) {
+    id
+    rank
+  }
+}
+#import "./TrainingPlanFragment"
+
+query StaffTraining {
+  employees(status: "Active", future: false) {
+    id
+    displayAs
+    department
+    user {
+      ...StaffTrainingUserFields
+    }
+  }
+}
+
+fragment StaffTrainingUserFields on User {
+  id
+  login
+  trainingPlans {
+    ...StaffTrainingPlanFields
+  }
+  trainingCompletions {
+    id
+    status
+    training { id }
+    trainingRequirement { id }
+  }
+}
+
+fragment StaffTrainingPlanFields on TrainingPlan {
+  id
+  status
+  name
+  createdAt
+  trainingAssignments {
+    id
+    training { id }
+  }
+}
+fragment TrainingAssignmentFragment on TrainingAssignment {
+  id
+  position
+  training {
+    id
+    url
+    name
+    bodyJson
+    trainingRequirements { id }
+    trainings {
+      id
+      name
+      url
+      position
+      bodyJson
+      trainingRequirements { id }
+      trainingCompletions {
+        id
+        userId
+        status
+        trainingRequirementId
+        createdAt
+      }
+    }
+    trainingCompletions {
+      id
+      userId
+      status
+      trainingRequirementId
+      createdAt
+    }
+  }
+}
+fragment TrainingCompletionFragment on TrainingCompletion {
+  id
+  userId
+  trainingRequirementId
+  createdAt
+  answer
+  answers
+  status
+  correct
+  attachment {
+    fileName
+  }
+  attachmentUrl
+  project { id number name }
+  user { id fullname employmentStatus }
+}
+#import "./TrainingAssignmentFragment"
+
+fragment TrainingPlanFragment on TrainingPlan {
+  id
+  status
+  user {
+    id
+    login
+  }
+  name
+  trainingAssignments {
+    ...TrainingAssignmentFragment
+  }
+}
+#import "./TrainingPlanFragment"
+
+query UserTrainingPlans($login: String!) {
+  trainingPlans(login: $login) {
+    ...TrainingPlanFragment
+  }
+}
+query ActiveUsers($includeIds: [ID]) {
+  users(includeIds: $includeIds) {
+    id
+    login
+    fullname
+  }
+}
+query CurrentUser {
+  currentUser {
+    id
+    login
+    fullname
+    signature
+    email
+    roles
+    allowArChanges
+    isManager
+    isTimeAdministrator
+    isAdministrator
+    isSalaryManager
+    showPrimaryContactsOnly
+    showManagement
+    isIgk
+    userType
+    pastDueTaskCount
+    todayTaskCount
+    canApprovePayroll
+    goToWebinarAccessToken
+    goToWebinarExpiresAt
+    timesheetsScrollToBottom
+    timesheetsHideLockedWeeks
+    invoiceReviewCount
+    pendingTimesheets
+    employee {
+      id
+      billingPosition {
+        id
+        description
+      }
+      office {
+        id
+        location
+      }
+    }
+  }
+}
+#import "./UserFragment"
+
+query BasicUser($login: String!) {
+  user(login: $login) {
+    id
+    login
+    fullname
+  }
+}
+#import "./UserFragment"
+
+query EditUser($id: ID!) {
+  user(id: $id) {
+    ...UserFragment
+  }
+}
+query UserSettings($login: String!) {
+  user(login: $login) {
+    id
+    login
+    timesheetsHideLockedWeeks
+    timesheetsScrollToBottom
+    taskCompletionNotification
+    projectListStartDate
+    projectListTotalDue
+    showPrimaryContactsOnly
+    signature
+  }
+}
+query Users {
+  users(filter: "ALL") {
+    id
+    login
+    fullname
+    userType
+    email
+    employmentStatus
+    isManager
+    isSalaryManager
+    token
+  }
+}
+mutation LoginUser($token: String!) {
+  login(token: $token) {
+    token
+  }
+}query UsersPicker {
+  users {
+    id
+    login
+    fullname
+  }
+}
+query ProjectUsers($includeProject: Boolean!, $includeIds: [ID], $id: ID!) {
+  users(includeIds: $includeIds) {
+    id
+    login
+    fullname
+  }
+  project(id: $id) @include(if: $includeProject) {
+    id
+    pc { id login fullname }
+    pm { id login fullname }
+    technicalLead { id login fullname }
+    projectUsers {
+      id
+      role
+      user {
+        id
+        login
+        fullname
+      }
+    }
+  }
+}
+#import "./UserFragment"
+
+mutation SaveUser($input: UserInput!) {
+  saveUser(input: $input) {
+    ...UserFragment
+  }
+}
+mutation UpdateUser($input: UserInput!) {
+  saveUser(input: $input) {
+    id
+    timesheetsHideLockedWeeks
+    timesheetsScrollToBottom
+    taskCompletionNotification
+    projectListStartDate
+    projectListTotalDue
+    showPrimaryContactsOnly
+    signature
+  }
+}
+fragment UserFragment on User {
+  id
+  login
+  fullname
+  email
+  userType
+  signature
+  kpiSet { id name }
+  employmentStatus
+  startDate
+  endDate
+  office
+  workState
+  isAdministrator
+  isManager
+  isIgk
+  isSalaryManager
+  isTimeAdministrator
+  allowArChanges
+  showManagement
+  showExecutiveDash
+  showAreaManagerDash
+  showMarketingDash
+  showAreaManagerDash
+  canApprovePayroll
+  tracksTime
+  requiresNewPassword
+  notifications
+  roles
+  goToWebinarAccessToken
+  goToWebinarExpiresAt
+}
